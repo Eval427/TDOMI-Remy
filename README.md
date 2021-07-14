@@ -28,3 +28,15 @@ Get Adine's good ending
 Do some of ECK's Savior mod
 
 Have the special at the diner during chapter 1 (currently not working I think)
+
+ ________________________________________________________________________________________________
+
+What am I working on now?
+
+I know many of the transitions are extremely ugly. I'm working to fix that.
+
+The music choice isn't that great IMO. Would like some feedback.
+
+Grammar. I've gone through a lot of it, but there's still probably a ton I'm missing.
+
+Adding endings. They exist, but there isn't a tangible way to determine if you've seen one.

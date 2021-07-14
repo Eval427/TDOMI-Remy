@@ -38,5 +38,5 @@ label eval_tmomi_common:
         if not persistent.evalremyamelybad:
             persistent.evalremyamelyadinebad = "???"
 
-    if persistent.c3helpedkatsu:
+    if persistent.playedkatsu:
         jump eval_tmomi_remy

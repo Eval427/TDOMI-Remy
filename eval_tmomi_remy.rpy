@@ -65,7 +65,7 @@ label eval_tmomi_remy:
     Ry "Where did you tell him to move?"
     c "Here. Tatsu Park."
     Ry "I find it strange that he didn't think to move to Tatsu Park earlier."
-    c "When you've been doing something as long as Katsuharu and develop a routine, it's probably quite difficult to notice those things." #Gonna want to change this a bit
+    c "Considering his old spot worked well for 40 years, it was probably pretty difficult to decide on a move." #Gonna want to change this a bit
     Ry "I guess you're right."
     Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
     c "I'm sure it will be fine."
@@ -364,7 +364,7 @@ label eval_solo_remy_1: #Ending with only Remy
 
     menu:
         "Hey! Long time no see.":
-            c "Yeah, it's really been a while hasn't it. A lot has gone on since we last saw each other."
+            c "Yeah, it's really been a while, hasn't it. A lot has gone on since we last saw each other."
             Ka exhausted flip "Quite a lot it seems. You have caused quite the chaos since you arrived."
             c "I guess I just have a knack for it. Hopefully it should all return back to the peaceful way it was. Everything has more or less resolved itself and the conflict is over." #Ew ugly
             Ka smile flip "Glad to hear that."
@@ -424,9 +424,11 @@ label eval_solo_remy_2:
     m "Expecting the dragon to produce some sort of utensil, I was surprised when he suddenly thrust his hand into the vat and pulled out an almost perfectly spherical scoop of ice cream."
     c "(Damn, these dragons can fly, shoot fire, run extremely fast, and even make an amazing scoop of ice cream with their bare hands. This truly is the peak of evolution.)"
     Ka "Y'know, most ice cream vendors use some sort of scoop. But over the years, you learn that your bare hands are faster and more efficient than any of those stupid tools." #Might be a bit pointless to have this
-    c "I can tell. That is a seriously good looking scoop of ice cream."
-    Ka "Thank you!"
-    Ry "Even today it still surprises me. That's years of hard work and dedication."
+    c "Don't you walk using your hands?" #Hands, claws, feet, I'm very confused at this point
+    Ry look "You know, I never really thought of that."
+    Ka "Well, I wash my hands before serving the ice cream of course! I have a little station behind here and everything."
+    c "(Whew)"
+    show remy normal with dissolvemed
     m "In another brisk motion, the dragon revealed a standard waffle cone and carefully rested the scoop on top, lightly pushing it down to make sure it didn't fall out."
     c "Interesting, those cones look exactly like the ones back in my world."
     show katsu excited flip at Position (xpos = 0.1) with easeinleft
@@ -447,7 +449,7 @@ label eval_solo_remy_2:
     elif chosenflavor == "cherry":
         m "Cherry ice cream in itself was a very unique concept to me. The scoop looked like the strawberry ice cream back in my world, but with a slightly darker shade of red."
     elif chosenflavor == "special":
-        m "The Special was a disgusting mix of all the colors you don't want in your ice cream. It had a rather odd, dark gray color with pink dots speckled inside it, which I presumed was the fish."
+        m "The special was a disgusting mix of all the colors you don't want in your ice cream. It had a rather odd, dark gray color with pink dots speckled inside it, which I presumed was the fish."
     
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
@@ -455,11 +457,10 @@ label eval_solo_remy_2:
     show katsu normal flip at Position (xpos = 0.1) with easeinleft
     Ka "Here you are Remy."
     Ry smile "It's been so long since I've had ice cream."
-    Ry "And there is nobody I would rather have ice cream with than you, [player_name]."
+    Ry normal "And there is nobody I would rather have ice cream with than you, [player_name]." #Pretty sure this is cringy asf
     c "Thanks Remy, that means a lot."
     Ka "Well, as promised, this one is on the house."
     c "Thank you Katsuharu."
-    show remy normal at right with dissolvemed
     Ka smile flip "I should be thanking you. You are the one that saved my business after all."
     c "This ice cream is more than enough to show your gratitude."
     Ka normal flip "Go ahead and stop by anytime you wish. I'll always have plenty of ice cream."
@@ -470,7 +471,7 @@ label eval_solo_remy_2:
     Ka normal flip "Anyways, I should probably get back to my stand before the people in line start getting too angry."
     Ry "Of course. Thank you Katsuharu."
     Ka "Any time."
-    show katsu normal with dissolvemed #Why does katsu do a 360 flip here?
+    show katsu normal with dissolvemed #Why does katsu do a 360 flip here? Am I just seeing things?
     $ renpy.pause (0.2)
     hide katsu with easeoutleft
     hide remy with dissolvemed
@@ -481,10 +482,12 @@ label eval_solo_remy_2:
     m "I looked down to see Remy carefully walking on three legs while balancing the cone in his fourth."
     c "Of course, let's find a good place to rest."
     Ry "That area looks nice and peaceful."
+    stop music fadeout 2.0
     scene black with dissolveslow
     hide remy with dissolvemed
     m "We made our way over to where Remy was looking and sat down side by side" #A little choppy, should fix this
     scene evalpark1 with dissolveslow
+    play music "mx/campfire.ogg"
     show remy normal with dissolvemed
     Ry "We should make a toast."
     c "But we don't have any drinks."
@@ -516,10 +519,10 @@ label eval_solo_remy_2:
             Ry normal "I didn't think that I could possibly be much help in any situation, but I can promise that I will always be there for you."
             c "Thank you, Remy."
         "To our love." if mp.remyromance:
-            c "To our love. You are the most gorgeous and kindhearted dragon I have ever seen."
-            Ry shy "That definitely isn't what I expected to hear, but thank you. I can also confirm that you are the most beautiful human that I have ever seen."
+            c "To our love. You are the most gorgeous and kindhearted dragon I have ever met."
+            Ry shy "That definitely isn't what I expected to hear, but thank you. I can also confirm that you are the most beautiful human that I have ever met."
             c "Not like I'm working with any real competition..."
-            Ry normal "Hey, technically there were three humans here. I didn't have to say you were the most beautiful. I just sincerely mean it."
+            Ry normal "Hey, technically there were three humans here. I just sincerely mean what I said."
             c "Thanks, Remy."
         "To this world.":
             c "To this world. You all accepted me with open arms and have shown me just how truly beautiful your civilization is."
@@ -534,6 +537,8 @@ label eval_solo_remy_2:
     m "This time, we didn't tap our cones together for fear of further ruining our scoops."
     Ry "We should probably start eating our ice cream before it all melts, don't you think?"
     m "I looked down, spotting trickles of the [chosenflavor] ice cream running down the cone and pooling on my hand."
+    if chosenflavor == "special":
+        m "Somehow, it looked even more disgusting than before."
     c "Good idea."
     if chosenflavor == "special":
         show remy smile with dissolvemed
@@ -542,13 +547,13 @@ label eval_solo_remy_2:
             c "Wow, this is just as disgusting as I remember it being."
         else:
             c "Wow, this is disgusting."
-        Ry look "Are you not a big fan of the Special?"
+        Ry look "Are you not a big fan of the special?"
         c "Not to offend anyone, but it's pretty gross."
-        Ry normal "It isn't for everyone, but luckily it is for me. Would you like to switch?"
+        Ry normal "It isn't for everyone, , it is for me. Would you like to switch?"
 
         menu:
             "Sure.":
-                c "I mean, if you are okay with it."
+                c "I mean, if you're okay with it."
                 Ry smile "If you're happy, I'm happy."
                 show remy normal with dissolvemed
                 m "We quickly switched cones, and after a taste of the vanilla, I could see why Katsuharu was so well loved for his craft."
@@ -569,17 +574,19 @@ label eval_solo_remy_2:
         m "Our cones did not last long. Soon, the only remnants of our ice cream lay in our stomachs or dried on our hands."
     
     scene evalpark2 with dissolveslow #Ugly transition. How do I change scene w/o hiding Remy?
-    show remy normal
+    show remy normal with dissolvemed
     Ry smile "I would call this outing a complete success!"
     c "Agreed."
     Ry normal "It's getting a bit late, would you like me to walk you back to your place?"
     c "Sure!"
+    stop music fadeout 2.0
     scene black with dissolveslow
     hide remy with dissolvemed
     play sound "fx/steps/rough_gravel.wav"
     m "It didn't take us long to make our way back."
     scene evalplayerapt1 with dissolveslow
     show remy normal with dissolvemed
+    play music "mx/amb/night.ogg"
     Ry "Here we are, just like the night you first came here."
 
     menu:
@@ -590,16 +597,16 @@ label eval_solo_remy_2:
             Ry shy "I don't think you would then, but I'm glad you would now."
 
             if switchedcones:
-                Ry normal "Your breath smells like vanilla."
+                Ry "Your breath smells like vanilla."
                 c "And yours of fish. I think I got the shorter end of the stick."
                 Ry "I guess fish ice cream and kissing don't mix well together."
             elif chosenflavor == "special":
                 c "Your breath smells like vanilla."
-                Ry normal "And yours of fish. I think I got the shorter end of the stick."
+                Ry "And yours of fish. I think I got the shorter end of the stick."
                 c "Yeah, I guess fish ice cream isn't the best for kissing."
             else:
                 c "Your breath smells like vanilla."
-                Ry normal "And yours of [chosenflavor]. Really adds to the kiss if you ask me."
+                Ry "And yours of [chosenflavor]. Really adds to the kiss if you ask me."
 
             Ry shy "Hey... Uh, it's quite late, and my house is a bit far away, would you mind if I stayed at your place for the night?"
             c "Of course, the couch is always available."
@@ -611,6 +618,7 @@ label eval_solo_remy_2:
                     Ry normal "We'll see where things go, [player_name]." #Do I add more to this? Maybe I will in the final ending...
                     scene black with dissolveslow
                     stop music fadeout 2.0
+                    $ renpy.pause (4.0)
                     play sound "mx/eveningmelody.ogg"
                     return
                 
@@ -619,6 +627,7 @@ label eval_solo_remy_2:
                     Ry sad "Oh, I understand, I guess the couch will be big enough for me."
                     scene black with dissolveslow
                     stop music fadeout 2.0
+                    $ renpy.pause (4.0)
                     play sound "mx/eveningmelody.ogg"
                     m "But why? Why would you choose this in the first place?"
                     return
@@ -657,9 +666,9 @@ label eval_remy_amely_1:
         c "Why do you only say 'dot dot dot'"
         Dr "dot dot dot"
         c "Um..."
-        Dr "Dramavian..."
+        Dr "Goodbye..."
         hide dramavian with dissolvemed
-        c "I guess his name is Dramavian..."
+        c "That was an interesting experience..."
         m "I found myself saying the dots out loud as well now."
     else:
         c "Whoah, I didn't see you there. I thought you were a statue or something."
@@ -734,14 +743,14 @@ label eval_remy_amely_1:
 
     menu:
         "Hey! Long time no see.":
-            c "Yeah, it's really been a while hasn't it. A lot has gone on since we last saw each other."
+            c "Yeah, it's really been a while, hasn't it. A lot has gone on since we last saw each other."
             Ka exhausted flip "Quite a lot it seems. You have caused quite the chaos since you arrived."
             c "I guess I just have a knack for it. Hopefully it should all return back to the peaceful way it was. Everything has more or less resolved itself and the conflict is over."
             Ka smile flip "Glad to hear that."
             c "Is it alright that I brought Remy and Amely along as well?"
             Ka normal flip "Perfectly fine! Although Remy is going to have to pay for the both of them."
             Ry look "Umm... [player_name]? I didn't bring any money."
-            Ka smile flip "I'm just messing with you. I'm happy to accomodate the two of you as well."
+            Ka smile flip "I'm just messing with you. I'd be happy to accomodate the two of you as well."
             Ry normal "Why thank you Katsuharu, that's very generous of you."
             Ka "But enough chit-chat, we have to get to the more important matters."
             c "Like?"
@@ -757,7 +766,7 @@ label eval_remy_amely_1:
             c "Speaking of Remy, is it alright that I brought him along as well?"
             Ka normal flip "Perfectly fine! Although he is going to have to pay."
             Ry look "Umm... [player_name] I didn't bring any money."
-            Ka smile flip "I'm just messing with you. I'm happy to accomodate Remy as well."
+            Ka smile flip "I'm just messing with you. I'd be happy to accomodate Remy as well."
             Ry normal "Why thank you Katsuharu, that's very generous of you."
             Ka normal "Well, enough about embarrassing childhood memories, like you said, [player_name], we have to get to the more important matters."
             jump eval_ice_cream_choice
@@ -798,9 +807,11 @@ label eval_remy_amely_2:
     m "Expecting the dragon to produce some sort of utensil, I was surprised when he suddenly thrust his hand into the vat and pulled out an almost perfectly spherical scoop of ice cream."
     c "(Damn, these dragons can fly, shoot fire, run extremely fast, and even make an amazing scoop of ice cream with their bare hands. This truly is the peak of evolution.)"
     Ka "Y'know, most ice cream vendors use some sort of scoop. But over the years, you learn that your bare hands are faster and more efficient than any of those stupid tools." #Might be a bit pointless to have this
-    c "I can tell. That is a seriously good looking scoop of ice cream."
-    Ka "Thank you!"
-    Ry normal "Even today it still surprises me. That's years of hard work and dedication."
+    c "Don't you walk using your hands?" #Hands, claws, feet, I'm very confused at this point
+    Ry look "You know, I never really thought of that."
+    Ka "Well, I wash my hands before serving the ice cream of course! I have a little station behind here and everything."
+    c "(Whew)"
+    show remy normal with dissolvemed
     m "In another brisk motion, the dragon revealed a standard waffle cone and carefully rested the scoop on top, ligtly pushing it down to make sure it didn't fall out."
     c "Interesting, those cones look exactly like the ones back in my world."
     show katsu excited flip at Position (xpos = 0.1) with easeinleft
@@ -821,7 +832,7 @@ label eval_remy_amely_2:
     elif chosenflavor == "cherry":
         m "Cherry ice cream in itself was a very unique concept to me. The scoop looked like the strawberry ice cream back in my world, but with a slightly darker shade of red."
     elif chosenflavor == "special":
-        m "The Special was a disgusting mix of all the colors you don't want in your ice cream. It had a rather odd, dark gray color with pink dots speckled inside it, which I presumed was the fish."
+        m "The special was a disgusting mix of all the colors you don't want in your ice cream. It had a rather odd, dark gray color with pink dots speckled inside it, which I presumed was the fish."
     
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
@@ -902,10 +913,10 @@ label eval_remy_amely_2:
             Ry normal "I didn't think that I could possibly be much help in any situation, but I can promise that I will always be there for you."
             c "Thank you, Remy."
         "To our love." if mp.remyromance:
-            c "To our love. You are the most gorgeous and kindhearted dragon I have ever seen."
-            Ry shy "That definitely isn't what I expected to hear, but thank you. I can also confirm that you are the most beautiful human that I have ever seen."
+            c "To our love. You are the most gorgeous and kindhearted dragon I have ever met."
+            Ry shy "That definitely isn't what I expected to hear, but thank you. I can also confirm that you are the most beautiful human that I have ever met."
             c "Not like I'm working with any real competition..."
-            Ry normal "Hey, technically there were three humans here. I didn't have to say you were the most beautiful. I just sincerely mean it." #Meh, change this
+            Ry normal "Hey, technically there were three humans here. I just sincerely mean what I said." #Meh, change this
             c "Thanks, Remy."
         "To this world.":
             c "To this world. You all accepted me with open arms and have shown me just how truly beautiful your civilization is."
@@ -920,6 +931,8 @@ label eval_remy_amely_2:
     m "This time, we didn't tap our cones together for fear of further ruining our scoops."
     Ry "We should probably start eating our ice cream before it all melts, don't you think?"
     m "I looked down, spotting trickles of the [chosenflavor] ice cream running down the cone and pooling on my hand."
+    if chosenflavor == "special":
+        m "Somehow, it looked even more disgusting than before."
     c "Good idea."
     show amely smnormal with dissolvemed
     m "I noticed that Amely had returned and her focus seemed to have drifted to the ice cream in my hand."
@@ -1050,13 +1063,13 @@ label eval_remy_amely_2:
                     c "Wow, this is just as disgusting as I remember it being."
                 else:
                     c "Wow, this is disgusting."
-                Ry look "Are you not a big fan of the Special?"
+                Ry look "Are you not a big fan of the special?"
                 c "Not to offend anyone, but it's pretty gross."
-                Ry normal "It isn't for everyone, but luckily it is for me. Would you like to switch?"
+                Ry normal "It isn't for everyone, but luckily, it is for me. Would you like to switch?"
 
                 menu:
                     "Sure.":
-                        c "I mean, if you are okay with it."
+                        c "I mean, if you're okay with it."
                         Ry smile "If you're happy, I'm happy."
                         show remy normal with dissolvemed
                         m "We quickly switched cones, and after a taste of the vanilla, I could see why Katsuharu was so well loved for his craft."
@@ -1203,7 +1216,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
             $ chosenflavor = "mango"
             c "I'll take mango please."
             Ka smile flip "A bit tropical, I like your choice."
-            if persistent.adinegoodending:
+            if persistent.adinegoodending and not currentending == 3:
                 Ry smile "Adine would slap you if she were here."
                 c "I know."
             
@@ -1224,7 +1237,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
             if mp.fish:
                 c "Oh please, don't remind me."
                 Ka exhausted flip "What? Did you not like it?"
-                c "Lets just say that it... Well, I guess all I can say is that it was awful."
+                c "Lets just say that it... Well... I guess all I can say is that it was quite awful."
                 Ka normal flip "Well, with the power of a blender and some ice cream magic, you can now have that wonderful flavor in ice cream form!"
                 c "Yay?"
                 Ry look "That is a little bit... Interesting. I don't remember that being on your menu before."
