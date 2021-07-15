@@ -1,8 +1,10 @@
 # TMOMI Remy - Part 1
 
+AKA This Man (Or Dragon) Owes me Ice Cream! Remy Edition
+
 Right now this mod is INCOMPLETE (and probably pretty cringy)
 
-My first attempt at creating a mod for AWSW even though the game came out like 5 years ago. This entire things was inspired by a single steam community post (https://steamcommunity.com/sharedfiles/filedetails/?id=857686289). At first, this was supposed to be a quick and simple mod that gave each character a little bit of extra content after their good ending.
+My first attempt at creating a mod for AWSW even though the game came out like 5 years ago. This entire things was inspired by a single steam community post (https://steamcommunity.com/sharedfiles/filedetails/?id=857686289) and an unbelievable amount of boredom. At first, this was supposed to be a quick and simple mod that gave each character a little bit of extra content after their good ending.
  But then I started working on Remy's ending first, and things got out of control.
  
  _______________________________________________________________________________________________
