@@ -29,7 +29,7 @@ Get Adine's good ending
 
 Do some of ECK's Savior mod
 
-Have the special at the diner during chapter 1 (currently not working I think)
+Have the special at the diner during chapter 1
 
  ________________________________________________________________________________________________
 

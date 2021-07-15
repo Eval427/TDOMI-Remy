@@ -4,7 +4,7 @@ label eval_tmomi_remy:
 
     #Current Issues:
         #Custom sounds and backgrounds arent working FIXED - NEVERMIND NOT FIXED - HAHA FIXED
-        #I have no idea what to do for the orphanage
+        #I have no idea what to do for the orphanage <-- getting there, but I don't feel like tackling this quite yet
         #You can't pause or save during the mod? What? FIXED
         #Music stops when scrolling through previous text FIXED
         #Is it possible to change scenes without fading out characters?
