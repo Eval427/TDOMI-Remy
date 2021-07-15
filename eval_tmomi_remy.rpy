@@ -15,6 +15,7 @@ label eval_tmomi_remy:
         #Add transitional pans to scenes
         #Adjust transitions to be smoother
         #Finish this lol
+        #Reference an earlier node and change the dialogue so that Remy doesn't say he's spending more time w/ Adine? Idk, implies romance to me.
 
     #Plot issue of other kids in the orphanage:
         #After the incident at the portal, the children were put into emergency foster care outside of the town and still have not returned
@@ -44,7 +45,7 @@ label eval_tmomi_remy:
     Ry look "Ice cream?"
     Ry normal "Oh, you mean Katsuharu. I haven't had anything from him in quite some time."
     c "Well, I was offered as much ice cream as I could eat, and still need to take him up on his offer."
-    Ry "Can I ask why exactly he agreed to give you so much ice cream? I've seen your appetite, and it's quite impressive. Especially for such a small form."
+    Ry "Can I ask why exactly he agreed to give you so much ice cream? I've seen your appetite, and it's quite impressive."
 
     menu:
         "Are you calling me fat?":
@@ -64,9 +65,9 @@ label eval_tmomi_remy:
     c "Anyways, to make matters short, I gave him some advice about location, and it seemed to put him back on the radar."
     Ry "Where did you tell him to move?"
     c "Here. Tatsu Park."
-    Ry "I find it strange that he didn't think to move to Tatsu Park earlier."
+    Ry look "I find it strange that he didn't think to move to Tatsu Park earlier."
     c "Considering his old spot worked well for 40 years, it was probably pretty difficult to decide on a move." #Gonna want to change this a bit
-    Ry "I guess you're right."
+    Ry normal "I guess you're right."
     Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
     c "I'm sure it will be fine."
     Ry normal "If your pass extends beyond just yourself, is there anyone else you would like to invite?"
@@ -124,7 +125,7 @@ label eval_tmomi_remy:
 
             menu:
                 "Sure":
-                    c "Sure. I've always been curious about the orphanage. I've heard a lot about it but I haven't gotten the opportunity to visit."
+                    c "Sure. I've always been curious about the orphanage. I've heard a lot about it, but I haven't gotten the opportunity to visit."
                     Ry smile "Great! Let's go now."
                     jump eval_trip_to_orphanage
 
@@ -187,7 +188,7 @@ label eval_trip_to_orphanage:
     Ry normal "Please do."
 
     menu:
-        "Accept his offer":
+        "Accept his offer.":
             c "Sure, I'll make like a pile of books and hop on."
             hide remy with dissolvemed
             play sound "fx/bed.ogg" #Change Later
@@ -218,12 +219,17 @@ label eval_trip_to_orphanage:
             m "I slid off of Remy's back and looked up at the orphanage."
             scene hatchery with dissolveslow #This background is temporary. Not sure if I like it BROKEN RN, IDK HOW TO FIX PLEASE HALP
             show remy normal with dissolve
-            m "This content is currently under development! Redirecting to the beginning of the mod."
-            jump eval_tmomi_remy
+            #DELETE THIS LATER!!!!! TEMPORARY STUFF!!!!
+            m "Hey, Eval here. This content is still under development, and I'm lazy, so we will skip back to the previous choice. I would choose the scenic walk option if you want to see everything I've done so far."
+            m "Otherwise you're just going to see this again, which would be pretty boring."
+            m "Also the other paths are complete and have no association with this, so I would do those first :)."
+            scene park2 with dissolveslow
+            show remy normal with dissolvemed
+            jump eval_trip_to_orphanage
             #Welp, do orphanage stuff here or in another label, i have literally no clue what to do here
-        "Take a scenic walk": #Add a skip here
+        "Take a scenic walk to the orphanage.": #Add a skip here
             c "I think we should just walk and enjoy the scenery on our way there."
-            Ry look "Are you sure [player_name]? It's quite a long walk to the orphanage."
+            Ry look "Are you sure, [player_name]? It's quite a long walk to the orphanage."
             c "Don't worry about me, I feel just fine."
             Ry normal "Sounds good to me. Just let me know if you get tired so we can take a break. Can't have you hurting yourself."
             c "Don't worry, I know how to pace myself."
@@ -236,12 +242,12 @@ label eval_trip_to_orphanage:
             show remy normal with dissolve
             play music "mx/serene.ogg" #Look into changing this
             Ry look "Hey, are you alright? You look winded."
-            c "I think I'm alright, just tired. I thought I could walk from one end of town to the other, but that coma really did a number on me."
+            c "I think I'm alright. Just tired. I thought I could walk from one end of town to the other, but that coma really did a number on me."
             Ry "I can see that. Here, why don't we rest underneath that tree over there so you can regain your strength."
             scene black with dissolveslow
             hide remy with dissolvemed
             play sound "fx/evalgrasswalk1.ogg"
-            m "The dragon made his way over to a peaceful little outcrop and lay down in a similar fashion to a dog. He beckoned me to follow."
+            m "The dragon made his way over to a peaceful little outcrop and laid down. He beckoned me to follow."
             play sound "fx/evalgrasswalk2.ogg"
             scene evalwildlands with dissolveslow
             if mp.remyromance: #This part may be stupid, contemplating deleting this
@@ -256,7 +262,7 @@ label eval_trip_to_orphanage:
                 c "Oh boy, my very own full sized dragon pillow equipped with a built in heater!"
                 Ry "I'm the latest model."
                 m "I carefully propped myself up against Remy's side. I could feel his body rising and falling with each breath."
-                Ry "Why don't you take a quick nap? I'll keep a lookout for unwanted visitors."
+                Ry "Why don't you take a quick nap? I'll keep a lookout for any unwanted visitors."
                 c "Can't say no to that."
                 scene black with dissolveslow
                 hide remy with dissolvemed
@@ -284,7 +290,7 @@ label eval_trip_to_orphanage:
             Ry "Hey there sleepy head. You slept for quite awhile."
             c "How long exactly."
             Ry normal "Well, you probably would have slept soundly for the next day or two, but I decided it was in our best interest if I were to wake you up before Adine's shift ends so we could meet her at the orphanage."
-            c "Oh, did I really sleep for that long? I guess we won't be able to help at the orphanage today."
+            c "Oh, did I really sleep for that long? I guess we won't be able to help out today."
             Ry "It's alright, we can do it another time. Actually, all of the hatchlings aren't even there at the moment."
             c "Really? How come?"
             Ry "After the whole incident with Reza, they were put into emergency foster homes until everything cleared up. The council still hasn't given it the OK to let them back in the orphanage."
@@ -296,7 +302,7 @@ label eval_trip_to_orphanage:
             Ry "Anyways, we should get going. We don't want to miss Adine."
             scene black with dissolveslow
             hide remy with dissolvemed
-            n "With renewed energy, Remy and I continued to the orphanage."
+            m "With renewed energy, Remy and I continued to the orphanage."
             #FX Here?
             $ renpy.pause (1.0)
             scene hatchery with dissolveslow
@@ -424,9 +430,9 @@ label eval_solo_remy_2:
     m "Expecting the dragon to produce some sort of utensil, I was surprised when he suddenly thrust his hand into the vat and pulled out an almost perfectly spherical scoop of ice cream."
     c "(Damn, these dragons can fly, shoot fire, run extremely fast, and even make an amazing scoop of ice cream with their bare hands. This truly is the peak of evolution.)"
     Ka "Y'know, most ice cream vendors use some sort of scoop. But over the years, you learn that your bare hands are faster and more efficient than any of those stupid tools." #Might be a bit pointless to have this
-    c "Don't you walk using your hands?" #Hands, claws, feet, I'm very confused at this point
+    c "Don't you walk using your hands, Katsuharu?" #Hands, claws, feet, I'm very confused at this point
     Ry look "You know, I never really thought of that."
-    Ka "Well, I wash my hands before serving the ice cream of course! I have a little station behind here and everything."
+    Ka "Well, I wash my hands before serving the ice cream of course! I have a little station back here and everything."
     c "(Whew)"
     show remy normal with dissolvemed
     m "In another brisk motion, the dragon revealed a standard waffle cone and carefully rested the scoop on top, lightly pushing it down to make sure it didn't fall out."
@@ -457,8 +463,6 @@ label eval_solo_remy_2:
     show katsu normal flip at Position (xpos = 0.1) with easeinleft
     Ka "Here you are Remy."
     Ry smile "It's been so long since I've had ice cream."
-    Ry normal "And there is nobody I would rather have ice cream with than you, [player_name]." #Pretty sure this is cringy asf
-    c "Thanks Remy, that means a lot."
     Ka "Well, as promised, this one is on the house."
     c "Thank you Katsuharu."
     Ka smile flip "I should be thanking you. You are the one that saved my business after all."
@@ -717,6 +721,7 @@ label eval_remy_amely_1:
 
     menu:
         "It would be rude to skip everyone.":
+            $ amelyannoysline = True
             c "It would be rude to skip everyone."
             Ry "I would have to agree with you. All of these people have been waiting for a long time to get their ice cream, and I'm sure it would make them unhappy if we just skipped ahead."
             c "Looks like the line is about an hour long." #Do I add a mini game??? Tune in next time for //Is Eval Lazy?\\
@@ -842,39 +847,46 @@ label eval_remy_amely_2:
     m "Remy and Amely took their cones from Katsuharu. Amely looked at it for a moment in wonder."
     show amely smnormal at right with dissolvemed
     m "The instant her tongue made contact with the chocolate, her eyes lit up in excitement and she took another bite."
-    Ry smile "It's been so long since I've had ice cream."
+    Ry smile "I think she likes it."
     m "Amely was already attacking her cone from all angles."
     Ry normal "So, Amely, how is the ice cream?"
     Am "Ice cream... very good..."
     m "Her words were muffled as she continued devouring her cone."
     Ka "Well, as promised, this one is on the house."
-    c "Thank you Katsuharu."
+    c "Thank you, Katsuharu."
     Ka smile flip "I should be thanking you. Without you, I wouldn't even have a business."
     c "This ice cream is more than enough to show your gratitude."
     play sound "fx/bite.ogg"
     m "Amely had already finished the scoop of ice cream and had just started working on the cone."
-    Ry "Wow, she's eating that impressively fast"
+    Ry "Wow, the speed she's eating that ice cream is impressive!"
     Ka "Go ahead and stop by anytime you wish. I'll always have plenty of ice cream."
     c "Free of charge?"
     Ka exhausted flip "Well... We'll see. Amely could probably eat my entire stock and still have room for a full meal."
     Ry smile "I don't doubt that."
-    Ka normal flip "Anyways, I should probably get back to my stand before the people in line start getting too angry. Amely seems to have upset them enough as it is."
-    Ry look "Yeah, sorry about that. Thank you though, Katsuharu."
-    Ka "No problem. Any time."
+
+    if amelyannoysline:
+        Ka normal flip "Anyways, I should probably get back to my stand before the people in line start getting too angry. Amely seems to have upset them enough as it is."
+        Ry look "Yeah, sorry about that. Thank you though, Katsuharu."
+        Ka "No problem. Any time."
+    else:
+        Ka normal flip "Anyways, I should probably get back to my stand before the people in line start getting too angry."
+        Ry "Of course. Thank you Katsuharu."
+        Ka "Anytime"
+    
     show katsu normal with dissolvemed
     show remy normal with dissolvemed
     $ renpy.pause (0.2)
     hide katsu with easeoutleft
     c "Do you want to walk for a while?"
-    Ry normal "As much as I would love to, it's a bit difficult as a quadruped"
-    m "I looked down to see Remy carefully walking on 3 legs while balancing the cone with his fourth"
+    Ry normal "As much as I would love to, it's a bit difficult as a quadruped like myself to hold ice cream and walk."
+    m "I looked down to see Remy carefully walking on three legs while balancing the cone with his fourth."
     c "Of course, let's find a good place to rest."
     Ry "That area looks nice and peaceful."
     scene black with dissolveslow
     hide remy with dissolvemed
     hide amely with dissolvemed
     stop music fadeout 2.0
-    m "We made our way over to where Remy was looking and sat down side by side."
+    m "We made our way over to where Remy was looking and sat down side by side." #I'm tempted to separate Remy and Amely for this part
     scene evalpark1 with dissolveslow
     play music "mx/serene.ogg"
     show amely smnormal with dissolvemed
@@ -891,7 +903,7 @@ label eval_remy_amely_2:
     else:
         m "The two of us awkwardly tapped our cones together, careful as to not cross contaminate our different flavors."
     Ry normal "Seriously, though. I have so much to thank you for. Without you, I'm not sure I would be standing here at all today."
-    c "Of course, Remy, I'll always be there fore you, even when I inevitably have to leave through the portal."
+    c "Of course, Remy, I'll always be there for you, even when I inevitably have to leave through the portal."
     Ry look "Yeah. I've been thinking about that recently. I really don't know what I am going to do once you leave."
     c "Remember, I'm not leaving, just going back to the day I got here."
     Ry sad "Still, I can't shake off the felling that I won't ever see you again."
@@ -1252,7 +1264,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
             
             menu:
                 "Maybe it's better as ice cream." if mp.fish:
-                    c "You know what? Maybe it's actually better in ice cream form."
+                    c "You know what? Maybe it's better in ice cream form."
                     Ka smile flip "That's the spirit!"
 
                 "I'm feeling adventurous." if not mp.fish:
