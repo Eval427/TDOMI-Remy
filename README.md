@@ -2,7 +2,7 @@
 
 AKA This Man (Or Dragon) Owes me Ice Cream! Remy Edition
 
-Right now this mod is INCOMPLETE (and probably pretty cringy)
+Right now this mod is INCOMPLETE (and probably pretty cringy). I'm working on a major update that should just about finish up all the current endings. I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
 
 My first attempt at creating a mod for AWSW even though the game came out like 5 years ago. This entire things was inspired by a single steam community post (https://steamcommunity.com/sharedfiles/filedetails/?id=857686289) and an unbelievable amount of boredom. At first, this was supposed to be a quick and simple mod that gave each character a little bit of extra content after their good ending.
  But then I started working on Remy's ending first, and things got out of control.
@@ -42,3 +42,9 @@ The music choice isn't that great IMO. Would like some feedback.
 Grammar. I've gone through a lot of it, but there's still probably a ton I'm missing.
 
 Adding endings. They exist, but there isn't a tangible way to determine if you've seen one.
+
+ ________________________________________________________________________________________________
+
+ Feedback:
+
+ If you have any feedback whatsoever, please hit me up on discord (Eval#4270). This is especially true for writing, since I know a lot of it is just "Ok".
