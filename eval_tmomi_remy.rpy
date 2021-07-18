@@ -7,19 +7,21 @@ label eval_tmomi_remy:
         #I have no idea what to do for the orphanage <-- getting there, but I don't feel like tackling this quite yet
         #You can't pause or save during the mod? What? FIXED
         #Music stops when scrolling through previous text FIXED
-        #Is it possible to change scenes without fading out characters?
+        #Is it possible to change scenes without fading out characters? From what I've seen. Sorta.
 
     #TODO:
         #Add music - working on it!
         #Add skips
         #Add transitional pans to scenes
         #Adjust transitions to be smoother
+        #Custom credits
         #Finish this lol
         #Reference an earlier node and change the dialogue so that Remy doesn't say he's spending more time w/ Adine? Idk, implies romance to me.
 
     #Plot issue of other kids in the orphanage:
         #After the incident at the portal, the children were put into emergency foster care outside of the town and still have not returned
         #Amely stayed because they couldn't find a place for her, but Remy and Adine agreed to take care of her
+        #And... Implemented.
 
     stop music fadeout 2.0
     scene black with dissolveslow
