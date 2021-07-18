@@ -146,8 +146,6 @@ label eval_katsu_help:
     elif customers[servedcustomers] == "Xith":
         jump eval_help_xith
     
-    m "Messed up somewhere here [customers]" #DELETE LATER!!!!!!!
-    
 label eval_katsu_help_2:
     #I might add a bit of random variation in the text to spice this up, although it's also fine how it is now IMO
     m "I turned back to Katsuharu."
@@ -197,8 +195,10 @@ label eval_katsu_help_2:
         jump eval_help_ley_2
     elif customers[servedcustomers] == "Oph":
         jump eval_help_oph_2
-    elif customers[servedcustomers] == "Xith":
+    elif customers[servedcustomers] == "Lucius":
         jump eval_help_luc_2
+    elif customers[servedcustomers] == "Xith":
+        jump eval_help_xith_2
 
 #Character dialogue - I think the dialogue is a bit lackluster at the moment. I should try to give it more character once everyone is done.
 #Oh god this is gonna be a lot of writing - 70 branches of dialogue. Oof.
@@ -355,7 +355,7 @@ label eval_help_em:
         c "No problem. What can I get you?"
         Em ques "I'll take the cherry please. It is quite a sophisticated flavor if you ask me."
     elif charactermood == 1:
-        Em "Sorry, but much as I would love to spend all day chatting, I don't think it would look good on my pr to hold up the line."
+        Em "Sorry, but much as I would love to spend all day chatting, I don't think it would look good on my record to hold up the line." #This might be a little too confusing
         c "Of course. What can I get you?"
         Em ques "I'll take only your finest scoop of cherry, please. It is quite a sophisticated flavor if you ask me."
     elif charactermood == 2:
@@ -582,7 +582,7 @@ label eval_help_kev:
         c "Oh, hey again Kevin! Did you manage to find a place to stay?"
         Kv ramble "Yep. A friend of mine is letting me sleep on his couch."
         c "I'm sure you're giving him all the insider scoop on all this college stuff, aren't you?"
-        Kv brow "I see what you did there..."
+        Kv face "I see what you did there..."
         c "What?"
         Kv normal "Nevermind."
     else:
@@ -758,8 +758,10 @@ label eval_help_oph:
     show ophinia normal with easeinright
     if not chap2storebread:
         Op "Oh hey. You again!"
-        c "Hello. Just out of curiosity, what did you end up choosing in the store?"
-        Op "You mean earlier? Nothing."
+        c "Hello."
+        c "Just out of curiosity, what did you end up choosing in the store?"
+        Op "You mean a few weeks ago?"
+        Op "Nothing."
         c "What?"
         Op "Yes, I had Zhong pick it for me."
         c "Ah, I see."
@@ -773,7 +775,8 @@ label eval_help_oph:
     m "The dragon glanced over the flavors."
     Op "Well, I have no idea what I want. What do you recommend?"
     if not chap2storebread:
-        c "You know what? Maybe this should be a test. I won't give you any input. You have to decide on your own."
+        c "You know what? Maybe this should be a test."
+        c "I won't give you any input. You have to decide on your own."
         Op "Oh, well..."
         m "Once again looking at the flavors, I could see sweat on her brow."
         Op "I think..."
@@ -782,8 +785,8 @@ label eval_help_oph:
         m "Her face suddenly lit up. She wiped off the sweat."
         Op "The mango, please."
         c "Wow! I'm impressed. Why the mango?"
-        Op "Like you said earlier, I just went with the one I thought I would like the most."
-        c "Glad my words of wisdom came in handy."
+        Op "Like you said before, I just went with the one I thought I would like the most."
+        c "I'm glad that my words of wisdom came in handy."
     else:
         c "Hmmm... I think a dragon like you would like the mango."
         Op "You're probably right. I do like fruits."
@@ -855,7 +858,8 @@ label eval_help_oph:
                 Op "That's a lot of ice cream! Thanks a ton!"
                 $ customerscore += 1
             else:
-                Op "That looks so good! I might just have to wait in line another time to get more!" #Do I actually have here come back? Hell yeah lol
+                Op "That looks so good!"
+                Op "I might just have to wait in line another time to get more!" #Do I actually have here come back? Hell yeah lol
                 c "I could just give you a bit more now."
                 Op "No, it's okay. I'll wait."
                 $ ophseconds = True
@@ -868,8 +872,8 @@ label eval_help_oph:
         jump eval_katsu_help
 
 label eval_help_luc:
-    $ characterpreferredflavor = "the special" #I can luckily do a lot with this
-    show lucius normal with dissolvemed
+    $ characterpreferredflavor = "the special"
+    show lucius normal with easeinright
     Lu "Hello again, human."
     c "It's [player_name]."
     Lu "Lucius."
@@ -967,7 +971,7 @@ label eval_help_xith:
 
     if charactermood == 0:
         Xi "As much as I would love to continue pointing out your lack of being a dragon, I'm quite busy today."
-        c "I understand. This seems like it's much longer than it normally is."
+        c "I understand. This line seems like it's much longer than it normally is."
     elif charactermood == 1:
         Xi "Well, we could continue this banter all day if you like. I set aside a ton of time to enjoy this ice cream."
         c "Let's not. For the sake of the people in line."
@@ -987,7 +991,7 @@ label eval_help_xith:
         c "Here's the cherry ice cream you asked for!"
 
         if charactermood == 0:
-            if character == qualityserved:
+            if charactermood == qualityserved:
                 Xi "Ah, thanks for making it quick."
                 c "Of course. Can't let you be late."
                 $ customerscore += 1
@@ -995,9 +999,9 @@ label eval_help_xith:
                 Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
                 $ xithreporter = False
         elif charactermood == 1:
-            if character == qualityserved:
+            if charactermood == qualityserved:
                 Xi "This is quite a stunning specimen of ice cream!"
-                c "Thank Katsuharu, he gave this one a bit of extra love."
+                c "Thank Katsuharu. He gave this one a bit of extra love."
                 Xi "I can tell."
                 $ customerscore += 1
             elif qualityserved == 0:
@@ -1031,7 +1035,7 @@ label eval_help_xith:
             Xi "I would love to, but the council wouldn't let me have access to any of the archives, so I have nothing to base my writing on."
             c "That's too bad."
             Xi "I was actually wondering if you would be willing to answer a few questions for me."
-            c "Sorry, but not at the moment. I have a pretty packed schedule at the moment."
+            c "Sorry, but not at the moment. I have a pretty packed schedule today."
             Xi "Of course not right now, but maybe another time?"
 
             menu:
@@ -1046,6 +1050,7 @@ label eval_help_xith:
                     c "Sorry, but I really don't want to think about those events yet. They still make me uneasy."
                     Xi "I understand. Well, thanks for the ice cream!"
         
+        hide xith with easeoutleft
         m "With that, he paid and left."
 
         $ servedcustomers += 1
