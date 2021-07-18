@@ -58,8 +58,9 @@ label eval_tmomi_common:
     $ adineslaps = 0
 
     #Whether the player is able to access the Remy + Amely + Adine ending
+    #This is actually impossible to get, since you would need 3 dates to get it. Lucky you, all you have to do is get Adine's good ending at least once
     $ showadineending = False
-    if adinestatus == "normal" or adinestatus == "good":
+    if persistent.adinegoodending:
         $ showadineending = True
     
     #Whether you agree to help Xith with his report

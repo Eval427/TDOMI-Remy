@@ -1,6 +1,8 @@
-# TMOMI Remy - Part 1
+# This Man (Dragon) Still Owes Me Ice Cream! Remy - Part 1
 
 AKA This Man (Or Dragon) Owes me Ice Cream! Remy Edition
+
+It is very possible that I will upload a video on getting the "perfect" save so you get maximum content out of this mod (basically just going through the extra content steps listed below)
 
 Right now this mod is INCOMPLETE (and probably pretty cringy). I'm working on a major update that should just about finish up all the current endings. I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
 
@@ -15,7 +17,7 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
  
  - Get Remy's good ending
 
- - Have Adine's status be either "good" or "impressed" (not required for every ending, just one)
+ - Complete Adine's good ending at least once before
  
  ________________________________________________________________________________________________
  
@@ -34,6 +36,8 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
 - Have the special at the diner during chapter 1 +
 
 - Talk to Ophelia in the supermarket ++
+
+- Talk to Kevin +
 
  ________________________________________________________________________________________________
 
