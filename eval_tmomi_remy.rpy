@@ -49,12 +49,14 @@ label eval_tmomi_remy:
 
     menu:
         "Are you calling me fat?":
+            $ askiffat = True
             Ry shy "N... No of course not, I didn't mean it that way... I just meant..."
             c "I'm kidding, don't sweat it."
             Ry normal "Dragons don't sweat."
             c "Noted."
         
         "Thanks...":
+            $ askiffat = True #This basically means the same thing as the first option
             Ry shy "Hey! I didn't mean it that way!"
             c "Sure you didn't."
 
@@ -84,7 +86,8 @@ label eval_tmomi_remy:
         
         "We should bring Amely along with us.":
             c "Why don't we go together with Amely? She's a hatchling, so I'm sure she would love to go and get some ice cream with us. Especially from the renowned Katsuharu."
-            Ry smile "Good idea. You know, I'm not even sure if she has ever had ice cream before. Usually, the young dragons at the orphanage don't get the opportunity to go out and enjoy even the most basic things like ice cream."
+            Ry smile "Good idea. You know, I'm not even sure if she has ever had ice cream before."
+            Ry normal "Usually, the young dragons at the orphanage don't get the opportunity to go out and enjoy even the most basic things like ice cream."
             c "How come?"
             Ry look "The orphanage has been understaffed for quite a while now. I honestly have no clue how Adine has been able to manage all of that work with little to no help."
             Ry normal "She really is an amazing person, working minimum wage to barely support herself while still taking care of the orphans."
@@ -115,7 +118,7 @@ label eval_tmomi_remy:
             $ currentending = 2
             jump eval_remy_amely_1
 
-        "Why don't we invite Amely and Adine?" if persistent.adinegoodending:
+        "Why don't we invite Amely and Adine?" if showadineending:
             c "Why don't we take Adine and Amely as well? As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone. Work, especially since Reza, has been particularly chaotic. It would be nice for the four of us to have a nice day out."
             c "Couldn't agree more. Being in a coma for the last few months, I feel like I've missed out on so much. It would be nice to talk over some nice ice cream."
@@ -124,7 +127,7 @@ label eval_tmomi_remy:
             Ry normal "You know, we could make ourselves useful at the orphanage until she is off her shift. She usually comes down to check on things as soon as she's done, and it may be a nice surprise for her to find us there."
 
             menu:
-                "Sure":
+                "Sure.":
                     c "Sure. I've always been curious about the orphanage. I've heard a lot about it, but I haven't gotten the opportunity to visit."
                     Ry smile "Great! Let's go now."
                     jump eval_trip_to_orphanage
@@ -145,24 +148,25 @@ label eval_tmomi_remy:
                     m "The dragon stormed off and prepared to fly over to the orphanage."
                     
                     menu:
-                        "Stop Remy":
+                        "Stop Remy.":
                             c "Wait! Remy!"
                             play sound "fx/evalgrasswalk2"
                             m "Remy looked at me and walked back over."
                             $ renpy.pause (1.0) #This should fix it? No? Fixed. I'm an idiot
                             show remy look with dissolvemed #Wtf is happening here?
                             Ry "What?"
+                            play music "mx/jazzy.ogg"
                             c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
                             Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
                             c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
                             Ry "Well, so can dragon children, but you just learn to accept that they haven't had as much time on the planet as us, and sometimes have difficulty expressing their emotions in other ways."
                             c "I guess..."
-                            Ry smile "Plus, I think this experience will be a lot more fun than you think"
+                            Ry smile "Plus, I think this experience will be a lot more fun than you think."
                             c "You're probably right."
                             Ry normal "Great, we can start making our way over there now!"
                             jump eval_trip_to_orphanage
                         
-                        "Let him leave":
+                        "Let him leave.":
                             play sound "fx/takeoff.ogg"
                             m "I silently watched as Remy extended his wings and flew off to the orphanage."
                             "???" "You are an idiot"
@@ -172,6 +176,7 @@ label eval_tmomi_remy:
                             c "What? There's two of you?"
                             "???" "Yeah, and what are you gonna do about it child hater?"
                             c "..."
+                            "!!!" "That's what I thought!"
                             $ renpy.pause (0.5)
                             scene black with dissolveslow
                             c "At a loss for words, I made my way back home, crawled into bed, and did nothing for the rest of the day."
@@ -189,10 +194,11 @@ label eval_trip_to_orphanage:
 
     menu:
         "Accept his offer.":
+            $ roderemy = True
             c "Sure, I'll make like a pile of books and hop on."
             hide remy with dissolvemed
             play sound "fx/bed.ogg" #Change Later
-            m "Remy lay down on all fours, and making sure not to mess up his tie, I carefully hopped onto his back. He carefully folded his wings back to give me as much room as possible."
+            m "Remy got down on all fours. Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
             Ry "Oof, maybe you're a bit heavier than the books I'm used to."
             c "Wait a minute..."
             Ry "Hey, books don't complain."
@@ -260,9 +266,9 @@ label eval_trip_to_orphanage:
                 c "What a nice surprise."
                 Ry normal "Here, you can use me as a pillow. I don't mind."
                 c "Oh boy, my very own full sized dragon pillow equipped with a built in heater!"
-                Ry "I'm the latest model."
+                Ry smile "I'm the latest model."
                 m "I carefully propped myself up against Remy's side. I could feel his body rising and falling with each breath."
-                Ry "Why don't you take a quick nap? I'll keep a lookout for any unwanted visitors."
+                Ry normal "Why don't you take a quick nap? I'll keep a lookout for any unwanted visitors."
                 c "Can't say no to that."
                 scene black with dissolveslow
                 hide remy with dissolvemed
@@ -307,33 +313,7 @@ label eval_trip_to_orphanage:
             $ renpy.pause (1.0)
             scene hatchery with dissolveslow
             show remy normal with dissolvemed
-            Ry "Well, here we are. Now, all we have to do is wait for Adi..."
-            play sound "fx/wooshes.ogg"
-            hide remy with dissolvemed
-            show remy normal at right with dissolvemed
-            show adine normal c flip at left with dissolvemed
-            Ad "Hey guys! What are you doing here?"
-            Ry "Looking for you!"
-            Ad giggle c flip "Well, I guess you found me, or rather, I found you. I expected to find you here Remy, but what is [player_name] doing here?"
-            c "Ice cream."
-            show remy look at right with dissolvemed
-            Ad annoyed b flip "What?"
-            c "Katsuharu owes me as much ice cream as I want, and I thought who better to bring than you two and Amely?"
-            Ad think b flip "I have never heard of that dragon giving anyone free ice cream. You must have done something quite spectacular to get a deal like that."
-            show remy normal at right with dissolvemed
-            c "Just a little bit of business advice. I told him to move his stand down to Tatsu Park."
-            Ad "You're telling me that you get an infinite supply of the world's best ice cream for free because you told him to move to Tatsu Park?"
-            c "Well, not infinite. He said I could come by and get some ice cream when I felt like it."
-            Ad normal b flip "So it's more of a one time deal. I get it. Count me in."
-            Ry smile "Great! Lets grab Amely and we can go."
-            Ad giggle b flip "Two dragons, a human with a big appetite, and a hatchling with unlimited access to delicious ice cream. I sure hope Katsuharu has enough stock."
-            c "That old dragon owes me ice cream, and ice cream I, or we, shall receive!" #Cringy, should change
-            scene black with dissolveslow
-            hide adine with dissolvemed
-            hide remy with dissolvemed
-            m "This content is currently under development. Defaulting back to the beginning of the mod."
-            jump eval_tmomi_remy
-
+            jump eval_remy_amely_adine_1
 
 label eval_solo_remy_1: #Ending with only Remy
     $ currentending = 1
@@ -659,6 +639,7 @@ label eval_remy_amely_1:
     c "Oh boy, I hope that line doesn't take too long."
     $ renpy.pause (2.0)
     m "Looking to my left, I saw that a dragon had been silently sitting on the bench with me."
+    $ persistent.seendramavian = True
     show dramavian normal with dissolvemed
 
     if chap2rested > 0:
@@ -688,8 +669,8 @@ label eval_remy_amely_1:
     m "All of a sudden, a shadow passed overhead, and Remy landed next to me, clutching onto Amely with his forelegs." #Forelegs? Forearms? Who knows...
     #Add sound here?
     play music "mx/fun.ogg"
-    show amely smnormal at right with dissolvemed
-    show remy normal at right behind amely with dissolvemed
+    show amely smnormal with dissolvemed
+    show remy normal behind amely with dissolvemed
     Ry "Alright Amely, this is our stop."
     Am "Yay!"
     c "So, Amely, are you excited to have your first ever scoop of ice cream?"
@@ -712,8 +693,8 @@ label eval_remy_amely_1:
     hide amely with dissolvemed
     m "It didn't take us long to reach the end of the line."
     scene town2 with dissolveslow
-    show amely smnormal at right with dissolvemed
-    show remy normal at right behind amely with dissolvemed
+    show amely smnormal with dissolvemed
+    show remy normal behind amely with dissolvemed
     Ry "Wow, this is quite an impressive line."
     c "It seems that my advice has paid off for him after all."
     Ry smile "Indeed."
@@ -993,7 +974,7 @@ label eval_remy_amely_2:
                             m "I moved myself right next to the big dragon. He held out his ice cream between us and beckoned me to take a lick."
                             m "The second my tongue made contact with the smooth vanilla, I lit up in excitement."
                             c "Wow! This is some really amazing ice cream!"
-                            Ry smile "It is quite impressive, is it not?"
+                            Ry normal "It is quite impressive, is it not?"
                             m "The two of us made short work of the scoop. Muzzle and face mere centimeters apart."
                             m "Suddenly, I felt Remy's tongue through the scoop. It seemed as if we had made it to the center"
 
@@ -1002,20 +983,57 @@ label eval_remy_amely_2:
                                     m "Awkwardly, I pushed my lips onto his."
                                     m "Remy seemed to have caught the memo, pressing his lips onto mine in response and slipping in his tongue."
                                     play sound "fx/kiss.wav"
+                                    $ renpy.pause (1.0)
                                     Ry smile "That was the best bite yet!"
                                     c "I could say the same myself."
                                 
                                 "Pretend it didn't happen.":
                                     pass
+                        
+                            m "With our combined ice cream eating power, we were able to make quick work of the cone."
                             
                         "Don't worry about it.":
                             c "Don't worry about it Remy, enjoy your ice cream."
                             Ry smile "Whatever you say. I won't give up an opportunity for more ice cream."
-                            scene black with dissolveslow
-                            stop music fadeout 2.0
-                            m "You missed the entire point of this mod. The goal was ice cream, and every chance you had you threw it away!"
-                            return #for now
-                    m "With our combined ice cream eating power, we were able to make quick work of the cone."
+                            $ renpy.pause (1.0)
+                            m "After a while, I saw Katsuharu start walking over to us."
+                            show katsu normal flip at left with easeinleft
+                            Ka "Hey [player_name]. Just closing up and had and extra scoop of chocolate. Are any of you interested?"
+                            Am "Me! Me!"
+
+                            menu:
+                                "Let Amely have a third scoop.":
+                                    c "Amely can have it."
+                                    Ry look "Okay, two scoops of ice cream was pushing it, but three? This is madness."
+                                    c "No. This... Is... SPARTA!"
+                                    Am "Ugh!"
+                                    hide amely with easeoutleft
+                                    $ renpy.pause (1.0)
+                                    Ry "What did you just say?"
+                                    c "Nevermind, ignore what I just said."
+                                    Ry "[player_name], I think it's a bad idea if you let that little dragon have another scoop. She's already bouncing off the walls from all the sugar."
+                                    m "Looking around, Amely was, in fact, running around the area like a pinball."
+                                    c "You may be right, I guess I'll take it"
+                                    show remy normal with dissolvemed
+                                    Ka "Anyways, enjoy the chocolate ice cream!"
+                                    c "Thanks Katsuharu!"
+                                    show katsu normal with dissolvemed
+                                    hide katsu with easeoutleft
+                                
+                                "Take the ice cream.":
+                                    c "I'll take it."
+                                    Am "No ice cream?"
+                                    Ry "Amely, you've already had enough."
+                                    hide amely with easeoutleft
+                                    c "I'll say."
+                                    m "Looking around, Amely was racing around the area like a pinball."
+                                    Ka "Anyways, enjoy the chocolate ice cream [player_name]!"
+                                    c "Thank you Katsuharu!"
+                            
+                            m "The second my tongue lay contact with the smooth [flavor], I lit up in excitement."
+                            c "Wow! This really is amazing ice cream!"
+                            Ry smile "Couldn't agree more."
+                            m "The two of us sat for a while, watching the little dragon run around while we finished our cones."
 
                 else:
                     $ renpy.pause (1.0)
@@ -1101,7 +1119,7 @@ label eval_remy_amely_2:
                 Ry "I forgot just how good Katsuharu is at making this stuff. This is spectacular!"
                 m "Our cones did not last long. Soon, the only remnants of our ice cream lay in our stomachs or dried on our hands."
 
-    #Wow that was a long and confusing series of events to program, hopefully it isn't all messed up
+    #Wow that was a long and confusing series of events to program, hopefully it isn't all messed up - It was, I fixed it I think
     scene evalpark2 with dissolveslow
     show remy normal with dissolvemed
     Ry "It's getting pretty late, [player_name]. I should probably be getting little Amely back to the orphanage."
@@ -1114,7 +1132,7 @@ label eval_remy_amely_2:
     Am smsad "Awwww."
     show amely smnormal with dissolvemed
     Ry normal "Well, I guess this is our goodbye. It was fun [player_name]!"
-    c "It sure was. We should do this sort of thing more often. Especially if it involves ice cream"
+    c "It sure was. We should do this sort of thing more often. Especially if it involves ice cream."
     Ry smile "I second the ice cream part."
     hide amely with dissolvemed
     hide remy with dissolvemed
@@ -1203,6 +1221,367 @@ label eval_remy_amely_2:
             scene black with dissolveslow
             stop music fadeout 2.0
             return
+
+label eval_remy_amely_adine_1: #Ending where everyone is here!
+    #Going to use this twice, one where you DO ride remy beforehand and when you DO help at the orphanage. That's gonna be a lot of refactoring...
+    Ry "Well, here we are. Now, all we have to do is wait for Adi..."
+    play sound "fx/wooshes.ogg"
+    hide remy with dissolvemed
+    show remy normal at right with dissolvemed
+    show adine normal c flip at left with dissolvemed
+    Ad "Hey guys! What are you doing here?"
+    Ry "Looking for you!"
+    Ad giggle c flip "Well, I guess you found me, or rather, I found you. I expected to find you here Remy, but what is [player_name] doing here?"
+    c "Ice cream."
+    show remy look at right with dissolvemed
+    Ad annoyed b flip "What?"
+    c "Katsuharu owes me as much ice cream as I want, and I thought who better to bring than you two and Amely?"
+    Ad think b flip "I have never heard of that dragon giving anyone free ice cream. You must have done something quite spectacular to get a deal like that."
+    show remy normal at right with dissolvemed
+    c "Just a little bit of business advice. I told him to move his stand down to Tatsu Park."
+    Ad "You're telling me that you get an infinite supply of the world's best ice cream for free because you told him to move to Tatsu Park?"
+    c "Well, not infinite. He said I could come by and get some ice cream when I felt like it."
+    Ad normal b flip "So it's more of a one time deal. I get it. Count me in."
+    Ry smile "Great! I'll go grab Amely and we can go."
+    hide remy with dissolvemed
+    Ad giggle b flip "Two dragons, a human with a big appetite, and a hatchling with unlimited access to delicious ice cream. I sure hope Katsuharu has enough stock."
+    c "We couldn't possibly eat THAT much ice cream, could we?"
+    Ad normal b flip "Coming from someone who has had three scoops in one sitting before, it is definitely possible."
+    show amely smnormal at right with dissolvemed
+    show remy normal behind amely at right with dissolvemed
+    Ry smile "So, Amely, are you excited to have your first ever scoop of ice cream?"
+    Am smsad "Ice... cream?"
+    c "Ice cream is kind of like... Well... Um..."
+    m "I didn't think it would be so difficult to describe something as simple as ice cream."
+    Am smnormal "Sugar?"
+    c "Yes, lots of sugar."
+    Am "Sugar!!!"
+    Ad giggle b flip "I'm going to take that as a yes."
+    Ry look "What about the orphanage, Adine?"
+    Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities Amely would get to experience something like this."
+    Ry normal "Good point."
+    Ad "How are we supposed to get back over to Tatsu Park? I can fly Amely over, but how is [player_name] going to make it there in a reasonable amount of time?"
+    Ry "[player_name] could just ride me."
+    Ad giggle b flip "[player_name] could ride you, Remy? Is this really the time?"
+    Ry shy "Why does everyone keep taking this the wrong way? I didn't mean it like THAT Adine!"
+    m "I chuckled softly."
+    Ad "Sure you didn't, Remy."
+    Ry "Adine..."
+    Ad normal b flip "Okay, I'll stop. For now."
+    Ry look "Great... Lets just get going."
+    Ad "Alright, Amely, lets go."
+    Am "Sugar!!!"
+    hide amely with easeoutleft
+    $ renpy.pause (0.5)
+    Ad "Whoah! Wait for me Amely! I'm the one with wings here!"
+    show adine normal b with dissolvemed
+    hide adine with easeoutleft
+    $ renpy.pause (1.0)
+    play sound "fx/takeoff.ogg"
+    m "After a moment, Adine caught up with Amely. Clutching the little hatchling in her claws, she took off and soared into the air."
+    hide remy with dissolvemed
+    show remy normal with dissolvemed
+    c "Well, are we going to fly off after them?"
+    Ry normal "Not to be rude, but I doubt I could fly around with you on my back."
+    c "Are you calling me fat?"
+
+    if askiffat:
+        Ry look "Not this again, [player_name]."
+        c "Fine, you got me there."
+    else:
+        Ry shy "N... No of course not. I didn't mean it that way... I just meant..."
+        c "I'm kidding, don't sweat it."
+        Ry normal "Dragons don't sweat."
+        c "Noted."
+    
+    Ry normal "I was thinking that instead of flying, I could just run."
+    c "Are you fast on the ground?"
+    Ry "Not as fast as a runner, but I'm still quite quick."
+    c "Alright then, let's see how fast those legs really are."
+    hide remy with dissolvemed
+    play sound "fx/bed.ogg"
+    m "Remy got down on all fours. Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
+    Ry "Oof, if I had any hopes of taking off before, they are all gone now."
+    c "Wait a minute..."
+    Ry "Goodness, stop being such a softie."
+    m "After finding a relatively comfortable spot on his back, Remy lifted his body."
+    Ry "How is it back there?"
+    c "A bit bony. I think I need a saddle."
+    Ry "Funnily enough, you can actually buy dragon saddles."
+    c "That's... Interesting."
+    Ry "They exist. I didn't say they were popular."
+    stop music fadeout 2.0
+    scene black with dissolveslow
+    play sound "fx/steps/rough_gravel.wav"
+    m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
+    
+    if rodebryce:
+        m "It wasn't as uncomfortable as I had first imagined. In a way, it also felt strangely familiar, like I had done this before."
+    else:
+        m "It wasn't as uncomfortable as I had first imagined. It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
+    
+    m "The experience was almost relaxing, with the light breeze and rhythmic thumping of Remy's feet on the grass and pavement."
+    $ renpy.pause (0.5)
+    m "It seemed as if it took no time at all to arrive back at Tatsu Park."
+    Ry "Ladies and gentledragons, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
+    c "Very funny Remy."
+    Ry "Thanks, I can tell that you sincerely mean that."
+    play sound "fx/bed.ogg"
+    m "I gracefully slid off of Remy's back."
+    scene park2 with dissolveslow
+    show remy normal with dissolvemed
+    play music "mx/funness.ogg"
+    if roderemy:
+        c "We should do this kind of thing more often!"
+    else:
+        c "Damn, why didn't I just ride you over to the orphanage as well. That was fun!"
+    Ry smile "Wow, [player_name], I didn't know you wanted to ride me so badly."
+    m "My face turned bright red."
+    Ry "You look like a tomato."
+    c "I'll get you back for this, Remy."
+    Ry "I'm sure you will."
+    m "I spotted Adine and Amely walking over to us."
+    hide remy with dissolvemed
+    show remy normal at right with dissolvemed
+    show amely smnormal flip at left with dissolvemed
+    show adine normal b flip behind amely at left with dissolvemed
+    Ad "Took you guys long enough to get here. I don't suppose you had a bit of fun did you?"
+    m "My face, just about to return to it's normal shade, became bright red once again."
+    Ry shy "Adine, this is getting old."
+    Ad giggle b flip "Then why are both of you bright red?"
+    c "Nothing happened. It's just that flying is much faster than running."
+    Ad normal b flip "Okay, okay, I'll stop pestering you two about it."
+    Ry look "Finally."
+    m "Something in Adine's eyes told me that she would not stop pestering us about it."
+    Ad "So, you said Katsuharu relocated here. Any idea where he is?"
+    m "Suddenly, inspiration struck me as Adine idly moved her tail in my direction."
+    c "Not sure, Adine, why don't we call and find out?"
+    m "I stepped and grabbed the end of Adine's tail."
+    Ad think b flip "What the..."
+    Ry look "[player_name], what are you doing?"
+    m "I held the crescent moon end of Adine's tail up to my ear like a telephone."
+    c "Hey, is this Katsuharu? We were just wondering where you set up for the day."
+    Ry smile "Ah, the ol' banana phone."
+    Ad annoyed b flip "This is so unbelievably stupid."
+    c "Oh, you're at the front of that long line of dragons over there? Thanks!"
+    $ adineslaps += 1
+    play sound "fx/slap1.wav"
+    m "The second I released my grip, Adine flicked her tail and slapped me square in the face."
+    Am "Ouch!"
+    c "Totally worth it."
+    Ry "I have to admit, that was pretty funny."
+    Ad "I hate you both."
+    c "Hey! You have to admit, you were asking for it."
+    Ad "I guess I was. But still, screw you guys."
+    Ry normal "Now we're even."
+    Ad giggle b flip "Oh, you think this is over? This is only the beginning."
+    c "Oh no."
+    Am "Ice cream?"
+    Ry "I almost forgot about the ice cream! We should probably go before Katsuharu closes up for the day."
+    scene black with dissolveslow
+    hide amely with dissolvemed
+    hide remy with dissolvemed
+    hide adine with dissolvemed
+    m "We made our way to the end of the line of dragons I had seen earlier."
+    scene town2 with dissolveslow
+    show remy normal at right with dissolvemed
+    show amely smnormal flip at left with dissolvemed
+    show adine normal b flip behind amely at left with dissolvemed
+    Ry "Wow, this is quite an impressive line."
+    c "It seems that my advice has paid off for him after all."
+    Ry smile "Indeed."
+    Ad "So, are we planning on waiting in line with everyone else?"
+
+    menu:
+        "It would be rude to skip everyone.":
+            c "It would be rude to skip everyone."
+            Ry "I would have to agree with you. All of these people have been waiting for a long time to get their ice cream, and I'm sure it would make them unhappy if we just skipped ahead."
+            Ad think b flip "I'm not too sure. If Katsuharu was willing to give you free ice cream. I'm sure he would be more than willing to let you skip the line as well."
+            Ry "It's not that. I just don't think we should be attracting so much attention to ourselves, especially with [player_name]."
+            Ad normal b flip "True."
+            c "Looks like the line is about an hour long." #Do I add a mini game??? Tune in next time for //Is Eval Lazy?\\
+            m "For the next hour, Remy, Adine and I engaged in lighthearted chatter, discussing our interests and the events that had gone on while I was in my coma."
+            m "Amazingly enough, not a single innuendo or banana phone joke was made."
+            m "After what seemed like forever, it was finally our turn to get our ice cream."
+        
+        "I think we can skip the line.":
+            c "I think that my unlimited ice cream pass also includes an express pass to the front of the line."
+            Ry look "Are you sure? I'm not sure how well some of his customers will react to us cutting them in line."
+            Ad "If Katsuharu was willing to give [player_name] free ice cream, then I'm sure he would be more than willing to let him skip the line as well."
+            Ry "I guess. I just feel like we shouldn't be attracting so much attention to ourselves, especially with [player_name]."
+            Ad "Most of the concern and interest in humans has already died off. Sure, we might get a few stares here or there, but nothing more."
+            Ry normal "I suppose you're right."
+            c "You guys have had front row seats to the whole human show as well though. You might be a bit more used to me than everyone else."
+            Ad "With the amount of press about your arrival. I'm sure just about every person in this line has seen or read everything about you."
+            c "Wow, I'm famous."
+            Ry "Don't let it get to your head."
+            c "Too late, I think it already has."
+            m "As we passed down the line, we were met with a mix of expressions. Some of the people seemed quite intrigued by my appearance, while others seemed annoyed, probably understanding our intentions to skip the line."
+            m "Approaching the stand, I caught the attention of Katsuharu. He waved and beckoned us to come."
+    
+    scene town7 with dissolveslow
+    show amely smnormal at right with dissolvemed
+    show remy normal behind amely at right with dissolvemed
+    show adine normal b behind remy at Position (xpos=0.6) with dissolvemed
+    show katsu normal flip at Position (xpos=0.1) with easeinleft
+
+    Ka "Well, if it isn't the business saving human, [player_name]. Have you come to take up my offer?"
+
+    menu:
+        "Hey! Long time no see.":
+            c "Yeah, it's really been a while, hasn't it. A lot has gone on since we last saw each other."
+            Ka exhausted flip "Quite a lot it seems. You have caused quite the chaos since you arrived."
+            c "I guess I just have a knack for it. Hopefully it should all return back to the peaceful way it was. Everything has more or less resolved itself and the conflict is over."
+            Ka smile flip "Glad to hear that."
+            c "Is it alright if I brought these three along as well?"
+            Ka exhausted flip "Wow... When I offered you that ice cream, I didn't think you would bring all your friends as well."
+            Ry look "Listen, Katsuharu. If it's too much, just give [player_name] their ice cream."
+            Ka smile flip "You know, not once in my time working this cart have I ever left a potential customer hungry."
+            Ka "How about this? You four get as much ice cream as you desire. But first, you have to help me serve some customers for a while."
+            Ry normal "That doesn't sound that bad."
+            Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream. It might even be fun."
+            Am "Ice cream!"
+            Ry "I guess it's really up to you, [player_name]. This was your idea after all."
+        
+        "No time for chatting.":
+            c "No time for chatting, we are here for important ice cream related matters."
+            show remy look at right behind amely with dissolvemed
+            show adine annoyed b at Position (xpos=0.6) behind remy with dissolvemed
+            Ka "*chuckles* Well, I guess I can't blame you for the enthusiasm."
+            Ka "I actually remember Remy's first time getting ice cream from me, back when he was just a young little dragon."
+            Ry shy "You do?"
+            Ka smile flip "Yep, you were just as enthusiastic. Your eyes were practically bulging out of your head looking at all of the different flavors."
+            Ry normal "I... guess I do remember being quite excited that day."
+            Ka "I also remember Adine's first time as well."
+            Ad giggle b "You do?"
+            Ka "Of course. You really, really wanted three cones that day. It was quite entertaining watching you hop away on 1 foot while holding ice cream in your hands and other foot."
+            Ad "I remember getting a lot of strange looks from other dragons that day."
+            Ry smile "I think I remember that too. Didn't you almost fall."
+            Ad annoyed b "Of course I didn't. My feet are very dextrous. Walking on one foot isn't a big deal."
+            Ry "How sanitary is holding ice cream with your feet though, Adine?"
+            Ad normal b "I was a kid, you really think I was worrying about something like that?"
+            Ka "Well, enough about embarrassing childhood memories. [player_name], when I gave you that offer for ice cream, I didn't expect you to bring all of your friends."
+            Ry look "Listen, Katsuharu. If it's too much, just give [player_name] their ice cream."
+            Ka normal flip "You know, not once in my time working this cart have I ever left a potential customer hungry."
+            Ka "How about this? You four get as much ice cream as you desire. But first, you have to help me serve some customers for a while."
+            Ry normal "That doesn't sound that bad."
+            Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream. It might even be fun."
+            Am "Ice cream!"
+            Ry "I guess it's really up to you, [player_name]. This was your idea after all."
+    
+    menu:
+        "Help out Katsuharu.":
+            c "You really think I would leave you guys like that? Of course we can help you, Katsuharu."
+            show remy normal at right behind amely with dissolvemed
+            show adine normal b at Position (xpos=0.6) behind remy with dissolvemed
+            Ka exhausted flip "Thank goodness. Today has been quite rough, and It'll be nice to have some extra hands."
+            Am "Ice cream?"
+            Ry smile "Soon, Amely. First we have to help serve it."
+            Am smsad "Why?"
+            Ad "Because then you get two scoops of ice cream instead of one!"
+            Am smnormal "More sugar?"
+            Ad "Yes, much more sugar."
+            Am "I help! I help!"
+            Ka excited flip "That's the spirited staff I want! Let's get to work!"
+            m "The four dragons made their way behind the cart. I followed closely behind."
+            show katsu normal at Position (xpos=0.1) with dissolvemed
+            hide katsu with easeoutleft
+            hide adine with easeoutleft
+            hide remy with easeoutleft
+            hide amely with easeoutleft
+            scene black with dissolveslow
+            scene evalkatsucart with dissolveslow
+            Ka normal "Alright, here's the plan everyone. Remy, grab a scoop from that drawer there, [player_name], you take orders, and Adine... Just make sure Amely doesn't cause too much chaos."
+            Ry normal "Yes sir!"
+            Ad giggle b "Sounds good, Katsuharu."
+            Ka "Quick tip, [player_name]. Customers don't always want the same thing. Try adapting to their interests."
+            c "Seems simple enough."
+            jump eval_katsu_help_init
+
+        "Enjoy your ice cream alone.":
+            stop music fadeout 2.0
+            if helporphanage:
+                c "I think I've already done enough work today helping at the orphanage."
+            else:
+                c "That seems like a lot more work than I want to put up with at the moment."
+            
+            Ka exhausted flip "I was looking forward to the extra help."
+            Ry sad "Oh, I see, [player_name]."
+            Am smsad "Ice cream?"
+            Ry "Sorry, Amely. I guess not today."
+            Am "Awwwwww."
+            show remy sad flip with dissolvemed
+            show amely smsad flip with dissolvemed
+            hide remy with easeoutright
+            hide amely with easeoutright
+            m "With his head hung low, Remy walked away with Amely."
+            Ka "I'll... go get you your ice cream, [player_name]."
+            show katsu exhausted with dissolvemed
+            hide katsu with easeoutleft
+            Ad frustrated b "Did you seriously make us come all the way just to flake out on us?"
+            c "Sorry, Adine. I just really don't feel like doing this right now."
+            c "Also, can't you just wait in line and get the ice cream for yourselves."
+            Ad "Ugh. It isn't about the ice cream any more, [player_name]! It was about spending time together."
+            Ad sad b "But I see how it is. You care more about yourself than your friends."
+            Ad annoyed b "I can't believe that I ever thought you were a friend of mine."
+            Ad sad b "If you will excuse me, I'm going to go talk to Remy. You really hurt him with that, [player_name]."
+            c "I..."
+            Ad annoyed b "Shut up."
+            show adine disappoint b flip with dissolvemed
+            hide adine with easeoutright
+            Ad sad b "Remy, are you alright?"
+            m "I could hear faint crying in the distance."
+            show katsu exhausted flip with easeinleft
+            Ka "Well... Here you are."
+            c "Thanks, Katsuharu."
+            show katsu exhausted with dissolvemed
+            hide katsu with easeoutleft
+            m "Without another word, the old dragon returned to his stand."
+            m "Watching him work, I spotted a single tear roll down one of his cheeks."
+            m "As I looked behind me, I noticed that the attention of just about every dragon in line had shifted to me. They had seen everything."
+            m "Shamefully, I started on my way back to my place."
+            "???" "Did you see what that human just did? That was horrible!"
+            "???" "I can't believe someone could be that selfish!"
+            m "Hearing these comments, I picked up my pace."
+            scene black with dissolveslow
+            m "Wow, that was mean!"
+            return
+            #Add a bit more to this? Maybe, but now I'm sad. After playtesting, I really do. But now I'm sad again :'(
+
+label eval_remy_amely_adine_2:
+    m "I looked out across the park. It seemed that every dragon was happily eating their ice cream."
+    c "I think we're done guys!"
+    Ka "Awesome!"
+    scene black with dissolveslow
+    scene town7 with dissolveslow
+    show katsu normal flip at Position (xpos=0.1) with dissolvemed
+    show remy normal at right with dissolvemed
+    Ka excited flip "Everyone did absolutely fantastic!"
+    Ka smile flip "Remy, I must say. You really have a knack for making ice cream."
+    Ry smile "Thank you, Katsuharu! I guess I learned from watching you."
+    c "Hey, where are Adine and Amely?"
+    Ry normal "Look up."
+    m "I looked up in the sky. It took a second, but I found Adine flying circles with Amely in her claws."
+    Ry "Hold on, let me grab them."
+    show remy normal flip with dissolvemed
+    hide remy with easeoutright
+    play sound "fx/takeoff.ogg"
+    m "Remy took a few steps, then flew into the air."
+    m "He caught up to Adine and the two hovered in place for a moment before landing next to Katsuharu and I."
+    show amely smnormal at right with easeinright
+    show remy normal behind amely at right with easeinright
+    show adine normal c behind remy at Position (xpos=0.6) with easeinright
+
+    #START OF TEMP STUFF!!! DELETE LATER!!!!
+    $ renpy.pause (2.0)
+    scene black with dissolvemed
+    m "What will happen to this epic tale of four dragons and one human?"
+    m "What does talking to Xith do? Even Eval doesn't know!"
+    m "Tune in next update to find out!"
+    m "This should be the FINAL update to this mod unless I'm crazy and add even more."
+    m "By the way, your score in Katsuharu's game was [customerscore]/10. How'd you do?"
+    play sound "mx/eveningmelody.ogg"
+    return
 
 
 label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had the special

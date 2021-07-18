@@ -7,6 +7,7 @@ label eval_tmomi_common:
     image evalpark1 = "bg/evalpark1.jpg"
     image evalpark2 = "bg/evalpark2.jpg"
     image evalplayerapt1 = "bg/evalplayerapt1.jpg"
+    image evalkatsucart = "bg/evalkatsucart.jpg"
 
     #Characters
 
@@ -44,6 +45,26 @@ label eval_tmomi_common:
     #Whether Amely pisses off everyone in line
     $ amelyannoysline = False
 
+    #Whether you rode Remy or not <-- THIS IS NOT WEIRD AGAIN I PROMISE
+    $ roderemy = False
+
+    #Whether you asked if Remy called you fat in the first choice
+    $ askiffat = False
+
+    #Whether you manage to help out at the orphanage
+    $ helporphanage = False
+
+    #How many times Adine has slapped you lol
+    $ adineslaps = 0
+
+    #Whether the player is able to access the Remy + Amely + Adine ending
+    $ showadineending = False
+    if adinestatus == "normal" or adinestatus == "good":
+        $ showadineending = True
+    
+    #Whether you agree to help Xith with his report
+    $ helpxith = False
+
     #Stuff for endings that I might just scrap
     python:
         if not persistent.evalremybad:
@@ -60,6 +81,9 @@ label eval_tmomi_common:
             persistent.evalremyamelyadinegood = "???"
         if not persistent.evalremyamelybad:
             persistent.evalremyamelyadinebad = "???"
+        if not persistent.seendramavian:
+            persistent.seendramavian = False
 
-    if persistent.playedkatsu:
+    #Updated to require the player to meet with katsu every playthrough they want the ending
+    if chap3picka == "katsu" or chap3pickb == "katsu":
         jump eval_tmomi_remy
