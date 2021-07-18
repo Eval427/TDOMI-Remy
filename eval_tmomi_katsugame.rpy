@@ -738,7 +738,7 @@ label eval_help_ley:
                 Le "How am I even supposed to eat all of that?"
                 c "I thought you could use a bit extra. It's a little warm today."
                 Le "I guess so. Thanks!"
-        else charactermood == 2:
+        else:
             if charactermood == qualityserved:
                 Le "That's a lot of mango ice cream, [player_name]!"
                 c "You said you were hungry, so I added a bit extra."
