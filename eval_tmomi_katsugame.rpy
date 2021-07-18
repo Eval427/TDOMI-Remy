@@ -66,7 +66,7 @@ label eval_katsu_help:
             m "I turned back to the dragon."
             c "Here you are!"
             Op "Thank you!"
-            m "She grabbed the cone, then carefully rested it in the box on her head. It seemed to simply dissappear."
+            m "She grabbed the cone, then carefully rested it in the box on her head. It seemed to simply disappear."
             c "What the..."
             Op "What?"
             c "How is the ice cream staying in the box?"
@@ -212,7 +212,7 @@ label eval_help_8th:
     show 8th normal with easeinright
     Ei "Hello. You must be [player_name]."
     c "Sure am!"
-    Ei "I guess it it's hard to mix you up with anyone else. Being the only human and all."
+    Ei "I guess it's hard to mix you up with anyone else. Being the only human and all."
     c "True."
     if charactermood == 0:
         Ei "I'm in a bit of a rush at the moment. This line took much longer than expected."
@@ -301,7 +301,7 @@ label eval_help_dram: #... dot dot dot ...
             c "Nevermind."
         else:
             Dr "..."
-            m "He looked around, seeming to judge the scoops others had recieved before him."
+            m "He looked around, seeming to judge the scoops others had received before him."
     elif charactermood == 2:
         if persistent.seendramavian:
             Dr "Big..."
@@ -353,15 +353,15 @@ label eval_help_em:
     if charactermood == 0: #For 2 say she just got out of a business meeting
         Em "Sorry to cut our chat short, but I've got a business meeting quite soon."
         c "No problem. What can I get you?"
-        Em ques "I'll take the cherry please. It is quite a sophisiticated flavor if you ask me."
+        Em ques "I'll take the cherry please. It is quite a sophisticated flavor if you ask me."
     elif charactermood == 1:
         Em "Sorry, but much as I would love to spend all day chatting, I don't think it would look good on my pr to hold up the line."
         c "Of course. What can I get you?"
-        Em ques "I'll take only your finest scoop of cherry, please. It is quite a sophisiticated flavor if you ask me."
+        Em ques "I'll take only your finest scoop of cherry, please. It is quite a sophisticated flavor if you ask me."
     elif charactermood == 2:
         Em "But enough about you. I just got out of a heated meeting and I'm quite hungry."
         c "Of course. What can I get you?"
-        Em ques "I'll take the cherry please. It is quite a sophisiticated flavor if you ask me."
+        Em ques "I'll take the cherry please. It is quite a sophisticated flavor if you ask me."
     
     c "One scoop of cherry coming right up!"
     jump eval_katsu_help_2
@@ -379,7 +379,7 @@ label eval_help_em:
                 c "I understand. Have a nice day."
         elif charactermood == 1:
             if charactermood == qualityserved:
-                Em laugh "Wow, Katsuharu's still manages to make his ice cream look absolutely stunning."
+                Em laugh "Wow, Katsuharu still manages to make his ice cream look absolutely stunning."
                 c "I'm glad too see that you like it."
                 Em normal "Please make sure to tell Katsuharu that."
                 c "I will."
@@ -468,7 +468,7 @@ label eval_help_grey:
                 Gr "This looks great! How am I ever going to eat all of this, though?"
                 c "No worries. I gave you a bit extra, it's on the house."
                 Gr "Oh, thank you! Still, I hate to waste perfectly good ice cream."
-                Gr "Anyways, I best get going. I have an art meeting in a little bit and I should try to get there early."
+                Gr "Anyways, I best get going. I have an art meeting soon and I should try to get there early."
                 c "Oh course, have a nice day!"
                 Gr "You too!"
         else:
@@ -540,7 +540,7 @@ label eval_help_kali:
                 $ customerscore += 1
             elif qualityserved == 0:
                 Kl "This looks good, [player_name], but Katsuharu might want to slow down a bit."
-                c "Why, is something wrong?"
+                c "Why? Is something wrong?"
                 Kl "Nothing is wrong. It's just a bit sloppier than I'm used to."
                 c "Would you like us to remake it?"
                 Kl "Don't worry about it. I'm sure you guys are under a lot of pressure with the massive amount of customers that have come today, and I don't want to add to that." #Meh, this is a bit sloppy
@@ -549,7 +549,7 @@ label eval_help_kali:
             else:
                 Kl "This looks magnificent, [player_name]! How am I going to eat all of this?"
                 c "I thought you could use a bit extra to help with all the paperwork."
-                Kl "Maybe your right."
+                Kl "Maybe you're right."
         else:
             if charactermood == qualityserved:
                 Kl "That's quite an impressive scoop!"
@@ -586,7 +586,7 @@ label eval_help_kev:
         c "What?"
         Kv normal "Nevermind"
     else:
-        Kv "Oh, didn't expect to find the imfamous human working Katsuharu's stand today!"
+        Kv "Oh, didn't expect to find the infamous human working Katsuharu's stand today!"
         c "Surprise!"
     
     if charactermood == 0:
@@ -881,7 +881,7 @@ label eval_help_luc:
         m "He pointed to a few younger dragons on skateboards."
         Lu "They're pretty good, aren't they."
         c "Can't say I've really been watching. But they seem alright."
-        Lu "Not as good as me, but they're pretty close. I've had a great time watching them while I was in line."
+        Lu "Not as good as me, but they're pretty close. I had a great time watching them while I was in line."
         c "That's a good way to pass the time."
         Lu "Anyways, do you think I could try Katsuharu's new flavor?"
     elif charactermood == 2:
@@ -955,7 +955,7 @@ label eval_help_xith:
     Xi "Oh, a human!"
     c "Oh, a dragon!"
     Xi "Deeply sorry. I'm sure that happens to you all the time."
-    c "Don't worry about it, just making a lighthearted joke."
+    c "Don't worry about it, I was just making a lighthearted joke."
 
     if charactermood == 0:
         Xi "As much as I would love to continue pointing out your lack of being a dragon, I'm quite busy today."
@@ -963,7 +963,7 @@ label eval_help_xith:
     elif charactermood == 1:
         Xi "Well, we could continue this banter all day if you like. I set aside a ton of time to enjoy this ice cream."
         c "Let's not. For the sake of the people in line."
-        Xi "You're just worried I have more jokes line up than you do."
+        Xi "You're just worried I have more jokes lined up than you do."
         c "Maybe."
     elif charactermood == 2:
         Xi "As much as I would love continuing this banter, I'm starving."
@@ -981,22 +981,22 @@ label eval_help_xith:
         if charactermood == 0:
             if character == qualityserved:
                 Xi "Ah, thanks for making it quick."
-                c "Of course. Can't have you being late."
+                c "Of course. Can't let you be late."
             else:
                 Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
                 $ xithreporter = False
         elif charactermood == 1:
             if character == qualityserved:
-                Xi "This is quite a stunning specimine of ice cream!"
+                Xi "This is quite a stunning specimen of ice cream!"
                 c "Thank Katsuharu, he gave this one a bit of extra love."
                 Xi "I can tell."
             elif qualityserved == 0:
                 Xi "It looks good, but Katsuharu might be losing his touch."
                 c "Is everything alright?"
-                Xi "Oh yes. I just have a bad habit for judging foods at face value without trying them."
+                Xi "Oh yes. I just have a bad habit of judging foods at face value without trying them."
             else:
                 Xi "Did you give me an ice cream scoop or an ice cream mountain?"
-                c "I did add a bit extra too it."
+                c "I did add a bit extra to it."
                 Xi "I can tell! No way my stomach can fit all of this!"
         else:
             if charactermood == qualityserved:
@@ -1025,7 +1025,7 @@ label eval_help_xith:
                     Xi "Really? Thanks..."
                     c "It's [player_name]."
                     Xi "Oh, thanks [player_name]. I'm Xith."
-                    c "Nice to have your acquaintance."
+                    c "Nice to meet your acquaintance."
                     $ helpxith = True
                 "I don't want to think about that quite yet.":
                     c "Sorry, but I really don't want to think about those events yet. They still make me uneasy."
