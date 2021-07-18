@@ -14,7 +14,7 @@
 
 label eval_katsu_help_init:
     #Shuffle the customers for a surprise every time!
-    $ customers = ["8", "Dram", "Em", "Grey", "Kali", "Kev", "Ley", "Oph", "Xith", "Ipsum"]
+    $ customers = ["8", "Dram", "Em", "Grey", "Kali", "Kev", "Ley", "Oph", "Xith", "Lucius"]
     $ renpy.random.shuffle(customers)
 
     #Number of customers already served
@@ -141,7 +141,7 @@ label eval_katsu_help:
         jump eval_help_ley
     elif customers[servedcustomers] == "Oph":
         jump eval_help_oph
-    elif customers[servedcustomers] == "Ipsum":
+    elif customers[servedcustomers] == "Lucius":
         jump eval_help_luc
     elif customers[servedcustomers] == "Xith":
         jump eval_help_xith
@@ -681,12 +681,13 @@ label eval_help_kev:
 label eval_help_ley:
     $ characterpreferredflavor = "mango"
     show leymas normal with easeinright
-    Le "Hello again, human. Fancy seeing you behind the counter again."
+    Le "Hello again, human. Fancy seeing you behind the counter once more."
     c "I don't think I ever caught your name before."
     Le "Leymas. I work in the construction field around these parts."
     c "I'm [player_name]."
-    Le "Well, [player_name]. Last time I was here I just got a couple waters. This time, however, I'm here for the ice cream!"
-    c "Luckily we just happen to serve that as well."
+    Le "Well, [player_name]. Last time I was here I just got a couple waters."
+    Le "This time, however, I'm here for the ice cream!"
+    c "Luckily, we happen to serve that as well."
     if charactermood == 0:
         Le "Lucky me I guess."
         Le "Though, I should really be getting back on site soon. My crew is probably wondering where I am."
@@ -694,7 +695,7 @@ label eval_help_ley:
         Le "Lucky me!"
         Le "I haven't seen a congregation of dragons this big in quite a long time! It's been nice relaxing and talking with everyone!"
         c "Isn't Katsuharu always this busy?"
-        Le "Never! Of course, he is very popular, but today seems to be some sort of special occasion."
+        Le "Never! Of course, he {i}is{/i} very popular, but today seems to be some sort of special occasion."
     elif charactermood == 2:
         Le "Perfect, standing in that long line really worked up my appetite."
         c "It's strange just how hungry standing in a line can make a person."
@@ -719,9 +720,10 @@ label eval_help_ley:
                 m "The dragon muttered something about his colleagues being unhappy." #Meh, might want to change this
         if charactermood == 1:
             if charactermood == qualityserved:
-                Le "Wow, this looks so good I don't know if I even want to eat it!"
+                Le "Wow, this looks so good, I don't know if I even want to eat it!"
                 c "Well, if you don't eat it, the sun will make quick work of it instead."
-                Le "Good point. Have a nice day, [player_name]!"
+                Le "Good point."
+                Le "Have a nice day, [player_name]!"
             elif qualityserved == 0:
                 Le "This looks delicious! Although I recall the ice cream looking more presentable in the past."
                 c "Is it alright? I can always get you another."
@@ -951,7 +953,7 @@ label eval_help_luc:
 
 label eval_help_xith:
     $ characterpreferredflavor = "cherry"
-    show xith normal with dissolvemed
+    show xith normal with easeinright
     Xi "Oh, a human!"
     c "Oh, a dragon!"
     Xi "Deeply sorry. I'm sure that happens to you all the time."
