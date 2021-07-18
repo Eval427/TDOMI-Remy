@@ -47,7 +47,8 @@ label eval_tmomi_remy:
     Ry look "Ice cream?"
     Ry normal "Oh, you mean Katsuharu. I haven't had anything from him in quite some time."
     c "Well, I was offered as much ice cream as I could eat, and still need to take him up on his offer."
-    Ry "Can I ask why exactly he agreed to give you so much ice cream? I've seen your appetite, and it's quite impressive."
+    Ry "Can I ask why exactly he agreed to give you so much ice cream?"
+    Ry smile "I've seen your appetite, and it's quite impressive."
 
     menu:
         "Are you calling me fat?":
@@ -70,7 +71,7 @@ label eval_tmomi_remy:
     Ry "Where did you tell him to move?"
     c "Here. Tatsu Park."
     Ry look "I find it strange that he didn't think to move to Tatsu Park earlier."
-    c "Considering his old spot worked well for 40 years, it was probably pretty difficult to decide on a move." #Gonna want to change this a bit
+    c "Considering his old spot worked well for forty years, it was probably pretty difficult to decide on a move." #Gonna want to change this a bit
     Ry normal "I guess you're right."
     Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
     c "I'm sure it will be fine."
@@ -87,7 +88,8 @@ label eval_tmomi_remy:
             jump eval_solo_remy_1
         
         "We should bring Amely along with us.":
-            c "Why don't we go together with Amely? She's a hatchling, so I'm sure she would love to go and get some ice cream with us. Especially from the renowned Katsuharu."
+            c "Why don't we go together with Amely?"
+            c "She's a hatchling, so I'm sure she would love to go and get some ice cream with us. Especially from the renowned Katsuharu."
             Ry smile "Good idea. You know, I'm not even sure if she has ever had ice cream before."
             Ry normal "Usually, the young dragons at the orphanage don't get the opportunity to go out and enjoy even the most basic things like ice cream."
             c "How come?"
@@ -121,12 +123,15 @@ label eval_tmomi_remy:
             jump eval_remy_amely_1
 
         "Why don't we invite Amely and Adine?" if showadineending:
-            c "Why don't we take Adine and Amely as well? As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
-            Ry "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone. Work, especially since Reza, has been particularly chaotic. It would be nice for the four of us to have a nice day out."
+            c "Why don't we take Adine and Amely as well?"
+            c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
+            Ry "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
+            Ry "Work, especially since Reza, has been particularly chaotic. It would be nice for the four of us to have a nice day out."
             c "Couldn't agree more. Being in a coma for the last few months, I feel like I've missed out on so much. It would be nice to talk over some nice ice cream."
             Ry look "Hmmm... We may have to wait a little bit, Adine is probably busy on her shift delivering food."
             c "Good point..."
-            Ry normal "You know, we could make ourselves useful at the orphanage until she is off her shift. She usually comes down to check on things as soon as she's done, and it may be a nice surprise for her to find us there."
+            Ry normal "You know, we could make ourselves useful at the orphanage until she is off her shift."
+            Ry "She usually comes down to check on things as soon as she's done, and it may be a nice surprise for her to find us there."
 
             menu:
                 "Sure.":
@@ -190,7 +195,7 @@ label eval_trip_to_orphanage:
     c "It's a bit far, is it not? The doctor said I shouldn't be walking too much."
     Ry normal "Well, you could always ride me instead of walking."
     c "Ummmm..."
-    Ry shy "No... Not like that, I mean ride on my back. You're pretty small, plus I'm used to carrying around a bunch of books."
+    Ry shy "No... Not like that. I mean ride on my back. You're pretty small, and I'm used to carrying around a bunch of books."
     c "I'll take being associated with a bunch of books as a compliment."
     Ry normal "Please do."
 
@@ -239,23 +244,29 @@ label eval_trip_to_orphanage:
             c "I think we should just walk and enjoy the scenery on our way there."
             Ry look "Are you sure, [player_name]? It's quite a long walk to the orphanage."
             c "Don't worry about me, I feel just fine."
-            Ry normal "Sounds good to me. Just let me know if you get tired so we can take a break. Can't have you hurting yourself."
+            Ry normal "Sounds good to me."
+            Ry "Just let me know if you get tired so we can take a break. Can't have you hurting yourself."
             c "Don't worry, I know how to pace myself."
+            stop music fadeout 2.0
             scene black with dissolveslow
             hide remy with dissolvemed
-            stop music fadeout 2.0
+            play sound "fx/steps/rough_gravel.wav"
             m "With that, we started walking."
-            m "However, it seemed as if I had greatly overestimated my physical strength. We continued on at a good pace for about ten minutes. However, I quickly fell victim to exhaustion and found myself struggling to keep up with Remy."
+            m "However, it seemed as if I had greatly overestimated my physical strength."
+            m "We continued on at a good pace for about ten minutes. However, I quickly fell victim to exhaustion and found myself struggling to keep up with Remy."
             scene forest1 with dissolveslow
             show remy normal with dissolve
             play music "mx/serene.ogg" #Look into changing this
             Ry look "Hey, are you alright? You look winded."
-            c "I think I'm alright. Just tired. I thought I could walk from one end of town to the other, but that coma really did a number on me."
-            Ry "I can see that. Here, why don't we rest underneath that tree over there so you can regain your strength."
+            c "I think I'm alright. Just tired."
+            c "I thought I could walk from one end of town to the other, but that coma really did a number on me."
+            Ry "I can see that."
+            Ry normal "Here, why don't we rest underneath that tree over there so you can regain your strength."
             scene black with dissolveslow
             hide remy with dissolvemed
             play sound "fx/evalgrasswalk1.ogg"
-            m "The dragon made his way over to a peaceful little outcrop and laid down. He beckoned me to follow."
+            m "The dragon made his way over to a peaceful little outcrop and laid down."
+            m "He beckoned me to follow."
             play sound "fx/evalgrasswalk2.ogg"
             scene evalwildlands with dissolveslow
             if mp.remyromance: #This part may be stupid, contemplating deleting this
@@ -290,26 +301,31 @@ label eval_trip_to_orphanage:
                 c "A combination of Remy's very interesting speech on grass and the warm sun quickly lulled me to sleep."
                 stop music fadeout 2.0
             
-            $ renpy.pause (2.0)
+            $ renpy.pause (4.0)
             m "I felt a light tap on my shoulder. Slowly opening my eyes, I was met with Remy's face."
             scene evalwildlands2 with dissolveslow
             show remy smile with dissolvemed
             play music "mx/jazzy2.ogg"
             Ry "Hey there sleepy head. You slept for quite awhile."
-            c "How long exactly."
-            Ry normal "Well, you probably would have slept soundly for the next day or two, but I decided it was in our best interest if I were to wake you up before Adine's shift ends so we could meet her at the orphanage."
-            c "Oh, did I really sleep for that long? I guess we won't be able to help out today."
-            Ry "It's alright, we can do it another time. Actually, all of the hatchlings aren't even there at the moment."
+            c "How long, exactly?"
+            Ry normal "Well, you probably would have slept soundly for the next day or two, but I decided it was in our best interest if I were to wake you up before Adine's shift ends so we could meet her at the orphanage." #Try to break this up in the future
+            c "Oh, did I really sleep for that long?"
+            c "I guess we won't be able to help out today."
+            Ry "It's alright, we can do it another time."
+            Ry "Actually, all of the hatchlings aren't even there at the moment."
             c "Really? How come?"
-            Ry "After the whole incident with Reza, they were put into emergency foster homes until everything cleared up. The council still hasn't given it the OK to let them back in the orphanage."
+            Ry "After the whole incident with Reza, they were put into emergency foster homes until everything cleared up."
+            Ry"The council still hasn't given it the OK to let them back in the orphanage."
             c "What about Amely?"
-            Ry look "Despite their best attempts, they couldn't find a place for Amely to stay, so Adine and I offered to take care of her instead. We both can't take her home because of our schedules, but young hatchlings are pretty self-sufficient."
+            Ry look "Despite their best attempts, they couldn't find a place for Amely to stay. So Adine and I offered to take care of her instead."
+            Ry "We both can't take her home because of our schedules, but young hatchlings are pretty self-sufficient."
             c "So what would we be doing exactly?"
             Ry normal "Well, there's always a lot to do, even if there aren't any children. Maintenance and such."
             #Its possible I want to add more here, lets see
             Ry "Anyways, we should get going. We don't want to miss Adine."
             scene black with dissolveslow
             hide remy with dissolvemed
+            play sound "fx/steps/rough_gravel.wav"
             m "With renewed energy, Remy and I continued to the orphanage."
             #FX Here?
             $ renpy.pause (1.0)
@@ -354,7 +370,9 @@ label eval_solo_remy_1: #Ending with only Remy
         "Hey! Long time no see.":
             c "Yeah, it's really been a while, hasn't it. A lot has gone on since we last saw each other."
             Ka exhausted flip "Quite a lot it seems. You have caused quite the chaos since you arrived."
-            c "I guess I just have a knack for it. Hopefully it should all return back to the peaceful way it was. Everything has more or less resolved itself and the conflict is over." #Ew ugly
+            c "I guess I just have a knack for it."
+            c "Hopefully it should all return back to the peaceful way it was."
+            c "Everything has more or less resolved itself and the conflict is over." #Ew ugly
             Ka smile flip "Glad to hear that."
             c "Is it alright that I brought Remy along as well?"
             Ka normal flip "Perfectly fine! Although he is going to have to pay for his ice cream."
@@ -727,13 +745,15 @@ label eval_remy_amely_1:
     show amely smnormal at right with dissolvemed
     show remy normal at right behind amely with dissolvemed
     show katsu normal flip at Position (xpos = 0.1) with easeinleft
-    Ka "Well, if it isn't the business saving human, [player_name]. Have you come to take up my offer?"
+    Ka "Well, if it isn't the business saving human, [player_name]! Have you come to take up my offer?"
 
     menu:
         "Hey! Long time no see.":
             c "Yeah, it's really been a while, hasn't it. A lot has gone on since we last saw each other."
             Ka exhausted flip "Quite a lot it seems. You have caused quite the chaos since you arrived."
-            c "I guess I just have a knack for it. Hopefully it should all return back to the peaceful way it was. Everything has more or less resolved itself and the conflict is over."
+            c "I guess I just have a knack for it."
+            c "Hopefully it should all return back to the peaceful way it was."
+            c "Everything has more or less resolved itself and the conflict is over."
             Ka smile flip "Glad to hear that."
             c "Is it alright that I brought Remy and Amely along as well?"
             Ka normal flip "Perfectly fine! Although Remy is going to have to pay for the both of them."
@@ -1233,7 +1253,8 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     show adine normal c flip at left with dissolvemed
     Ad "Hey guys! What are you doing here?"
     Ry "Looking for you!"
-    Ad giggle c flip "Well, I guess you found me, or rather, I found you. I expected to find you here Remy, but what is [player_name] doing here?"
+    Ad giggle c flip "Well, I guess you found me, or rather, I found you."
+    Ad normal c flip"I expected to find you here Remy, but what is [player_name] doing here?"
     c "Ice cream."
     show remy look at right with dissolvemed
     Ad annoyed b flip "What?"
@@ -1247,7 +1268,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     Ry smile "Great! I'll go grab Amely and we can go."
     hide remy with dissolvemed
     Ad giggle b flip "Two dragons, a human with a big appetite, and a hatchling with unlimited access to delicious ice cream. I sure hope Katsuharu has enough stock."
-    c "We couldn't possibly eat THAT much ice cream, could we?"
+    c "We couldn't possibly eat {i}that{/i} much ice cream, could we?"
     Ad normal b flip "Coming from someone who has had three scoops in one sitting before, it is definitely possible."
     show amely smnormal at right with dissolvemed
     show remy normal behind amely at right with dissolvemed
@@ -1262,7 +1283,8 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     Ry look "What about the orphanage, Adine?"
     Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities Amely would get to experience something like this."
     Ry normal "Good point."
-    Ad "How are we supposed to get back over to Tatsu Park? I can fly Amely over, but how is [player_name] going to make it there in a reasonable amount of time?"
+    Ad "How are we supposed to get back over to Tatsu Park?"
+    Ad "I can fly Amely over, but how is [player_name] going to make it there in a reasonable amount of time?"
     Ry "[player_name] could just ride me."
     Ad giggle b flip "[player_name] could ride you, Remy? Is this really the time?"
     Ry shy "Why does everyone keep taking this the wrong way? I didn't mean it like THAT Adine!"
@@ -1270,7 +1292,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     Ad "Sure you didn't, Remy."
     Ry "Adine..."
     Ad normal b flip "Okay, I'll stop. For now."
-    Ry look "Great... Lets just get going."
+    Ry look "Great... Let's just get going."
     Ad "Alright, Amely, lets go."
     Am "Sugar!!!"
     hide amely with easeoutleft
@@ -1299,7 +1321,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     Ry normal "I was thinking that instead of flying, I could just run."
     c "Are you fast on the ground?"
     Ry "Not as fast as a runner, but I'm still quite quick."
-    c "Alright then, let's see how fast those legs really are."
+    c "Alright then, let's see how quick those legs really are."
     hide remy with dissolvemed
     play sound "fx/bed.ogg"
     m "Remy got down on all fours. Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
@@ -1347,7 +1369,8 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     show remy normal at right with dissolvemed
     show amely smnormal flip at left with dissolvemed
     show adine normal b flip behind amely at left with dissolvemed
-    Ad "Took you guys long enough to get here. I don't suppose you had a bit of fun did you?"
+    Ad "Took you guys long enough to get here."
+    Ad "I don't suppose you had a bit of fun did you?"
     m "My face, just about to return to it's normal shade, became bright red once again."
     Ry shy "Adine, this is getting old."
     Ad giggle b flip "Then why are both of you bright red?"
@@ -1357,7 +1380,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     m "Something in Adine's eyes told me that she would not stop pestering us about it."
     Ad "So, you said Katsuharu relocated here. Any idea where he is?"
     m "Suddenly, inspiration struck me as Adine idly moved her tail in my direction."
-    c "Not sure, Adine, why don't we call and find out?"
+    c "Not sure, Adine. Why don't we call and find out?"
     m "I stepped and grabbed the end of Adine's tail."
     Ad think b flip "What the..."
     Ry look "[player_name], what are you doing?"
@@ -1373,7 +1396,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     c "Totally worth it."
     Ry "I have to admit, that was pretty funny."
     Ad "I hate you both."
-    c "Hey! You have to admit, you were asking for it."
+    c "Hey! You were asking for it."
     Ad "I guess I was. But still, screw you guys."
     Ry normal "Now we're even."
     Ad giggle b flip "Oh, you think this is over? This is only the beginning."
@@ -1427,21 +1450,24 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     show adine normal b behind remy at Position (xpos=0.6) with dissolvemed
     show katsu normal flip at Position (xpos=0.1) with easeinleft
 
-    Ka "Well, if it isn't the business saving human, [player_name]. Have you come to take up my offer?"
+    Ka "Well, if it isn't the business saving human, [player_name]! Have you come to take up my offer?"
 
     menu:
         "Hey! Long time no see.":
             c "Yeah, it's really been a while, hasn't it. A lot has gone on since we last saw each other."
             Ka exhausted flip "Quite a lot it seems. You have caused quite the chaos since you arrived."
-            c "I guess I just have a knack for it. Hopefully it should all return back to the peaceful way it was. Everything has more or less resolved itself and the conflict is over."
+            c "I guess I just have a knack for it."
+            c "Hopefully it should all return back to the peaceful way it was."
+            c "Everything has more or less resolved itself and the conflict is over."
             Ka smile flip "Glad to hear that."
             c "Is it alright if I brought these three along as well?"
-            Ka exhausted flip "Wow... When I offered you that ice cream, I didn't think you would bring all your friends as well."
+            Ka exhausted flip "Wow... When I offered you that ice cream, I didn't think you would bring all of your friends as well."
             Ry look "Listen, Katsuharu. If it's too much, just give [player_name] their ice cream."
             Ka smile flip "You know, not once in my time working this cart have I ever left a potential customer hungry."
             Ka "How about this? You four get as much ice cream as you desire. But first, you have to help me serve some customers for a while."
             Ry normal "That doesn't sound that bad."
-            Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream. It might even be fun."
+            Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream."
+            Ad normal b "It might even be fun."
             Am "Ice cream!"
             Ry "I guess it's really up to you, [player_name]. This was your idea after all."
         
@@ -1493,7 +1519,9 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
             hide amely with easeoutleft
             scene black with dissolveslow
             scene evalkatsucart with dissolveslow
-            Ka normal "Alright, here's the plan everyone. Remy, grab a scoop from that drawer there, [player_name], you take orders, and Adine... Just make sure Amely doesn't cause too much chaos."
+            Ka normal "Alright, here's the plan everyone. Remy, grab a scoop from that drawer there."
+            Ka "[player_name], you take orders."
+            Ka "And Adine... Just make sure Amely doesn't cause too much chaos."
             Ry normal "Yes sir!"
             Ad giggle b "Sounds good, Katsuharu."
             Ka "Quick tip, [player_name]. Customers don't always want the same thing. Try adapting to their interests."

@@ -4,7 +4,7 @@
 #General concept:
     #Player serves ice cream to 10 different customers in line
     #Randomly place 3 characters: Emera, Dramavian, and Kalinth - Could do more or even have every customer actually have artwork using the minor characters
-        #How many do I have? 8th, Dramavian, Emera, Grey, Kalinth, Kevin, Leymas, Ophinia, Xith, Ipsum - That's 10 right there. Why not?
+        #How many do I have? 8th, Dramavian, Emera, Grey, Kalinth, Kevin, Leymas, Ophinia, Xith, Lucius - That's 10 right there. Why not?
     #Characters can have 3 moods: In a hurry, don't mind waiting, or very hungry <-- Subject to change. Give user 3 options to satisfy their wants.
         #Give individual dialogue to every character to give hints to their wants
     #Make an underdeveloped side character a reporter and make a scoop pun - I could even do something with this later down the line???
@@ -327,7 +327,7 @@ label eval_help_dram: #... dot dot dot ...
                 Dr "Thanks..."
                 m "I smiled."
                 c "Any time."
-                c "..."
+                Dr "..."
             
             $ customerscore += 1
         else:
@@ -584,7 +584,7 @@ label eval_help_kev:
         c "I'm sure you're giving him all the insider scoop on all this college stuff, aren't you?"
         Kv brow "I see what you did there..."
         c "What?"
-        Kv normal "Nevermind"
+        Kv normal "Nevermind."
     else:
         Kv "Oh, didn't expect to find the infamous human working Katsuharu's stand today!"
         c "Surprise!"
@@ -641,6 +641,7 @@ label eval_help_kev:
                     show kevin normal with dissolvemed
                 else:
                     c "Of course. Have a nice day!"
+                $ customerscore += 1
             else:
                 Kv normal "That took a little bit! I might be late if I don't go..."
                 m "Kevin looked at his wrist where one would normally wear a watch."
@@ -649,6 +650,7 @@ label eval_help_kev:
         elif charactermood == 1:
             if charactermood == qualityserved:
                 Kv normal "Wow! This looks spectacular! You can really tell that Katsuharu cares about his craft."
+                $ customerscore += 1
             elif qualityserved == 0:
                 Kv normal "That was fast, maybe even a little too fast."
                 c "Is everything alright?"
@@ -665,6 +667,7 @@ label eval_help_kev:
                 c "I thought you could use a bit extra after a busy day."
                 Kv ramble "Boy could I ever."
                 show kevin normal with dissolvemed
+                $ customerscore += 1
             else:
                 Kv normal "Thank you, this looks great! In hindsight, I should have ordered a bit more."
                 Kv "Giving out flyers is hard work, y'know?"
@@ -714,16 +717,18 @@ label eval_help_ley:
                 Le "Nice and quick! Thanks, [player_name]!"
                 c "Can't have your colleagues getting angry at you."
                 Le "Thanks for looking out for me."
+                $ customerscore += 1
             else:
                 Le "Thank you. It looks wonderful, but I've really got to get going now."
                 c "I understand. See you around hopefully."
                 m "The dragon muttered something about his colleagues being unhappy." #Meh, might want to change this
-        if charactermood == 1:
+        elif charactermood == 1:
             if charactermood == qualityserved:
                 Le "Wow, this looks so good, I don't know if I even want to eat it!"
                 c "Well, if you don't eat it, the sun will make quick work of it instead."
                 Le "Good point."
                 Le "Have a nice day, [player_name]!"
+                $ customerscore += 1
             elif qualityserved == 0:
                 Le "This looks delicious! Although I recall the ice cream looking more presentable in the past."
                 c "Is it alright? I can always get you another."
@@ -733,11 +738,12 @@ label eval_help_ley:
                 Le "How am I even supposed to eat all of that?"
                 c "I thought you could use a bit extra. It's a little warm today."
                 Le "I guess so. Thanks!"
-        else:
+        else charactermood == 2:
             if charactermood == qualityserved:
                 Le "That's a lot of mango ice cream, [player_name]!"
                 c "You said you were hungry, so I added a bit extra."
                 Le "Thanks a ton! I really needed some extra ice cream today!"
+                $ customerscore += 1
         
         hide leymas with easeoutleft #Add a bit more here possibly. Idk why I like leymas more than the other characters I made up
         m "With that, Leymas paid and left."
@@ -984,6 +990,7 @@ label eval_help_xith:
             if character == qualityserved:
                 Xi "Ah, thanks for making it quick."
                 c "Of course. Can't let you be late."
+                $ customerscore += 1
             else:
                 Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
                 $ xithreporter = False
@@ -992,6 +999,7 @@ label eval_help_xith:
                 Xi "This is quite a stunning specimen of ice cream!"
                 c "Thank Katsuharu, he gave this one a bit of extra love."
                 Xi "I can tell."
+                $ customerscore += 1
             elif qualityserved == 0:
                 Xi "It looks good, but Katsuharu might be losing his touch."
                 c "Is everything alright?"
@@ -1004,6 +1012,11 @@ label eval_help_xith:
             if charactermood == qualityserved:
                 Xi "That's not just an ice cream scoop. That's an ice cream mountain."
                 Xi "I'm so hungry, too. Thanks!"
+                $ customerscore += 1
+            else:
+                Xi "Damn, I should have requested more ice cream."
+                c "You still could if you want."
+                Xi "I think I'll have to pass. I should be cutting back on my sugar intake anyways."
         
         if xithreporter:
             $ renpy.pause (0.5)
