@@ -24,7 +24,7 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
  
  - Get Remy's good ending
 
- - Complete Adine's good ending at least once before
+ - (For a third ending) Complete Adine's good ending at least once before
  
  ________________________________________________________________________________________________
  

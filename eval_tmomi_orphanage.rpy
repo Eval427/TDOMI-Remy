@@ -932,7 +932,7 @@ label eval_orphanage_end: #Change the music
             c "Thanks, Remy."
             scene black with dissolveslow
             hide remy with dissolvemed
-            m "I closed my eyes and snuggled closer to Remy"
+            m "I closed my eyes and snuggled closer to Remy."
             m "I wrapped one of my arms around Amely."
             m "Remy's soft breathing quickly lulled me to sleep."
             stop music fadeout 2.0

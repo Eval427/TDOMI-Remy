@@ -907,7 +907,7 @@ label eval_help_luc:
     Lu "No clue! He says it was inspired by the local diner, but that's all I know about it."
     if mp.fish:
         m "Oh no, I think I might know what the special is referring to."
-    c "Well them, one special coming right up!"
+    c "Well then, one special coming right up!"
     jump eval_katsu_help_2
 
     label eval_help_luc_2:

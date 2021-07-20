@@ -229,7 +229,8 @@ label eval_trip_to_orphanage:
             c "Sure, I'll make like a pile of books and hop on."
             hide remy with dissolvemed
             play sound "fx/bed.ogg" #Change Later
-            m "Remy got down on all fours. Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
+            m "Remy got down on all fours."
+            m "Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
             Ry "Oof, maybe you're a bit heavier than the books I'm used to."
             c "Wait a minute..."
             Ry "Hey, books don't complain."
@@ -250,7 +251,7 @@ label eval_trip_to_orphanage:
             $ renpy.pause (0.5)
             m "We made our way through the city with a few dragons giving us strange looks."
             m "It seemed as if it took no time at all to arrive at the orphanage."
-            Ry "Ladies and gentledragons, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
+            Ry "Ladies and gentledragons, this will be our first stop. Please make sure to grab all of your belongings and safely exit the vehicle."
             c "Very funny Remy."
             Ry "Thanks, I can tell that you sincerely mean that."
             play sound "fx/bed.ogg"
@@ -264,7 +265,7 @@ label eval_trip_to_orphanage:
             Ry "Yep. That's her usual hiding place."
             play sound "fx/door/doorchain.ogg"
             m "He placed the key in the lock and opened the door."
-            play sound "fx/door_open.wav"
+            play sound "fx/door/door_open.wav"
             $ renpy.pause (0.5)
             scene evalorphdark with dissolveslow
             play music "mx/donuts.mp3"
@@ -423,7 +424,7 @@ label eval_trip_to_orphanage:
             Ry "Yep. That's her usual hiding place."
             play sound "fx/door/doorchain.ogg"
             m "He placed the key in the lock and opened the door."
-            play sound "fx/door_open.wav"
+            play sound "fx/door/door_open.wav"
             $ renpy.pause (0.5)
             scene evalorphdark with dissolveslow
             play music "mx/donuts.mp3"
@@ -1384,7 +1385,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     play sound "fx/wooshes.ogg"
     $ renpy.pause (3.0)
     Ry smile "I wonder who that could be?"
-    play sound "fx/door/doorchain.ogg"
+    play sound "fx/door/door_open.wav"
     hide amely with dissolvemed
     hide remy with dissolvemed
     show amely smnormal at right with dissolvemed
@@ -1421,7 +1422,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         Ad normal b flip "Are you kidding me? This place hasn't looked this good in years!"
         Ad "How did you manage to do all of this so quickly?"
         Ry normal "Teamwork. Amely and I gathered supplies and [player_name] did all the work."
-        Ad "Well, [player_name], you do not understand how grateful I am that you did this."
+        Ad "[player_name], you do not understand how grateful I am that you did this."
         hide adine with dissolvemed
         play sound "fx/hug.mp3"
         m "Adine walked up and gave me a big hug." #The wyvern gives you a hug. Mission complete.
@@ -1446,7 +1447,8 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     show remy look at right with dissolvemed
     Ad annoyed b flip "What?"
     c "Katsuharu owes me as much ice cream as I want, and I thought who better to bring than you two and Amely?"
-    Ad think b flip "I have never heard of that dragon giving anyone free ice cream. You must have done something quite spectacular to get a deal like that."
+    Ad think b flip "I have never heard of that dragon giving anyone free ice cream."
+    Ad "You must have done something quite spectacular to get a deal like that."
     show remy normal at right with dissolvemed
     c "Just a little bit of business advice. I told him to move his stand down to Tatsu Park."
     Ad "You're telling me that you get an infinite supply of the world's best ice cream for free because you told him to move to Tatsu Park?"
@@ -1456,8 +1458,6 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     Ad giggle b flip "Two dragons, a human with a big appetite, and a hatchling with unlimited access to delicious ice cream. I sure hope Katsuharu has enough stock."
     c "We couldn't possibly eat {i}that{/i} much ice cream, could we?"
     Ad normal b flip "Coming from someone who has had three scoops in one sitting before, it is definitely possible."
-    show amely smnormal at right with dissolvemed
-    show remy normal behind amely at right with dissolvemed
     Ry smile "So, Amely, are you excited to have your first ever scoop of ice cream?"
     Am smsad "Ice... cream?"
     c "Ice cream is kind of like... Well... Um..."
@@ -1466,9 +1466,11 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     c "Yes, lots of sugar."
     Am "Sugar!!!"
     Ad giggle b flip "I'm going to take that as a yes."
-    Ry look "What about the orphanage, Adine?"
-    Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities Amely would get to experience something like this."
-    Ry normal "Good point."
+    if not evalOrphanageScore == 2:
+        Ry look "What about the orphanage, Adine?"
+        Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities Amely would get to experience something like this."
+        Ry normal "Good point."
+    Ad think b flip "Wait a minute."
     Ad "How are we supposed to get back over to Tatsu Park?"
     Ad "I can fly Amely over, but how is [player_name] going to make it there in a reasonable amount of time?"
     Ry "[player_name] could just ride me."
@@ -1479,66 +1481,102 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     Ry "Adine..."
     Ad normal b flip "Okay, I'll stop. For now."
     Ry look "Great... Let's just get going."
-    Ad "Alright, Amely, lets go."
+    Ad "Alright, Amely, let's go."
     Am "Sugar!!!"
     hide amely with easeoutleft
+    play sound "fx/door/door_open.wav"
     $ renpy.pause (0.5)
     Ad "Whoah! Wait for me Amely! I'm the one with wings here!"
     show adine normal b with dissolvemed
     hide adine with easeoutleft
     $ renpy.pause (1.0)
+    play sound "fx/door/door_open.wav"
+    $ renpy.pause (1.5)
     play sound "fx/takeoff.ogg"
     m "After a moment, Adine caught up with Amely. Clutching the little hatchling in her claws, she took off and soared into the air."
     hide remy with dissolvemed
     show remy normal with dissolvemed
-    c "Well, are we going to fly off after them?"
-    Ry normal "Not to be rude, but I doubt I could fly around with you on my back."
-    c "Are you calling me fat?"
+    if not evalRodeRemy:
+        c "Well, are we going to fly off after them?"
+        Ry normal "Not to be rude, but I doubt I could fly around with you on my back."
+        c "Are you calling me fat?"
 
-    if evalAskIfFat:
-        Ry look "Not this again, [player_name]."
-        c "Fine, you got me there."
+        if evalAskIfFat:
+            Ry look "Not this again, [player_name]."
+            c "Fine, you got me there."
+        else:
+            Ry shy "N... No of course not. I didn't mean it that way... I just meant..."
+            c "I'm kidding, don't sweat it."
+            Ry normal "Dragons don't sweat."
+            c "Noted."
+
+        Ry normal "I was thinking that instead of flying, I could just run."
+        c "Are you fast on the ground?"
+        Ry "Not as fast as a runner, but I'm still quite quick."
+        c "Alright then, let's see how quick those legs really are."
     else:
-        Ry shy "N... No of course not. I didn't mean it that way... I just meant..."
-        c "I'm kidding, don't sweat it."
-        Ry normal "Dragons don't sweat."
-        c "Noted."
-    
-    Ry normal "I was thinking that instead of flying, I could just run."
-    c "Are you fast on the ground?"
-    Ry "Not as fast as a runner, but I'm still quite quick."
-    c "Alright then, let's see how quick those legs really are."
+        Ry "Well, are you ready, [player_name]."
+        c "Sure am."
     hide remy with dissolvemed
     play sound "fx/bed.ogg"
-    m "Remy got down on all fours. Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
-    Ry "Oof, if I had any hopes of taking off before, they are all gone now."
-    c "Wait a minute..."
-    Ry "Goodness, stop being such a softie."
+    m "Remy got down on all fours."
+    m "Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
+    if not evalRodeRemy:
+        Ry "Oof, if I had any hopes of taking off before, they are all gone now."
+        c "Wait a minute..."
+        Ry "Goodness, stop being such a softie."
     m "After finding a relatively comfortable spot on his back, Remy lifted his body."
     Ry "How is it back there?"
-    c "A bit bony. I think I need a saddle."
-    Ry "Funnily enough, you can actually buy dragon saddles."
-    c "That's... Interesting."
-    Ry "They exist. I didn't say they were popular."
+    if not evalRodeRemy:
+        c "A bit bony. I think I need a saddle."
+        Ry "Funnily enough, you can actually buy dragon saddles."
+        c "That's... Interesting."
+        Ry "They exist. I didn't say they were popular."
+    else:
+        c "I'm seriously considering the saddle now."
     stop music fadeout 2.0
     scene black with dissolveslow
+    play sound "fx/door/door_open.wav"
+    Ry "Would you mind locking the door and hiding the key again?"
+    c "Sure."
+    m "Not wanting to repeat the process of getting on Remy, I grabbed the key and stretched my arm towards the door."
+    play sound "fx/door/doorchain.ogg"
+    m "With some difficulty, I managed to slip in the key and lock the door."
+    c "How do I get the key back under the pot?"
+    Ry "Like this."
+    m "Remy walked over to the pot and tilted it up with his muzzle."
+    m "I put the key back, and he carefully rested the pot back in it's upright position."
+    Ry "Perfect! Let's go!"
     play sound "fx/steps/rough_gravel.wav"
-    m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
-    $ evalRodeRemy = True
-
-    if evalRodeBryce:
-        m "It wasn't as uncomfortable as I had first imagined. In a way, it also felt strangely familiar, like I had done this before."
+    if not evalRodeRemy:
+        m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
+        $ evalRodeRemy = True
     else:
-        m "It wasn't as uncomfortable as I had first imagined. It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
+        m "Remy walked forward and quickly picked up speed."
+
+    if not evalRodeRemy:
+        if evalRodeBryce:
+            m "It wasn't as uncomfortable as I had first imagined."
+            m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
+            m "In a way, it also felt strangely familiar, like I had done this before."
+            m "The experience was almost relaxing, with the light breeze and rhythmic thumping of Remy's feet on the grass and pavement."
+        else:
+            m "It wasn't as uncomfortable as I had first imagined."
+            m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
+    else:
+        m "As a seasoned dragon rider. I sat back and gazed up at the sky." #Is this too... weird?
     
-    m "The experience was almost relaxing, with the light breeze and rhythmic thumping of Remy's feet on the grass and pavement."
     $ renpy.pause (0.5)
-    m "It seemed as if it took no time at all to arrive back at Tatsu Park."
+    m "It seemed as if it took mere minutes to arrive back at Tatsu Park."
     Ry "Ladies and gentledragons, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
-    c "Very funny Remy."
-    Ry "Thanks, I can tell that you sincerely mean that."
+    if not evalRodeRemy:
+        c "Very funny Remy."
+        Ry "Thanks, I can tell that you sincerely mean that."
+    else:
+        c "Saying the same joke twice doesn't make it funnier, Remy."
+        Ry "Nonsense."
     play sound "fx/bed.ogg"
-    m "I gracefully slid off of Remy's back."
+    m "I slid off of Remy's back."
     scene park2 with dissolveslow
     show remy normal with dissolvemed
     play music "mx/funness.ogg"
@@ -1561,7 +1599,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     m "My face, just about to return to it's normal shade, became bright red once again."
     Ry shy "Adine, this is getting old."
     Ad giggle b flip "Then why are both of you bright red?"
-    c "Nothing happened. It's just that flying is much faster than running."
+    c "Nothing happened. We had to lock up the orphanage."
     Ad normal b flip "Okay, okay, I'll stop pestering you two about it."
     Ry look "Finally."
     m "Something in Adine's eyes told me that she would not stop pestering us about it."
@@ -1608,8 +1646,9 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         "It would be rude to skip everyone.":
             c "It would be rude to skip everyone."
             Ry "I would have to agree with you. All of these people have been waiting for a long time to get their ice cream, and I'm sure it would make them unhappy if we just skipped ahead."
-            Ad think b flip "I'm not too sure. If Katsuharu was willing to give you free ice cream. I'm sure he would be more than willing to let you skip the line as well."
-            Ry "It's not that. I just don't think we should be attracting so much attention to ourselves, especially with [player_name]."
+            Ad think b flip "I'm not too sure."
+            Ad "If Katsuharu was willing to give you free ice cream, I'm sure he would be more than willing to let you skip the line as well."
+            Ry normal "It's not that. I just don't think we should be attracting so much attention to ourselves, especially with [player_name]."
             Ad normal b flip "True."
             c "Looks like the line is about an hour long." #Do I add a mini game??? Tune in next time for //Is Eval Lazy?\\
             m "For the next hour, Remy, Adine and I engaged in lighthearted chatter, discussing our interests and the events that had gone on while I was in my coma."
@@ -1650,8 +1689,10 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             c "Is it alright if I brought these three along as well?"
             Ka exhausted flip "Wow... When I offered you that ice cream, I didn't think you would bring all of your friends as well."
             Ry look "Listen, Katsuharu. If it's too much, just give [player_name] their ice cream."
+            Ka "Hmmm..."
             Ka smile flip "You know, not once in my time working this cart have I ever left a potential customer hungry."
-            Ka "How about this? You four get as much ice cream as you desire. But first, you have to help me serve some customers for a while."
+            Ka "How about this?"
+            Ka "You four get as much ice cream as you desire. But first, you have to help me serve some customers for a while."
             Ry normal "That doesn't sound that bad."
             Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream."
             Ad normal b "It might even be fun."
@@ -1767,7 +1808,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
 
 label eval_remy_amely_adine_2:
     m "I looked out across the park. It seemed that every dragon was happily eating their ice cream."
-    c "I think we're done guys!"
+    c "I think we're done, guys!"
     Ka "Awesome!"
     scene black with dissolveslow
     scene town7 with dissolveslow
