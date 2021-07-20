@@ -1,6 +1,6 @@
 # This Man (Dragon) Still Owes Me Ice Cream! Remy Edition
 
-Massive shoutout to EvilChaosKnight for his amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without their work
+Massive shoutout to EvilChaosKnight for his amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without their work.
 
 Right now this mod is INCOMPLETE (and probably pretty cringy). I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
 
@@ -20,7 +20,7 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
  
  Requirements:
  
- - Save Katsuharu's business
+ - Save Katsuharu's business - This needs to be done each playthrough
  
  - Get Remy's good ending
 
@@ -58,6 +58,8 @@ What am I working on now?
 
 - Adding endings. They exist, but there isn't a tangible way to determine if you've seen one.
 
+-Adding acievements. I might do this if I feel like it. I have a few ideas
+
  ________________________________________________________________________________________________
 
  Feedback:
@@ -72,7 +74,6 @@ What am I working on now?
 
  ________________________________________________________________________________________________
 
-  SPOILERS AHEAD!!! BE WARNED.
 
   How do I get the most out of the mod?
 
@@ -83,6 +84,8 @@ What am I working on now?
   - Do the extra content listed above
 
  ________________________________________________________________________________________________
+
+SPOILERS AHEAD!!! BE WARNED.
 
   Tips for Katsuharu's minigame:
 
@@ -96,7 +99,7 @@ What am I working on now?
 
   - There's actually a few pretty funny secrets hidden in the game. Probably difficult to get them by chance, though.
     
-    - The biggest of these is probably Ophinia's. To get this, have her want the large ice cream, but don't give it to her.
+    - The biggest of these is probably Ophinia's. To get this, have her want the large ice cream, but don't give it to her. RNG based, I know, but it's the only way it makes sense.
 
  ________________________________________________________________________________________________
 
