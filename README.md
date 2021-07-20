@@ -2,18 +2,25 @@
 
 Massive shoutout to EvilChaosKnight for his amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without his work
 
-It is very possible that I will upload a video on getting the "perfect" save so you get maximum content out of this mod (basically just going through the extra content steps listed below)
-
 Right now this mod is INCOMPLETE (and probably pretty cringy). I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
 
 My first attempt at creating a mod for AWSW even though the game came out like 5 years ago. This entire things was inspired by a single steam community post (https://steamcommunity.com/sharedfiles/filedetails/?id=857686289) and an unbelievable amount of boredom. At first, this was supposed to be a quick and simple mod that gave each character a little bit of extra content after their good ending.
  But then I started working on Remy's ending first, and things got out of control.
- 
+ _______________________________________________________________________________________________
+
+ Thoughts on current version:
+
+ - The most recent version of this mod introduces the orphanage minigame. This minigame is probably not as good as Katsuharu's, but I still like it. It's much more technical and required a lot more assets.
+
+ - I would say that there are probably a fair amount of bugs or discontinuities in the text in the game. Please let me know (Eval#4270 on discord)
+
+ - The next update is going to get me much closer to the end of this mod. I have been thinking about the Remy hatchlings mod, and with how I want this mod to end, I'm not sure if it will work.
+
  _______________________________________________________________________________________________
  
  Requirements:
  
- - Help Katsuharu (in each playthrough you want the ending)
+ - Save Katsuharu's business
  
  - Get Remy's good ending
 
@@ -47,8 +54,6 @@ What am I working on now?
 
 - I know many of the transitions are extremely ugly. I'm working to fix that.
 
-- The music choice isn't that great IMO. Would like some feedback.
-
 - Grammar. I've gone through a lot of it, but there's still probably a ton I'm missing.
 
 - Adding endings. They exist, but there isn't a tangible way to determine if you've seen one.
@@ -77,7 +82,7 @@ What am I working on now?
 
   - Do the extra content listed above
 
-
+ ________________________________________________________________________________________________
 
   Tips for Katsuharu's minigame:
 
@@ -92,3 +97,13 @@ What am I working on now?
   - There's actually a few pretty funny secrets hidden in the game. Probably difficult to get them by chance, though.
     
     - The biggest of these is probably Ophinia's. To get this, have her want the large ice cream, but don't give it to her.
+
+ ________________________________________________________________________________________________
+
+ Tips for the orphanage minigame:
+
+ - For the first part of the game, always have Remy sent off gathering items
+
+ - While Remy is gathering items, work on tasks you are able to do (obviously)
+
+ - There are 2 unnecessary red herring items. The large spare parts and the spare lightswitch.
