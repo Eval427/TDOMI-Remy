@@ -1,10 +1,10 @@
-# This Man (Dragon) Still Owes Me Ice Cream! Remy - Part 1
+# This Man (Dragon) Still Owes Me Ice Cream! Remy Edition
 
-AKA This Man (Or Dragon) Owes me Ice Cream! Remy Edition
+Massive shoutout to EvilChaosKnight for his amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without his work
 
 It is very possible that I will upload a video on getting the "perfect" save so you get maximum content out of this mod (basically just going through the extra content steps listed below)
 
-Right now this mod is INCOMPLETE (and probably pretty cringy). I'm working on a major update that should just about finish up all the current endings. I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
+Right now this mod is INCOMPLETE (and probably pretty cringy). I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
 
 My first attempt at creating a mod for AWSW even though the game came out like 5 years ago. This entire things was inspired by a single steam community post (https://steamcommunity.com/sharedfiles/filedetails/?id=857686289) and an unbelievable amount of boredom. At first, this was supposed to be a quick and simple mod that gave each character a little bit of extra content after their good ending.
  But then I started working on Remy's ending first, and things got out of control.
@@ -43,6 +43,8 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
 
 What am I working on now?
 
+- My main priority is getting all of the content finished. I have a set end goal in mind, and I need to get there before going back and polishing everything
+
 - I know many of the transitions are extremely ugly. I'm working to fix that.
 
 - The music choice isn't that great IMO. Would like some feedback.
@@ -58,6 +60,12 @@ What am I working on now?
  - If you have any feedback whatsoever, please hit me up on discord (Eval#4270). This is especially true for writing, since I know a lot of it is just "OK".
 
   ________________________________________________________________________________________________
+
+ Conflicts:
+
+ - This mod conflicts with the side images mod. This is not my fault, but rather a typo in the other mod's code that makes Lucius crash your game
+
+ ________________________________________________________________________________________________
 
   SPOILERS AHEAD!!! BE WARNED.
 

@@ -22,6 +22,30 @@ label eval_tmomi_remy:
         #After the incident at the portal, the children were put into emergency foster care outside of the town and still have not returned
         #Amely stayed because they couldn't find a place for her, but Remy and Adine agreed to take care of her
         #And... Implemented.
+    
+    #Things to remember to add to credits:
+        #ECK for backgrounds and his amazing displays
+        #AwBH Discord for feedback/motivation
+        #Grissess for politely telling me I'm doing it all wrong and making me write better code
+
+    #Future plans. MASSIVE SPOILERS:
+        #I need to write this down somewhere so I don't forget it. Please, if you're playing this and this content isn't released. I HIGHLY recommend
+        #not reading this next wall of text. It'll ruin it, I promise.
+
+        #After completing the game with a perfect score in both minigames, a good ending, and agreeing to meet with Xith,
+        #a new ending unlocks for Remy's solo ending. In this ending, the player sees the ghost of vara manifest in front of
+        #Remy. Player freaks out about it, Remy looks concerned, and the two of them plan to meet the next day and talk with Adine.
+        #Tell Adine and Remy about the time travel element or Adine recalls her strange dreams and how they can relate to the past, present,
+        #or future. If you have met with Xith before, you will have the option to talk with him as well. In exchange for giving him answers, he
+        #will reveal that he has intereviewed a few other dragons, including Bryce, seb, and naomi if you have the mod, and maybe a few others
+        #and they all have also experienced these visions. Go back home to find Remy waiting there. You talk with him, and he recalls seeing Vara
+        #alive as well in a dream. He then thinks about his thoughts on alternate time lines, and asks you to promise that you
+        #will save vara in the next timeline. You agree, and upon the next playthrough, Remy's ending is changed to where Vara survives, and this unlocks a FINAL
+        #Ending with all 5 characters getting ice cream. Note this ending will not have the orphanage minigame since Adine will get paid leave to take care of Amely
+        #and Vara. However, it will have the Katsu minigame with more bonus cutscenes and maybe extra characters thrown in for fun.
+        #Also Vara isn't actually a ghost, but rather an appirition from another possible timeline where she survives
+
+        #Then... that's it. That's where this mod will end and I will finally be free.
 
     stop music fadeout 2.0
     scene black with dissolveslow
@@ -52,14 +76,14 @@ label eval_tmomi_remy:
 
     menu:
         "Are you calling me fat?":
-            $ askiffat = True
+            $ evalAskIfFat = True
             Ry shy "N... No of course not, I didn't mean it that way... I just meant..."
             c "I'm kidding, don't sweat it."
             Ry normal "Dragons don't sweat."
             c "Noted."
         
         "Thanks...":
-            $ askiffat = True #This basically means the same thing as the first option
+            $ evalAskIfFat = True #This basically means the same thing as the first option
             Ry shy "Hey! I didn't mean it that way!"
             c "Sure you didn't."
 
@@ -84,7 +108,7 @@ label eval_tmomi_remy:
             stop music fadeout 2.0
             scene black with dissolveslow
             hide remy with dissolvemed
-            $ currentending = 1
+            $ evalCurrentEnding = 1
             jump eval_solo_remy_1
         
         "We should bring Amely along with us.":
@@ -119,10 +143,10 @@ label eval_tmomi_remy:
             stop music fadeout 2.0
             play sound "fx/takeoff.ogg"
             c "(I wish I had the ability to fly anywhere I wanted.)"
-            $ currentending = 2
+            $ evalCurrentEnding = 2
             jump eval_remy_amely_1
 
-        "Why don't we invite Amely and Adine?" if showadineending:
+        "Why don't we invite Amely and Adine?" if persistent.adinegoodending:
             c "Why don't we take Adine and Amely as well?"
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
@@ -201,7 +225,7 @@ label eval_trip_to_orphanage:
 
     menu:
         "Accept his offer.":
-            $ roderemy = True
+            $ evalRodeRemy = True
             c "Sure, I'll make like a pile of books and hop on."
             hide remy with dissolvemed
             play sound "fx/bed.ogg" #Change Later
@@ -218,28 +242,90 @@ label eval_trip_to_orphanage:
             scene black with dissolveslow
             play sound "fx/steps/rough_gravel.wav"
             m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
-            if rodebryce:
+            if evalRodeBryce:
                 m "It wasn't as uncomfortable as I had first imagined. In a way, it also felt strangely familiar, like I had done this before."
             else:
                 m "It wasn't as uncomfortable as I had first imagined. It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
             m "The experience was almost relaxing, with the light breeze and rhythmic thumping of Remy's feet on the grass and pavement."
             $ renpy.pause (0.5)
+            m "We made our way through the city with a few dragons giving us strange looks."
             m "It seemed as if it took no time at all to arrive at the orphanage."
             Ry "Ladies and gentledragons, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
             c "Very funny Remy."
             Ry "Thanks, I can tell that you sincerely mean that."
             play sound "fx/bed.ogg"
-            m "I slid off of Remy's back and looked up at the orphanage."
-            scene hatchery with dissolveslow #This background is temporary. Not sure if I like it BROKEN RN, IDK HOW TO FIX PLEASE HALP
+            m "I gracefully slid off Remy's back and looked around."
+            stop music fadeout 2.0
+            m "It seemed that Remy had brought me to a small, somewhat modern building close to the facility."
+            Ry "Now, where did Adine leave the key this time?"
+            m "He walked over to a flower pot next to the door and tilted it to one side."
+            play sound "fx/cling.ogg"
+            m "A small, silver key fell out of the dirt and onto the concrete stairs."
+            Ry "Yep. That's her usual hiding place."
+            play sound "fx/door/doorchain.ogg"
+            m "He placed the key in the lock and opened the door."
+            play sound "fx/door_open.wav"
+            $ renpy.pause (0.5)
+            scene evalorphdark with dissolveslow
+            play music "mx/donuts.mp3"
             show remy normal with dissolve
-            #DELETE THIS LATER!!!!! TEMPORARY STUFF!!!!
-            m "Hey, Eval here. This content is still under development, and I'm lazy, so we will skip back to the previous choice. I would choose the scenic walk option if you want to see everything I've done so far."
-            m "Otherwise you're just going to see this again, which would be pretty boring."
-            m "Also the other paths are complete and have no association with this, so I would do those first :)."
-            scene park2 with dissolveslow
+            Ry "Well, here we are! Amely? Are you here?"
+            $ renpy.pause (1.0)
+            show amely smnormal with easeinright
+            Am "Hello!"
+            Ry smile "Hello, Amely."
+            Am "Dark!"
+            Ry normal "I see that, Amely. I wonder who turned the lights off. Usually we leave them on for you."
+            c "Wait, is the orphanage just a classroom?"
+            Ry look "Sadly, this is most of the space that the orphans get. They play, learn, study, and eat in here or outside for most of the day."
+            c "Where do they sleep?"
+            Ry normal "Oh, the children sleep in dorms just a few minutes walk from here."
+            Ry "At the moment the council has it completely closed off."
+            c "Is that for any particular reason?"
+            Ry "Not exactly. They probably don't want random dragons just waltzing in and taking the childrens' things or sleeping in their beds."
+            c "That makes sense. So what exactly are we doing here today?"
+            Ry "Let's take a look."
+            hide remy with easeoutleft
+            Am "I come!"
+            hide amely with easeoutleft
+            m "Remy walked over to the corner of the room and flicked the lights on."
+            play sound "fx/lightswitch.mp3" #Increase the loudness of the audio
+            $ renpy.pause (1.0)
+            play sound "fx/lightbreak.mp3"
+            $ renpy.pause (1.0)
+            Am "Uh oh!"
+            Ry look "Well, that's not good."
+            play sound "fx/lightswitch.mp3"
+            $ renpy.pause (2.0)
+            play sound "fx/ligtswitch.mp3"
+            $ renpy.pause (2.0)
+            show remy normal flip with easeinleft
             show remy normal with dissolvemed
-            jump eval_trip_to_orphanage
-            #Welp, do orphanage stuff here or in another label, i have literally no clue what to do here
+            show amely smnormal flip with easeinleft
+            show amely smnormal with dissolvemed
+            Ry "I think I know what we're doing first."
+            c "Fixing the lights?"
+            Ry smile "How'd you guess?"
+            c "Not sure. Maybe I'm psychic."
+            Ry "Well, if you're psychic, do you know what else is wrong here?"
+            c "I think my powers only work once a day."
+            Ry normal "Alright then. From what I can remember, that desk in the middle of the room is very broken."
+            c "How'd that happen?"
+            Ry look "Let's just say that we're lucky young dragon skulls are quite thick."
+            c "Ouch."
+            Ry normal "We should also try to go through the hatchlings' art and the paperwork left around the room."
+            Ry "And finally, just clean up the place a little bit. These walls have seen one too many crayons in their time."
+            m "I noticed a plethora of crayon scribbles on the wall that stopped at around Amely's height."
+            c "How should we do this?"
+            Ry "Most of the supplies we have here are scattered around in a few locations near this building."
+            Ry "So I think you should stay here while I grab supplies for you."
+            Am "I help?"
+            Ry smile "Sorry. Amely and I will grab you the supplies you need since we are very familiar with this place."
+            Am "Yay!!!"
+            c "Sounds like a plan. Let's do this!"
+            show remy normal with dissolvemed
+            jump eval_orphanage_game_init
+            
         "Take a scenic walk to the orphanage.": #Add a skip here
             c "I think we should just walk and enjoy the scenery on our way there."
             Ry look "Are you sure, [player_name]? It's quite a long walk to the orphanage."
@@ -270,7 +356,7 @@ label eval_trip_to_orphanage:
             play sound "fx/evalgrasswalk2.ogg"
             scene evalwildlands with dissolveslow
             if mp.remyromance: #This part may be stupid, contemplating deleting this
-                $ remypillow = True
+                $ evalRemyPillow = True
                 m "I collapsed on the ground next to the dragon, my face and his muzzle just inches apart."
                 play sound "fx/kiss.wav"
                 m "Unprompted, I was given a quick kiss by Remy. He smiled, and then raised his head."
@@ -327,14 +413,63 @@ label eval_trip_to_orphanage:
             hide remy with dissolvemed
             play sound "fx/steps/rough_gravel.wav"
             m "With renewed energy, Remy and I continued to the orphanage."
-            #FX Here?
+            stop music fadeout 2.0
+            m "In a few minutes, we made it to the orphanage."
+            m "It seemed that Remy had brought me to a small, somewhat modern building close to the facility."
+            Ry "Now, where did Adine leave the key this time?"
+            m "He walked over to a flower pot next to the door and tilted it to one side."
+            play sound "fx/cling.ogg"
+            m "A small, silver key fell out of the dirt and onto the concrete stairs."
+            Ry "Yep. That's her usual hiding place."
+            play sound "fx/door/doorchain.ogg"
+            m "He placed the key in the lock and opened the door."
+            play sound "fx/door_open.wav"
+            $ renpy.pause (0.5)
+            scene evalorphdark with dissolveslow
+            play music "mx/donuts.mp3"
+            show remy normal with dissolve
+            Ry "Well, here we are! Amely? Are you here?"
             $ renpy.pause (1.0)
-            scene hatchery with dissolveslow
+            show amely smnormal with easeinright
+            Am "Hello!"
+            Ry smile "Hello, Amely."
+            Am "Dark!"
+            Ry normal "I see that, Amely. I wonder who turned the lights off. Usually we leave them on for you."
+            c "Wait, is the orphanage just a classroom?"
+            Ry look "Sadly, this is most of the space that the orphans get. They play, learn, study, and eat in here or outside for most of the day."
+            c "Where do they sleep?"
+            Ry normal "Oh, the children sleep in dorms just a few minutes walk from here."
+            Ry "At the moment the council has it completely closed off."
+            c "Is that for any particular reason?"
+            Ry "Not exactly. They probably don't want random dragons just waltzing in and taking the childrens' things or sleeping in their beds."
+            c "I see."
+            Ry "Here. Let's turn on the lights."
+            hide remy with easeoutleft
+            Am "I come!"
+            hide amely with easeoutleft
+            m "Remy walked over to the corner of the room and flicked the lights on."
+            play sound "fx/lightswitch.mp3" #Increase the loudness of the audio
+            $ renpy.pause (1.0)
+            play sound "fx/lightbreak.mp3"
+            $ renpy.pause (1.0)
+            Am "Uh oh!"
+            Ry look "Well, that's not good."
+            play sound "fx/lightswitch.mp3"
+            $ renpy.pause (2.0)
+            play sound "fx/ligtswitch.mp3"
+            $ renpy.pause (2.0)
+            show remy normal flip with easeinleft
             show remy normal with dissolvemed
+            show amely smnormal flip with easeinleft
+            show amely smnormal with dissolvemed
+            Ry look "I guess the lights in the building are out."
+            c "It's a shame we couldn't help with that earlier."
+            Ry normal "Hey, I'm just glad you're alright. You didn't look so hot back there."
+            c "I guess now all there is to do is wait for Ad..."
             jump eval_remy_amely_adine_1
 
 label eval_solo_remy_1: #Ending with only Remy
-    $ currentending = 1
+    $ evalCurrentEnding = 1
     $ renpy.pause (1.0)
     m "The two of us started wandering around the park. While at first we were worried we would have trouble finding Katsuharu, the massive line of dragons gave us a good indication on where he was located."
     scene town2 with dissolveslow
@@ -400,7 +535,7 @@ label eval_solo_remy_1: #Ending with only Remy
 
 label eval_solo_remy_2:
     Ka normal flip "And how about you, Remy?"
-    if chosenflavor == "vanilla":
+    if evalChosenFlavor == "vanilla":
         Ry smile "I'll take a scoop of vanilla as well!"
     else:
         Ry normal "I'll just take a scoop of vanilla, nothing too special."
@@ -442,19 +577,19 @@ label eval_solo_remy_2:
     m "Katsuharu then handed me the cone, topped with the [chosenflavor] ice cream."
     show katsu smile flip with dissolvemed
     
-    if chosenflavor == "vanilla":
+    if evalChosenFlavor == "vanilla":
         m "The vanilla ice cream itself was quite normal looking. It was a smooth and simple white color." #Kinda bad, should change
-    elif chosenflavor == "chocolate":
+    elif evalChosenFlavor == "chocolate":
         m "The chocolate ice cream looked almost exactly like it had at home. Dark, cocoa brown with the nice addition of what seemed to be tiny chocolate chips sprinkled within."
-    elif chosenflavor == "strawberry":
+    elif evalChosenFlavor == "strawberry":
         m "The strawberry ice cream looked different from what I was used to back in my world. Instead of a dark red, the scoop was tinted pinkish green, with small specks of what I assumed to be strawberry dotted within it."
-    elif chosenflavor == "mango":
+    elif evalChosenFlavor == "mango":
         m "The mango ice cream looked very similar to that of my own world. However, upon further inspection, I found that there were chunks of mango within the scoop as well."
         if persistent.adinegoodending:
             m "It also resembled the color of a very familiar dragon."
-    elif chosenflavor == "cherry":
+    elif evalChosenFlavor == "cherry":
         m "Cherry ice cream in itself was a very unique concept to me. The scoop looked like the strawberry ice cream back in my world, but with a slightly darker shade of red."
-    elif chosenflavor == "special":
+    elif evalChosenFlavor == "special":
         m "The special was a disgusting mix of all the colors you don't want in your ice cream. It had a rather odd, dark gray color with pink dots speckled inside it, which I presumed was the fish."
     
     show katsu normal with dissolvemed
@@ -498,7 +633,7 @@ label eval_solo_remy_2:
     Ry "I guess our cones will have to suffice."
     c "You were the one who came up with the idea, so you go first."
     Ry smile "Alright then... To our health, both physically and mentally. Both of us have had a rough time in the past, but we have both stayed strong and supported each other."
-    if chosenflavor == "vanilla":
+    if evalChosenFlavor == "vanilla":
         m "The two of us tapped our cones together, our scoops gently rubbing against each other."
         Ry look "Damn, our perfectly spherical scoops!"
     else:
@@ -541,10 +676,10 @@ label eval_solo_remy_2:
     m "This time, we didn't tap our cones together for fear of further ruining our scoops."
     Ry "We should probably start eating our ice cream before it all melts, don't you think?"
     m "I looked down, spotting trickles of the [chosenflavor] ice cream running down the cone and pooling on my hand."
-    if chosenflavor == "special":
+    if evalChosenFlavor == "special":
         m "Somehow, it looked even more disgusting than before."
     c "Good idea."
-    if chosenflavor == "special":
+    if evalChosenFlavor == "special":
         show remy smile with dissolvemed
         m "At the same time, Remy and I took a bite of our ice cream. Instantly, Remy's face lit up in excitement, and mine contorted into disgust."
         if mp.fish:
@@ -562,7 +697,7 @@ label eval_solo_remy_2:
                 show remy normal with dissolvemed
                 m "We quickly switched cones, and after a taste of the vanilla, I could see why Katsuharu was so well loved for his craft."
                 m "Our cones did not last long. Soon, the only remnants of our ice cream lay in our stomachs or dried on our hands."
-                $ switchedcones = True
+                $ evalSwitchedCones = True
             
             "Don't worry about it.":
                 c "Don't worry about it. I think I just overreacted. It's not that bad."
@@ -600,11 +735,11 @@ label eval_solo_remy_2:
             m "I pulled Remy's muzzle to my lips and gave him a big kiss."
             Ry shy "I don't think you would then, but I'm glad you would now."
 
-            if switchedcones:
+            if evalSwitchedCones:
                 Ry "Your breath smells like vanilla."
                 c "And yours of fish. I think I got the shorter end of the stick."
                 Ry "I guess fish ice cream and kissing don't mix well together."
-            elif chosenflavor == "special":
+            elif evalChosenFlavor == "special":
                 c "Your breath smells like vanilla."
                 Ry "And yours of fish. I think I got the shorter end of the stick."
                 c "Yeah, I guess fish ice cream isn't the best for kissing."
@@ -722,7 +857,7 @@ label eval_remy_amely_1:
 
     menu:
         "It would be rude to skip everyone.":
-            $ amelyannoysline = True
+            $ evalAmelyAnnoysLine = True
             c "It would be rude to skip everyone."
             Ry "I would have to agree with you. All of these people have been waiting for a long time to get their ice cream, and I'm sure it would make them unhappy if we just skipped ahead."
             c "Looks like the line is about an hour long." #Do I add a mini game??? Tune in next time for //Is Eval Lazy?\\
@@ -781,7 +916,7 @@ label eval_remy_amely_1:
 
 label eval_remy_amely_2:
     Ka normal flip "How about you, Remy?"
-    if chosenflavor == "vanilla":
+    if evalChosenFlavor == "vanilla":
         Ry smile "I'll take a scoop of vanilla as well!"
     else:
         Ry normal "I'll just take a scoop of vanilla, nothing too special."
@@ -827,19 +962,19 @@ label eval_remy_amely_2:
     m "Katsuharu then handed me the cone, topped with the [chosenflavor] ice cream."
     show katsu smile flip with dissolvemed
 
-    if chosenflavor == "vanilla":
+    if evalChosenFlavor == "vanilla":
         m "The vanilla ice cream itself was quite normal looking. It was a smooth and simple white color." #Kinda bad, should change
-    elif chosenflavor == "chocolate":
+    elif evalChosenFlavor == "chocolate":
         m "The chocolate ice cream looked almost exactly like it had at home. Dark, cocoa brown with the nice addition of what seemed to be tiny chocolate chips sprinkled within."
-    elif chosenflavor == "strawberry":
+    elif evalChosenFlavor == "strawberry":
         m "The strawberry ice cream looked different from what I was used to back in my world. Instead of a dark red, the scoop was tinted pinkish green, with small specks of what I assumed to be strawberry dotted within it."
-    elif chosenflavor == "mango":
+    elif evalChosenFlavor == "mango":
         m "The mango ice cream looked very similar to that of my own world. However, upon further inspection, I found that there were chunks of mango within the scoop as well."
         if persistent.adinegoodending:
             m "It also resembled the color of a very familiar dragon."
-    elif chosenflavor == "cherry":
+    elif evalChosenFlavor == "cherry":
         m "Cherry ice cream in itself was a very unique concept to me. The scoop looked like the strawberry ice cream back in my world, but with a slightly darker shade of red."
-    elif chosenflavor == "special":
+    elif evalChosenFlavor == "special":
         m "The special was a disgusting mix of all the colors you don't want in your ice cream. It had a rather odd, dark gray color with pink dots speckled inside it, which I presumed was the fish."
     
     show katsu normal with dissolvemed
@@ -867,7 +1002,7 @@ label eval_remy_amely_2:
     Ka exhausted flip "Well... We'll see. Amely could probably eat my entire stock and still have room for a full meal."
     Ry smile "I don't doubt that."
 
-    if amelyannoysline:
+    if evalAmelyAnnoysLine:
         Ka normal flip "Anyways, I should probably get back to my stand before the people in line start getting too angry. Amely seems to have upset them enough as it is."
         Ry look "Yeah, sorry about that. Thank you though, Katsuharu."
         Ka "No problem. Any time."
@@ -900,7 +1035,7 @@ label eval_remy_amely_2:
     Ry "I guess our cones will have to suffice."
     c "You were the one who came up with the idea, so you go first."
     Ry smile "Alright then... To our health, both physically and mentally. Both of us have had a rough time in the past, but we have both stayed strong and supported each other."
-    if chosenflavor == "vanilla":
+    if evalChosenFlavor == "vanilla":
         m "The two of us tapped our cones together, our scoops gently rubbing against each other."
         Ry look "Damn, our perfectly spherical scoops!"
     else:
@@ -946,7 +1081,7 @@ label eval_remy_amely_2:
     m "This time, we didn't tap our cones together for fear of further ruining our scoops."
     Ry "We should probably start eating our ice cream before it all melts, don't you think?"
     m "I looked down, spotting trickles of the [chosenflavor] ice cream running down the cone and pooling on my hand."
-    if chosenflavor == "special":
+    if evalChosenFlavor == "special":
         m "Somehow, it looked even more disgusting than before."
     c "Good idea."
     show amely smnormal with dissolvemed
@@ -959,7 +1094,7 @@ label eval_remy_amely_2:
             c "It should be alright. It's her first time anyways, she deserves a bit extra."
             Ry normal "I guess."
             m "Amely eagerly grabbed the cone from my hands and took a giant bite of the [chosenflavor] ice cream."
-            if chosenflavor == "special":
+            if evalChosenFlavor == "special":
                 m "Her face instantly contorted into disgust."
                 Am smsad "BAD!!!"
                 m "Angrily, the little dragon threw the ice cream onto the ground."
@@ -1108,7 +1243,7 @@ label eval_remy_amely_2:
             m "The hatchling wandered off. Her attention seemed to drift to a group of what seemed to be butterflies. They were similar to what I had seen at home, but something about them was slightly... Off."
             Ry "And... there she goes."
             c "I guess we should enjoy our ice cream now before it all melts."
-            if chosenflavor == "special":
+            if evalChosenFlavor == "special":
                 show remy smile with dissolvemed
                 m "At the same time, Remy and I took a bite of our ice cream. Instantly, Remy's face lit up in excitement, and mine contorted into disgust."
                 if mp.fish:
@@ -1126,7 +1261,7 @@ label eval_remy_amely_2:
                         show remy normal with dissolvemed
                         m "We quickly switched cones, and after a taste of the vanilla, I could see why Katsuharu was so well loved for his craft."
                         m "Our cones did not last long. Soon, the only remnants of our ice cream lay in our stomachs or dried on our hands."
-                        $ switchedcones = True
+                        $ evalSwitchedCones = True
                     
                     "Don't worry about it.":
                         c "Don't worry about it. I think I just overreacted. It's not that bad."
@@ -1244,17 +1379,69 @@ label eval_remy_amely_2:
             stop music fadeout 2.0
             return
 
-label eval_remy_amely_adine_1: #Ending where everyone is here!
+label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyone, idk what you're talking about.
     #Going to use this twice, one where you DO ride remy beforehand and when you DO help at the orphanage. That's gonna be a lot of refactoring...
-    Ry "Well, here we are. Now, all we have to do is wait for Adi..."
     play sound "fx/wooshes.ogg"
+    $ renpy.pause (3.0)
+    Ry smile "I wonder who that could be?"
+    play sound "fx/door/doorchain.ogg"
+    hide amely with dissolvemed
     hide remy with dissolvemed
-    show remy normal at right with dissolvemed
+    show amely smnormal at right with dissolvemed
+    show remy normal behind amely at right with dissolvemed
     show adine normal c flip at left with dissolvemed
+    play music "mx/jazzy2.ogg"
     Ad "Hey guys! What are you doing here?"
     Ry "Looking for you!"
-    Ad giggle c flip "Well, I guess you found me, or rather, I found you."
-    Ad normal c flip"I expected to find you here Remy, but what is [player_name] doing here?"
+    m "Adine took off her goggles."
+    show adine normal b flip at left with dissolvemed
+    Ad giggle b flip "Well, I guess you found me, or rather, I found you."
+
+    if not evalReplaceBulbs or not evalResetBreaker: #If the lights are still broken
+        Ad think b flip "Hey, Remy. Why are the lights turned off?"
+        Ry look "Well... They're broken."
+        Ad disappoint b flip "Oh. Poor Amely was stuck in the dark all this time?"
+        Am smsad "Dark!"
+        Ad sad b flip "Oh I'm so sorry Amely! I didn't know!"
+        Ry "I wouldn't worry too much, Adine. She's fine."
+        Ad disappoint b flip "I guess..."
+    
+    if evalOrphanageScore == 2: #If the player did perfectly on the minigame
+        Ad think b flip "Wait a minute..."
+        show adine think b with dissolvemed
+        $ renpy.pause (0.5)
+        show adine think b flip with dissolvemed
+        Ad giggle b flip "What did you guys do? The orphanage looks amazing!"
+        Ry smile "Well, [player_name] and I wanted to surprise you by cleaning up the place a little bit."
+        show adine think b with dissolvemed
+        $ renpy.pause (0.5)
+        show adine giggle b flip with dissolvemed
+        Ad "This isn't real. My eyes are deceiving me."
+        c "You don't believe us?"
+        Ad normal b flip "Are you kidding me? This place hasn't looked this good in years!"
+        Ad "How did you manage to do all of this so quickly?"
+        Ry normal "Teamwork. Amely and I gathered supplies and [player_name] did all the work."
+        Ad "Well, [player_name], you do not understand how grateful I am that you did this."
+        hide adine with dissolvemed
+        play sound "fx/hug.mp3"
+        m "Adine walked up and gave me a big hug." #The wyvern gives you a hug. Mission complete.
+        m "With wings as arms, I was engulfed completely."
+        play sound "fx/hug.mp3"
+        m "She then walked over to Remy and repeated the process."
+        show remy shy behind amely at right with dissolvemed
+        Am "Me! Me!"
+        play sound "fx/hug.mp3"
+        m "Adine got down on her knees and completely hid the little dragon within her wings."
+        show adine normal b flip at left with dissolvemed
+        Ad "Now. I know the real reason you came here wasn't just to clean up the place."
+        c "Alright you got me."
+        Ad "Well. Why are you here then?" 
+    elif evalOrphanageScore == 1:
+        Ad "Wait... Did you guys do something here?"
+        Ry smile "Well, [player_name] and I did a bit of work while we were wating for you."
+        Ad "Really? That's so kind of you! What were you waiting on me for?"
+    else:
+        Ad normal b flip "I expected to find you here Remy, but what is [player_name] doing here?"
     c "Ice cream."
     show remy look at right with dissolvemed
     Ad annoyed b flip "What?"
@@ -1265,8 +1452,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     Ad "You're telling me that you get an infinite supply of the world's best ice cream for free because you told him to move to Tatsu Park?"
     c "Well, not infinite. He said I could come by and get some ice cream when I felt like it."
     Ad normal b flip "So it's more of a one time deal. I get it. Count me in."
-    Ry smile "Great! I'll go grab Amely and we can go."
-    hide remy with dissolvemed
+    Ry smile "That's great! This is going to be fun!"
     Ad giggle b flip "Two dragons, a human with a big appetite, and a hatchling with unlimited access to delicious ice cream. I sure hope Katsuharu has enough stock."
     c "We couldn't possibly eat {i}that{/i} much ice cream, could we?"
     Ad normal b flip "Coming from someone who has had three scoops in one sitting before, it is definitely possible."
@@ -1309,7 +1495,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     Ry normal "Not to be rude, but I doubt I could fly around with you on my back."
     c "Are you calling me fat?"
 
-    if askiffat:
+    if evalAskIfFat:
         Ry look "Not this again, [player_name]."
         c "Fine, you got me there."
     else:
@@ -1338,8 +1524,9 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     scene black with dissolveslow
     play sound "fx/steps/rough_gravel.wav"
     m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
-    
-    if rodebryce:
+    $ evalRodeRemy = True
+
+    if evalRodeBryce:
         m "It wasn't as uncomfortable as I had first imagined. In a way, it also felt strangely familiar, like I had done this before."
     else:
         m "It wasn't as uncomfortable as I had first imagined. It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
@@ -1355,7 +1542,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     scene park2 with dissolveslow
     show remy normal with dissolvemed
     play music "mx/funness.ogg"
-    if roderemy:
+    if evalRodeRemy:
         c "We should do this kind of thing more often!"
     else:
         c "Damn, why didn't I just ride you over to the orphanage as well. That was fun!"
@@ -1389,7 +1576,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
     Ry smile "Ah, the ol' banana phone."
     Ad annoyed b flip "This is so unbelievably stupid."
     c "Oh, you're at the front of that long line of dragons over there? Thanks!"
-    $ adineslaps += 1
+    $ evalAdineSlaps += 1
     play sound "fx/slap1.wav"
     m "The second I released my grip, Adine flicked her tail and slapped me square in the face."
     Am "Ouch!"
@@ -1530,7 +1717,7 @@ label eval_remy_amely_adine_1: #Ending where everyone is here!
 
         "Enjoy your ice cream alone.":
             stop music fadeout 2.0
-            if helporphanage:
+            if evalHelpOrphanage:
                 c "I think I've already done enough work today helping at the orphanage."
             else:
                 c "That seems like a lot more work than I want to put up with at the moment."
@@ -1619,35 +1806,35 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
 
     menu:
         "Vanilla":
-            $ chosenflavor = "vanilla"
+            $ evalChosenFlavor = "vanilla"
             c "I'll take vanilla please."
             Ka smile flip "Ah, a simple flavor for a refined palette, good choice."
         
         "Chocolate":
-            $ chosenflavor = "chocolate"
+            $ evalChosenFlavor = "chocolate"
             c "I'll take chocolate please."
             Ka smile flip "Chocolate, perfect on its own, but even better in ice cream."
         
         "Strawberry":
-            $ chosenflavor = "strawberry"
+            $ evalChosenFlavor = "strawberry"
             c "I'll take strawberry please."
             Ka smile flip "You can never go wrong with a bit of berries in your ice cream."
         
         "Mango":
-            $ chosenflavor = "mango"
+            $ evalChosenFlavor = "mango"
             c "I'll take mango please."
             Ka smile flip "A bit tropical, I like your choice."
-            if persistent.adinegoodending and not currentending == 3:
+            if persistent.adinegoodending and not evalCurrentEnding == 3:
                 Ry smile "Adine would slap you if she were here."
                 c "I know."
             
         "Cherry":
-            $ chosenflavor = "cherry"
+            $ evalChosenFlavor = "cherry"
             c "I'll take cherry please."
             Ka smile flip "You know, cherries are my favorite fruit. If you can get around the pit, they are delicious."
         
-        'The "Special"' if showspecialflavor: #Oh no...
-            $ chosenflavor = "special"
+        'The "Special"' if evalShowSpecialFlavor: #Oh no...
+            $ evalChosenFlavor = "special"
             c "I'll take the special, whatever that means."
             Ka smile flip "Ah, probably my most unique flavor."
             c "How so?"
@@ -1681,13 +1868,13 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
                     Ka smile flip "That's the spirit!"
 
                 "Maybe I should rethink my choice.":
-                    $ showspecialflavor = False
+                    $ evalShowSpecialFlavor = False
                     show remy normal with dissolvemed
                     jump eval_ice_cream_choice
 
-    if currentending == 1:
+    if evalCurrentEnding == 1:
         jump eval_solo_remy_2
-    elif currentending == 2:
+    elif evalCurrentEnding == 2:
         jump eval_remy_amely_2
-    elif currentending == 3: #Update later
+    elif evalCurrentEnding == 3: #Update later
         pass

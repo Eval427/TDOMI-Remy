@@ -8,6 +8,9 @@ label eval_tmomi_common:
     image evalpark2 = "bg/evalpark2.jpg"
     image evalplayerapt1 = "bg/evalplayerapt1.jpg"
     image evalkatsucart = "bg/evalkatsucart.jpg"
+    image evalorphlight = "bg/evalorphlight.jpg"
+    image evalorphevening = "bg/evalorphevening.jpg"
+    image evalorphdark = "bg/evalorphdark.jpg"
 
     #Characters
 
@@ -23,48 +26,45 @@ label eval_tmomi_common:
     $ _game_menu_screen = "navigation"
 
     #Check if player has ridden Bryce in ECK's Savior Mod. Not even sure if this is a good enough check, I'll check back later
-    $ rodebryce = False #This is NOT weird I promise
+    $ evalRodeBryce = False #This is NOT weird I promise
     if persistent.eckbryceendingseena and persistent.eckbryceendingseena == "A":
-        $ rodebryce = True
+        $ evalRodeBryce = True
     
     #Flavor you choose
-    $ chosenflavor = ""
+    $ evalChosenFlavor = ""
 
     #Shows/hides the menu option for the special flavor
-    $ showspecialflavor = True
+    $ evalShowSpecialFlavor = True
 
     #Tracks current ending (1 = solo remy, 2 = remy + amely, 3 = remy + amely + adine)
-    $ currentending = 0
+    $ evalCurrentEnding = 0
 
     #Whether you decide to switch cones with Remy
-    $ switchedcones = False
+    $ evalSwitchedCones = False
 
     #Whether you sleep on Remy
-    $ remypillow = False
+    $ evalRemyPillow = False
 
     #Whether Amely pisses off everyone in line
-    $ amelyannoysline = False
+    $ evalAmelyAnnoysLine = False
 
     #Whether you rode Remy or not <-- THIS IS NOT WEIRD AGAIN I PROMISE
-    $ roderemy = False
+    $ evalRodeRemy = False
 
     #Whether you asked if Remy called you fat in the first choice
-    $ askiffat = False
+    $ evalAskifFat = False
 
     #Whether you manage to help out at the orphanage
-    $ helporphanage = False
+    $ evalHelpOrphanage = False
 
     #How many times Adine has slapped you lol
-    $ adineslaps = 0
+    $ evalAdineSlaps = 0
 
-    #Whether the player is able to access the Remy + Amely + Adine ending
-    #This is actually impossible to get, since you would need 3 dates to get it. Lucky you, all you have to do is get Adine's good ending at least once
-    $ showadineending = False
-    if persistent.adinegoodending:
-        $ showadineending = True
+    #How well the player did on the orphanage minigame. 0-2 - 0 bad - 1 good - 2 perfect
+    $ evalOrphanageScore = 0
     
     #Whether you agree to help Xith with his report
-    $ helpxith = False
+    $ evalHelpXith = False
 
     #Stuff for endings that I might just scrap
     python:
@@ -84,6 +84,34 @@ label eval_tmomi_common:
             persistent.evalremyamelyadinebad = "???"
         if not persistent.seendramavian:
             persistent.seendramavian = False
+    
+    #Stuff for orphanage minigame display. Thanks EvilChaosKnight :)
+    $ evalDisplayVar1name = ""
+    $ evalDisplayVar1 = 0
+    $ evalDisplayVar1unit = ""
+    $ evalDisplayVar1sec = 0
+
+    $ evalDisplayVar2name = ""
+    $ evalDisplayVar2 = 0
+    $ evalDisplayVar2unit = ""
+    $ evalDisplayVar3name = ""
+    $ evalDisplayVar3 = 0
+    $ evalDisplayVar3unit = ""
+    $ evalDisplayVar4name = ""
+    $ evalDisplayVar4 = 0
+    $ evalDisplayVar4unit = ""
+    $ evalDisplayVar5name = ""
+    $ evalDisplayVar5 = 0
+    $ evalDisplayVar5unit = ""
+    $ evalDisplayVar6name = ""
+    $ evalDisplayVar6 = 0
+    $ evalDisplayVar6unit = ""
+    $ evalDisplayVar7name = ""
+    $ evalDisplayVar7 = 0
+    $ evalDisplayVar7unit = ""
+    $ evalDisplayVar8name = ""
+    $ evalDisplayVar8 = 0
+    $ evalDisplayVar8unit = ""
 
     #Updated to require the player to meet with katsu every playthrough they want the ending
     if chap3picka == "katsu" or chap3pickb == "katsu":
