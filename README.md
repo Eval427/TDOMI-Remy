@@ -25,13 +25,13 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
 - Navigate to game -> mods and drop the TMOMI-Remy folder inside that folder
 
 - If you have not previously installed mods before. You will need the coremod. There's a few ways to get this:
-  - Use this nifty mediafire link I made to download a ZIP. Just unzip it and place the folder in the same place as the TMOMI-Remy folder - https://www.mediafire.com/file/h1w06vb9hpdhzw0/core.zip/file
+  - Use this nifty mediafire link I made to download a ZIP. Just unzip it and place the folder in the same place as the TMOMI-Remy folder - https://www.mediafire.com/file/h1w06vb9hpdhzw0/core.zip/file (make sure to click the right download button and not the pop up scam download buttons)
 
 ![image](https://user-images.githubusercontent.com/66040554/126404558-b770c723-869c-4657-b1ac-7b1f2dd8a3c9.png)
 
     - Note that I take zero credit for the creation of this file
 
-  - Download another AWSW mod from steam. It will automatically install the modcore.
+    - Download another AWSW mod from steam. It will automatically install the modcore.
 
 - Run the game and you should be set!
 
