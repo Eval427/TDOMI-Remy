@@ -835,7 +835,7 @@ label eval_help_oph:
                 hide ophinia with easeoutbottom
                 m "As soon as I tried to give the dragon her ice cream, she toppled over."
                 c "Are you alright?"
-                show ophinia normal wit easeinbottom
+                show ophinia normal with easeinbottom
                 Op "Perfectly fine! I've just been standing for too long, that's all!"
                 m "She took the ice cream from my hand like nothing had happened."
                 Op "Thanks for the ice cream!"
