@@ -32,8 +32,6 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
 
     - Note that I take zero credit for the creation of this file
 
-    - Download another AWSW mod from steam. It will automatically install the modcore.
-
 - Run the game and you should be set!
 
  _______________________________________________________________________________________________
