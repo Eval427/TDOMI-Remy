@@ -1,4 +1,4 @@
-# This Man (Dragon) Still Owes Me Ice Cream! Remy Edition
+# This Dragon Still Owes Me Ice Cream! Remy Edition
 
 Massive shoutout to EvilChaosKnight for his amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without their work.
 
