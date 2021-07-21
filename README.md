@@ -8,34 +8,6 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
  But then I started working on Remy's ending first, and things got out of control.
  _______________________________________________________________________________________________
 
- How to install:
-
-- Download the ZIP file and extract the folder anywhere
-
-- On steam, right click Angels with Scaly Wings in your library
-
-- Then, navigate to Manage -> Browse Local Files
-
-![image](https://user-images.githubusercontent.com/66040554/126401579-c6d83459-4459-47a1-bcff-13593d9ab819.png)
-
-- The folder should look something like the image below, give or take a few folders/files
-
-![image](https://user-images.githubusercontent.com/66040554/126401778-a288a275-fafe-494a-936e-2a34c5042b20.png)
-
-- Navigate to game -> mods and drop the TMOMI-Remy folder inside that folder
-
-- If you have not previously installed mods before. You will need the coremod. There's a few ways to get this:
-  - Use this nifty mediafire link I made to download a ZIP. Just unzip it and place the folder in the same place as the TMOMI-Remy folder - https://www.mediafire.com/file/h1w06vb9hpdhzw0/core.zip/file (make sure to click the right download button and not the pop up scam download buttons.)
-  - OR download another AWSW mod from steam. It will automatically install the modcore.
-
-![image](https://user-images.githubusercontent.com/66040554/126404558-b770c723-869c-4657-b1ac-7b1f2dd8a3c9.png)
-
-    - Note that I take zero credit for the creation of this file
-
-- Run the game and you should be set!
-
- _______________________________________________________________________________________________
-
  Thoughts on current version:
 
  - The most recent version of this mod introduces the orphanage minigame. This minigame is probably not as good as Katsuharu's, but I still like it. It's much more technical and required a lot more assets.
@@ -98,7 +70,7 @@ What am I working on now?
 
  Conflicts:
 
- - This mod conflicts with the side images mod. This is not my fault, but rather a typo in the other mod's code that makes Lucius crash your game
+ - This mod conflicts with the side images mod. This is not my fault, but rather a typo in the other mod's code that makes Lucius crash your game - Note this is currently being worked on and I'll delete this soon.
 
  ________________________________________________________________________________________________
 
