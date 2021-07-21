@@ -47,6 +47,21 @@ label eval_tmomi_remy:
 
         #Then... that's it. That's where this mod will end and I will finally be free.
 
+    #Possible Acheivements:
+        #Get Remy's solo good ending
+        #Get Remy and Amely's good ending
+        #Get the trio together
+        #Get a perfect score in Katsuharu's minigame
+        #Get the worst score in Katsuharu's minigame
+        #Fix everything in the orphanage
+        #Fix nothing in the orphanage
+        #Get slapped by Adine twice
+        #Become a pumpkin?
+        #Try to give Amely 3 scoops of ice cream
+        #Fail to get ice cream
+        #It's like the pasta kiss, except with ice cream
+        #Maximum meetups (get every extra cutscene with customers)
+
     stop music fadeout 2.0
     scene black with dissolveslow
 
@@ -156,6 +171,7 @@ label eval_tmomi_remy:
             c "Good point..."
             Ry normal "You know, we could make ourselves useful at the orphanage until she is off her shift."
             Ry "She usually comes down to check on things as soon as she's done, and it may be a nice surprise for her to find us there."
+            $ evalCurrentEnding = 3
 
             menu:
                 "Sure.":
@@ -575,7 +591,7 @@ label eval_solo_remy_2:
     c "Interesting, those cones look exactly like the ones back in my world."
     show katsu excited flip at Position (xpos = 0.1) with easeinleft
     Ka "But I am sure that they don't taste half as good as mine!"
-    m "Katsuharu then handed me the cone, topped with the [chosenflavor] ice cream."
+    m "Katsuharu then handed me the cone, topped with the [evalChosenFlavor] ice cream."
     show katsu smile flip with dissolvemed
     
     if evalChosenFlavor == "vanilla":
@@ -676,7 +692,7 @@ label eval_solo_remy_2:
     show remy normal with dissolvemed
     m "This time, we didn't tap our cones together for fear of further ruining our scoops."
     Ry "We should probably start eating our ice cream before it all melts, don't you think?"
-    m "I looked down, spotting trickles of the [chosenflavor] ice cream running down the cone and pooling on my hand."
+    m "I looked down, spotting trickles of the [evalChosenFlavor] ice cream running down the cone and pooling on my hand."
     if evalChosenFlavor == "special":
         m "Somehow, it looked even more disgusting than before."
     c "Good idea."
@@ -746,7 +762,7 @@ label eval_solo_remy_2:
                 c "Yeah, I guess fish ice cream isn't the best for kissing."
             else:
                 c "Your breath smells like vanilla."
-                Ry "And yours of [chosenflavor]. Really adds to the kiss if you ask me."
+                Ry "And yours of [evalChosenFlavor]. Really adds to the kiss if you ask me."
 
             Ry shy "Hey... Uh, it's quite late, and my house is a bit far away, would you mind if I stayed at your place for the night?"
             c "Of course, the couch is always available."
@@ -937,13 +953,16 @@ label eval_remy_amely_2:
         
         "Good choice.":
             c "Good choice."
-            Ry normal "Thanks! In my opinion, vanilla is the tried and true classic. You can't go wrong with it."
+            Ry normal "Thanks!"
+            Ry "In my opinion, vanilla is the tried and true classic. You can't go wrong with it."
     
     show remy normal with dissolvemed
     Ka smile flip "And what about you, little... Amely, is it?"
     Am smsad "..."
-    Ry smile "I think she may be a bit overwhelmed with all of the different flavor choices. How about we just get here some chocolate?"
-    Ka normal flip "I'm sure she will be quite happy with that choice Remy. Just give me a second to get you your scoops!"
+    Ry smile "I think she may be a bit overwhelmed with all of the different flavor choices."
+    Ry normal "How about we just get here some chocolate?"
+    Ka normal flip "I'm sure she will be quite happy with that choice, Remy."
+    Ka "Just give me a second to get you your scoops!"
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
     show amely smnormal at right with dissolvemed
@@ -960,7 +979,7 @@ label eval_remy_amely_2:
     c "Interesting, those cones look exactly like the ones back in my world."
     show katsu excited flip at Position (xpos = 0.1) with easeinleft
     Ka "But I am sure that they don't taste half as good as mine!"
-    m "Katsuharu then handed me the cone, topped with the [chosenflavor] ice cream."
+    m "Katsuharu then handed me the cone, topped with the [evalChosenFlavor] ice cream."
     show katsu smile flip with dissolvemed
 
     if evalChosenFlavor == "vanilla":
@@ -983,7 +1002,7 @@ label eval_remy_amely_2:
     m "I watched as Katsuharu went back to his stand and repeated the process for Remy and Amely's cones."
     show katsu normal flip at Position (xpos = 0.1) with easeinleft
     Ka "Here you go guys!"
-    m "Remy and Amely took their cones from Katsuharu. Amely looked at it for a moment in wonder."
+    m "Remy and Amely took their cones from Katsuharu. Amely looked at her own in wonder."
     show amely smnormal at right with dissolvemed
     m "The instant her tongue made contact with the chocolate, her eyes lit up in excitement and she took another bite."
     Ry smile "I think she likes it."
@@ -1081,7 +1100,7 @@ label eval_remy_amely_2:
     show remy normal with dissolvemed
     m "This time, we didn't tap our cones together for fear of further ruining our scoops."
     Ry "We should probably start eating our ice cream before it all melts, don't you think?"
-    m "I looked down, spotting trickles of the [chosenflavor] ice cream running down the cone and pooling on my hand."
+    m "I looked down, spotting trickles of the [evalChosenFlavor] ice cream running down the cone and pooling on my hand."
     if evalChosenFlavor == "special":
         m "Somehow, it looked even more disgusting than before."
     c "Good idea."
@@ -1094,7 +1113,7 @@ label eval_remy_amely_2:
             Ry look "Are you sure that's such a good idea? That's a lot of sugar for a small dragon like her."
             c "It should be alright. It's her first time anyways, she deserves a bit extra."
             Ry normal "I guess."
-            m "Amely eagerly grabbed the cone from my hands and took a giant bite of the [chosenflavor] ice cream."
+            m "Amely eagerly grabbed the cone from my hands and took a giant bite of the [evalChosenFlavor] ice cream."
             if evalChosenFlavor == "special":
                 m "Her face instantly contorted into disgust."
                 Am smsad "BAD!!!"
@@ -1391,7 +1410,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     show amely smnormal at right with dissolvemed
     show remy normal behind amely at right with dissolvemed
     show adine normal c flip at left with dissolvemed
-    play music "mx/jazzy2.ogg"
+    play music "mx/cruising.ogg"
     Ad "Hey guys! What are you doing here?"
     Ry "Looking for you!"
     m "Adine took off her goggles."
@@ -1810,10 +1829,13 @@ label eval_remy_amely_adine_2:
     m "I looked out across the park. It seemed that every dragon was happily eating their ice cream."
     c "I think we're done, guys!"
     Ka "Awesome!"
+    stop music fadeout 2.0
     scene black with dissolveslow
     scene town7 with dissolveslow
+    $ renpy.pause (1.0)
     show katsu normal flip at Position (xpos=0.1) with dissolvemed
     show remy normal at right with dissolvemed
+    play music "mx/jazzy2.ogg"
     Ka excited flip "Everyone did absolutely fantastic!"
     Ka smile flip "Remy, I must say. You really have a knack for making ice cream."
     Ry smile "Thank you, Katsuharu! I guess I learned from watching you."
@@ -1825,20 +1847,257 @@ label eval_remy_amely_adine_2:
     hide remy with easeoutright
     play sound "fx/takeoff.ogg"
     m "Remy took a few steps, then flew into the air."
-    m "He caught up to Adine and the two hovered in place for a moment before landing next to Katsuharu and I."
+    m "He caught up to Adine, and the two hovered in place for a moment before landing next to Katsuharu and I."
     show amely smnormal at right with easeinright
     show remy normal behind amely at right with easeinright
     show adine normal c behind remy at Position (xpos=0.6) with easeinright
+    Ad "Hey guys! How'd it go!"
+    c "It was a lot of work, but in a way, it was also nice talking to all the locals."
+    Ry smile "And I think I'm now a certified ice cream scooper!"
+    Ka "That you are, Remy."
+    Ka exhausted flip "That was exhausting. I cannot thank you enough for your help."
+    Ry normal "Glad we could help, Katsuharu."
+    Ka smile flip "I think Adine had the hardest job here, though."
+    m "Adine removed her goggles."
+    Ad annoyed b "Ugh. It's impressive just how much chaos such a small dragon can cause."
+    c "I saw you a few times. It looked like you two were having fun."
+    Am "Very fun!"
+    Ad giggle b "Maybe for her, yes."
+    if evalCustomerScore == 10:
+        Ka smile flip "[player_name], you did a wonderful job serving everyone. I don't think I saw a single unhappy customer!"
+        c "Thanks, Katsuharu, but I couldn't have done it without all of you as well."
+        Ad normal b "Even though I was busy coralling Amely the whole time?"
+        c "If you weren't, I'm sure Amely would make a few of the customers unhappy."
+        Ad giggle b "Good point."
+    elif evalCustomerScore > 6:
+        Ka normal flip "Great job serving everyone, [player_name]. I saw a lot of happy customers walking off."
+        c "Thanks, Katsuharu."
+    else:
+        Ka normal flip "You did well serving everyone, [player_name]. There were a few happy customers I saw walking off."
+        c "Thanks, Katsuharu."
+    show adine normal b with dissolvemed
+    Ka "And Remy, you're quite talented with that scoop."
+    Ry "Thanks, Katsuharu! You actually taught me a while back, if you remember."
+    Ka smile flip "Of course I do! I'm glad to see that talent never left you."
+    Ka "Maybe you'll stop by more often to help me."
+    Ry smile "That was actually a lot of fun. If I have a day off I'll make sure to come over here and see if you're open."
+    Ka normal flip "Now, while I would love to keep chatting with you four all day, I still owe you some ice cream!"
+    Ad "I could really use some of that right now."
+    Ry normal "I second that."
+    Am "Ice cream!"
+    Ka "Let's start with [player_name]."
+    $ evalCurrentEnding = 3 #DELETE THIS LATER THIS IS TEMPORARY BECAUSE IM TOO LAZY TO GO BACK AND DO BOTH MINIGAMES AGAIN!!!!!
+    jump eval_ice_cream_choice
 
-    #START OF TEMP STUFF!!! DELETE LATER!!!!
+label eval_remy_amely_adine_3:
+    Ka normal flip "You're up next, Remy. What will you have?"
+    if evalChosenFlavor == "vanilla":
+        Ry smile "I'll have a scoop of vanilla as well!"
+    else:
+        Ry normal "I'll just take a scoop of vanilla, nothing too special."
+
+    menu:
+        "Your ice cream preference matches you perfectly.":
+            c "Your ice cream preference matches you perfectly."
+            Ry look "How so?"
+            c "Well... white dragon, white ice cream, it all kind of works."
+            show katsu exhausted flip at Position (xpos=0.1) with dissolvemed
+
+            if persistent.adinegoodending and evalCurrentEnding != 3:
+                Ry "*sigh* First with Adine, now with me."
+                c "Yep, you can't escape it."
+            elif evalCurrentEnding == 3:
+                Ry "*sigh* I guess you could think about it like that."
+                Ad giggle b "See, Remy? I'm not the only one who thinks that!"
+                c "Am I missing something?"
+                Ad normal b "When we used to get ice cream as kids, everyone would always call Remy the 'Vanilla Dragon'."
+                Ry "Yes, a name I would like to leave in the past."
+                Ad giggle b "Too late, Remy. [player_name] brought it back to light."
+                if evalAdineSlaps == 2:
+                    Ry smile "Well Adine, now that both of us have a flavor associated with us, what should [player_name]'s flavor be?"
+                    Ad think b "That's a good question."
+                    Ad "That fleshy color isn't exactly the most appealing in the form of food, so I can't say there's many options."
+                    Ry look "Pumpkin?"
+                    Ad "Too orange. Plus that's not an ice cream flavor."
+                    Ka normal flip "You know, that doesn't sound half bad."
+                    Ka smile flip "Check back this fall. You might just see that on the menu."
+                    Ad normal b "Really? That sounds quite good!"
+                    Ry normal "Well. I'm stumped on [player_name]'s flavor."
+                    Ad "Let's just settle on pumpkin. It's close enough."
+                    Ry "I guess."
+            else:
+                Ry "*sigh* I guess you could think about it like that."
+        
+        "Good choice.":
+            c "Good choice."
+            Ry normal "Thanks!"
+            Ry "In my opinion, vanilla is the tried and true classic. You can't go wrong with it."
+
+    Ka normal flip "Okay, Adine. What can I get you?"
+    if evalChosenFlavor == "special":
+        Ad normal "I'm curious to try the 'special' with [player_name]."
+    else:
+        Ad normal b "I think I'll try the 'special'."
+    Ka "Good choice! I think you'll like it."
+    Ad giggle b "I've served the dish enough times. I'm curious to see how it is as ice cream."
+    Ka smile flip "Much better. I promise."
+    show adine normal b with dissolvemed
+    Ka normal flip "And what about you, Amely?"
+    Am smsad "..."
+    Ry smile "I think she may be a bit overwhelmed with all of the different flavor choices."
+    Ry normal "How about we get her some chocolate?"
+    Ka "I'm sure she will be quite happy with that choice, Remy."
+    Ka "Just give me a moment to get all of you your scoops!"
+    show katsu normal with dissolvemed
+    hide katsu with easeoutleft
+    show amely smnormal at right with dissolvemed
+    m "The dragon walked behind his stand and started preparing the ice cream."
+    m "Expecting the dragon to produce some sort of utensil, I was surprised when he suddenly thrust his hand into the vat and pulled out an almost perfectly spherical scoop of ice cream."
+    c "(Damn, these dragons can fly, shoot fire, run extremely fast, and even make an amazing scoop of ice cream with their bare hands. This truly is the peak of evolution.)"
+    Ka "Y'know, most ice cream vendors use some sort of scoop. But over the years, you learn that your bare hands are faster and more efficient than any of those stupid tools." #Might be a bit pointless to have this
+    c "Don't you walk using your hands?" #Hands, claws, feet, I'm very confused at this point
+    Ry look "You know, I never really thought of that."
+    Ka "Well, I wash my hands before serving the ice cream of course! I have a little station behind here and everything."
+    c "(Whew)"
+    show remy normal with dissolvemed
+    m "In another brisk motion, the dragon revealed a standard waffle cone and carefully rested the scoop on top, ligtly pushing it down to make sure it didn't fall out."
+    c "Interesting, those cones look exactly like the ones back in my world."
+    show katsu excited flip at Position (xpos = 0.1) with easeinleft
+    Ka "But I am sure that they don't taste half as good as mine!"
+    m "Katsuharu then handed me the cone, topped with the [evalChosenFlavor] ice cream."
+    show katsu smile flip with dissolvemed
+
+    if evalChosenFlavor == "vanilla":
+        m "The vanilla ice cream itself was quite normal looking. It was a smooth and simple white color." #Kinda bad, should change
+    elif evalChosenFlavor == "chocolate":
+        m "The chocolate ice cream looked almost exactly like it had at home. Dark, cocoa brown with the nice addition of what seemed to be tiny chocolate chips sprinkled within."
+    elif evalChosenFlavor == "strawberry":
+        m "The strawberry ice cream looked different from what I was used to back in my world. Instead of a dark red, the scoop was tinted pinkish green, with small specks of what I assumed to be strawberry dotted within it."
+    elif evalChosenFlavor == "mango":
+        m "The mango ice cream looked very similar to that of my own world. However, upon further inspection, I found that there were chunks of mango within the scoop as well."
+        if persistent.adinegoodending:
+            m "It also resembled the color of a very familiar dragon."
+    elif evalChosenFlavor == "cherry":
+        m "Cherry ice cream in itself was a very unique concept to me. The scoop looked like the strawberry ice cream back in my world, but with a slightly darker shade of red."
+    elif evalChosenFlavor == "special":
+        m "The special was a disgusting mix of all the colors you don't want in your ice cream. It had a rather odd, dark gray color with pink dots speckled inside it, which I presumed was the fish."
+
+    m "I watched as Katsuharu went back to his stand and repeated the process for Remy, Adine, and Amely."
+    show katsu normal at Position (xpos=0.1) with dissolvemed
+    hide katsu with easeoutleft
     $ renpy.pause (2.0)
-    scene black with dissolvemed
-    m "What will happen to this epic tale of four dragons and one human?"
-    m "What does talking to Xith do? Even Eval doesn't know!"
-    m "Tune in next update to find out!"
-    m "This should be the FINAL update to this mod unless I'm crazy and add even more."
-    m "By the way, your score in Katsuharu's game was [customerscore]/10. How'd you do?"
-    play sound "mx/eveningmelody.ogg"
+    show katsu normal flip at Position (xpos=0.1) with easeinleft
+    Ka "Here you go everyone!"
+    m "The three dragons took their cones from Katsuharu. Amely looked at her own in wonder."
+    show amely smnormal at right with dissolvemed
+    m "The instant her tongue made contact with the chocolate, her eyes lit up in excitement and she took another bite."
+    Ad giggle b "Well, I think someone likes ice cream."
+    m "Amely was already attacking her cone from all angles."
+    Ry normal "So, Amely, how's the ice cream?"
+    Am "Ice cream... very good..."
+    m "Her words were muffled as she continued devouring her cone."
+    Ad normal b "I've never seen her eat something so fast!"
+    Ka "Well, as a thank you for your help today, this is on the house."
+    c "Thank you, Katsuharu."
+    Ka smile flip "I should be thanking you. Without you, I wouldn't even have a business."
+    c "This ice cream is more than enough to show your gratitude."
+    play sound "fx/bite.ogg"
+    m "Looking down to Amely, I noticed that she had already finished her ice cream."
+    Ad giggle b "Wait, is she already done?"
+    Ry smile "Seems like it."
+    Am "More?"
+    Ry look "We did promise to give her two, didn't we."
+    Ad normal b"I guess we did. Would you like another scoop of chocolate, Amely?"
+    Am "Yes!"
+    Ka normal flip "Another scoop of chocolate coming right up!"
+    show katsu normal at Position (xpos=0.1) with dissolvemed
+    hide katsu with easeoutleft
+    $ renpy.pause (2.0)
+    show katsu normal flip at Position (xpos=0.1) with easeinleft
+    Ka smile flip "Here you go, Amely."
+    Ad "What do we say, Amely?"
+    Am "Thank you!"
+    m "The little dragon attacked her cone with the same ferocity as the last."
+    Ka normal "Well, I best start packing up my cart and heading back home."
+    Ka smile flip "Thank you again for the help."
+    Ry normal "Anytime, Katsuharu. We're always here to help if you need."
+    Ka exhausted flip "I might have to take you up on that every once and a while."
+    Ad "We should also start eating our ice cream before it all melts."
+    m "Looking down, pools of the [evalChosenFlavor] ice cream were running down the cone and pooling on my hand."
+    Ry "I see a nice spot to sit down over there."
+    Ad "Looks good to me, come on Amely!"
+    Am "Mhphkay!"
+    m "Her mouth was stuffed with ice cream."
+    Ka "Wait, [player_name]!"
+    c "Yes?"
+    Ka smile normal "There's something wrong with your ice cream, let me fix it quickly."
+    c "Sure. I'll meet you guys there."
+    Ry smile "Alright."
+    hide amely with dissolvemed
+    hide remy with dissolvemed
+    hide adine with dissolvemed
+    Ka "I wanted to speak privately with you for a moment, [player_name]."
+    c "What about?"
+    Ka exhausted flip "Well, it's about my business. If today has taught me anything, it's that I can't do this alone anymore."
+    c "What do you mean?"
+    Ka "Without you three, there is no way I would be able to serve everybody"
+    Ka "And that's never happened before in the forty years I've worked at this cart."
+    c "Maybe it was just a busy day."
+    Ka "Still. In my prime, I could take on anything."
+    Ka normal flip "I hate to ask more of you. But is it possible that you could try to spread the word that I need help?"
+    c "How would I do that?"
+    Ka "I'm not quite sure myself. You can say that I pay well."
+    c "Hmmm..."
+    if not kevinunplayed:
+        m "Suddenly, it hit me."
+        c "You know what? I think I know the perfect way to help you!"
+        Ka "How so?"
+        c "I just happen to know a dragon who hands out flyers as a job."
+        Ka "Who?"
+        c "His name is Kevin. He's passing out flyers as a summer job for his college."
+        Ka smile flip "Why would he help?"
+        c "He's a nice guy, and he loves your ice cream."
+        Ka normal flip "Well, if you could get him to help, I would greatly appreciate that."
+        c "I'll try."
+        Ka smile flip "Thank you for everything, [player_name]."
+        c "Of course, Katsuharu."
+    else:
+        m "I felt as if I had seen someone who could help us."
+        m "I just couldn't remember who it was."
+        c "I could help out myself."
+        Ka "I can't ask that of you. You've already done so much for me."
+        Ka smile flip "Here, I'll go around every so often and see if I can recruit anyone."
+        c "Are you sure?"
+        Ka normal flip "Positive."
+        c "Well, quick tip. You might get more people if you agree to pay in ice cream."
+        Ka smile flip "You may be right about that."
+    c "Well, I best be going before my ice cream completely melts."
+    Ka exhausted flip "You might be a bit too late."
+    m "Looking down, the scoop of [evalChosenFlavor] ice cream had become the consistency of soup."
+    Ka smile flip "Let me get you another."
+    c "Thanks Katsuharu."
+    show katsu normal at Position (xpos=0.1) with dissolvemed
+    hide katsu with easeoutleft
+    $ renpy.pause (2.0)
+    show katsu normal flip at Position (xpos=0.1) with easeinleft
+    Ka "Here you go."
+    c "This one somehow looks even better than the last."
+    Ka smile flip "Thank you!"
+    c "Well, it's been nice talking to you."
+    Ka normal flip "And you as well, [player_name]. Thank you for everything."
+    c "No problem."
+    if not kevinunplayed:
+        c "And I'll make sure to tell Kevin to help you. I'm sure he will be more than willing to do so."
+        Ka exhausted flip "I hope so."
+        Ka smile flip "Hopefully I'll see you around as well."
+        c "I'll be here for a while longer, so count on it."
+    scene black with dissolveslow
+    m "I walked over to where Remy, Adine, and Amely were sitting."
+    scene evalpark1 with dissolveslow
+    show amely smnormal at right with dissolvemed
+    show remy normal at right behind amely with dissolvemed
+    show adine normal b flip at left with dissolvemed
+    c "End of what I have so far"
     return
 
 
@@ -1865,9 +2124,40 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
             $ evalChosenFlavor = "mango"
             c "I'll take mango please."
             Ka smile flip "A bit tropical, I like your choice."
-            if persistent.adinegoodending and not evalCurrentEnding == 3:
+            if persistent.adinegoodending and evalCurrentEnding != 3:
                 Ry smile "Adine would slap you if she were here."
                 c "I know."
+            elif evalCurrentEnding == 3:
+                Ad think b "That's an interesting flavor choice, [player_name]. Why mango?"
+
+                menu:
+                    "Because you're a mango dragon.":
+                        c "I felt obligated to get the mango flavor with a mango colored dragon right next to me!"
+                        Ad annoyed b "You're not funny, [player_name]."
+                        play sound "fx/slap1.wav"
+                        if evalAdineSlaps > 0:
+                            m "Adine once again flicked her tail and slapped me in the face."
+                        else:
+                            m "Adine flicked her tail and slapped my face."
+                        $ evalAdineSlaps += 1
+                        Ry smile "I'm not so sure, Adine. That was pretty funny."
+                        play sound "fx/slap1.wav"
+                        m "Remy suffered the same punishment as myself."
+                        Ry look "Ow!"
+                        Ad "I hate you both."
+                        c "Love you too, Adine."
+                        if evalOrphanageScore == 2:
+                            Ad normal b "Ugh. It's hard to stay mad at you when you did so much work at the orphanage."
+                        else:
+                            Ad normal b "I'll get you back for this. Just you wait."
+                    
+                    "I wanted something tropical.":
+                        c "I just thought that a tropical flavor sounded interesting at the moment."
+                        Ad "Are you sure that's the {i}only{/i} reason you choose that flavor?"
+                        c "Positive."
+                        Ad normal b "I still don't believe you, but I'll let it slide this time."
+                
+                Ka smile flip "You three are something else."
             
         "Cherry":
             $ evalChosenFlavor = "cherry"
@@ -1884,14 +2174,25 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
             Ka "Have you had the fish special?"
 
             if mp.fish:
-                c "Oh please, don't remind me."
-                Ka exhausted flip "What? Did you not like it?"
-                c "Lets just say that it... Well... I guess all I can say is that it was quite awful."
-                Ka normal flip "Well, with the power of a blender and some ice cream magic, you can now have that wonderful flavor in ice cream form!"
-                c "Yay?"
-                Ry look "That is a little bit... Interesting. I don't remember that being on your menu before."
-                Ka "It's a recent addition."
-                Ka "Well, what do you say?"
+                if evalCurrentEnding == 3:
+                    Ad think b "Ummm... [player_name], are you sure you want to have this flavor?"
+                    Ka "What's wrong?"
+                    Ad normal b "[player_name] had the fish at the diner a little while ago, and I don't think they liked it very much."
+                    c "Yeah. It was quite awful."
+                    Ka normal flip "Well, with the power of a blender and some ice cream magic, you can now have that wonderful flavor in ice cream form!"
+                    c "Yay?"
+                    Ry look "That is a little bit... Interesting. I don't remember that being on your menu before."
+                    Ka "It's a recent addition."
+                    Ka "Well, what do you say, [player_name]?"
+                else:
+                    c "Oh please, don't remind me."
+                    Ka exhausted flip "What? Did you not like it?"
+                    c "Lets just say that it... Well... I guess all I can say is that it was quite awful."
+                    Ka normal flip "Well, with the power of a blender and some ice cream magic, you can now have that wonderful flavor in ice cream form!"
+                    c "Yay?"
+                    Ry look "That is a little bit... Interesting. I don't remember that being on your menu before."
+                    Ka "It's a recent addition."
+                    Ka "Well, what do you say, [player_name]?"
             else:
                 c "Can't say I have."
                 Ka smile flip "Well, they serve this wonderful fish dish that I loved so much, I decided to blend up and turn into an ice cream flavor!"
@@ -1918,4 +2219,4 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
     elif evalCurrentEnding == 2:
         jump eval_remy_amely_2
     elif evalCurrentEnding == 3: #Update later
-        pass
+        jump eval_remy_amely_adine_3

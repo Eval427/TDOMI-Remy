@@ -66,6 +66,63 @@ label eval_tmomi_common:
     #Whether you agree to help Xith with his report
     $ evalHelpXith = False
 
+    #Whether you played Katsu's game
+    $ evalPlayedKatsuGame = False
+
+
+
+    #A bunch of variables for the orphanage minigame
+
+    #Variable that toggles certain dialogue for increased continuity
+    $ evalJumpFromMain = False
+
+    #Variable to account if Remy was gone while you turned on the lights
+    $ evalLightsOnWithoutRemy = False
+
+    #Whether you have fixed the lights based on progress. Completes at 2
+    $ evalReplaceBulbs = False
+    $ evalResetBreaker = False
+    $ evalReplaceSwitch = False
+
+    #Whether you have fixed the desk based on progress. Completes at 2
+    $ evalApplyDWD = False
+    $ evalFixLeg = False
+    $ evalFixSeat = False
+
+    #Whether you have organized the books based on progress. Completes at 3
+    $ evalPickUpBooks = False
+    $ evalUncrumpleProgress = 0
+    $ evalUncrumplePages = False
+    $ evalSortBooks = False
+
+    #Whether you sorted through the papers based on progress. Completes at 3
+    $ evalHatchlingArt = False
+    $ evalPaperwork = False
+    $ evalFoldNewspaper = False
+    $ evalAmelyPicture = False #Make sure to reference this later
+
+    #Whether you cleaned everything based on progress. Completes at 3
+    $ evalCleanWalls = False
+    $ evalCleanDesks = False
+    $ evalCleanWhiteboard = False
+
+    #How many actions Remy will be gone for and handling his return
+    $ evalMinutesRemyIsGone = 0
+    $ evalRemyOnMission = False
+    $ evalRemyItem = ""
+
+    #How many minutes you get before your time is up. Base 15? 20? 25? I'll balance it once I finish
+    $ evalRemainingMinutes = 250
+
+    #How many tasks have been completed. Completes at 5
+    $ evalTasksComplete = 0
+
+    #What text to display when the user asks what to do next in the menu
+    $ evalWhatNextText = ""
+
+    #Lists of items the player has
+    $ evalGatheredItems = []
+
     #Stuff for endings that I might just scrap
     python:
         if not persistent.evalremybad:

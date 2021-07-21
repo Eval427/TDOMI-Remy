@@ -1,6 +1,8 @@
 #This is all of the stuff used to handle Katsuharu's minigame
 #If you're looking for correct dialogue options/cheats, scroll down a bit :)
 
+#Reminder to decide if I should add a scoreboard with # of customers served and # of happy customers
+
 #General concept:
     #Player serves ice cream to 10 different customers in line
     #Randomly place 3 characters: Emera, Dramavian, and Kalinth - Could do more or even have every customer actually have artwork using the minor characters
@@ -16,6 +18,8 @@ label eval_katsu_help_init:
     #Shuffle the customers for a surprise every time!
     $ customers = ["8", "Dram", "Em", "Grey", "Kali", "Kev", "Ley", "Oph", "Xith", "Lucius"]
     $ renpy.random.shuffle(customers)
+
+    $ evalPlayedKatsuGame = True
 
     #Number of customers already served
     $ evalServedCustomers = 0
@@ -577,7 +581,7 @@ label eval_help_kali:
 label eval_help_kev:
     $ evalCharacterPreferredFlavor = "chocolate"
     show kevin normal with easeinright
-    if not kevinunplayed: #Stuff to see if you've 
+    if not kevinunplayed: #Stuff to see if you've played kevin
         Kv "Fancy seeing you here, [player_name]!"
         c "Oh, hey again Kevin! Did you manage to find a place to stay?"
         Kv ramble "Yep. A friend of mine is letting me sleep on his couch."
@@ -973,7 +977,7 @@ label eval_help_xith:
         Xi "As much as I would love to continue pointing out your lack of being a dragon, I'm quite busy today."
         c "I understand. This line seems like it's much longer than it normally is."
     elif evalCharacterMood == 1:
-        Xi "Well, we could continue this banter all day if you like. I set aside a ton of time to enjoy this ice cream."
+        Xi "Well, we could continue this banter all day if you like. I set aside a lot of time to enjoy this ice cream."
         c "Let's not. For the sake of the people in line."
         Xi "You're just worried I have more jokes lined up than you do."
         c "Maybe."
@@ -997,7 +1001,7 @@ label eval_help_xith:
                 $ evalCustomerScore += 1
             else:
                 Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
-                $ evalevalXithReporter = False
+                $ evalXithReporter = False
         elif evalCharacterMood == 1:
             if evalCharacterMood == evalQualityServed:
                 Xi "This is quite a stunning specimen of ice cream!"
@@ -1022,7 +1026,7 @@ label eval_help_xith:
                 c "You still could if you want."
                 Xi "I think I'll have to pass. I should be cutting back on my sugar intake anyways."
         
-        if evalevalXithReporter:
+        if evalXithReporter:
             $ renpy.pause (0.5)
             Xi "You know, I'm actually a reporter."
             c "Really?"
