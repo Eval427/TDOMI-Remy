@@ -1,6 +1,6 @@
 # This Dragon Still Owes Me Ice Cream! Remy Edition
 
-Massive shoutout to EvilChaosKnight for his amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without their work.
+Massive shoutout to EvilChaosKnight for their amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without their work.
 
 Right now this mod is INCOMPLETE (and probably pretty cringy). I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
 
@@ -86,7 +86,7 @@ What am I working on now?
 
 - Adding endings. They exist, but there isn't a tangible way to determine if you've seen one.
 
--Adding acievements. I might do this if I feel like it. I have a few ideas
+-Adding achievements. I might do this if I feel like it. I have a few ideas
 
  ________________________________________________________________________________________________
 
