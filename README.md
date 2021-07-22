@@ -18,7 +18,7 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
 
  _______________________________________________________________________________________________
  
- Requirements:
+ Requirements: (Note that this mod starts at the end of Remy's default good ending.)
  
  - Save Katsuharu's business - This needs to be done each playthrough
  
@@ -30,7 +30,7 @@ My first attempt at creating a mod for AWSW even though the game came out like 5
  
  Extra Content:
  
- Currently, this is a list of tasks you can complete to get minor (or pretty big) changes in the mod: ("+"s signals the amount of extra content)
+ Currently, this is a list of tasks you can complete to get minor (or pretty big) changes in the mod: ("+"s signals the amount of extra content). None are actually required to get every ending, but they add a lot of fun stuff that I wouldn't want to miss.
 
 - Sit on the bench in Tatsu Park ++
 
