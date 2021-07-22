@@ -80,7 +80,8 @@ label eval_orphanage_game:
         jump eval_orphanage_end
     
     #Complete the game if the player runs out of time
-    if evalRemainingMinutes == 0:
+    if evalRemainingMinutes <= 0:
+        $ evalDisplayVar1 = 0
         Ry "Adine should be here any minute, [player_name]."
         c "But we aren't done!"
         if evalTasksComplete > 3:
