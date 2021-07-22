@@ -46,8 +46,22 @@ label eval_katsu_help_init:
     #Whether Xith can talk about his job as a reporter
     $ evalXithReporter = True
 
+    #Show ECK's extra info display
+    show screen evalextrainfo
+    $ evalextradisplay = 2
+
 
 label eval_katsu_help:
+    #Update the display
+    $ evalDisplayVar1name = "Customers Served:"
+    $ evalDisplayVar1 = evalServedCustomers
+    $ evalDisplayVar1unit = ""
+
+    $ evalDisplayVar2name = "Happy Customers:"
+    $ evalDisplayVar2 = evalCustomerScore
+    $ evalDisplayVar2unit = ""
+
+
     #Finish up the minigame or give Ophinia her second scoop
     if evalServedCustomers == 10:
         if evalOphSeconds:
@@ -81,6 +95,7 @@ label eval_katsu_help:
             m "With that, she paid and left for a second time"
             c "(I am still very confused on what just happened.)"
             $ evalCustomerScore += 1
+        hide screen evalextrainfo
         jump eval_remy_amely_adine_2
     
     #Some intermediate dialogue
@@ -274,7 +289,7 @@ label eval_help_dram: #... dot dot dot ...
     show dramavian normal with easeinright
     Dr "..."
 
-    if persistent.seendramavian:
+    if persistent.evalSeenDramavian:
         c "Hello again..."
         Dr "..."
         m "I already knew how this was going to go."
@@ -286,10 +301,12 @@ label eval_help_dram: #... dot dot dot ...
         c "Ummm... Can I help you?"
     
     m "The dragon pointed at the vat containing the mango ice cream."
-    c "Alright, one scoop of mango ice cream coming right up!"
+    c "I assume that you want the mango?"
+    Dr "..."
+    m "He nodded."
 
     if evalCharacterMood == 0:
-        if persistent.seendramavian:
+        if persistent.evalSeenDramavian:
             Dr "Quick..."
             c "Did you just say something?"
             Dr "..."
@@ -298,7 +315,7 @@ label eval_help_dram: #... dot dot dot ...
             Dr "..."
             m "He looked down to where one would normally wear a watch."
     elif evalCharacterMood == 1:
-        if persistent.seendramavian:
+        if persistent.evalSeenDramavian:
             Dr "Good..."
             c "Did you just say something?"
             Dr "..."
@@ -307,7 +324,7 @@ label eval_help_dram: #... dot dot dot ...
             Dr "..."
             m "He looked around, seeming to judge the scoops others had received before him."
     elif evalCharacterMood == 2:
-        if persistent.seendramavian:
+        if persistent.evalSeenDramavian:
             Dr "Big..."
             c "Did you just say something?"
             Dr "..."
@@ -320,14 +337,14 @@ label eval_help_dram: #... dot dot dot ...
 
     label eval_help_dram_2:
         c "Here you go..."
-        if persistent.seendramavian:
+        if persistent.evalSeenDramavian:
             m "I purposely said the three dots out loud."
         else:
             m "I found myself also saying the three dots out loud."
         
         if evalCharacterMood == evalQualityServed:
             Dr "..."
-            if persistent.seendramavian:
+            if persistent.evalSeenDramavian:
                 Dr "Thanks..."
                 m "I smiled."
                 c "Any time."
@@ -336,7 +353,7 @@ label eval_help_dram: #... dot dot dot ...
             $ evalCustomerScore += 1
         else:
             Dr "..."
-            if persistent.seendramavian:
+            if persistent.evalSeenDramavian:
                 Dr "Good..."
                 c "Glad to hear it."
         
@@ -448,6 +465,7 @@ label eval_help_grey:
                 Gr "How so?"
                 c "I think I've seen some of your work. It's magnificent."
                 Gr "Thank you! I should probably get going now."
+                $ evalCustomerScore += 1
             else:
                 Gr "That looks good. Thanks!"
                 c "No problem."
@@ -462,6 +480,7 @@ label eval_help_grey:
                 Gr "Please do. I should get going before the dragons behind me start getting too angry."
                 c "Good plan. It was nice seeing you again!"
                 Gr "You too!"
+                $ evalCustomerScore += 1
             elif evalQualityServed == 0:
                 Gr "This doesn't quite look like how it did when I came here before."
                 c "Is everything alright with it?"
@@ -482,6 +501,7 @@ label eval_help_grey:
                 Gr "Yeah! A bunch of the higher ups like Emera are interested in my artwork!"
                 c "That's great! I'm sure they'll love it."
                 Gr "I sure hope so. Have a nice day!"
+                $ evalCustomerScore += 1
             else:
                 Gr "This looks amazing! I should have ordered more. This might not be enough to calm my nerves before my art showcase later today."
                 c "Art showcase?"
@@ -606,7 +626,7 @@ label eval_help_kev:
         if not kevinunplayed:
             c "I'm sure they were all very excited."
             Kv face "Some were... Less excited than others, to say the least."
-            c "I can relate. Anyways, which flavor would you like?"
+            c "Sounds about right. Anyways, which flavor would you like??"
         else:
             c "Flyers?"
             Kv ramble "Yeah! I took up a summer job as a recruiter for Midwest Institution."
@@ -654,6 +674,8 @@ label eval_help_kev:
         elif evalCharacterMood == 1:
             if evalCharacterMood == evalQualityServed:
                 Kv normal "Wow! This looks spectacular! You can really tell that Katsuharu cares about his craft."
+                c "I'll make sure to put in a good word on your behalf."
+                Kv "Please do!"
                 $ evalCustomerScore += 1
             elif evalQualityServed == 0:
                 Kv normal "That was fast, maybe even a little too fast."
@@ -1032,11 +1054,13 @@ label eval_help_xith:
             c "Really?"
             Xi "Yeah, I came here for the inside {i}scoop{/i} on things."
             c "Did you make that up just to make that joke?"
-            Xi "That would be pretty clever, but no. I write articles for the local paper."
+            Xi "That would be pretty clever, but no."
+            Xi "I write articles for the local paper."
             c "Interesting. Is there a lot to write about?"
             Xi "There's always the small stuff, like recent achievements of the locals or new stores, but usually nothing interesting."
             c "Have you written anything on the events that just took place?"
-            Xi "I would love to, but the council wouldn't let me have access to any of the archives, so I have nothing to base my writing on."
+            Xi "I would love to, but the council wouldn't let me have access to any of the archives."
+            Xi "Therefore, I have nothing to base my writing on."
             c "That's too bad."
             Xi "I was actually wondering if you would be willing to answer a few questions for me."
             c "Sorry, but not at the moment. I have a pretty packed schedule today."

@@ -197,7 +197,7 @@ label eval_orphanage_game:
             jump eval_orphanage_game
 
 label eval_orphanage_remy_item_gather:
-    c "Could you grab something for me Remy?"
+    c "Could you grab something for me, Remy?"
     Ry "Sure! Where from?"
 
     label eval_orphanage_reselect_gather_area:
@@ -760,7 +760,7 @@ label eval_orphanage_clean:
         m "Everything was spotless. The walls no longer bore the mark of the hatchlings and the desks shined."
         if not evalRemyOnMission:
             Ry "Wow, [player_name]! This looks wonderful!"
-            c "How long do you think It'll stay like this?"
+            c "How long do you think it'll stay like this?"
             Ry smile "Give the hatchlings a week. It'll be destroyed again by then."
         jump eval_orphanage_game
 

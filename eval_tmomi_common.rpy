@@ -14,13 +14,19 @@ label eval_tmomi_common:
 
     #Characters
 
-    #Brought to you by ECK
+    #Amely brought to you by ECK
     image amely smnormal = "cr/amely_smnormal.png"
     image amely smnormal flip = "cr/amely_smnormal_flip.png"
     image amely sad = "cr/amely_sad.png"
     image amely sad flip = "cr/amely_sad_flip.png"
     image amely smsad = "cr/amely_smsad.png"
     image amely smsad flip = "cr/amely_smsad_flip.png"
+
+    #Vara
+    image vara normal ghost = "cr/vara_normal_ghost.png"
+    image vara normal ghost flip = im.Flip("cr/vara_normal_ghost.png", horizontal=True)
+    image vara smnormal ghost = "cr/vara_smnormal_ghost.png"
+    image vara smnormal ghost flip = im.Flip("cr/vara_smnormal_ghost.png", horizontal=True)
 
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
@@ -68,6 +74,12 @@ label eval_tmomi_common:
 
     #Whether you played Katsu's game
     $ evalPlayedKatsuGame = False
+
+    #Whether you experienced my comedic genius
+    $ evalSweatJoke = False
+
+    #Whether you share the bed with Remy in the third ending
+    $ evalRemyShareBed3 = False
 
 
 
@@ -123,24 +135,21 @@ label eval_tmomi_common:
     #Lists of items the player has
     $ evalGatheredItems = []
 
+    #Tie-in with Remy Hatchlings mod as an alternate way to get the secret ending.
+    $ evalVaraSurvives = False
+    if renpy.python.store_dicts["store"].get("hatchling", "") == "Vara":
+        $ evalVaraSurvives = True
+
     #Stuff for endings that I might just scrap
     python:
-        if not persistent.evalremybad:
-            persistent.evalremybad = "???"
-        if not persistent.evalremysologood:
-            persistent.evalremysologood = "???"
-        if not persistent.evalremysolobad:
-            persistent.evalremysolobad = "???"
-        if not persistent.evalremyamelygood:
-            persistent.evalremyamelygood = "???"
-        if not persistent.evalremyamelybad:
-            persistent.evalremyamelybad = "???"
-        if not persistent.evalremyamelybad:
-            persistent.evalremyamelyadinegood = "???"
-        if not persistent.evalremyamelybad:
-            persistent.evalremyamelyadinebad = "???"
-        if not persistent.seendramavian:
-            persistent.seendramavian = False
+        if not persistent.evalSoloRemyEnding:
+            persistent.evalSoloRemyEnding = False
+        if not persistent.evalAmelyEnding:
+            persistent.evalAmelyEnding = False
+        if not persistent.evalSeenDramavian: #Detects whether you have seen Dramavian a second time in this mod
+            persistent.evalSeenDramavian = False
+        if not persistent.evalSecretEndingUnlocked: #[REDACTED]
+            persistent.evalSecretEndingUnlocked = False
     
     #Stuff for orphanage minigame display. Thanks EvilChaosKnight :)
     $ evalDisplayVar1name = ""
