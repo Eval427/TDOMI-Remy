@@ -16,7 +16,7 @@ varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked
 
 def load_side_ims():
     def clip_vara_side_image(imagefile):
-        return im.Flip(im.Scale(im.Crop(imagefile, (0, 150, 400, 400)), 250, 300), horizontal=True)
+        return im.Flip(im.Scale(im.Crop(imagefile, (0, 150, 350, 400)), 250, 300), horizontal=True)
     
     for expression in varaSmallExpressions:
         renpy.exports.image("side vara %s"%expression.replace("_", " "), clip_vara_side_image("cr/vara_%s.png"%expression))
