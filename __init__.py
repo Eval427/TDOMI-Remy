@@ -7,12 +7,8 @@ from modloader.modgame import sprnt
 from modloader.modgame import base as ml
 from modloader.modclass import Mod, loadable_mod
 
+#Adding side images for small Vara
 varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked_b", "smsad", "smnormal_ghost"]
-
-#def load_ims():
-#    for expression in varaSmallExpressions:
-#        renpy.exports.image("vara %s"%expression.replace("_", " "), "cr/vara_%s"%expression)
-#        renpy.exports.image("vara %s"%expression.replace("_", " "), im.Flip("cr/vara_%s"%expression, horizonal=True))
 
 def load_side_ims():
     def clip_vara_side_image(imagefile):
