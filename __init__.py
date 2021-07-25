@@ -1,22 +1,25 @@
 import renpy
 import renpy.ast as ast
+import renpy.display.im as im
 
 from modloader import modinfo, modast
 from modloader.modgame import sprnt
 from modloader.modgame import base as ml
 from modloader.modclass import Mod, loadable_mod
 
-#varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked_b", "smsad", "smnormal_ghost"]
+varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked_b", "smsad", "smnormal_ghost"]
 
 #def load_ims():
 #    for expression in varaSmallExpressions:
 #        renpy.exports.image("vara %s"%expression.replace("_", " "), "cr/vara_%s"%expression)
 #        renpy.exports.image("vara %s"%expression.replace("_", " "), im.Flip("cr/vara_%s"%expression, horizonal=True))
 
-#def load_side_ims():
-#    for expression in varaSmallExpressions:
-#        renpy.exports.image("vara %s"%expression.replace("_", " "), "cr/vara_%s"%expression)
-#        renpy.exports.image("vara %s"%expression.replace("_", " "), im.Flip("cr/vara_%s"%expression, horizonal=True))
+def load_side_ims():
+    def clip_vara_side_image(imagefile):
+        return im.Flip(im.Scale(im.Crop(imagefile, (0, 150, 400, 400)), 250, 300), horizontal=True)
+    
+    for expression in varaSmallExpressions:
+        renpy.exports.image("side vara %s"%expression.replace("_", " "), clip_vara_side_image("cr/vara_%s.png"%expression))
 
 @loadable_mod
 class AWSWMod(Mod):
@@ -46,4 +49,5 @@ class AWSWMod(Mod):
         
 
     def mod_complete(self):
-        pass
+        if "Side Images" in modinfo.get_mods():
+            load_side_ims()

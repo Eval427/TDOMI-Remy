@@ -308,7 +308,8 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             scene black with dissolvemed
             play sound "fx/impact.wav"
             $ renpy.pause (2.0)
-            m "I don't know how long I laid on the floor."
+            m "I feel to the floor unconscious."
+            $ renpy.pause (1.0)
             m "I awoke when I felt a strange pressing senastion on my cheek."
             m "It was Vara, who looked down at me with a concerened expression."
             scene o3 with dissolveslow
