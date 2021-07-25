@@ -43,7 +43,7 @@ label eval_tmomi_remy:
         #will save vara in the next timeline. You agree, and upon the next playthrough, Remy's ending is changed to where Vara survives, and this unlocks a FINAL
         #Ending with all 5 characters getting ice cream. Note this ending will not have the orphanage minigame since Adine will get paid leave to take care of Amely
         #and Vara. However, it will have the Katsu minigame with more bonus cutscenes and maybe extra characters thrown in for fun.
-        #Also Vara isn't actually a ghost, but rather an appirition from another possible timeline where she survives
+        #Also Vara isn't actually a ghost, but rather an appirition from another possible timeline where she survives OOOHHHH "An apparition from the present. a manifestation of another timeline in ours. Not a ghost, but a reality" <-- that's deep
 
         #Then... that's it. That's where this mod will end and I will finally be free.
 
@@ -280,12 +280,18 @@ label eval_trip_to_orphanage:
             play sound "fx/bed.ogg"
             m "I gracefully slid off Remy's back and looked around."
             stop music fadeout 2.0
-            m "It seemed that Remy had brought me to a small, somewhat modern building close to the facility."
+            scene hatchery with dissolveslow
+            show remy look with dissolvemed
             Ry "Now, where did Adine leave the key this time?"
+            show remy look flip with dissolvemed
+            hide remy with easeoutright
             m "He walked over to a flower pot next to the door and tilted it to one side."
             play sound "fx/cling.ogg"
             m "A small, silver key fell out of the dirt and onto the concrete stairs."
-            Ry "Yep. That's her usual hiding place."
+            Ry normal "Yep. That's her usual hiding place."
+            show remy normal with easeinright
+            Ry "Alright, [player_name], follow me."
+            hide remy with dissolvemed
             play sound "fx/door/doorchain.ogg"
             m "He placed the key in the lock and opened the door."
             play sound "fx/door/door_open.wav"
@@ -304,7 +310,7 @@ label eval_trip_to_orphanage:
             c "Wait, is the orphanage just a classroom?"
             Ry look "Sadly, this is most of the space that the orphans get. They play, learn, study, and eat in here or outside for most of the day."
             c "Where do they sleep?"
-            Ry normal "Oh, the children sleep in dorms just a few minutes walk from here."
+            Ry normal "Oh, we have some small bedrooms for them down the hall."
             Ry "At the moment the council has it completely closed off."
             c "Is that for any particular reason?"
             Ry "Not exactly. They probably don't want random dragons just waltzing in and taking the childrens' things or sleeping in their beds."
@@ -431,8 +437,6 @@ label eval_trip_to_orphanage:
             c "What about Amely?"
             Ry look "Despite their best attempts, they couldn't find a place for Amely to stay. So Adine and I offered to take care of her instead."
             Ry "We both can't take her home because of our schedules, but young hatchlings are pretty self-sufficient."
-            c "So what would we be doing exactly?"
-            Ry normal "Well, there's always a lot to do, even if there aren't any children. Maintenance and such."
             #Its possible I want to add more here, lets see
             Ry "Anyways, we should get going. We don't want to miss Adine."
             scene black with dissolveslow
@@ -440,13 +444,16 @@ label eval_trip_to_orphanage:
             play sound "fx/steps/rough_gravel.wav"
             m "With renewed energy, Remy and I continued to the orphanage."
             stop music fadeout 2.0
-            m "In a few minutes, we made it to the orphanage."
-            m "It seemed that Remy had brought me to a small, somewhat modern building close to the facility."
+            scene hatchery with dissolveslow
+            show remy look with dissolvemed
             Ry "Now, where did Adine leave the key this time?"
+            show remy look flip with dissolvemed
+            hide remy with easeoutright
             m "He walked over to a flower pot next to the door and tilted it to one side."
             play sound "fx/cling.ogg"
             m "A small, silver key fell out of the dirt and onto the concrete stairs."
             Ry "Yep. That's her usual hiding place."
+            show remy normal with easeinright
             play sound "fx/door/doorchain.ogg"
             m "He placed the key in the lock and opened the door."
             play sound "fx/door/door_open.wav"
@@ -464,7 +471,7 @@ label eval_trip_to_orphanage:
             c "Wait, is the orphanage just a classroom?"
             Ry look "Sadly, this is most of the space that the orphans get. They play, learn, study, and eat in here or outside for most of the day."
             c "Where do they sleep?"
-            Ry normal "Oh, the children sleep in dorms just a few minutes walk from here."
+            Ry normal "Oh, we have some small bedrooms for them down the hall."
             Ry "At the moment the council has it completely closed off."
             c "Is that for any particular reason?"
             Ry "Not exactly. They probably don't want random dragons just waltzing in and taking the childrens' things or sleeping in their beds."
@@ -665,7 +672,7 @@ label eval_solo_remy_2:
     else:
         m "The two of us awkwardly tapped our cones together, careful as to not cross contaminate our different flavors."
     Ry normal "Seriously, though. I have so much to thank you for. Without you, I'm not sure I would be standing here at all today."
-    c "Of course, Remy, I'll always be there fore you, even when I inevitably have to leave through the portal."
+    c "Of course, Remy, I'll always be there for you, even when I inevitably have to leave through the portal."
     Ry look "Yeah. I've been thinking about that recently. I really don't know what I am going to do once you leave."
     c "Remember, I'm not leaving. I'm just going back to the day I got here."
     Ry sad "Still, I can't shake off the felling that I won't ever see you again."
@@ -1936,15 +1943,14 @@ label eval_remy_amely_adine_3:
                 if evalAdineSlaps == 2:
                     Ry smile "Well Adine, now that both of us have a flavor associated with us, what should [player_name]'s flavor be?"
                     Ad think b "That's a good question."
-                    Ad "That fleshy color isn't exactly the most appealing in the form of food, so I can't say there's many options."
+                    Ad "That skin tone isn't exactly the most appealing in the form of food, so I can't say there's many options."
                     Ry look "Pumpkin?"
                     Ad "Too orange. Plus that's not an ice cream flavor."
                     Ka normal flip "You know, that doesn't sound half bad."
                     Ka smile flip "Check back this fall. You might just see that on the menu."
                     Ad normal b "Really? That sounds quite good!"
                     Ry normal "Well. I'm stumped on [player_name]'s flavor."
-                    Ad "Let's just settle on pumpkin. It's close enough."
-                    Ry "I guess."
+                    Ad "Same here."
             else:
                 Ry "*sigh* I guess you could think about it like that."
         
@@ -2227,7 +2233,7 @@ label eval_remy_amely_adine_3:
             Ry smile "Dragons don't sweat."
             c "Noted."
         Ry normal "I don't think you understand just how much help you really were."
-        Ry "That may have been a couple of simple tasks for you, but when your hands are also your legs and your arms second as your wings, those tasks could take days or even weeks." #Shorten this a bit
+        Ry "That may have been a couple of simple tasks for you, but in my case when your arms are also your legs or wings, those tasks could take days or even weeks." #Shorten this a bit
         c "You know, I didn't think about that."
         c "Although don't go crying to me about cool traits. You can shoot fire and fly."
         Ry smile "I guess you're right, but I've lost track of the amount of times I wish I had opposable thumbs like you or a runner."
@@ -2237,7 +2243,8 @@ label eval_remy_amely_adine_3:
         play music "mx/gravity.ogg" #Could possibly change to sadder music
         Ry sad "Sometimes, I wish that were the case here."
         c "How come?"
-        Ry shy "People make fun of me while I'm trying to do my work."
+        Ry shy "People, and especially Emera make fun of me while I'm trying to do my work."
+        Ry "It's extremely demotivating when you are constantly belittled by your superior for something completely out of your control."
         Ry sad "I love the library, and I love my job. But my physiology makes me look clumsy and awkward."
         c "Yet you've managed to pull through it for all this time."
         Ry "Without you, I wouldn't have."
@@ -2253,17 +2260,22 @@ label eval_remy_amely_adine_3:
                 c "You've gone through a lot. Don't let your physical limitations impact you."
                 Ry sad "But how? They torment my day to day life."
                 c "Do you get any complaints about your work?"
-                Ry "At the start, many. But over time I've learned how to avoid accidents."
-                c "So you're telling me that despite all of the oods being stacked against you, you pushed through and still work hard?"
+                Ry "When I first started? Many."
+                Ry "But over time I've learned how to avoid accidents."
+                c "So you're telling me that despite all of the oods being stacked against you, you pushed through?"
                 Ry "I guess you can think about it like that, yes."
                 c "You didn't let your physical limitations stop you from doing what you loved."
-                c "And that is more important than what anyone else says or thinks about you."
-                Ry "Well..."
-                Ry normal "You know what, you're right."
-                Ry angry "I've let what other people affect what I do and how I feel." #The angry face looks a bit choppy
-                Ry normal "But you know what? Who cares what they think."
-                Ry "I can't say I'll stop letting those words affect me, but knowing that I'm doing something I love and doing it well is more than enough."
-                c "That's a good way to look at it."
+                Ry look "I wouldn't say I love what I'm currently doing."
+                c "I think we both know that you didn't take your current job because you loved it."
+                c "But what was the real reason you work at the library?"
+                Ry shy "To meet you, of course."
+                c "Me?"
+                Ry "Not you in particular, but a human. I've been so isolated and disconnected, I hardly know any dragons."
+                Ry "I thought that maybe I could have a better chance connecting with someone of a different species entirely. Like a fresh start."
+                Ry look "I tried with Reza, but since his arrival was a public spectacle, I was never able to really talk with him."
+                Ry "With you, it was different. I know I said this before, but it was, and is, truly special being able to talk with you."
+                c "Well, I guess your idea worked out quite well in the end."
+                Ry "I guess it did. Didn't it?"
                 if mp.remyromance:
                     play sound "fx/kiss.wav"
                     m "Suddenly, Remy gave me a big kiss on the lips."
@@ -2507,7 +2519,21 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
                         m "Remy suffered the same punishment as myself."
                         Ry look "Ow!"
                         Ad "I hate you both."
-                        c "Love you too, Adine."
+
+                        menu:
+                            "Love you too, Adine.":
+                                c "Love you too, Adine."
+                            
+                            "I guess you could say you're {i}Adone{/i} with this joke.":
+                                c "I guess you could say you're {i}Adone{/i} with this joke, Adine."
+                                $ evalAdineSlaps += 1
+                                play sound "fx/slap1.wav"
+                                Ad "I can't believe you just said that."
+                                c "Ow! I'm going to have a big, banana shaped bruise on my face tomorrow, Adine."
+                                Ad giggle b "Good, you deserve it."
+                                c "I probably do..."
+
+                        m "Adine sighed."
                         if evalOrphanageScore == 2:
                             Ad normal b "Ugh. It's hard to stay mad at you when you did so much work at the orphanage."
                         else:

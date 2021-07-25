@@ -1,16 +1,17 @@
 label eval_tmomi_common:
 
     #Backgrounds
-    image evalorphanage = "bg/evalorphanage.jpg"
-    image evalwildlands = "bg/eckwildlands.jpg" #Tysm EvilChaosKnight
-    image evalwildlands2 = "bg/eckwildlands.jpg" #Tysm again ECK
+    image evalwildlands = "bg/evalwildlands.jpg" #Tysm EvilChaosKnight
+    image evalwildlands2 = "bg/evalwildlands2.jpg" #Tysm again ECK
     image evalpark1 = "bg/evalpark1.jpg"
     image evalpark2 = "bg/evalpark2.jpg"
     image evalplayerapt1 = "bg/evalplayerapt1.jpg"
+    image evalplayerapt2 = "bg/evalplayerapt2.jpg"
     image evalkatsucart = "bg/evalkatsucart.jpg"
     image evalorphlight = "bg/evalorphlight.jpg"
     image evalorphevening = "bg/evalorphevening.jpg"
     image evalorphdark = "bg/evalorphdark.jpg"
+    image evalplayerkitchen = "bg/evalplayerkitchen.jpg" #Tysm again again ECK
 
     #Characters
 
@@ -23,15 +24,25 @@ label eval_tmomi_common:
     image amely smsad flip = "cr/amely_smsad_flip.png"
 
     #Vara
-    image vara normal ghost = "cr/vara_normal_ghost.png"
-    image vara normal ghost flip = im.Flip("cr/vara_normal_ghost.png", horizontal=True)
     image vara smnormal ghost = "cr/vara_smnormal_ghost.png"
     image vara smnormal ghost flip = im.Flip("cr/vara_smnormal_ghost.png", horizontal=True)
+    image vara smnormal = "cr/vara_smnormal.png"
+    image vara smnormal flip = im.Flip("cr/vara_smnormal.png", horizontal=True)
+    image vara smsad = "cr/vara_smsad.png"
+    image vara smsad flip = im.Flip("cr/vara_smsad.png", horizontal=True)
+    image vara smnone = "cr/vara_smnone.png"
+    image vara smnone flip = im.Flip("cr/vara_smnone.png", horizontal=True)
+    image vara smgrowl = "cr/vara_smgrowl.png"
+    image vara smgrowl flip = im.Flip("cr/vara_smgrowl.png", horizontal=True)
+    image vara smshocked = "cr/vara_smshocked.png"
+    image vara smshocked flip = im.Flip("cr/vara_smshocked.png", horizontal=True)
+    image vara smshocked b = "cr/vara_smshocked_b.png"
+    image vara smshocked b flip = im.Flip("cr/vara_smshocked_b.png", horizontal=True)
 
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
 
-    #Check if player has ridden Bryce in ECK's Savior Mod. Not even sure if this is a good enough check, I'll check back later
+    #Check if player has ridden Bryce in ECK's Savior Mod.
     $ evalRodeBryce = False #This is NOT weird I promise
     if persistent.eckbryceendingseena and persistent.eckbryceendingseena == "A":
         $ evalRodeBryce = True
@@ -80,6 +91,15 @@ label eval_tmomi_common:
 
     #Whether you share the bed with Remy in the third ending
     $ evalRemyShareBed3 = False
+
+    #Whether you visit the hatchery in chapter 4
+    $ evalHatcheryVisited = False
+
+    #Vara's mood during the chapter 4 Remy date change\
+    $ evalVaraMood = 2
+
+    #Whether you will actually get the secret ending or not
+    $ evalPathToSecretComplete = False
 
 
 
@@ -140,16 +160,17 @@ label eval_tmomi_common:
     if renpy.python.store_dicts["store"].get("hatchling", "") == "Vara":
         $ evalVaraSurvives = True
 
-    #Stuff for endings that I might just scrap
     python:
-        if not persistent.evalSoloRemyEnding:
+        if not persistent.evalSoloRemyEnding: #Whether you have seen the Remy ending
             persistent.evalSoloRemyEnding = False
-        if not persistent.evalAmelyEnding:
+        if not persistent.evalAmelyEnding: #Whether you have seen the Remy + Amely ending
             persistent.evalAmelyEnding = False
         if not persistent.evalSeenDramavian: #Detects whether you have seen Dramavian a second time in this mod
             persistent.evalSeenDramavian = False
         if not persistent.evalSecretEndingUnlocked: #[REDACTED]
             persistent.evalSecretEndingUnlocked = False
+        if not persistent.evalSecretEndingCompleted: #[REDACTED]
+            persistent.evalSecretEndingCompleted = False
     
     #Stuff for orphanage minigame display. Thanks EvilChaosKnight :)
     $ evalDisplayVar1name = ""
@@ -182,3 +203,7 @@ label eval_tmomi_common:
     #Updated to require the player to meet with katsu every playthrough they want the ending
     if chap3picka == "katsu" or chap3pickb == "katsu":
         jump eval_tmomi_remy
+    elif evalPathToSecretComplete:
+        play sound "fx/system3.wav"
+        s "You saved Vara, but there is still more to her story..."
+        return

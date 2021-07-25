@@ -4,8 +4,13 @@ Massive shoutout to EvilChaosKnight for their amazing character images of Amely,
 
 Right now this mod is INCOMPLETE (and probably pretty cringy). I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
 
-My first attempt at creating a mod for AWSW even though the game came out like 5 years ago. This entire things was inspired by a single steam community post (https://steamcommunity.com/sharedfiles/filedetails/?id=857686289) and an unbelievable amount of boredom. At first, this was supposed to be a quick and simple mod that gave each character a little bit of extra content after their good ending.
- But then I started working on Remy's ending first, and things got out of control.
+Why did I even do this in the first place/what gave me inspiration?
+- This was my inspiration: https://steamcommunity.com/sharedfiles/filedetails/?id=857686289
+
+- Immense boredom when I was cut off from the world for a week was my motivation
+
+- I thought this would be a nice, small, and easy intro mod. 30k+ word script and here we are now I guess
+
  _______________________________________________________________________________________________
 
  Thoughts on current version:
@@ -70,7 +75,7 @@ What am I working on now?
 
  Conflicts:
 
- - This mod conflicts with the side images mod. This is not my fault, but rather a typo in the other mod's code that makes Lucius crash your game - Note this is currently being worked on and I'll delete this soon.
+ - This mod conflicts with the Remy Hatchlings mod. Sorry :/
 
  ________________________________________________________________________________________________
 
