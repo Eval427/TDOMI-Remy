@@ -926,7 +926,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
 
     $ evalDoingSecretEnding = True
 
-    jump eval_post_secret_remy_meeting:
+    jump eval_post_secret_remy_meeting
 
 label eval_post_secret_remy_meeting:
     show remy normal with dissolvemed

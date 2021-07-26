@@ -377,7 +377,7 @@ label eval_trip_to_orphanage:
                 m "However, it seemed as if I had overestimated just how far the walk to the orphanage would be."
                 m "I found myself slowly falling behind Remy, steady pace."
                 scene forest1 with dissolveslow
-                shpw remy normal with dissolvemed
+                show remy normal with dissolvemed
                 play music "mx/serene.ogg"
                 Ry look "Hey, are you alright? You look winded."
                 c "I didn't think it would be this long of a walk to get to the orphanage."
