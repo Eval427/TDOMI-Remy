@@ -15,11 +15,9 @@ Why did I even do this in the first place/what gave me inspiration?
 
  Thoughts on current version:
 
- - The most recent version of this mod introduces the orphanage minigame. This minigame is probably not as good as Katsuharu's, but I still like it. It's much more technical and required a lot more assets.
+ - The most recent version completely changes Remy's 4th date and his good ending if you unlock the secret ending
 
- - I would say that there are probably a fair amount of bugs or discontinuities in the text in the game. Please let me know (Eval#4270 on discord)
-
- - The next update is going to get me much closer to the end of this mod. I have been thinking about the Remy hatchlings mod, and with how I want this mod to end, I'm not sure if it will work.
+ - I really like a lot of what I have done, but there are a few problems with it/things I'm not 100% happy with.
 
  _______________________________________________________________________________________________
  
