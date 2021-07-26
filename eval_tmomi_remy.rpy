@@ -28,7 +28,7 @@ label eval_tmomi_remy:
         #AwBH Discord for feedback/motivation
         #Grissess for politely telling me I'm doing it all wrong and making me write better code
 
-    #Future plans. MASSIVE SPOILERS:
+    #Future plans. MASSIVE SPOILERS: Welp, this is all out of date now. Not deleting it yet though
         #I need to write this down somewhere so I don't forget it. Please, if you're playing this and this content isn't released. I HIGHLY recommend
         #not reading this next wall of text. It'll ruin it, I promise.
 
@@ -171,7 +171,10 @@ label eval_tmomi_remy:
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry smile "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
             Ry normal "Work, especially since Reza, has been particularly chaotic. It would be nice for the four of us to have a nice day out."
-            c "Couldn't agree more. Being in a coma for the last few months, I feel like I've missed out on so much."
+            if evalDoingSecretEnding:
+                c "Couldn't agree more. I've been so busy in the last few months, I feel like I've missed out on so much."
+            else:
+                 "Couldn't agree more. Being in a coma for the last few months, I feel like I've missed out on so much."
             c "It would be nice to talk over some nice ice cream."
             Ry look "Hmmm... We may have to wait a little bit, Adine is probably busy on her shift delivering food."
             c "Good point..."
@@ -370,15 +373,24 @@ label eval_trip_to_orphanage:
             hide remy with dissolvemed
             play sound "fx/steps/rough_gravel.wav"
             m "With that, we started walking."
-            m "However, it seemed as if I had greatly overestimated my physical strength."
-            m "We continued on at a good pace for about ten minutes. However, I quickly fell victim to exhaustion and found myself struggling to keep up with Remy."
-            scene forest1 with dissolveslow
-            show remy normal with dissolve
-            play music "mx/serene.ogg" #Look into changing this
-            Ry look "Hey, are you alright? You look winded."
-            c "I think I'm alright. Just tired."
-            c "I thought I could walk from one end of town to the other, but that coma really did a number on me."
-            Ry "I can see that."
+            if evalDoingSecretEnding: #This is necessary for continuity, since MC doesn't go into a coma for the secret ending
+                m "However, it seemed as if I had overestimated just how far the walk to the orphanage would be."
+                m "I found myself slowly falling behind Remy, steady pace."
+                scene forest1 with dissolveslow
+                shpw remy normal with dissolvemed
+                play music "mx/serene.ogg"
+                Ry look "Hey, are you alright? You look winded."
+                c "I didn't think it would be this long of a walk to get to the orphanage."
+            else:
+                m "However, it seemed as if I had greatly overestimated my physical strength."
+                m "We continued on at a good pace for about ten minutes. However, I quickly fell victim to exhaustion and found myself struggling to keep up with Remy."
+                scene forest1 with dissolveslow
+                show remy normal with dissolvemed
+                play music "mx/serene.ogg" #Look into changing this
+                Ry look "Hey, are you alright? You look winded."
+                c "I think I'm alright. Just tired."
+                c "I thought I could walk from one end of town to the other, but that coma really did a number on me."
+                Ry "I can see that."
             Ry normal "Here, why don't we rest underneath that tree over there so you can regain your strength."
             scene black with dissolveslow
             hide remy with dissolvemed
@@ -2077,7 +2089,7 @@ label eval_remy_amely_adine_3:
     c "How would I do that?"
     Ka "I'm not quite sure myself. You can say that I pay well."
     c "Hmmm..."
-    if not kevinunplayed:
+    if not kevinunplayed: #This is kinda dumb tbh
         m "Suddenly, it hit me."
         c "You know what? I think I know the perfect way to help you!"
         Ka "How so?"
@@ -2348,9 +2360,6 @@ label eval_remy_amely_adine_sleep_select:
             Ry smile "I haven't heard anything about it. You might want to do some last minute furniture shopping before they do though."
             c "Good idea."
             $ renpy.pause (2.0)
-            #DELTE NEXT 2 LINES ITS FOR TESTING
-            $ persistent.evalSoloRemyEnding = True
-            $ persistent.evalAmelyEnding = True
             if evalOrphanageScore == 2 and evalCustomerScore == 10 and evalXithReporter and persistent.evalSoloRemyEnding and persistent.evalAmelyEnding:
                 scene black with dissolvemed
                 m "My vision suddenly went dark."
@@ -2367,19 +2376,18 @@ label eval_remy_amely_adine_sleep_select:
                 Ry "Maybe that ice cream isn't sitting well with you."
                 c "I saw Vara, Remy. There is no denying that."
                 Ry angry "Enough, [player_name]! Her death has hurt us all, especially me."
-                Ry "Do you know how much I've stayed up?"
+                Ry "Do you know how many sleepless nights I've had?"
                 Ry "I blame myself for her death."
                 c "Remy, Vara is still here. She's somewhere."
                 Ry sad "What do you mean? She's dead."
                 c "I can't explain this."
-                c "I just have a feeling. We need to talk with Adine tomorrow."
-                Ry look "I'm still quite confused, but you sound serious."
-                Ry "We'll call her up tomorrow, she has the day off."
-                c "Can you skip work?"
-                Ry "Emera won't be happy, but I don't care."
-                c "Why don't we get ready for bed."
-                m "Remy took a deep breath."
-                Ry normal "Sounds like a plan."
+                Ry look "I have no reason to believe anything you just said."
+                Ry "But for some reason, I still believe you."
+                Ry sad "Maybe in some other world, Vara is still here with us."
+                c "We can only hope, Remy."
+                m "Remy took a deep breath and regained his composure."
+                Ry normal "Let's go to bed, [player_name]."
+                c "Agreed."
                 if evalRemyShareBed3:
                     hide remy with dissolvemed
                     m "The two of us made our way to the bedroom."
@@ -2400,8 +2408,12 @@ label eval_remy_amely_adine_sleep_select:
                         play sound "fx/kiss.wav"
                         m "I gave the dragon a big kiss."
                         m "He responded by further pressing his lips into my own."
-                    Ry "Don't worry, [player_name], we'll figure out what's going on with Vara."
-                    c "I hope so. For your sake and mine."
+                    c "Remy, please don't blame yourself for Vara's death."
+                    c "There is no way you could have thought she would follow you."
+                    Ry sad "I can't make any promises. I really feel like I could have done something."
+                    c "There was nothing we could do, Remy."
+                    c "I'll be here for you. I'm not going anywhere in the foreseeable future."
+                    Ry "I hope so. For your sake and mine."
                     Ry "Goodnight, [player_name]."
                     m "I snuggled up closer to Remy."
                     c "Goodnight, Remy."
@@ -2409,11 +2421,18 @@ label eval_remy_amely_adine_sleep_select:
                     m "I slowly closed my eyes, Remy's warmth and gentle breathing lulling me to sleep."
                 else:
                     hide remy with dissolvemed
-                    m "I made my way to the bedroom while Remy removed his tie."
+                    m "Remy removed his tie and placed it on the desk next to the couch."
                     show remy smile b with dissolvemed
                     Ry "This may surprise you, but a tie isn't the most comfortable sleeping attire."
                     c "Not one bit."
                     hide remy with dissolvemed
+                    m "I started making my way to the bedroom, but I called out to Remy before entering."
+                    c "Remy, please don't blame yourself for Vara's death."
+                    c "There is no way you could have thought she would follow you."
+                    Ry sad "I can't make any promises. I really feel like I could have done something."
+                    c "There was nothing we could do, Remy."
+                    c "I'll be here for you. I'm not going anywhere in the foreseeable future."
+                    Ry "I hope so. For your sake and mine."
                     play sound "fx/undress.ogg"
                     m "I undressed and crawled into bed."
                     m "I heard Remy call out from the main room."
@@ -2421,7 +2440,6 @@ label eval_remy_amely_adine_sleep_select:
                     c "Goodnight, Remy."
                 stop music fadeout 2.0
                 $ persistent.evalSecretEndingUnlocked = True
-                jump eval_secret_ending_extra_day
 
             else:
                 c "Why don't we get ready for bed now?"

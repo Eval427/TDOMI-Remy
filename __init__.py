@@ -17,10 +17,15 @@ def load_side_ims():
     for expression in varaSmallExpressions:
         renpy.exports.image("side vara %s"%expression.replace("_", " "), clip_vara_side_image("cr/vara_%s.png"%expression))
 
+#Function by 4onen to simplify connecting hooks
+def connect(node, next):
+    hook = modast.hook_opcode(node, None)
+    hook.chain(next)
+
 @loadable_mod
 class AWSWMod(Mod):
     def mod_info(self):
-        return ("This Man Owes me Ice Cream! Remy Edition", "v0.5.0", "Eval")
+        return ("This Man Owes me Ice Cream! Remy Edition", "v0.7.0", "Eval")
 
     def mod_load(self):
         #Remy's ending hook - Note I need to push this back earlier to change some prior dialogue
@@ -40,6 +45,10 @@ class AWSWMod(Mod):
         #postChangeCh4Date = modast.find_label("eval_post_date_change")
         #changeCh4Date.next = postChangeCh4Date
         modast.call_hook(changeCh4Date, modast.find_label("eval_remy_ch4_date_change"))
+        
+        #Hook for changed Remy ending
+        changeRemyGoodEnding = modast.find_label("remy5")
+        modast.call_hook(changeRemyGoodEnding, modast.find_label("eval_remy_good_ending_change"))
         
         #Another hook to allow MC to stay in this current timeline?
         

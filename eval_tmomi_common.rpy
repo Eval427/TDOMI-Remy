@@ -39,6 +39,12 @@ label eval_tmomi_common:
     image vara smshocked b = "cr/vara_smshocked_b.png"
     image vara smshocked b flip = im.Flip("cr/vara_smshocked_b.png", horizontal=True)
 
+    #Remy wounded
+    image remy sad e = "cr/remy_sad_e.png"
+    image remy sad e flip = im.Flip("cr/remy_sad_e.png", horizontal=True) #Why a bullet on both sides? Well, I need him facing the right with the wound, and it felt weird to leave a non-flipped image in here as well
+    image remy look e = "cr/remy_look_e.png"
+    image remy look e flip = im.Flip("cr/remy_look_e.png", horizontal=True)
+
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
 
@@ -100,6 +106,9 @@ label eval_tmomi_common:
 
     #Whether you will actually get the secret ending or not
     $ evalPathToSecretComplete = False
+
+    #Whether you have experienced the secret ending and currently in that timeline
+    $ evalDoingSecretEnding = False
 
 
 

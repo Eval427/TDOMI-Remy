@@ -2,7 +2,7 @@
 
 Massive shoutout to EvilChaosKnight for their amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without their work.
 
-Right now this mod is INCOMPLETE (and probably pretty cringy). I was recommended to tie my mod in with https://github.com/AWSW-Modding/AWSW-Modtools/tree/mod-remy_hatchlings which I'll try getting to.
+Right now this mod is INCOMPLETE. I'm almost done, though
 
 Why did I even do this in the first place/what gave me inspiration?
 - This was my inspiration: https://steamcommunity.com/sharedfiles/filedetails/?id=857686289
