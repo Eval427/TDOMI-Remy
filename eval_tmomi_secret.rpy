@@ -90,7 +90,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         Ry look "Do you not have that back home?"
         c "Remy, look at me. Does it look like humans would need flight school?"
         Ry smile "You do make a good point."
-        c "Although, you aren't entirely wrong. People could take schooling to learn how to fly giant, mechanical machines."
+        c "Although, you aren't entirely wrong. People can have schooling to learn how to fly giant, mechanical machines."
         Ry normal "I think I read about those in your PDAs."
         c "They're a hassle. I would much rather have wings like you."
         Ry "I think I'll stick with my wings as well."
@@ -103,6 +103,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         show vara smnormal flip at left with dissolvemed
         show remy normal at right with dissolvemed
         c "I'm sorry, Vara. I don't think I ever properly introduced myself. I'm [player_name]."
+        show vara smnone flip at left with dissolvemed
         Vr "..."
         Ry "Could you say [player_name]'s name, Vara?"
         Vr "..."
@@ -110,16 +111,16 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         Ry "You seem to be doing quite alright in a world full of complete strangers."
         c "You guys are so much nicer than most humans. Plus, it feels much easier talking to a different species."
         Ry look "Strange, I feel the same way."
-        c "Now, Remy. Did you want to clean out my bathroom cabinent as well or something?"
+        c "Now, Remy. Did you want to clean out my bathroom cabinent while you're here?"
         Ry smile "That's a good one."
         show remy normal with dissolvemed
         Ry "This may surprise you, but no. I think I'll let you make the call on what dragon medications you should take."
         c "(I don't even want to imagine the terrible repercussions that could have.)"
-        Ry "You know, maybe I should have just brought Vara to the park and had her watch the fireworks with us instead of coming back here."
+        Ry look "You know, maybe I should have just brought Vara to the park and had her watch the fireworks with us instead of coming back here."
         c "Don't say that. We're still going to see the fireworks together."
         c "We can bring Vara as well, I think it would be fun!"
         Ry smile "That's true."
-        Ry normal "You know, I'm very curious to see what your reaction to that will be. It's quite a sight to behold."
+        Ry normal "You know, I'm very curious to see what your reaction to the show will be. It's quite a sight to behold."
         c "People just keep saying that."
         Ry "Maybe you will, too."
         c "We'll see."
@@ -208,9 +209,11 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         m "Seemingly satisfied, she ate two more in rapid succession."
         $ renpy.pause (1.0)
         Ry normal "Could I have one, Vara?"
-        m "Vara nodded. Remy grabbed a piece of sushi and put it in his mouth."
+        m "Vara nodded."
+        m "Remy grabbed a piece of sushi and put it in his mouth."
         Ry "Wow! It's really good Vara!"
-        m "Remy took another two pieces, and Vara suddenly pushed the cutting board in my direction."
+        m "Remy took another two pieces, and delicately rested them on his tongue"
+        m "Vara suddenly pushed the cutting board in my direction."
         Ry "I think she wants you to try it, [player_name]."
 
         menu:
@@ -222,7 +225,6 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                 m "Vara looked extremely nervous as I put the piece of sushi in my mouth."
                 m "It was amazing. The buttery fish complemented the somewhat tangy taste of the algae and the crispness of the cucumber."
                 c "Wow, Vara! This is really good!"
-                show vara smnormal flip with dissolvemed
                 if evalVaraMood > 4:
                     Vr smnone flip "T... T..."
                     Vr smnormal flip "Thanks."
@@ -256,7 +258,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                 else:
                     Vr smnormal "..."
                 m "I grabbed another piece and started eating."
-                c "Would anyone else like any more?"
+                c "Would anyone else like more?"
                 Vr "..."
                 Ry normal "I think it's all yours."
                 c "Not that I mind."
@@ -297,7 +299,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             with dissolvemed
 
             stop music fadeout 2.0
-            $ renpy.pause (2.0)
+            $ renpy.pause (3.0)
             c "Wait a minute..."
             m "My vision started going blurry."
             Ry look "Are you alright, [player_name]?"
@@ -357,7 +359,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                     "Share the bed.":
                         c "Hey, wait."
                         c "Why don't we share the bed? I don't want you both to have to share that tiny couch."
-                        Ry smile "I could even keep a closer eye on you as well. What do you say, Vara?"
+                        Ry smile "I could keep a closer eye on you as well. What do you say, Vara?"
                         m "Vara nodded."
                         Ry normal "I guess that decides it."
                         hide remy with dissolvemed
@@ -416,13 +418,11 @@ label eval_remy_ch4_date_change_2:
     c "(How long did I sleep?)"
     m "I got up and walked out into the main room. Remy was sitting on the couch."
     show remy normal with dissolvemed
-    Ry "You sleep like a brick."
-    c "I was tired, okay?"
-    Ry smile "I tried pushing you and talking to you, but nothing would make you budge."
-    c "Where's Vara?"
-    Ry normal "I brought her back to the orphanage."
+    Ry "Hi there sleepy head!"
+    c "Good morning. Where's Vara?"
+    Ry normal "I think you mean afternoon. I brought her back to the orphanage."
     if remystatus != "neutral": #Obligatory inclusion of the kiss scene. Can't be the fourth date without it, really
-        c "You know, Remy. You looked good without your tie."
+        c "You know, Remy. You looked good without your tie last night."
         Ry "Well, actually..."
         hide remy with dissolvemed
         play sound "fx/undress.ogg"
@@ -458,7 +458,7 @@ label eval_remy_ch4_date_change_2:
                 hide remy
                 with fade
                 $ renpy.pause (0.3)
-                m "We met, and my arms enveloped his nack as our lips touched. For a few seconds, we were closer than ever before. During the kiss, he used a lot more tongue than I was expecting."
+                m "We met, and my arms enveloped his neck as our lips touched. For a few seconds, we were closer than ever before. During the kiss, he used a lot more tongue than I was expecting."
                 m "Just after we parted, he finished by giving me a small lick on the cheek."
                 show remy smile b with dissolvemed
                 Ry "How was that?"
@@ -491,11 +491,8 @@ label eval_remy_ch4_date_change_2:
     c "I... I can't recall. But we need to protect her."
     Ry sad "How should we do that?"
     c "I don't think I can tell the police. I doubt they would believe me."
-    Ry "So it's up to us."
-    c "I guess it is."
-    Ry "I don't know if you or I can protect her."
     Ry "Maybe we should just have Adine take care of her."
-    c "I don't think she'll believe me."
+    c "I don't think she'll believe me either."
     Ry "Really?"
     c "I don't think so."
     c "But I know that deep down, you do."
@@ -503,6 +500,9 @@ label eval_remy_ch4_date_change_2:
     c "Really?"
     Ry "Yes. However, all I can recall is a feeling of loneliness."
     c "Well, with this insight let's hope that those dreams don't become a reality."
+    Ry "So it's up to us."
+    c "I guess it is."
+    Ry "I don't know if you or I can protect her."
     Ry look "But how are we supposed to save Vara?"
     c "I don't know. I think our best bet would be to bring her with us when we see the fireworks that day."
     Ry "We're still going to do that?"
@@ -611,7 +611,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     c "Better safe than sorry, at any rate."
     Ry look "That's what I'm thinking."
     Ry normal "Oh, I think it's starting. Now, watch!"
-    #play soundloop "fx/fireworks3.ogg"
+    play soundloop "fx/fireworks3.ogg"
     m "We were quiet as we waited and the stillness of the night enveloped us. Soon, I heard the sound of the first rocket making its way into the night sky after which it exploded in a pattern of colors."
     m "More rockets followed, their thunderous noise echoing throughout the land."
     show fireworks at Pan((0, 545), (0, 0), 15.0) with dissolveslow
@@ -625,10 +625,12 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "As the portal had been repaired by the mysterious person I met, now was the perfect time for Reza to make his getaway, and I was the only one who knew."
     c "Remy, I think we need to go. Now."
     m "Remy instinctively got in a defensive position around Vara."
-    show vara smshocked with dissolvemed
-    Ry angry "What? Where?"
+    show vara smshocked
+    show remy angry
+    with dissolvemed
+    Ry "What? Where?"
     c "What we were talking about earlier? I know how it happens."
-    Ry "Why didn't you say anything earlier?"
+    Ry "Why didn't you say anything before?"
     c "Because I didn't figure it out until now."
     c "I know where Reza is. We need to stop him."
     Vr smshocked b "..."
@@ -693,7 +695,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Ry "Feel bad for me later, Maverick. We have to help [player_name]."
     Vr "I help?"
     Ry sad "Vara, you should stay here where you'll be safe."
-    show vara smnone with dissolvemed
+    Vr smnone "..."
     Ry "I promise, Vara. We will come back when it's safe."
     Vr "..."
     Ry "Come on, Maverick. Let's go."
@@ -798,7 +800,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "He quickly interacted with the terminal, and the portal sprang to life."
     play sound "fx/quicktel.mp3"
     $ renpy.pause (2.0)
-    m "The portal started up, and in an instant, he was gone."
+    m "The portal started up, and in an instant, he was gone." #I probably need to add something that doesn't make MC look like he just stood there and did nothing
     stop music fadeout 2.0
     hide maverick
     show maverick rage c at Position(xpos=0.9, xanchor="center") with easeinright
@@ -841,7 +843,6 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Vr "..."
     Ry "I'm proud of you."
     m "With effort, he bent down and gave the little dragon a kiss on the cheek."
-    show vara smnormal flip at left with dissolvemed
     m "Suddenly, the Administrator appeared next to me."
     show izumi normal 4 d at Position (xpos=0.9) with easeinright
     As "This is not right."
@@ -849,7 +850,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     play sound "fx/growl.ogg"
     show vara smgrowl flip at left with dissolvemed
     $ renpy.pause (1.5)
-    c "Vara, It's okay. She's friendly."
+    c "Vara, It's okay. She's a friend."
     show vara smnone flip at left with dissolvemed
     Ry look e flip "Who are you?"
     As "That does not matter at the moment."
@@ -857,13 +858,13 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     $ renpy.pause (0.5)
     As "How did this happen?"
     c "I knew that she would die."
-    As "What? This has never happened before."
+    As "What?"
     c "When I saw Remy and Vara together in my apartment. I guess it reminded me of something."
     As "Did you see something like a ghost?"
     c "Yes, I think I did."
     As "Hmm... you must have experienced fragmentations of this timeline in a previous one."
     As "That was no ghost you saw, but it was Vara in this timeline."
-    c "But why would the fragmentation of another time appear here?"
+    c "But why would the fragmentation of this time appear as a ghost here?"
     As "It did not, but rather your mind referenced the fragment from a previous timeline in this current one."
     As "Sometimes, these fragments will make their way through displaced wormholes and manifest in the form of visions or thoughts."
     if loremscenesfinished > 1:
@@ -890,7 +891,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     hide izumi with easeoutbottom
     play sound "fx/impact3.ogg"
     m "The Administrator suddenly fell to the ground."
-    show vara smshocked with dissolvemed
+    show vara smshocked flip with dissolvemed
     c "Are you okay?"
     As "My time is limited. You will know what to do, [player_name]."
     m "With that, she closed her eyes and her body went limp."
@@ -907,7 +908,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     n "Maverick himself only sustained minor burn injuries. However, the Administrator was found dead in a pool of her own blood."
     n "In the next weeks, a variety of things happened."
     n "Upon discovering that the portal seemed to no longer function, it was declared that all possible human contacts were no longer operational."
-    n "Reza's body was taken for further examination, and the gun was to be kept in my posession."
+    n "The gun was to be kept in my posession as a means of self defense. However, I locked it away vowing to never use it."
 
     window hide
     nvl clear
@@ -929,6 +930,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     jump eval_post_secret_remy_meeting
 
 label eval_post_secret_remy_meeting:
+    scene park2 with dissolveslow
     show remy normal with dissolvemed
     show vara smnormal with dissolvemed
     play music "mx/library.ogg" fadein 2.0
@@ -941,7 +943,7 @@ label eval_post_secret_remy_meeting:
     show remy normal at right
     show vara smnormal at right
     with move
-    show maverick normal flip at left with easeinleft
+    show maverick normal flip at Position(xpos=0.9) with easeinleft
     Mv "Hello, [player_name]."
     c "Hello, Maverick."
     Mv "I think I owe you an apology."
