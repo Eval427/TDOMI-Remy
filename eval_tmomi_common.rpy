@@ -40,18 +40,18 @@ label eval_tmomi_common:
     image vara smshocked b flip = im.Flip("cr/vara_smshocked_b.png", horizontal=True)
 
     #Remy wounded - Why a bullet on both sides? Well, I need him facing the right with the wound, and it felt weird to leave a non-flipped image in here as well
-    image remy normal eval shot = "cr/remy_normal_e.png"
-    image remy normal eval shot flip = im.Flip("cr/remy_normal_e.png", horizontal=True)
+    image remy normal eval shot = "cr/remy_normal_eval_shot.png"
+    image remy normal eval shot flip = im.Flip("cr/remy_normal_eval_shot.png", horizontal=True)
     image remy sad eval shot = "cr/remy_sad_e.png"
-    image remy sad eval shot flip = im.Flip("cr/remy_sad_e.png", horizontal=True)
+    image remy sad eval shot flip = im.Flip("cr/remy_sad_eval_shot.png", horizontal=True)
     image remy look eval shot = "cr/remy_look_e.png"
-    image remy look eval shot flip = im.Flip("cr/remy_look_e.png", horizontal=True)
+    image remy look eval shot flip = im.Flip("cr/remy_look_eval_shot.png", horizontal=True)
     image remy smile eval shot = "cr/remy_smile_e.png"
-    image remy smile eval shot flip = im.Flip("cr/remy_smile_e.png", horizontal=True)
+    image remy smile eval shot flip = im.Flip("cr/remy_smile_eval_shot.png", horizontal=True)
     image remy shy eval shot = "cr/remy_shy_e.png"
-    image remy shy eval shot flip = im.Flip("cr/remy_shy_e.png", horizontal=True)
+    image remy shy eval shot flip = im.Flip("cr/remy_shy_eval_shot.png", horizontal=True)
     image remy angry eval shot = "cr/remy_angry_e.png"
-    image remy angry eval shot flip = im.Flip("cr/remy_angry_e.png", horizontal=True)
+    image remy angry eval shot flip = im.Flip("cr/remy_angry_eval_shot.png", horizontal=True)
 
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
