@@ -30,7 +30,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                     return
 
         $ renpy.pop_call()
-        Ry "Speaking of Vara, why don't we go grab her?"
+        Ry "You know, speaking of Vara, why don't we go grab her?"
         c "How come?"
         Ry "When you went and visited the hatchery earlier, Vara seemed very interested in you."
         Ry shy "You've done miracles to help me move on from my past, and I was thinking you could do the same for her as well."
@@ -351,12 +351,20 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             else:
                 menu:
                     "Let them have the couch.":
+                        m "I watched as Vara hopped up onto the couch while Remy removed his tie."
+                        play sound "fx/undress.ogg"
+                        show remy smile b with dissolvemed
+                        Ry "Can't wear this to bed, can I?"
+                        hide remy with dissolvemed
+                        m "He rested it on the desk next to the couch."
+                        m "While they were a bit cramped, the two dragons seemed rather comfortable snuggled close together."
                         m "My mind still spinning, I made my way into the bedroom."
                         play sound "fx/undress.ogg"
                         m "I quickly undressed, and too tired to prepare any further, fell asleep."
                         scene black with dissolvemed
                     
                     "Share the bed.":
+                        $ evalRemyDateBed = True
                         c "Hey, wait."
                         c "Why don't we share the bed? I don't want you both to have to share that tiny couch."
                         Ry smile "I could keep a closer eye on you as well. What do you say, Vara?"
@@ -392,7 +400,8 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             c "Likewise."
             Ry "Can you say goodbye, Vara?"
             if evalVaraMood == 0:
-                Vr smgrowl "{i}grrrrrrr{/i}"
+                play sound "fx/growl.ogg"
+                $ renpy.pause (2.0)
                 Ry look "I guess not..."
             else:
                 Vr smnone "..."
@@ -414,10 +423,14 @@ label eval_remy_ch4_date_change_2:
     $ renpy.pause (3.0)
     scene o with dissolveslow
     play music "mx/basicguitar.ogg"
-    m "I woke up to find that I was alone in the bed."
-    c "(How long did I sleep?)"
-    m "I got up and walked out into the main room. Remy was sitting on the couch."
-    show remy normal with dissolvemed
+    if evalRemyDateBed:
+        m "I woke up to find that I was alone in the bed."
+        c "(How long did I sleep?)"
+        m "I got up and walked out into the main room. Remy was sitting on the couch."
+    else:
+        m "I woke up with the sun shining brightly through the blinds."
+        c "(How long did I sleep?)"
+        m "I got up and walked out into the main room. Remy was sitting on the couch."
     Ry "Hi there sleepy head!"
     c "Good morning. Where's Vara?"
     Ry normal "I think you mean afternoon. I brought her back to the orphanage."
@@ -815,7 +828,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Vr "Remy!"
     hide vara with easeoutleft
     m "Vara rushed over to the bushes Maverick had emerged from. She returned with Remy, who was limping and bloody."
-    show remy sad e flip at Position(xpos=0.1) with easeinleft
+    show remy sad eval shot flip at Position(xpos=0.1) with easeinleft
     show vara smshocked flip behind remy at left with easeinleft
     Mv scared c "Oh no, Remy!"
     c "You're injured. We need to stop the bleeding."
@@ -824,7 +837,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "He winced in pain."
     Ry "We did it, [player_name]."
     c "But Reza escaped through the portal."
-    Ry look e flip "No. I mean we saved Vara."
+    Ry look eval shot flip "No. I mean we saved Vara."
     Mv "Are you alright, Remy?"
     Ry "I've been better."
     Mv "I'll go get the EMTs."
@@ -832,14 +845,14 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show maverick normal c flip at Position(xpos=0.9, xanchor="center") with dissolvemed
     hide maverick with easeoutright
     Vr flip "..."
-    Ry sad e flip "Vara, you silly girl. Why did you follow us?"
+    Ry sad eval shot flip "Vara, you silly girl. Why did you follow us?"
     Vr smsad flip "I... help."
     Ry "You could have gotten hurt! Or worse..."
     c "Remy. She saved Maverick's life."
-    Ry look e flip "Really?"
+    Ry look eval shot flip "Really?"
     c "Yes, she hit Reza's gun with her acid."
     c "If she weren't there, Maverick would have been shot."
-    Ry sad e flip "Wow, Vara. That was very brave of you."
+    Ry sad eval shot flip "Wow, Vara. That was very brave of you."
     Vr "..."
     Ry "I'm proud of you."
     m "With effort, he bent down and gave the little dragon a kiss on the cheek."
@@ -852,7 +865,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     $ renpy.pause (1.5)
     c "Vara, It's okay. She's a friend."
     show vara smnone flip at left with dissolvemed
-    Ry look e flip "Who are you?"
+    Ry look eval shot flip "Who are you?"
     As "That does not matter at the moment."
     As "Vara should be dead."
     $ renpy.pause (0.5)
@@ -946,7 +959,13 @@ label eval_post_secret_remy_meeting:
     show maverick normal flip at Position(xpos=0.9) with easeinleft
     Mv "Hello, [player_name]."
     c "Hello, Maverick."
-    Mv "I think I owe you an apology."
-    Mv "This whole time I thought you were working with Reza to steal our generators and run off."
-    Mv "I saw no feasable way that you were simply a nice person."
+    Mv "Listen, [player_name]. I think I owe you an apology."
+    Mv "This whole time I thought you putting on an act. Trying to impress everyone and get on their good sides."
+    Mv "I never stopped to think that maybe you were just a nice person."
+    Mv scared flip "Remy had some things to say about you. Some things I'll never forget."
+    Mv normal flip "I give you my sincerest apologies."
+    c "I forgive you, Maverick. I can understand how you felt."
+    c "With all of the uncertainty and confusion surrounding that time, I wasn't surprised that some people may not trust me."
+    c "I'm just glad we can put this all behind us and move on."
+    Mv nice flip "Me too, [player_name]."
     m "For testing purposes, this content is not quite ready!"

@@ -39,11 +39,19 @@ label eval_tmomi_common:
     image vara smshocked b = "cr/vara_smshocked_b.png"
     image vara smshocked b flip = im.Flip("cr/vara_smshocked_b.png", horizontal=True)
 
-    #Remy wounded
-    image remy sad e = "cr/remy_sad_e.png"
-    image remy sad e flip = im.Flip("cr/remy_sad_e.png", horizontal=True) #Why a bullet on both sides? Well, I need him facing the right with the wound, and it felt weird to leave a non-flipped image in here as well
-    image remy look e = "cr/remy_look_e.png"
-    image remy look e flip = im.Flip("cr/remy_look_e.png", horizontal=True)
+    #Remy wounded - Why a bullet on both sides? Well, I need him facing the right with the wound, and it felt weird to leave a non-flipped image in here as well
+    image remy normal eval shot = "cr/remy_normal_e.png"
+    image remy normal eval shot flip = im.Flip("cr/remy_normal_e.png", horizontal=True)
+    image remy sad eval shot = "cr/remy_sad_e.png"
+    image remy sad eval shot flip = im.Flip("cr/remy_sad_e.png", horizontal=True)
+    image remy look eval shot = "cr/remy_look_e.png"
+    image remy look eval shot flip = im.Flip("cr/remy_look_e.png", horizontal=True)
+    image remy smile eval shot = "cr/remy_smile_e.png"
+    image remy smile eval shot flip = im.Flip("cr/remy_smile_e.png", horizontal=True)
+    image remy shy eval shot = "cr/remy_shy_e.png"
+    image remy shy eval shot flip = im.Flip("cr/remy_shy_e.png", horizontal=True)
+    image remy angry eval shot = "cr/remy_angry_e.png"
+    image remy angry eval shot flip = im.Flip("cr/remy_angry_e.png", horizontal=True)
 
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
@@ -75,7 +83,7 @@ label eval_tmomi_common:
     $ evalRodeRemy = False
 
     #Whether you asked if Remy called you fat in the first choice
-    $ evalAskifFat = False
+    $ evalAskIfFat = False
 
     #Whether you manage to help out at the orphanage
     $ evalHelpOrphanage = False
@@ -109,6 +117,9 @@ label eval_tmomi_common:
 
     #Whether you have experienced the secret ending and currently in that timeline
     $ evalDoingSecretEnding = False
+
+    #Whether you share the bed in the changed Ch4 Remy date
+    $ evalRemyDateBed = False
 
 
 
@@ -209,6 +220,9 @@ label eval_tmomi_common:
     $ evalDisplayVar8 = 0
     $ evalDisplayVar8unit = ""
 
+    return
+
+label eval_extended_ending:
     #Updated to require the player to meet with katsu every playthrough they want the ending
     if chap3picka == "katsu" or chap3pickb == "katsu":
         jump eval_tmomi_remy
