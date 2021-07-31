@@ -30,7 +30,7 @@ class AWSWMod(Mod):
     def mod_load(self):
         #Variable init hook. I'm lazy, so I just decided to define all my variables early instead of having a dedicated label to call whenever I needed to confirm vars
         varInitHook = modast.find_say("Getting ready, I noticed something lying on the table. It was the note Remy had left for me in case I needed anything. Along with his own home phone and work number, there were also some numbers for delivery of food and other necessities, as well as emergency and even janitorial services. He had certainly thought of everything, even though I now had to wonder what a dragon plumber might look like.")
-        modast.call_hook(varInitHook, modast.find_label("eval_tmomi_common"))
+        modast.call_hook(varInitHook, modast.find_label("eval_tdomi_common"))
         
         #Remy's ending hook - Note I need to push this back earlier to change some prior dialogue
         endHookSource = modast.find_say("Besides, if you really end up going back in time, I'll see you again.")

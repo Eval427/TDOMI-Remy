@@ -1,4 +1,4 @@
-label eval_tmomi_common:
+label eval_tdomi_common:
 
     #Backgrounds
     image evalwildlands = "bg/evalwildlands.jpg" #Tysm EvilChaosKnight
@@ -121,6 +121,9 @@ label eval_tmomi_common:
     #Whether you share the bed in the changed Ch4 Remy date
     $ evalRemyDateBed = False
 
+    #Basically just a bugfix on a hook
+    $ evalFixDoubleOrphanageLine = True
+
 
 
     #A bunch of variables for the orphanage minigame
@@ -175,7 +178,15 @@ label eval_tmomi_common:
     #Lists of items the player has
     $ evalGatheredItems = []
 
-    #Tie-in with Remy Hatchlings mod as an alternate way to get the secret ending.
+    #Variables for when Vara leaves in the orphanage minigame
+    $ evalVaraGone = False
+    $ evalRemyAsksAboutVara = False
+    $ evalVaraSnack = False
+    $ evalRemyGoneWhileSnack = False
+    $ evalCrackersConsumed = 0
+    $ evalJustAteCracker = False
+
+    #Tie-in with Remy Hatchlings mod as an alternate way to get the secret ending. I need to move this later
     $ evalVaraSurvives = False
     if renpy.python.store_dicts["store"].get("hatchling", "") == "Vara":
         $ evalVaraSurvives = True
@@ -225,8 +236,10 @@ label eval_tmomi_common:
 label eval_extended_ending:
     #Updated to require the player to meet with katsu every playthrough they want the ending
     if chap3picka == "katsu" or chap3pickb == "katsu":
-        jump eval_tmomi_remy
+        jump eval_tdomi_remy
     elif evalPathToSecretComplete:
         play sound "fx/system3.wav"
         s "You saved Vara, but there is still more to her story..."
+        stop music fadeout 2.0
+        scene black with dissolveslow
         return

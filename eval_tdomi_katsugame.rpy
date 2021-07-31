@@ -707,7 +707,7 @@ label eval_help_kev:
         $ evalServedCustomers += 1
         jump eval_katsu_help
 
-label eval_help_ley:
+label eval_help_ley: #Ask for a tape measure for poking Adine
     $ evalCharacterPreferredFlavor = "mango"
     show leymas normal with easeinright
     Le "Hello again, human. Fancy seeing you behind the counter once more."

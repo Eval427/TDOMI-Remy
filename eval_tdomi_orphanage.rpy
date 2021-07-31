@@ -72,9 +72,9 @@ label eval_orphanage_game_init:
 label eval_orphanage_game:
     #Complete the game if the player has done all 5 tasks
     if evalTasksComplete == 5:
-        show remy normal with dissolvemed
         m "I took one last look around the room."
         m "It looks like we had finished just about everything we could."
+        show remy normal with dissolvemed
         $ evalOrphanageScore = 2
         hide screen evalextrainfo
         jump eval_orphanage_end
@@ -85,7 +85,7 @@ label eval_orphanage_game:
         Ry "Adine should be here any minute, [player_name]."
         c "But we aren't done!"
         if evalTasksComplete > 3:
-            Ry smile "We still did quite a lot in one day. Don't worry. Adine and I can finish the rest in the next few days."
+            Ry smile "We still did quite a lot in one day. Don't worry, Adine and I can finish the rest in the next few days."
             $ evalOrphanageScore = 1
         else:
             Ry look "Don't worry, Adine and I can finish the rest in the next few days."
@@ -93,7 +93,7 @@ label eval_orphanage_game:
         jump eval_orphanage_end
     
     #Update the display
-    $ evalDisplayVar1name = "Remaining Minutes:"
+    $ evalDisplayVar1name = "Remaining Time:"
     $ evalDisplayVar1 = evalRemainingMinutes
     $ evalDisplayVar1unit = " mins"
 
@@ -238,7 +238,7 @@ label eval_orphanage_remy_item_gather:
                         Ry look "You mean DWD-40?"
                         c "What does that even stand for?"
                         Ry normal "Dragon Water Displacement 40, obviously."
-                        c "(I guess that's what the WD stands for...)"
+                        c "(I guess that's what the WD stands for.)"
                         show remy normal flip with dissolvemed
                         hide remy with easeoutright
                         show amely smnormal flip with dissolvemed
@@ -294,7 +294,7 @@ label eval_orphanage_remy_item_gather:
                         Ry "One ladder coming right {i}up{/i}!"
                         c "I see what you did there..."
                         Ry smile "There's a lot more where that came from."
-                        c "Oh no..."
+                        c "Oh no."
                         show remy normal flip with dissolvemed
                         hide remy with easeoutright
                         show amely smnormal flip with dissolvemed
@@ -637,9 +637,15 @@ label eval_orphanage_organize_books:
             $ evalSortBooks = True
             play sound "fx/placebook.mp3"
             if persistent.c1booksort:
-                m "Just like I had at the library, I organized the books in the shelf."
+                if evalPickUpBooks:
+                    m "Just like I had at the library, I organized the books on the shelf."
+                else:
+                    m "Just like I had at the library, I organized the books on the floor."
             else:
-                m "I organized the books on the shelf in alphabetical order."
+                if evalPickUpBooks:
+                    m "I organized the books on the shelf in alphabetical order."
+                else:
+                    m "I organized the books on the floor in alphabetical order."
                 c "(Not sure if this is how I should do it, but it should be fine.)"
             jump eval_orphanage_organize_books
         
@@ -846,7 +852,7 @@ label eval_orphanage_clean:
                 m "I need some cleaning spray if I'm going to clean the whiteboard."
                 jump eval_orphanage_game
         
-        "[[Go back]":
+        "[[Go Back]":
             jump eval_orphanage_game
 
 label eval_orphanage_end: #Change the music

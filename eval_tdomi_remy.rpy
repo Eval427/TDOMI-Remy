@@ -1,4 +1,4 @@
-label eval_tmomi_remy:
+label eval_tdomi_remy:
 
     #So you're taking a peek at the code, eh? Well, enjoy all my comments, cause I'm not gonna delete anything
 
@@ -239,11 +239,86 @@ label eval_tmomi_remy:
                             m "Nice one."
                             return
 
+        "Everyone." if persistent.evalSecretEndingCompleted or evalDoingSecretEnding:
+            c "Why don't we bring everyone?"
+            Ry look "Everyone?"
+            c "Yes. You, Amely, Vara, Adine, and I."
+            c "After everything that has happened, we could all use a bit of ice cream."
+            Ry normal "That sounds like a great idea, [player_name]!"
+            Ry smile "I can't remember the last time I had an outing with this many people."
+            Ry look "We may have to wait a bit, though. Adine is probably busy delivering food."
+            c "Good point..."
+            Ry normal "We could make ourselves useful at the orphanage until she's done."
+            Ry "She usually comes to check on the orphanage as soon as she's finished, and it would be a nice surprise for her to find the place spotless."
+            $ evalCurrentEnding = 4
+
+            menu: #It's possible that I want to change this more so it's more uniquie, but I'm not sure
+                "Sure.":
+                    c "Sure. I'd love to help out if I could."
+                    Ry smile "Great! Let's go now. Vara and Amely are already there, so they can keep us company as well."
+                    jump eval_trip_to_orphanage
+                
+                "Sounds boring, lets do something else.":
+                    c "That sounds like a pretty boring day out together. Let's do something else instead while we wait for Adine."
+                    Ry look "I guess that does sound a bit boring. I still feel bad for the kids though. I'm sure they would have been excited to see us today."
+                    c "I wouldn't worry. They're used to being alone, right?"
+                    Ry "I suppose."
+                    Ry normal "So, what were you thinking?"
+                    c "How about a nice walk around the area?"
+                    Ry look "You really think that walking is more interesting than taking care of children?"
+                    c "It beats the yelling and screaming."
+                    Ry angry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
+                    hide remy with dissolvemed
+                    stop music fadeout 2.0
+                    play sound "fx/evalgrasswalk1"
+                    m "The dragon stormed off and prepared to fly over to the orphanage."
+                    
+                    menu:
+                        "Stop Remy.":
+                            c "Wait! Remy!"
+                            play sound "fx/evalgrasswalk2"
+                            m "Remy looked at me and walked back over."
+                            $ renpy.pause (1.0) #This should fix it? No? Fixed. I'm an idiot
+                            show remy look with dissolvemed #Wtf is happening here?
+                            Ry "What?"
+                            play music "mx/jazzy.ogg"
+                            c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
+                            Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
+                            c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
+                            Ry "Well, so can dragon children, but you just learn to accept that they haven't had as much time on the planet as us, and sometimes have difficulty expressing their emotions in other ways."
+                            c "I guess..."
+                            Ry smile "Plus, I think this experience will be a lot more fun than you think."
+                            c "You're probably right."
+                            Ry normal "Great, we can start making our way over there now!"
+                            jump eval_trip_to_orphanage
+                        
+                        "Let him leave.":
+                            play sound "fx/takeoff.ogg"
+                            m "I silently watched as Remy extended his wings and flew off to the orphanage."
+                            "???" "You are an idiot"
+                            c "What? Who are you?"
+                            "???" "That doesn't matter. What does is how unbelievably selfish you are."
+                            "!!!" "Yeah, idiot!"
+                            c "What? There's two of you?"
+                            "???" "Yeah, and what are you gonna do about it child hater?"
+                            c "..."
+                            "!!!" "That's what I thought!"
+                            $ renpy.pause (0.5)
+                            scene black with dissolveslow
+                            c "At a loss for words, I made my way back home, crawled into bed, and did nothing for the rest of the day."
+                            m "Nice one."
+                            return
+
 label eval_trip_to_orphanage:
     c "It's a bit far, is it not? The doctor said I shouldn't be walking too much."
     Ry normal "Well, you could always ride me instead of walking."
-    c "Ummmm..."
+    if evalDoingSecretEnding and mp.remyromance:
+        c "Maybe not in public, Remy."
+    else:
+        c "Ummmm..."
     Ry shy "No... Not like that. I mean ride on my back."
+    if evalDoingSecretEnding and mp.remyromance:
+        c "Damn."
     Ry normal "You're pretty small, and I'm used to carrying around a bunch of books."
     c "I'll take being associated with a bunch of books as a compliment."
     Ry normal "Please do."
@@ -261,10 +336,11 @@ label eval_trip_to_orphanage:
             Ry "Hey, books don't complain."
             m "After finding a relatively comfortable spot on his back, Remy lifted his body."
             Ry "How is it back there?"
-            c "A bit bony. I think I need a saddle."
+            c "A bit uncomfortable. I think I need a saddle."
             Ry "Funnily enough, you can actually buy dragon saddles."
             c "That's... Interesting."
             Ry "They exist. I didn't say they were popular."
+            stop music fadeout 2.0
             scene black with dissolveslow
             #stop music fadeout 2.0 <- Possibly stop the music here instead
             play sound "fx/steps/rough_gravel.wav"
@@ -277,12 +353,11 @@ label eval_trip_to_orphanage:
             $ renpy.pause (0.5)
             m "We made our way through the city with a few dragons giving us strange looks."
             m "It seemed as if it took no time at all to arrive at the orphanage."
-            Ry "Ladies and gentledragons, this will be our first stop. Please make sure to grab all of your belongings and safely exit the vehicle."
+            Ry "Ladies and gentledragons, this will be our stop. Please make sure to grab all of your belongings and safely exit the vehicle."
             c "Very funny Remy."
             Ry "Thanks, I can tell that you sincerely mean that."
             play sound "fx/bed.ogg"
             m "I gracefully slid off Remy's back and looked around."
-            stop music fadeout 2.0
             scene hatchery with dissolveslow
             show remy look with dissolvemed
             Ry "Now, where did Adine leave the key this time?"
@@ -303,6 +378,8 @@ label eval_trip_to_orphanage:
             play music "mx/donuts.mp3"
             show remy normal with dissolve
             Ry "Well, here we are!"
+            if evalDoingSecretEnding:
+                jump eval_secret_orphanage_arrival
             Ry "Amely? Are you here?"
             $ renpy.pause (1.0)
             show amely smnormal with easeinright
@@ -316,7 +393,7 @@ label eval_trip_to_orphanage:
             Ry normal "Oh, we have some small bedrooms for them down the hall."
             Ry "At the moment the council has it completely closed off."
             c "Is that for any particular reason?"
-            Ry "Not exactly. They probably don't want random dragons just waltzing in and taking the childrens' things or sleeping in their beds."
+            Ry "Not exactly. They probably don't want random dragons just waltzing in and taking the childrens' beds."
             c "That makes sense. So what exactly are we doing here today?"
             Ry "Let's take a look."
             hide remy with easeoutleft
@@ -326,7 +403,7 @@ label eval_trip_to_orphanage:
             play sound "fx/lightswitch.mp3" #Increase the loudness of the audio
             $ renpy.pause (1.0)
             play sound "fx/lightbreak.mp3"
-            $ renpy.pause (1.0)
+            $ renpy.pause (2.0)
             Am "Uh oh!"
             Ry look "Well, that's not good."
             play sound "fx/lightswitch.mp3"
@@ -338,7 +415,7 @@ label eval_trip_to_orphanage:
             show amely smnormal flip with easeinleft
             show amely smnormal with dissolvemed
             Ry "I think I know something that we're going to have to do."
-            c "Fixing the lights?"
+            c "Fix the lights?"
             Ry smile "How'd you guess?"
             c "Not sure. Maybe I'm psychic."
             Ry "Well, if you're psychic, do you know what else is wrong here?"
@@ -353,7 +430,7 @@ label eval_trip_to_orphanage:
             Ry look "Not to mention that the books in here have seen better days."
             c "How should we do this?"
             Ry normal "Most of the supplies we have here are scattered around in a few locations near this building."
-            Ry "So I think you should stay here while I grab supplies for you."
+            Ry "So I think you should stay here while I grab things for you."
             Am "I help?"
             Ry smile "Sorry. Amely and I will grab you the supplies you need since we are very familiar with this place."
             Am "Yay!!!"
@@ -373,24 +450,15 @@ label eval_trip_to_orphanage:
             hide remy with dissolvemed
             play sound "fx/steps/rough_gravel.wav"
             m "With that, we started walking."
-            if evalDoingSecretEnding: #This is necessary for continuity, since MC doesn't go into a coma for the secret ending
-                m "However, it seemed as if I had overestimated just how far the walk to the orphanage would be."
-                m "I found myself slowly falling behind Remy, steady pace."
-                scene forest1 with dissolveslow
-                show remy normal with dissolvemed
-                play music "mx/serene.ogg"
-                Ry look "Hey, are you alright? You look winded."
-                c "I didn't think it would be this long of a walk to get to the orphanage."
-            else:
-                m "However, it seemed as if I had greatly overestimated my physical strength."
-                m "We continued on at a good pace for about ten minutes. However, I quickly fell victim to exhaustion and found myself struggling to keep up with Remy."
-                scene forest1 with dissolveslow
-                show remy normal with dissolvemed
-                play music "mx/serene.ogg" #Look into changing this
-                Ry look "Hey, are you alright? You look winded."
-                c "I think I'm alright. Just tired."
-                c "I thought I could walk from one end of town to the other, but that coma really did a number on me."
-                Ry "I can see that."
+            m "However, it seemed as if I had greatly overestimated my physical strength."
+            m "We continued on at a good pace for about ten minutes. However, I quickly fell victim to exhaustion and found myself struggling to keep up with Remy."
+            scene forest1 with dissolveslow
+            show remy normal with dissolvemed
+            play music "mx/serene.ogg" #Look into changing this
+            Ry look "Hey, are you alright? You look winded."
+            c "I think I'm alright. Just tired."
+            c "I thought I could walk from one end of town to the other, but that coma really did a number on me."
+            Ry "I can see that."
             Ry normal "Here, why don't we rest underneath that tree over there so you can regain your strength."
             scene black with dissolveslow
             hide remy with dissolvemed
@@ -473,6 +541,8 @@ label eval_trip_to_orphanage:
             scene evalorphdark with dissolveslow
             play music "mx/donuts.mp3"
             show remy normal with dissolve
+            if evalDoingSecretEnding: #Jumps over to the secret turn of events. Needs words, will work on later.
+                jump eval_everyone_1
             Ry "Well, here we are! Amely? Are you here?"
             $ renpy.pause (1.0)
             show amely smnormal with easeinright
@@ -1581,7 +1651,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     m "After finding a relatively comfortable spot on his back, Remy lifted his body."
     Ry "How is it back there?"
     if not evalRodeRemy:
-        c "A bit bony. I think I need a saddle."
+        c "A bit uncomfortable. I think I need a saddle."
         Ry "Funnily enough, you can actually buy dragon saddles."
         c "That's... Interesting."
         Ry "They exist. I didn't say they were popular."
@@ -2072,9 +2142,12 @@ label eval_remy_amely_adine_3:
     Ka smile flip "There's something wrong with your ice cream, let me fix it quickly."
     c "Sure. I'll meet you guys there."
     Ry smile "Alright."
-    hide amely with dissolvemed
-    hide remy with dissolvemed
-    hide adine with dissolvemed
+    show amely smnormal flip with dissolvemed
+    hide amely with easeoutright
+    show remy smile flip with dissolvemed
+    hide remy with easeoutright
+    show adine normal b flip with dissolvemed
+    hide adine with easeoutright
     hide katsu with dissolvemed
     show katsu normal with dissolvemed
     Ka "I wanted to speak privately with you for a moment, [player_name]."
