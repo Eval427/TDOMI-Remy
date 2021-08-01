@@ -281,15 +281,16 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         
         m "We made our way back to the main room."
         scene o3 with dissolveslow
-        show vara smnormal flip at left with dissolvemed
-        show remy normal at right behind vara with dissolvemed
+        show vara smnormal flip at left
+        show remy normal at right behind vara
+        with dissolvemed
         Ry "Well, it's getting to be Vara's bedtime, so we best get going."
         c "I understand."
         if evalVaraMood >= 4:
             play sound "fx/fireworks2.ogg"
             Vr smshocked flip "..."
             m "What must have been the finale for the day's firework show seemed to frighten Vara."
-            hide vara with dissolvemed
+            show vara smshocked at right with move
             show vara smshocked at right with dissolvemed
             Ry "It's alright, Vara. It's just some fireworks."
             Vr "..."
@@ -322,8 +323,9 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             m "I awoke when I felt a strange pressing senastion on my cheek."
             m "It was Vara, who looked down at me with a concerened expression."
             scene o3 with dissolveslow
-            show remy look with dissolvemed
-            show vara smshocked with dissolvemed
+            show remy look
+            show vara smshocked
+            with dissolvemed
             play music "mx/flashback.ogg"
             Vr "..."
             c "Ugh, how long was I out for?"
@@ -802,9 +804,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     play sound "fx/impact3.ogg"
     m "He pulled the trigger a second time, and I heard a dull thud come from the bushes."
     m "Suddenly, a flurry of gray rushed at Reza."
-    show maverick angry flip at left with easeinleft
-    $ renpy.pause (1.0)
-    show maverick at Position(xpos=0.65, xanchor='center') with move6
+    show maverick angry flip at Position(xpos=0.65, xanchor='center') with easeinleft
     play sound "fx/impact3.ogg"
     show maverick at Position(xpos=0.8, xanchor='center', ypos=1.0, yanchor="top")
     show reza at Position(xpos=1.0, xanchor='center', ypos=1.0, yanchor="top")
@@ -882,7 +882,10 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show vara smsad flip behind remy at Position(xpos=-0.1) with move
     m "Vara snuggled closer to Remy and buried her face in his side."
     m "Suddenly, the Administrator appeared next to me."
-    show izumi normal 4 d at Position (xpos=0.9) with easeinright
+    if persistent.annabadending==True:
+        show izumi normal 4 d at Position(xpos=0.9) with easeinright
+    else:
+        show izumi normal 4 c at Position(xpos=0.9) with easeinright
     As "This is not right."
     c "What do you mean?"
     show vara smgrowl flip at Position(xpos=-0.1) with dissolvemed
@@ -926,7 +929,10 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "The Administrator suddenly fell to the ground."
     show vara smshocked flip with dissolvemed
     c "Are you okay?"
-    As "You will know what to do, [player_name]."
+    if persistent.annabadending==True:
+        As normal 4 d "You will know what to do, [player_name]."
+    else:
+        As normal 4 c "You will know what to do, [player_name]."
     m "With that, she closed her eyes and her body went limp."
 
     stop music fadeout 3.0
@@ -962,7 +968,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     n "After I awoke from my coma, I had to consider my options."
     n "While the dragons were able to create a new power source for the portal, I wouldn't have known how to send myself back to humanity, as their portal was already deactivated - at least not without the expertise of the dead Administrator."
     n "The only coordinates remaining in the portal were those she left as a last resort. It turned out they were to send someone back in time to the day I arrived here."
-    n "As soon as I could, I met with Remy, who told me about everything I had missed."
+    n "I met with Remy as soon as i could, who told me about everything I had missed."#had to change this to avoid clashing with vara survives mod
 
     window hide
     nvl clear
