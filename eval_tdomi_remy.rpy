@@ -1853,7 +1853,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             Ry "I guess it's really up to you, [player_name]. This was your idea after all."
     
     menu:
-        "Help out Katsuharu.":
+        "[[Help out Katsuharu]":
             c "You really think I would leave you guys like that? Of course we can help you, Katsuharu."
             show remy normal at right behind amely with dissolvemed
             show adine normal b at Position (xpos=0.6) behind remy with dissolvemed
@@ -1885,20 +1885,22 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             c "Seems simple enough."
             jump eval_katsu_help_init
 
-        "Enjoy your ice cream alone.":
+        "[[Enjoy your ice cream alone]":
+            $ adinestatus="bad"
+            $ remystatus="bad"
             stop music fadeout 2.0
             if evalHelpOrphanage:
                 c "I think I've already done enough work today helping at the orphanage."
             else:
                 c "That seems like a lot more work than I want to put up with at the moment."
-            
             Ka exhausted flip "I was looking forward to the extra help."
             Ry sad "Oh, I see, [player_name]."
             Am smsad "Ice cream?"
             Ry "Sorry, Amely. I guess not today."
             Am "Awwwwww."
-            show remy sad flip with dissolvemed
-            show amely smsad flip with dissolvemed
+            show remy sad flip
+            show amely smsad flip
+            with dissolvemed
             hide remy with easeoutright
             hide amely with easeoutright
             m "With his head hung low, Remy walked away with Amely."
