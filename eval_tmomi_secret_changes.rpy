@@ -281,28 +281,26 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         
         m "We made our way back to the main room."
         scene o3 with dissolveslow
-        show vara smnormal flip at left with dissolvemed
-        show remy normal at right behind vara with dissolvemed
+        show vara smnormal flip at left
+        show remy normal at right behind vara
+        with dissolvemed
         Ry "Well, it's getting to be Vara's bedtime, so we best get going."
         c "I understand."
         if evalVaraMood >= 4:
             play sound "fx/fireworks2.ogg"
             Vr smshocked flip "..."
             m "What must have been the finale for the day's firework show seemed to frighten Vara."
-            hide vara with dissolvemed
-            show vara smshocked at right with dissolvemed
+            show vara at right with move
+            show vara smshocked
             Ry "It's alright, Vara. It's just some fireworks."
             Vr "..."
             play sound "fx/hug.mp3"
             m "Remy hugged Vara with his wings, and she seemed to settle down."
             show vara smnormal with dissolvemed
             m "I turned my gaze to face the two dragons."
-            hide remy
-            hide vara
-            with dissolvemed
-            show remy normal behind vara
-            show vara smnormal
-            with dissolvemed
+            show remy normal behind vara at center
+            show vara smnormal at center
+            with move
 
             stop music fadeout 2.0
             $ renpy.pause (3.0)
@@ -322,8 +320,9 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             m "I awoke when I felt a strange pressing senastion on my cheek."
             m "It was Vara, who looked down at me with a concerened expression."
             scene o3 with dissolveslow
-            show remy look with dissolvemed
-            show vara smshocked with dissolvemed
+            show remy look
+            show vara smshocked
+            with dissolvemed
             play music "mx/flashback.ogg"
             Vr "..."
             c "Ugh, how long was I out for?"
@@ -376,8 +375,9 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                         Ry smile "I could keep a closer eye on you as well. What do you say, Vara?"
                         m "Vara nodded."
                         Ry normal "I guess that decides it."
-                        hide remy with dissolvemed
-                        hide vara with dissolvemed
+                        hide remy
+                        hide vara
+                        with dissolvemed
                         m "The three of us made our way into the bedroom."
                         m "Too tired to even take off my clothes, I lay down on the bed."
                         m "Remy removed his tie and rested it on the nightstand."
@@ -747,12 +747,11 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show izumi normal at right with ease
     As "Stop, Reza."
     play sound "fx/rev.ogg"
-    show reza gunpoint flip
+    show reza gunpoint flip with dissolvemed
     m "Confused, Reza spun around, aiming his gun at the newcomer who was slowly walking towards him."
     Rz "Who the fuck are you? Freeze! I said freeze!"
     show izumi at Position(xpos=0.8, xanchor='center') with ease
     As "Want to waste your bullets on me? Feel free."
-    play sound "fx/rev.ogg"
     Rz gunpoint flip "If you say so."
     play sound "fx/gunshot2.wav"
     $ renpy.pause (0.5)
@@ -802,9 +801,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     play sound "fx/impact3.ogg"
     m "He pulled the trigger a second time, and I heard a dull thud come from the bushes."
     m "Suddenly, a flurry of gray rushed at Reza."
-    show maverick angry flip at left with easeinleft
-    $ renpy.pause (1.0)
-    show maverick at Position(xpos=0.65, xanchor='center') with move6
+    show maverick angry flip at Position(xpos=0.65, xanchor='center') with easeinleft
     play sound "fx/impact3.ogg"
     show maverick at Position(xpos=0.8, xanchor='center', ypos=1.0, yanchor="top")
     show reza at Position(xpos=1.0, xanchor='center', ypos=1.0, yanchor="top")
@@ -882,7 +879,10 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show vara smsad flip behind remy at Position(xpos=-0.1) with move
     m "Vara snuggled closer to Remy and buried her face in his side."
     m "Suddenly, the Administrator appeared next to me."
-    show izumi normal 4 d at Position (xpos=0.9) with easeinright
+    if persistent.annabadending==True:
+        show izumi normal 4 d at Position(xpos=0.9) with easeinright
+    else:
+        show izumi normal 4 c at Position(xpos=0.9) with easeinright
     As "This is not right."
     c "What do you mean?"
     show vara smgrowl flip at Position(xpos=-0.1) with dissolvemed
@@ -965,7 +965,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     n "After I awoke from my coma, I had to consider my options."
     n "While the dragons were able to create a new power source for the portal, I wouldn't have known how to send myself back to humanity, as their portal was already deactivated - at least not without the expertise of the dead Administrator."
     n "The only coordinates remaining in the portal were those she left as a last resort. It turned out they were to send someone back in time to the day I arrived here."
-    n "As soon as I could, I met with Remy, who told me about everything I had missed."
+    n "I met with Remy as soon as i could, who told me about everything I had missed."#had to change this to avoid clashing with vara survives mod
 
     window hide
     nvl clear
@@ -987,7 +987,7 @@ label eval_post_secret_remy_meeting:
     c "Oh, what did he have to say?"
     Ry "I think it would be better if he explained himself."
     show remy normal at right with move
-    show maverick normal flip at Position(xpos=0.1) with easeinleft
+    show maverick normal b flip at Position(xpos=0.1) with easeinleft
     Mv "Hello, [player_name]."
     c "Hello, Maverick."
     Mv "Listen, [player_name]. I think I owe you an apology."
@@ -995,19 +995,18 @@ label eval_post_secret_remy_meeting:
     Mv "Trying to impress everyone and get on their good side."
     Mv "I never stopped to think that maybe you were just a nice person."
     Mv "Remy had some things to say about you."
-    Mv scared flip "Some things I'll never forget."
-    Mv normal flip "And I want to give you my sincerest apologies."
+    Mv scared b flip "Some things I'll never forget."
+    Mv normal b flip "And I want to give you my sincerest apologies."
     c "I forgive you, Maverick. I can understand how you felt." #Possible to add a choice here to just deny him
     c "With all of the uncertainty and confusion surrounding that time, distrust was inevitable."
     c "I'm just glad we can put this all behind us and move on."
-    Mv nice flip "Me too, [player_name]."
-    Mv normal flip "I'd love to stick around and chat, but Bryce needs me back at the station."
+    Mv nice b flip "Me too, [player_name]."
+    Mv normal b flip "I'd love to stick around and chat, but Bryce needs me back at the station."
     Ry smile "I'm glad you two were able to settle your differences."
     c "Me too. See you around, Maverick."
-    show maverick normal at Position(xpos=0.1) with dissolvemed
+    show maverick normal b at Position(xpos=0.1) with dissolvemed
     hide maverick with easeoutleft
-    hide remy with dissolvemed
-    show remy normal with dissolvemed
+    show remy normal at center with move
     Ry "What will you do now, [player_name]?"
     c "I could use the portal to return to the day of my arrival. After all, I came here to save our dying city, which is something I failed to do."
     Ry "But you saved us. You saved Vara."

@@ -763,7 +763,7 @@ label eval_secret_orphanage_fix_desk:
                     m "She grabbed a long metal desk leg from the pile and returned to me."
                     show vara smnormal with easeinright
                     Vr "Here."
-                    v "Thank you, Vara."
+                    c "Thank you, Vara."
                 play sound "fx/screwin.mp3"
                 m "I quickly replaced the melted desk leg with a new one."
                 jump eval_secret_orphanage_fix_desk
