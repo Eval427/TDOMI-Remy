@@ -926,7 +926,10 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "The Administrator suddenly fell to the ground."
     show vara smshocked flip with dissolvemed
     c "Are you okay?"
-    As "You will know what to do, [player_name]."
+    if persistent.annabadending==True:
+        As normal 4 d "You will know what to do, [player_name]."
+    else:
+        As normal 4 c "You will know what to do, [player_name]."
     m "With that, she closed her eyes and her body went limp."
 
     stop music fadeout 3.0

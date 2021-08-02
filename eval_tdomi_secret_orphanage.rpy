@@ -337,8 +337,9 @@ label eval_secret_orphanage_game:
             elif evalCrackersConsumed > 6 and evalCrackersConsumed < 10:
                 m "I was starting to feel sick, I should have stopped eating a long time ago."
             elif evalCrackersConsumed == 10:
-                m "My body would not let me swallow the cracker. I was forced to spit it out on the floor."
+                m "My body would not let me swallow it. I was forced to spit it out on the floor."
                 Vr smshocked "..."
+                stop music fadeout 2.0
                 scene black with dissolvemed
                 m "Then, everything went black."
                 play sound "fx/impact3.ogg"
@@ -1228,5 +1229,27 @@ label eval_secret_orphanage_end: #Change the music
         jump eval_everyone_1
     
 label eval_too_many_crackers:
-    m "This bad ending isn't quite complete yet, sorry!"
+    $ renpy.pause (3.0)
+    scene o2 with dissolveslow
+    m "I opened my eyes to find myself back in my apartment."
+    m "Remy was resting on the couch next to me, and when I stirred, he got up."
+    show remy normal with dissolvemed
+    Ry "You're finally up."
+    c "What happened?"
+    Ry look "Well, I dragged you back here after you passed out at the orphanage."
+    c "I think I had a little bit too much to eat."
+    Ry normal "I'll say. I don't think we will be able to get any ice cream today, it's quite late."
+    c "Not like I could eat another bite of food, anyways."
+    Ry "I guess we'll just have to reschedule."
+    Ry look "Although you're probably going to have to talk with Vara first."
+    c "How come?"
+    Ry sad "She blames herself for what happened at the orphanage. She locked herself in her room and hasn't come out since."
+    c "Oh! Should I go and talk to her?"
+    Ry look "Not yet. Give her some time."
+    Ry sad "I'm going to go and try and get her out of her room. You stay here and get better."
+    hide remy with easeoutleft
+    play sound "fx/door/doorchain.ogg"
+    $ renpy.pause (2.0)
+    scene black with dissolveslow
+    $ renpy.pause (2.0)
     return

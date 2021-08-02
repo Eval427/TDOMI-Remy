@@ -1525,7 +1525,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         Ry look "Well... They're broken."
         Ad disappoint b flip "Oh. Poor Amely was stuck in the dark all this time?"
         Am smsad "Dark!"
-        Ad sad b flip "Oh I'm so sorry Amely! I didn't know!"
+        Ad sad b flip "Oh, I'm so sorry Amely! I didn't know!"
         Ry "I wouldn't worry too much, Adine. She's fine."
         Ad disappoint b flip "I guess..."
     
@@ -1556,7 +1556,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         play sound "fx/hug.mp3"
         m "Adine got down on her knees and completely hid the little dragon within her wings."
         show adine normal b flip at left with dissolvemed
-        Ad "Now. I know the real reason you came here wasn't just to clean up the place."
+        Ad "Now, I know the real reason you came here wasn't just to clean up the place."
         c "Alright you got me."
         Ad "Well. Why are you here then?" 
     elif evalOrphanageScore == 1:
@@ -1593,7 +1593,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities Amely would get to experience something like this."
         Ry normal "Good point."
     Ad think b flip "Wait a minute."
-    Ad "How are we supposed to get back over to Tatsu Park?"
+    Ad "How are we supposed to get back to Tatsu Park?"
     Ad "I can fly Amely over, but how is [player_name] going to make it there in a reasonable amount of time?"
     Ry normal "[player_name] could just ride me."
     Ad giggle b flip "[player_name] could ride you, Remy? Is this really the time?"
@@ -1661,6 +1661,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     scene black with dissolveslow
     $ renpy.pause (3.0)
     play sound "fx/door/door_open.wav"
+    scene hatchery with dissolveslow
     Ry "Would you mind locking the door and hiding the key again?"
     c "Sure."
     m "Not wanting to repeat the process of getting on Remy, I grabbed the key and stretched my arm towards the door."
@@ -2213,7 +2214,7 @@ label eval_remy_amely_adine_3:
     show remy normal at right behind amely with dissolvemed
     show adine normal b flip at left with dissolvemed
     Ry smile "Sorry, [player_name]. You took so long we had to start eating our ice cream before it all melted!"
-    c "No worries. Katsuharu took a bit of time remaking my ice cream."
+    c "No worries. Katsuharu took a bit of time remaking mine as well."
     Ad "Well it shows. That looks like a perfect scoop of ice cream!"
     c "It looks so good I almost don't wnat to eat it."
     Ad giggle b flip "Well, you probably should before it melts."
@@ -2700,5 +2701,5 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
         jump eval_solo_remy_2
     elif evalCurrentEnding == 2:
         jump eval_remy_amely_2
-    elif evalCurrentEnding == 3: #Update later
+    elif evalCurrentEnding == 3:
         jump eval_remy_amely_adine_3
