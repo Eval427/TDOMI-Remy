@@ -171,10 +171,7 @@ label eval_tdomi_remy:
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry smile "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
             Ry normal "Work, especially since Reza, has been particularly chaotic. It would be nice for the four of us to have a nice day out."
-            if evalDoingSecretEnding:
-                c "Couldn't agree more. I've been so busy in the last few months, I feel like I've missed out on so much."
-            else:
-                 "Couldn't agree more. Being in a coma for the last few months, I feel like I've missed out on so much."
+            c "Couldn't agree more. Being in a coma for the last few months, I feel like I've missed out on so much."
             c "It would be nice to talk over some nice ice cream."
             Ry look "Hmmm... We may have to wait a little bit, Adine is probably busy on her shift delivering food."
             c "Good point..."
@@ -197,6 +194,8 @@ label eval_tdomi_remy:
                     c "How about a nice walk around the area?"
                     Ry look "You really think that walking is more interesting than taking care of children?"
                     c "It beats the yelling and screaming."
+                    $ evalRemyStatus=remystatus#store remy's original status
+                    $ remystatus="bad"#having Remy's status change to bad can add a punch to the gut
                     Ry angry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
                     hide remy with dissolvemed
                     stop music fadeout 2.0
@@ -204,7 +203,7 @@ label eval_tdomi_remy:
                     m "The dragon stormed off and prepared to fly over to the orphanage."
                     
                     menu:
-                        "Stop Remy.":
+                        "[[Stop Remy]":
                             c "Wait! Remy!"
                             play sound "fx/evalgrasswalk2"
                             m "Remy looked at me and walked back over."
@@ -213,6 +212,7 @@ label eval_tdomi_remy:
                             Ry "What?"
                             play music "mx/jazzy.ogg"
                             c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
+                            $ remystatus=evalRemyStatus#you were quick to apolgize for your rash decision and his mood is restored
                             Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
                             c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
                             Ry "Well, so can dragon children, but you just learn to accept that they haven't had as much time on the planet as us, and sometimes have difficulty expressing their emotions in other ways."
@@ -222,7 +222,7 @@ label eval_tdomi_remy:
                             Ry normal "Great, we can start making our way over there now!"
                             jump eval_trip_to_orphanage
                         
-                        "Let him leave.":
+                        "[[Let him leave]":
                             play sound "fx/takeoff.ogg"
                             m "I silently watched as Remy extended his wings and flew off to the orphanage."
                             "???" "You are an idiot"
@@ -267,6 +267,8 @@ label eval_tdomi_remy:
                     c "How about a nice walk around the area?"
                     Ry look "You really think that walking is more interesting than taking care of children?"
                     c "It beats the yelling and screaming."
+                    $ evalRemyStatus=remystatus#store remy's original status
+                    $ remystatus="bad"#having Remy's status change to bad can add a punch to the gut
                     Ry angry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
                     hide remy with dissolvemed
                     stop music fadeout 2.0
@@ -274,7 +276,7 @@ label eval_tdomi_remy:
                     m "The dragon stormed off and prepared to fly over to the orphanage."
                     
                     menu:
-                        "Stop Remy.":
+                        "[[Stop Remy]":
                             c "Wait! Remy!"
                             play sound "fx/evalgrasswalk2"
                             m "Remy looked at me and walked back over."
@@ -283,6 +285,7 @@ label eval_tdomi_remy:
                             Ry "What?"
                             play music "mx/jazzy.ogg"
                             c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
+                            $ remystatus=evalRemyStatus#you were quick to apolgize for your rash decision and his mood is restored
                             Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
                             c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
                             Ry "Well, so can dragon children, but you just learn to accept that they haven't had as much time on the planet as us, and sometimes have difficulty expressing their emotions in other ways."
@@ -292,7 +295,7 @@ label eval_tdomi_remy:
                             Ry normal "Great, we can start making our way over there now!"
                             jump eval_trip_to_orphanage
                         
-                        "Let him leave.":
+                        "[[Let him leave]":
                             play sound "fx/takeoff.ogg"
                             m "I silently watched as Remy extended his wings and flew off to the orphanage."
                             "???" "You are an idiot"
@@ -305,8 +308,7 @@ label eval_tdomi_remy:
                             "!!!" "That's what I thought!"
                             $ renpy.pause (0.5)
                             scene black with dissolveslow
-                            c "At a loss for words, I made my way back home, crawled into bed, and did nothing for the rest of the day."
-                            m "Nice one."
+                            m "At a loss for words, I made my way back home, crawled into bed, and spend the rest of the day wondering what possessed me to be so selfish"
                             return
 
 label eval_trip_to_orphanage:
@@ -1714,10 +1716,10 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     c "I'll get you back for this, Remy."
     Ry "I'm sure you will."
     m "I spotted Adine and Amely walking over to us."
-    hide remy with dissolvemed
-    show remy normal at right with dissolvemed
-    show amely smnormal flip at left with dissolvemed
-    show adine normal b flip behind amely at left with dissolvemed
+    show remy normal at right with move
+    show amely smnormal flip at left
+    show adine normal b flip behind amely at left
+    with easeinleft
     Ad "Took you guys long enough to get here."
     Ad "I don't suppose you had a bit of fun did you?"
     m "My face, just about to return to it's normal shade, became bright red once again."
@@ -1753,14 +1755,12 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     Am "Ice cream?"
     Ry "I almost forgot about the ice cream! We should probably go before Katsuharu closes up for the day."
     scene black with dissolveslow
-    hide amely with dissolvemed
-    hide remy with dissolvemed
-    hide adine with dissolvemed
     m "We made our way to the end of the line of dragons I had seen earlier."
     scene town2 with dissolveslow
-    show remy normal at right with dissolvemed
-    show amely smnormal flip at left with dissolvemed
-    show adine normal b flip behind amely at left with dissolvemed
+    show remy normal at right
+    show amely smnormal flip at left
+    show adine normal b flip behind amely at left
+    with dissolvemed
     Ry "Wow, this is quite an impressive line."
     c "It seems that my advice has paid off for him after all."
     Ry smile "Indeed."
@@ -1795,9 +1795,10 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             m "Approaching the stand, I caught the attention of Katsuharu. He waved and beckoned us to come."
     
     scene town7 with dissolveslow
-    show amely smnormal at right with dissolvemed
-    show remy normal behind amely at right with dissolvemed
-    show adine normal b behind remy at Position (xpos=0.6) with dissolvemed
+    show amely smnormal at right
+    show remy normal behind amely at right
+    show adine normal b behind remy at Position (xpos=0.6)
+    with dissolvemed
     show katsu normal flip at Position (xpos=0.1) with easeinleft
 
     Ka "Well, if it isn't the business saving human, [player_name]! Have you come to take up my offer?"
@@ -1852,7 +1853,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             Ry "I guess it's really up to you, [player_name]. This was your idea after all."
     
     menu:
-        "Help out Katsuharu.":
+        "[[Help out Katsuharu]":
             c "You really think I would leave you guys like that? Of course we can help you, Katsuharu."
             show remy normal at right behind amely with dissolvemed
             show adine normal b at Position (xpos=0.6) behind remy with dissolvemed
@@ -1884,20 +1885,22 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             c "Seems simple enough."
             jump eval_katsu_help_init
 
-        "Enjoy your ice cream alone.":
+        "[[Enjoy your ice cream alone]":
+            $ adinestatus="bad"
+            $ remystatus="bad"
             stop music fadeout 2.0
             if evalHelpOrphanage:
                 c "I think I've already done enough work today helping at the orphanage."
             else:
                 c "That seems like a lot more work than I want to put up with at the moment."
-            
             Ka exhausted flip "I was looking forward to the extra help."
             Ry sad "Oh, I see, [player_name]."
             Am smsad "Ice cream?"
             Ry "Sorry, Amely. I guess not today."
             Am "Awwwwww."
-            show remy sad flip with dissolvemed
-            show amely smsad flip with dissolvemed
+            show remy sad flip
+            show amely smsad flip
+            with dissolvemed
             hide remy with easeoutright
             hide amely with easeoutright
             m "With his head hung low, Remy walked away with Amely."
@@ -2142,14 +2145,15 @@ label eval_remy_amely_adine_3:
     Ka smile flip "There's something wrong with your ice cream, let me fix it quickly."
     c "Sure. I'll meet you guys there."
     Ry smile "Alright."
-    show amely smnormal flip with dissolvemed
+    show amely smnormal flip
     hide amely with easeoutright
-    show remy smile flip with dissolvemed
+    show remy smile flip
     hide remy with easeoutright
-    show adine normal b flip with dissolvemed
+    show adine normal b flip
     hide adine with easeoutright
     hide katsu with dissolvemed
-    show katsu normal with dissolvemed
+    show katsu at center with ease
+    show katsu normal
     Ka "I wanted to speak privately with you for a moment, [player_name]."
     c "What about?"
     Ka exhausted "Well, it's about my business. If today has taught me anything, it's that I can't do this alone anymore."
@@ -2194,7 +2198,7 @@ label eval_remy_amely_adine_3:
     hide katsu with easeoutleft
     $ renpy.pause (2.0)
     show katsu normal flip with easeinleft
-    show katsu normal with dissolvemed
+    show katsu normal
     Ka "Here you go."
     c "This one somehow looks even better than the last."
     Ka smile "Thank you!"
@@ -2209,13 +2213,14 @@ label eval_remy_amely_adine_3:
     scene black with dissolveslow
     m "I walked over to where Remy, Adine, and Amely were sitting."
     scene evalpark1 with dissolveslow
-    show amely smnormal at right with dissolvemed
-    show remy normal at right behind amely with dissolvemed
-    show adine normal b flip at left with dissolvemed
+    show amely smnormal at right
+    show remy normal at right behind amely
+    show adine normal b flip at left
+    with dissolvemed
     Ry smile "Sorry, [player_name]. You took so long we had to start eating our ice cream before it all melted!"
     c "No worries. Katsuharu took a bit of time remaking my ice cream."
     Ad "Well it shows. That looks like a perfect scoop of ice cream!"
-    c "It looks so good I almost don't wnat to eat it."
+    c "It looks so good I almost don't want to eat it."
     Ad giggle b flip "Well, you probably should before it melts."
     c "Good point."
     show adine normal b flip with dissolvemed
@@ -2240,9 +2245,9 @@ label eval_remy_amely_adine_3:
         Ad normal b flip "I had a lot of fun today."
         Ry smile "I guess the ice cream was more of a bonus rather than an end goal."
         Ka "Did I hear an unhappy customer?"
-        hide adine with dissolvemed
-        show adine normal b at Position (xpos=0.6) behind remy with dissolvemed
-        show remy normal at right behind amely with dissolvemed
+        show adine normal b flip at Position (xpos=0.6) behind remy with move
+        show adine normal b at Position (xpos=0.6) behind remy
+        show remy normal at right behind amely with move
         show katsu normal flip with easeinleft
         c "How did you know?"
         Ka smile "I have a sixth sense for customer satisfaction."
@@ -2513,6 +2518,7 @@ label eval_remy_amely_adine_sleep_select:
                     c "Goodnight, Remy."
                 stop music fadeout 2.0
                 $ persistent.evalSecretEndingUnlocked = True
+                return
 
             else:
                 c "Why don't we get ready for bed now?"

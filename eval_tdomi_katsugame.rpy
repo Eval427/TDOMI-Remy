@@ -120,7 +120,8 @@ label eval_katsu_help:
     
     if evalServedCustomers == 7:
         m "Suddenly, I saw Amely run past the stand."
-        show amely smnormal with easeinright
+#        show amely smnormal at Position(xpos=.0, xanchor='right') with easeinright
+        show amely smnormal at Position(xpos=.99, xanchor='left') with easeinright
         hide amely with easeoutleft
         $ renpy.pause (1.0)
         m "Wait. Where did Adine go?"
@@ -197,27 +198,8 @@ label eval_katsu_help_2:
             $ evalQualityServed = 2
 
     m "Katsuharu handed me the cone."
+    return
 
-    if customers[evalServedCustomers] == "8":
-        jump eval_help_8th_2
-    elif customers[evalServedCustomers] == "Dram":
-        jump eval_help_dram_2
-    elif customers[evalServedCustomers] == "Em":
-        jump eval_help_em_2
-    elif customers[evalServedCustomers] == "Grey":
-        jump eval_help_grey_2
-    elif customers[evalServedCustomers] == "Kali":
-        jump eval_help_kali_2
-    elif customers[evalServedCustomers] == "Kev":
-        jump eval_help_kev_2
-    elif customers[evalServedCustomers] == "Ley":
-        jump eval_help_ley_2
-    elif customers[evalServedCustomers] == "Oph":
-        jump eval_help_oph_2
-    elif customers[evalServedCustomers] == "Lucius":
-        jump eval_help_luc_2
-    elif customers[evalServedCustomers] == "Xith":
-        jump eval_help_xith_2
 
 #Character dialogue - I think the dialogue is a bit lackluster at the moment. I should try to give it more character once everyone is done.
 #Oh god this is gonna be a lot of writing - 70 branches of dialogue. Oof.
@@ -244,45 +226,43 @@ label eval_help_8th:
         c "I can relate. What would you like?"
     Ei "Could I get a scoop of strawberry, please?"
     c "Yep. One scoop of strawberry coming right up."
-    jump eval_katsu_help_2
+    call eval_katsu_help_2 from eval_help_8th_2
+    c "Here you are. Enjoy!"
 
-    label eval_help_8th_2:
-        c "Here you are. Enjoy!"
-    
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                Ei "Ah, thank you! Great service too!"
-                c "Thank you!"
-                $ evalCustomerScore += 1
-            else:
-                Ei "Hm, looks great, but I really need to get going now."
-                c "Of course. Have a nice day."
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Ei "Thank you! This looks amazing!"
-                c "Of course! We took extra care to make this one."
-                Ei "It really shows!"
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                Ei "Looks good, but Katsuharu might be losing his magical touch."
-                c "Is everything alright with it?"
-                Ei "Yes. It just looks a bit different from what I remember."
-            else:
-                Ei "This looks amazing, but I doubt I'm going to be able to eat it all!"
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            Ei "Ah, thank you! Great service too!"
+            c "Thank you!"
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Ei "Wow! That's a lot of delicious looking ice cream! Thanks!"
-                $ evalCustomerScore += 1
-            else:
-                Ei "Thank you, this looks really good! I should have ordered more, though."
-                c "You can order another cone if you like."
-                Ei "It's alright. I don't want to hold up the line any longer."
-        
-        hide 8th with easeoutleft
-        m "With that, he paid and left."
+            Ei "Hm, looks great, but I really need to get going now."
+            c "Of course. Have a nice day."
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Ei "Thank you! This looks amazing!"
+            c "Of course! We took extra care to make this one."
+            Ei "It really shows!"
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            Ei "Looks good, but Katsuharu might be losing his magical touch."
+            c "Is everything alright with it?"
+            Ei "Yes. It just looks a bit different from what I remember."
+        else:
+            Ei "This looks amazing, but I doubt I'm going to be able to eat it all!"
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Ei "Wow! That's a lot of delicious looking ice cream! Thanks!"
+            $ evalCustomerScore += 1
+        else:
+            Ei "Thank you, this looks really good! I should have ordered more, though."
+            c "You can order another cone if you like."
+            Ei "It's alright. I don't want to hold up the line any longer."
+    
+    hide 8th with easeoutleft
+    m "With that, he paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 label eval_help_dram: #... dot dot dot ...
     $ evalCharacterPreferredFlavor = "mango"
@@ -333,35 +313,33 @@ label eval_help_dram: #... dot dot dot ...
             Dr "..."
             m "He continued looking at the mango ice cream, drool welling up on his muzzle."
     
-    jump eval_katsu_help_2
-
-    label eval_help_dram_2:
-        c "Here you go..."
+    call eval_katsu_help_2 from eval_help_dram_2
+    c "Here you go..."
+    if persistent.evalSeenDramavian:
+        m "I purposely said the three dots out loud."
+    else:
+        m "I found myself also saying the three dots out loud."
+    
+    if evalCharacterMood == evalQualityServed:
+        Dr "..."
         if persistent.evalSeenDramavian:
-            m "I purposely said the three dots out loud."
-        else:
-            m "I found myself also saying the three dots out loud."
-        
-        if evalCharacterMood == evalQualityServed:
+            Dr "Thanks..."
+            m "I smiled."
+            c "Any time."
             Dr "..."
-            if persistent.evalSeenDramavian:
-                Dr "Thanks..."
-                m "I smiled."
-                c "Any time."
-                Dr "..."
-            
-            $ evalCustomerScore += 1
-        else:
-            Dr "..."
-            if persistent.evalSeenDramavian:
-                Dr "Good..."
-                c "Glad to hear it."
         
-        hide dramavian with easeoutleft
-        m "With that, he paid and left."
+        $ evalCustomerScore += 1
+    else:
+        Dr "..."
+        if persistent.evalSeenDramavian:
+            Dr "Good..."
+            c "Glad to hear it."
+    
+    hide dramavian with easeoutleft
+    m "With that, he paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 label eval_help_em:
     $ evalCharacterPreferredFlavor = "cherry"
@@ -385,50 +363,48 @@ label eval_help_em:
         Em ques "I'll take the cherry please. It is quite a sophisticated flavor if you ask me."
     
     c "One scoop of cherry coming right up!"
-    jump eval_katsu_help_2
+    call eval_katsu_help_2 from eval_help_em_2
+    c "Here you go. Enjoy!"
 
-    label eval_help_em_2:
-        c "Here you go. Enjoy!"
-
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                Em laugh "Thank's for making it fast. Now I should have plenty of time to make it to the meeting."
-                c "Happy to help."
-                $ evalCustomerScore += 1
-            else:
-                Em frown "Hm, this looks good, but I really have to get going now. This took longer than I expected."
-                c "I understand. Have a nice day."
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Em laugh "Wow, Katsuharu still manages to make his ice cream look absolutely stunning."
-                c "I'm glad too see that you like it."
-                Em normal "Please make sure to tell Katsuharu that."
-                c "I will."
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                Em frown "Looks good, but I don't really think it's up to my standards."
-                c "Should I get you another?"
-                Em "Don't bother. This will suffice."
-            else:
-                Em frown "This is a lot of ice cream. Are you implying I look fat?"
-                c "N... No. Of course not! I just thought that a bit of extra ice cream never hurt."
-                if askiffat:
-                    m "So this is how Remy felt earlier."
-                Em normal "I will choose to believe your statement this time, [player_name]."
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            Em laugh "Thank's for making it fast. Now I should have plenty of time to make it to the meeting."
+            c "Happy to help."
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Em laugh "Wow! That's definitely enough to cool off after that meeting."
-                $ evalCustomerScore += 1
-            else:
-                Em "Thank you, this looks quite good. In hindsight I should have asked for a bit more. That meeting really did a number on me."
-                c "You could order another if you like."
-                Em "It is quite alright. I don't want to anger anyone else behind me."
-        
-        hide emera with easeoutleft
-        m "With that, she paid and left."
+            Em frown "Hm, this looks good, but I really have to get going now. This took longer than I expected."
+            c "I understand. Have a nice day."
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Em laugh "Wow, Katsuharu still manages to make his ice cream look absolutely stunning."
+            c "I'm glad to see that you like it."
+            Em normal "Please make sure to tell Katsuharu that."
+            c "I will."
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            Em frown "Looks good, but I don't really think it's up to my standards."
+            c "Should I get you another?"
+            Em "Don't bother. This will suffice."
+        else:
+            Em frown "This is a lot of ice cream. Are you implying I look fat?"
+            c "N... No. Of course not! I just thought that a bit of extra ice cream never hurt."
+            if askiffat:
+                m "So this is how Remy felt earlier."
+            Em normal "I will choose to believe your statement this time, [player_name]."
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Em laugh "Wow! That's definitely enough to cool off after that meeting."
+            $ evalCustomerScore += 1
+        else:
+            Em "Thank you, this looks quite good. In hindsight I should have asked for a bit more. That meeting really did a number on me."
+            c "You could order another if you like."
+            Em "It is quite alright. I don't want to anger anyone else behind me."
+    
+    hide emera with easeoutleft
+    m "With that, she paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 label eval_help_grey:
     $ evalCharacterPreferredFlavor = "vanilla"
@@ -451,69 +427,67 @@ label eval_help_grey:
         Gr "Yes please!"
     
     c "Perfect. Let me get that for you."
-    jump eval_katsu_help_2
+    call eval_katsu_help_2 from eval_help_grey_2
+    c "Here you go!"
 
-    label eval_help_grey_2:
-        c "Here you go!"
-
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                Gr "Great! Thanks for making it quick!"
-                c "Of course. Didn't want you to be late."
-                Gr "Thank you! This could make or break my career as an artist!"
-                c "I would say good luck, but I doubt you need it."
-                Gr "How so?"
-                c "I think I've seen some of your work. It's magnificent."
-                Gr "Thank you! I should probably get going now."
-                $ evalCustomerScore += 1
-            else:
-                Gr "That looks good. Thanks!"
-                c "No problem."
-                Gr "I should really get going now, this meeting is really important."
-                c "Of course. Good luck!"
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Gr "Wow! I know that Katsuharu puts a lot of time and dedication into his craft, but this is a true work of art."
-                c "Coming from an artist like yourself, I assume we should take that as quite the compliment."
-                Gr "Absolutely!"
-                c "Well, thank you. I'll make sure to tell Katsuharu how much you appreciate his work."
-                Gr "Please do. I should get going before the dragons behind me start getting too angry."
-                c "Good plan. It was nice seeing you again!"
-                Gr "You too!"
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                Gr "This doesn't quite look like how it did when I came here before."
-                c "Is everything alright with it?"
-                Gr "Yes. I guess I shouldn't blame Katsuharu. He seems really busy right now, so he probably doesn't have the time to be as careful and precise as he normally is."
-                c "We are quite busy today."
-                Gr "Don't worry, I totally understand. Have a nice day!"
-            else:
-                Gr "This looks great! How am I ever going to eat all of this, though?"
-                c "No worries. I gave you a bit extra, it's on the house."
-                Gr "Oh, thank you! Still, I hate to waste perfectly good ice cream."
-                Gr "Anyways, I best get going. I have an art meeting soon and I should try to get there early."
-                c "Oh course, have a nice day!"
-                Gr "You too!"
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            Gr "Great! Thanks for making it quick!"
+            c "Of course. Didn't want you to be late."
+            Gr "Thank you! This could make or break my career as an artist!"
+            c "I would say good luck, but I doubt you need it."
+            Gr "How so?"
+            c "I think I've seen some of your work. It's magnificent."
+            Gr "Thank you! I should probably get going now."
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Gr "Wow! That's a lot of ice cream! Perfect to calm the nerves before my art showcase later today."
-                c "Art showcase?"
-                Gr "Yeah! A bunch of the higher ups like Emera are interested in my artwork!"
-                c "That's great! I'm sure they'll love it."
-                Gr "I sure hope so. Have a nice day!"
-                $ evalCustomerScore += 1
-            else:
-                Gr "This looks amazing! I should have ordered more. This might not be enough to calm my nerves before my art showcase later today."
-                c "Art showcase?"
-                Gr "Yeah! A bunch of the higher ups like Emera are interested in my artwork!"
-                c "You could order another cone to calm your nerves."
-                Gr "Don't worry about it. This should be enough, and I don't want to hold up the line any longer."
-        
-        hide grey with easeoutleft
-        m "With that, Grey paid and left."
+            Gr "That looks good. Thanks!"
+            c "No problem."
+            Gr "I should really get going now, this meeting is really important."
+            c "Of course. Good luck!"
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Gr "Wow! I know that Katsuharu puts a lot of time and dedication into his craft, but this is a true work of art."
+            c "Coming from an artist like yourself, I assume we should take that as quite the compliment."
+            Gr "Absolutely!"
+            c "Well, thank you. I'll make sure to tell Katsuharu how much you appreciate his work."
+            Gr "Please do. I should get going before the dragons behind me start getting too angry."
+            c "Good plan. It was nice seeing you again!"
+            Gr "You too!"
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            Gr "This doesn't quite look like how it did when I came here before."
+            c "Is everything alright with it?"
+            Gr "Yes. I guess I shouldn't blame Katsuharu. He seems really busy right now, so he probably doesn't have the time to be as careful and precise as he normally is."
+            c "We are quite busy today."
+            Gr "Don't worry, I totally understand. Have a nice day!"
+        else:
+            Gr "This looks great! How am I ever going to eat all of this, though?"
+            c "No worries. I gave you a bit extra, it's on the house."
+            Gr "Oh, thank you! Still, I hate to waste perfectly good ice cream."
+            Gr "Anyways, I best get going. I have an art meeting soon and I should try to get there early."
+            c "Oh course, have a nice day!"
+            Gr "You too!"
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Gr "Wow! That's a lot of ice cream! Perfect to calm the nerves before my art showcase later today."
+            c "Art showcase?"
+            Gr "Yeah! A bunch of the higher ups like Emera are interested in my artwork!"
+            c "That's great! I'm sure they'll love it."
+            Gr "I sure hope so. Have a nice day!"
+            $ evalCustomerScore += 1
+        else:
+            Gr "This looks amazing! I should have ordered more. This might not be enough to calm my nerves before my art showcase later today."
+            c "Art showcase?"
+            Gr "Yeah! A bunch of the higher ups like Emera are interested in my artwork!"
+            c "You could order another cone to calm your nerves."
+            Gr "Don't worry about it. This should be enough, and I don't want to hold up the line any longer."
+    
+    hide grey with easeoutleft
+    m "With that, Grey paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 label eval_help_kali:
     $ evalCharacterPreferredFlavor = "chocolate"
@@ -541,60 +515,58 @@ label eval_help_kali:
         c "Anytime. What can I get you?"
     Kl "I'll take a scoop of chocolate, if you don't mind."
     c "Coming right up!"
-    jump eval_katsu_help_2
+    call eval_katsu_help_2 from eval_help_kali_2
+    c "Here's your chocolate ice cream."
 
-    label eval_help_kali_2:
-        c "Here's your chocolate ice cream."
-
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                Kl "Perfect! I should probably get going before Bryce throws a fit."
-                c "He is not the kind of dragon I would want to see mad."
-                Kl "It's not pretty, I've seen it before."
-                $ evalCustomerScore += 1
-            else:
-                Kl "Looks wonderful, but I've really got to get going now. Bryce is probably going to throw a fit."
-                c "That doesn't sound pretty."
-                Kl "It's not, I promise."
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Kl "This looks beautiful! Thank you!"
-                c "For all of your hard work on the case I thought spending a bit of extra time to make it perfect was the least we could do."
-                Kl "I appreciate that. It's things like this that make the job worth it."
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                Kl "This looks good, [player_name], but Katsuharu might want to slow down a bit."
-                c "Why? Is something wrong?"
-                Kl "Nothing is wrong. It's just a bit sloppier than I'm used to."
-                c "Would you like us to remake it?"
-                Kl "Don't worry about it. I'm sure you guys are under a lot of pressure with the massive amount of customers that have come today, and I don't want to add to that." #Meh, this is a bit sloppy
-                c "I think you're right. I'm really sorry about the ice cream."
-                Kl "Please, don't worry. It's still perfectly good ice cream. It was rude of me to say anything in the first place."
-            else:
-                Kl "This looks magnificent, [player_name]! How am I going to eat all of this?"
-                c "I thought you could use a bit extra to help with all the paperwork."
-                Kl "Maybe you're right."
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            Kl "Perfect! I should probably get going before Bryce throws a fit."
+            c "He is not the kind of dragon I would want to see mad."
+            Kl "It's not pretty, I've seen it before."
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Kl "That's quite an impressive scoop!"
-                c "I thought you could use a bit of extra ice cream to help you through the monotony of your paperwork."
-                Kl "Oh boy could I ever."
-                $ evalCustomerScore += 1
-            else:
-                Kl "Thank you, [player_name]! This looks really good. In hindsight I probably should have ordered more!"
-                c "You still can if you wish."
-                Kl "Thanks, but I think I'll pass. I've already held up the line, and Bryce is probably going to throw a fit if I don't get back to the office soon."
-                c "Oh. I would go. I don't think that would be pretty."
-                Kl "I've experienced it firsthand. It's not."
-        
-        c "Well, it was nice seeing you."
-        Kl "You too. Maybe we'll meet again."
+            Kl "Looks wonderful, but I've really got to get going now. Bryce is probably going to throw a fit."
+            c "That doesn't sound pretty."
+            Kl "It's not, I promise."
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Kl "This looks beautiful! Thank you!"
+            c "For all of your hard work on the case I thought spending a bit of extra time to make it perfect was the least we could do."
+            Kl "I appreciate that. It's things like this that make the job worth it."
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            Kl "This looks good, [player_name], but Katsuharu might want to slow down a bit."
+            c "Why? Is something wrong?"
+            Kl "Nothing is wrong. It's just a bit sloppier than I'm used to."
+            c "Would you like us to remake it?"
+            Kl "Don't worry about it. I'm sure you guys are under a lot of pressure with the massive amount of customers that have come today, and I don't want to add to that." #Meh, this is a bit sloppy
+            c "I think you're right. I'm really sorry about the ice cream."
+            Kl "Please, don't worry. It's still perfectly good ice cream. It was rude of me to say anything in the first place."
+        else:
+            Kl "This looks magnificent, [player_name]! How am I going to eat all of this?"
+            c "I thought you could use a bit extra to help with all the paperwork."
+            Kl "Maybe you're right."
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Kl "That's quite an impressive scoop!"
+            c "I thought you could use a bit of extra ice cream to help you through the monotony of your paperwork."
+            Kl "Oh boy could I ever."
+            $ evalCustomerScore += 1
+        else:
+            Kl "Thank you, [player_name]! This looks really good. In hindsight I probably should have ordered more!"
+            c "You still can if you wish."
+            Kl "Thanks, but I think I'll pass. I've already held up the line, and Bryce is probably going to throw a fit if I don't get back to the office soon."
+            c "Oh. I would go. I don't think that would be pretty."
+            Kl "I've experienced it firsthand. It's not."
+    
+    c "Well, it was nice seeing you."
+    Kl "You too. Maybe we'll meet again."
 
-        hide kalinth with easeoutleft
-        m "With that, she paid and left."
+    hide kalinth with easeoutleft
+    m "With that, she paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 #OHHHHH WE'RE HALFWAY THEREEEEE *AHHHH* *AHHH* THIS IS SO TE-DI-OUS!!!
 
@@ -651,61 +623,59 @@ label eval_help_kev:
             c "Maybe. Anyways, what flavor would you like?"
     Kv ramble "I'll take a scoop of chocolate, please."
     c "On it!"
-    jump eval_katsu_help_2
+    call eval_katsu_help_2 from eval_help_kev_2
+    c "Here you go."
 
-    label eval_help_kev_2:
-        c "Here you go."
-
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                Kv normal "Thanks for making it quick, I've really got to go."
-                if not kevinunplayed:
-                    c "Go do me proud and give out those flyers."
-                    Kv face "I'll do it for you, [player_name], but only you"
-                    show kevin normal with dissolvemed
-                else:
-                    c "Of course. Have a nice day!"
-                $ evalCustomerScore += 1
-            else:
-                Kv normal "That took a little bit! I might be late if I don't go..."
-                m "Kevin looked at his wrist where one would normally wear a watch."
-                Kv face "Right now! I'm probably late! Thank you! Bye!"
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            Kv normal "Thanks for making it quick, I've really got to go."
+            if not kevinunplayed:
+                c "Go do me proud and give out those flyers."
+                Kv face "I'll do it for you, [player_name], but only you"
                 show kevin normal with dissolvemed
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Kv normal "Wow! This looks spectacular! You can really tell that Katsuharu cares about his craft."
-                c "I'll make sure to put in a good word on your behalf."
-                Kv "Please do!"
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                Kv normal "That was fast, maybe even a little too fast."
-                c "Is everything alright?"
-                Kv face "Yes. I shouldn't have said anything at all. That was quite rude."
-                Kv normal "Normally, Katsuharu spends a lot of time making his ice cream look perfect."
-                Kv "But with the line, I can excuse the sloppiness."
-                c "I could get you another if you wish."
-                Kv "Please, don't worry about it. I don't want to hold up the line any longer. And it's not like presentation makes the actual ice cream any worse!"
             else:
-                Kv normal "Wow, that's a lot of ice cream! I'm not even sure I can eat all of this!"
+                c "Of course. Have a nice day!"
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Kv normal "Wow! That's a ton of ice cream. Thanks!"
-                c "I thought you could use a bit extra after a busy day."
-                Kv ramble "Boy could I ever."
-                show kevin normal with dissolvemed
-                $ evalCustomerScore += 1
-            else:
-                Kv normal "Thank you, this looks great! In hindsight, I should have ordered a bit more."
-                Kv "Giving out flyers is hard work, y'know?"
-                c "You could always order more now."
-                Kv "I don't want to hold up the line and get anyone in line too angry. Those are potential college-goers!"
-                m "A real one track mind it seems."
-        
-        hide kevin with easeoutleft
-        m "With that, he paid and left."
+            Kv normal "That took a little bit! I might be late if I don't go..."
+            m "Kevin looked at his wrist where one would normally wear a watch."
+            Kv face "Right now! I'm probably late! Thank you! Bye!"
+            show kevin normal with dissolvemed
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Kv normal "Wow! This looks spectacular! You can really tell that Katsuharu cares about his craft."
+            c "I'll make sure to put in a good word on your behalf."
+            Kv "Please do!"
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            Kv normal "That was fast, maybe even a little too fast."
+            c "Is everything alright?"
+            Kv face "Yes. I shouldn't have said anything at all. That was quite rude."
+            Kv normal "Normally, Katsuharu spends a lot of time making his ice cream look perfect."
+            Kv "But with the line, I can excuse the sloppiness."
+            c "I could get you another if you wish."
+            Kv "Please, don't worry about it. I don't want to hold up the line any longer. And it's not like presentation makes the actual ice cream any worse!"
+        else:
+            Kv normal "Wow, that's a lot of ice cream! I'm not even sure I can eat all of this!"
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Kv normal "Wow! That's a ton of ice cream. Thanks!"
+            c "I thought you could use a bit extra after a busy day."
+            Kv ramble "Boy could I ever."
+            show kevin normal with dissolvemed
+            $ evalCustomerScore += 1
+        else:
+            Kv normal "Thank you, this looks great! In hindsight, I should have ordered a bit more."
+            Kv "Giving out flyers is hard work, y'know?"
+            c "You could always order more now."
+            Kv "I don't want to hold up the line and get anyone in line too angry. Those are potential college-goers!"
+            m "A real one track mind it seems."
+    
+    hide kevin with easeoutleft
+    m "With that, he paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 label eval_help_ley: #Ask for a tape measure for poking Adine
     $ evalCharacterPreferredFlavor = "mango"
@@ -733,49 +703,47 @@ label eval_help_ley: #Ask for a tape measure for poking Adine
     Le "I'm thinking that the mango sounds good right now."
     c "It matches your hard hat quite nicely."
     Le "Thanks?"
-    jump eval_katsu_help_2
+    call eval_katsu_help_2 from eval_help_ley_2
+    c "Here's your mango ice cream!"
 
-    label eval_help_ley_2:
-        c "Here's your mango ice cream!"
-
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                Le "Nice and quick! Thanks, [player_name]!"
-                c "Can't have your colleagues getting angry at you."
-                Le "Thanks for looking out for me."
-                $ evalCustomerScore += 1
-            else:
-                Le "Thank you. It looks wonderful, but I've really got to get going now."
-                c "I understand. See you around hopefully."
-                m "The dragon muttered something about his colleagues being unhappy." #Meh, might want to change this
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Le "Wow, this looks so good, I don't know if I even want to eat it!"
-                c "Well, if you don't eat it, the sun will make quick work of it instead."
-                Le "Good point."
-                Le "Have a nice day, [player_name]!"
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                Le "This looks delicious! Although I recall the ice cream looking more presentable in the past."
-                c "Is it alright? I can always get you another."
-                Le "Please, don't bother. It's still perfectly good ice cream, and I really shouldn't be holding up the line any longer."
-            else:
-                Le "That's quite the amount of mango ice cream you have there, [player_name]!"
-                Le "How am I even supposed to eat all of that?"
-                c "I thought you could use a bit extra. It's a little warm today."
-                Le "I guess so. Thanks!"
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            Le "Nice and quick! Thanks, [player_name]!"
+            c "Can't have your colleagues getting angry at you."
+            Le "Thanks for looking out for me."
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Le "That's a lot of mango ice cream, [player_name]!"
-                c "You said you were hungry, so I added a bit extra."
-                Le "Thanks a ton! I really needed some extra ice cream today!"
-                $ evalCustomerScore += 1
-        
-        hide leymas with easeoutleft #Add a bit more here possibly. Idk why I like leymas more than the other characters I made up
-        m "With that, Leymas paid and left."
+            Le "Thank you. It looks wonderful, but I've really got to get going now."
+            c "I understand. See you around hopefully."
+            m "The dragon muttered something about his colleagues being unhappy." #Meh, might want to change this
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Le "Wow, this looks so good, I don't know if I even want to eat it!"
+            c "Well, if you don't eat it, the sun will make quick work of it instead."
+            Le "Good point."
+            Le "Have a nice day, [player_name]!"
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            Le "This looks delicious! Although I recall the ice cream looking more presentable in the past."
+            c "Is it alright? I can always get you another."
+            Le "Please, don't bother. It's still perfectly good ice cream, and I really shouldn't be holding up the line any longer."
+        else:
+            Le "That's quite the amount of mango ice cream you have there, [player_name]!"
+            Le "How am I even supposed to eat all of that?"
+            c "I thought you could use a bit extra. It's a little warm today."
+            Le "I guess so. Thanks!"
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Le "That's a lot of mango ice cream, [player_name]!"
+            c "You said you were hungry, so I added a bit extra."
+            Le "Thanks a ton! I really needed some extra ice cream today!"
+            $ evalCustomerScore += 1
+    
+    hide leymas with easeoutleft #Add a bit more here possibly. Idk why I like leymas more than the other characters I made up
+    m "With that, Leymas paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 label eval_help_oph:
     #chap2storebread is false if you meet her earlier
@@ -839,63 +807,61 @@ label eval_help_oph:
             Op "All of this waiting in line has left me starving!"
     
     c "Well, one scoop of mango ice cream coming right up!"
-    jump eval_katsu_help_2
+    call eval_katsu_help_2 from eval_help_oph_2
+    c "Here's your ice cream!"
 
-    label eval_help_oph_2:
-        c "Here's your ice cream!"
-
-        #This is gonna be fun...
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                if not chap2storebread:
-                    Op "Thanks for making it quick. I don't know how much longer I could stand before falling over!"
-                else:
-                    Op "Thanks a ton! Now, I should really get going. I've got to put these fruits in the fridge!"
-                $ evalCustomerScore += 1
+    #This is gonna be fun...
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            if not chap2storebread:
+                Op "Thanks for making it quick. I don't know how much longer I could stand before falling over!"
             else:
-                play sound "fx/impact3.ogg"
-                hide ophinia with easeoutbottom
-                m "As soon as I tried to give the dragon her ice cream, she toppled over."
-                c "Are you alright?"
-                show ophinia normal with easeinbottom
-                Op "Perfectly fine! I've just been standing for too long, that's all!"
-                m "She took the ice cream from my hand like nothing had happened."
-                Op "Thanks for the ice cream!"
-                if chap2storebread:
-                    m "How did her fruits not fall out of the box?"
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Op "Wow, this looks absolutely stunning! Thank you!"
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                if chap2storebread:
-                    Op "Maybe I made the wrong decision. This doesn't look as good as the other flavors any more."
-                    c "Looks can be deceiving."
-                    Op "You're right! Like this box on my head makes me look crazy, but in reality I'm perfectly sane!"
-                    m "I'm not so sure about that."
-                else:
-                    Op "Hmm... This doesn't look as good as the other flavors any more."
-                    c "Would you like to change your order?"
-                    Op "No. No. How would I ever choose?"
-            else:
-                Op "That is a lot of ice cream. No way this will all fit in my stomach!"
+                Op "Thanks a ton! Now, I should really get going. I've got to put these fruits in the fridge!"
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Op "That's a lot of ice cream! Thanks a ton!"
-                $ evalCustomerScore += 1
+            play sound "fx/impact3.ogg"
+            hide ophinia with easeoutbottom
+            m "As soon as I tried to give the dragon her ice cream, she toppled over."
+            c "Are you alright?"
+            show ophinia normal with easeinbottom
+            Op "Perfectly fine! I've just been standing for too long, that's all!"
+            m "She took the ice cream from my hand like nothing had happened."
+            Op "Thanks for the ice cream!"
+            if chap2storebread:
+                m "How did her fruits not fall out of the box?"
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Op "Wow, this looks absolutely stunning! Thank you!"
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            if chap2storebread:
+                Op "Maybe I made the wrong decision. This doesn't look as good as the other flavors any more."
+                c "Looks can be deceiving."
+                Op "You're right! Like this box on my head makes me look crazy, but in reality I'm perfectly sane!"
+                m "I'm not so sure about that."
             else:
-                Op "That looks so good!"
-                Op "I might just have to wait in line another time to get more!" #Do I actually have here come back? Hell yeah lol
-                c "I could just give you a bit more now."
-                Op "No, it's okay. I'll wait."
-                $ evalOphSeconds = True
-        
-        hide ophinia with easeoutleft
-        m "With that, she paid and left."
+                Op "Hmm... This doesn't look as good as the other flavors any more."
+                c "Would you like to change your order?"
+                Op "No. No. How would I ever choose?"
+        else:
+            Op "That is a lot of ice cream. No way this will all fit in my stomach!"
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Op "That's a lot of ice cream! Thanks a ton!"
+            $ evalCustomerScore += 1
+        else:
+            Op "That looks so good!"
+            Op "I might just have to wait in line another time to get more!" #Do I actually have here come back? Hell yeah lol
+            c "I could just give you a bit more now."
+            Op "No, it's okay. I'll wait."
+            $ evalOphSeconds = True
+    
+    hide ophinia with easeoutleft
+    m "With that, she paid and left."
 
-        $ evalServedCustomers += 1
-        $ evalOphPosition = evalServedCustomers
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    $ evalOphPosition = evalServedCustomers
+    jump eval_katsu_help
 
 label eval_help_luc:
     $ evalCharacterPreferredFlavor = "the special"
@@ -934,58 +900,56 @@ label eval_help_luc:
     if mp.fish:
         m "Oh no, I think I might know what the special is referring to."
     c "Well then, one special coming right up!"
-    jump eval_katsu_help_2
-
-    label eval_help_luc_2:
-        c "Here's your 'special' scoop of ice cream. I hope it's good!"
-        
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                Lu "Thank you for making it quickly!"
-                c "Happy to help. I hate being late myself."
-                $ evalCustomerScore += 1
-            else:
-                Lu "Thank you! I've really, really got to go now."
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Lu "Wow, this looks awesome!"
-                c "I had Katsuharu take special care in making your 'special' scoop."
-                Lu "Very funny, [player_name]."
-                c "Thank you! I pride myself in my humor."
-                Lu "With jokes like that, I'd be worried."
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                Lu "Thanks, but it looks a bit different from what I'm used to."
-                c "Maybe because it's a 'special' flavor?"
-                Lu "I don't think that's it. It just looks a bit... Off."
-                c "Would you like another?"
-                Lu "Don't worry about it. I shouldn't judge a book by it's cover."
-            else:
-                Lu "No way I'm going to be able to eat a scoop of ice cream that big in one sitting! Thanks, though!"
+    call eval_katsu_help_2 from eval_help_luc_2
+    c "Here's your 'special' scoop of ice cream. I hope it's good!"
+    
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            Lu "Thank you for making it quickly!"
+            c "Happy to help. I hate being late myself."
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Lu "Wow! I'm so glad I asked for a bit more. That looks perfect!"
-                $ evalCustomerScore += 1
-            else:
-                Lu "I can't wait to try this new flavor! Although it already looks so good, I'm wondering if I should have ordered another."
-                c "You still could."
-                Lu "I shouldn't hold up the line any longer."
-        
-        m "The dragon then took a quick taste of the 'special'."
-        if mp.fish:
-            m "I was quite interested to see if something like that fish I had could possibly be good as ice cream."
+            Lu "Thank you! I've really, really got to go now."
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Lu "Wow, this looks awesome!"
+            c "I had Katsuharu take special care in making your 'special' scoop."
+            Lu "Very funny, [player_name]."
+            c "Thank you! I pride myself in my humor."
+            Lu "With jokes like that, I'd be worried."
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            Lu "Thanks, but it looks a bit different from what I'm used to."
+            c "Maybe because it's a 'special' flavor?"
+            Lu "I don't think that's it. It just looks a bit... Off."
+            c "Would you like another?"
+            Lu "Don't worry about it. I shouldn't judge a book by it's cover."
         else:
-            m "I was quite interested to see if the 'special' was any good."
-        m "He flicked his tongue on the side of the scoop and smacked his lips a few times."
-        Lu "Wow! This really is something special!"
-        c "Is it good?"
-        Lu "It's delicious, but I have no clue how to describe the flavor."
-        c "Interesting."
-        hide lucius with easeoutleft
-        m "With that, he paid and left."
+            Lu "No way I'm going to be able to eat a scoop of ice cream that big in one sitting! Thanks, though!"
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Lu "Wow! I'm so glad I asked for a bit more. That looks perfect!"
+            $ evalCustomerScore += 1
+        else:
+            Lu "I can't wait to try this new flavor! Although it already looks so good, I'm wondering if I should have ordered another."
+            c "You still could."
+            Lu "I shouldn't hold up the line any longer."
+    
+    m "The dragon then took a quick taste of the 'special'."
+    if mp.fish:
+        m "I was quite interested to see if something like that fish I had could possibly be good as ice cream."
+    else:
+        m "I was quite interested to see if the 'special' was any good."
+    m "He flicked his tongue on the side of the scoop and smacked his lips a few times."
+    Lu "Wow! This really is something special!"
+    c "Is it good?"
+    Lu "It's delicious, but I have no clue how to describe the flavor."
+    c "Interesting."
+    hide lucius with easeoutleft
+    m "With that, he paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 label eval_help_xith:
     $ evalCharacterPreferredFlavor = "cherry"
@@ -1011,77 +975,75 @@ label eval_help_xith:
     c "Alright then, what can I get you?"
     Xi "I usually have the vanilla, but I think I want to spice it up a little today. How about I get the cherry instead?"
     c "Sure thing!"
-    jump eval_katsu_help_2
+    call eval_katsu_help_2 from eval_help_xith_2
+    c "Here's the cherry ice cream you asked for!"
 
-    label eval_help_xith_2:
-        c "Here's the cherry ice cream you asked for!"
-
-        if evalCharacterMood == 0:
-            if evalCharacterMood == evalQualityServed:
-                Xi "Ah, thanks for making it quick."
-                c "Of course. Can't let you be late."
-                $ evalCustomerScore += 1
-            else:
-                Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
-                $ evalXithReporter = False
-        elif evalCharacterMood == 1:
-            if evalCharacterMood == evalQualityServed:
-                Xi "This is quite a stunning specimen of ice cream!"
-                c "Thank Katsuharu. He gave this one a bit of extra love."
-                Xi "I can tell."
-                $ evalCustomerScore += 1
-            elif evalQualityServed == 0:
-                Xi "It looks good, but Katsuharu might be losing his touch."
-                c "Is everything alright?"
-                Xi "Oh yes. I just have a bad habit of judging foods at face value without trying them."
-            else:
-                Xi "Did you give me an ice cream scoop or an ice cream mountain?"
-                c "I did add a bit extra to it."
-                Xi "I can tell! No way my stomach can fit all of this!"
+    if evalCharacterMood == 0:
+        if evalCharacterMood == evalQualityServed:
+            Xi "Ah, thanks for making it quick."
+            c "Of course. Can't let you be late."
+            $ evalCustomerScore += 1
         else:
-            if evalCharacterMood == evalQualityServed:
-                Xi "That's not just an ice cream scoop. That's an ice cream mountain."
-                Xi "I'm so hungry, too. Thanks!"
-                $ evalCustomerScore += 1
-            else:
-                Xi "Damn, I should have requested more ice cream."
-                c "You still could if you want."
-                Xi "I think I'll have to pass. I should be cutting back on my sugar intake anyways."
-        
-        if evalXithReporter:
-            $ renpy.pause (0.5)
-            Xi "You know, I'm actually a reporter."
-            c "Really?"
-            Xi "Yeah, I came here for the inside {i}scoop{/i} on things."
-            c "Did you make that up just to make that joke?"
-            Xi "That would be pretty clever, but no."
-            Xi "I write articles for the local paper."
-            c "Interesting. Is there a lot to write about?"
-            Xi "There's always the small stuff, like recent achievements of the locals or new stores, but usually nothing interesting."
-            c "Have you written anything on the events that just took place?"
-            Xi "I would love to, but the council wouldn't let me have access to any of the archives."
-            Xi "Therefore, I have nothing to base my writing on."
-            c "That's too bad."
-            Xi "I was actually wondering if you would be willing to answer a few questions for me."
-            c "Sorry, but not at the moment. I have a pretty packed schedule today."
-            Xi "Of course not right now, but maybe another time?"
+            Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
+            $ evalXithReporter = False
+    elif evalCharacterMood == 1:
+        if evalCharacterMood == evalQualityServed:
+            Xi "This is quite a stunning specimen of ice cream!"
+            c "Thank Katsuharu. He gave this one a bit of extra love."
+            Xi "I can tell."
+            $ evalCustomerScore += 1
+        elif evalQualityServed == 0:
+            Xi "It looks good, but Katsuharu might be losing his touch."
+            c "Is everything alright?"
+            Xi "Oh yes. I just have a bad habit of judging foods at face value without trying them."
+        else:
+            Xi "Did you give me an ice cream scoop or an ice cream mountain?"
+            c "I did add a bit extra to it."
+            Xi "I can tell! No way my stomach can fit all of this!"
+    else:
+        if evalCharacterMood == evalQualityServed:
+            Xi "That's not just an ice cream scoop. That's an ice cream mountain."
+            Xi "I'm so hungry, too. Thanks!"
+            $ evalCustomerScore += 1
+        else:
+            Xi "Damn, I should have requested more ice cream."
+            c "You still could if you want."
+            Xi "I think I'll have to pass. I should be cutting back on my sugar intake anyways."
+    
+    if evalXithReporter:
+        $ renpy.pause (0.5)
+        Xi "You know, I'm actually a reporter."
+        c "Really?"
+        Xi "Yeah, I came here for the inside {i}scoop{/i} on things."
+        c "Did you make that up just to make that joke?"
+        Xi "That would be pretty clever, but no."
+        Xi "I write articles for the local paper."
+        c "Interesting. Is there a lot to write about?"
+        Xi "There's always the small stuff, like recent achievements of the locals or new stores, but usually nothing interesting."
+        c "Have you written anything on the events that just took place?"
+        Xi "I would love to, but the council wouldn't let me have access to any of the archives."
+        Xi "Therefore, I have nothing to base my writing on."
+        c "That's too bad."
+        Xi "I was actually wondering if you would be willing to answer a few questions for me."
+        c "Sorry, but not at the moment. I have a pretty packed schedule today."
+        Xi "Of course not right now, but maybe another time?"
 
-            menu:
-                "Sure.":
-                    c "Sure. I'd love to help you!"
-                    Xi "Really? Thanks..."
-                    c "It's [player_name]."
-                    Xi "Oh, thanks [player_name]. I'm Xith."
-                    c "Nice to meet your acquaintance."
-                    $ evalHelpXith = True
-                "I don't want to think about that quite yet.":
-                    c "Sorry, but I really don't want to think about those events yet. They still make me uneasy."
-                    Xi "I understand. Well, thanks for the ice cream!"
-        
-        hide xith with easeoutleft
-        m "With that, he paid and left."
+        menu:
+            "Sure.":
+                c "Sure. I'd love to help you!"
+                Xi "Really? Thanks..."
+                c "It's [player_name]."
+                Xi "Oh, thanks [player_name]. I'm Xith."
+                c "Nice to meet your acquaintance."
+                $ evalHelpXith = True
+            "I don't want to think about that quite yet.":
+                c "Sorry, but I really don't want to think about those events yet. They still make me uneasy."
+                Xi "I understand. Well, thanks for the ice cream!"
+    
+    hide xith with easeoutleft
+    m "With that, he paid and left."
 
-        $ evalServedCustomers += 1
-        jump eval_katsu_help
+    $ evalServedCustomers += 1
+    jump eval_katsu_help
 
 #I'M DONE!!!!!!!!!!!! YES!!!!!!!!!!!!
