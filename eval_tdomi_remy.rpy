@@ -166,7 +166,7 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 2
             jump eval_remy_amely_1
 
-        "Why don't we invite Amely and Adine?" if persistent.adinegoodending:
+        "Why don't we invite Amely and Adine?" if adinedead==False and adinestatus!="bad":
             c "Why don't we take Adine and Amely as well?"
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry smile "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
@@ -239,7 +239,7 @@ label eval_tdomi_remy:
                             m "Nice one."
                             return
 
-        "Everyone." if persistent.evalSecretEndingCompleted or evalDoingSecretEnding:
+        "Everyone." if persistent.evalSecretEndingCompleted and adinestatus!="bad" and adinedead==False or evalDoingSecretEnding and adinestatus!="bad" and adinedead==False:
             c "Why don't we bring everyone?"
             Ry look "Everyone?"
             c "Yes. You, Amely, Vara, Adine, and I."
