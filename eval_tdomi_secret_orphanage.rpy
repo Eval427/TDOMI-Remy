@@ -70,6 +70,7 @@ label eval_secret_orphanage_game_init:
     $ evalVaraSnack = False
     $ evalRemyGoneWhileSnack = False
     $ evalCrackersConsumed = 0
+    $ evalVaraHasSnack = False
 
     #Show ECK's extra info display
     show screen evalextrainfo
@@ -97,7 +98,7 @@ label eval_secret_orphanage_game:
             m "She recoiled on impact, but after a moment of consideration, smiled."
             Vr "My turn."
             play sound "fx/goodhighfive.mp3"
-            m "I outstretched my palm and Vara hit my palm. Her claws made it a bit painful, but nothing intolerable."
+            m "I stretched my palm and Vara hit my palm. Her claws made it a bit painful, but nothing intolerable."
             c "As high fives go, that was quite impressive."
             show remy normal behind vara
             show amely smnormal
@@ -132,7 +133,7 @@ label eval_secret_orphanage_game:
             play sound "fx/goodhighfive.mp3"
             m "Remy outstretched his claw, and I gave it a clean hit with my palm."
             Ry normal "Interesting. Why do people high five?"
-            c "It's a little congradulatory celebration for good collaboration."
+            c "It's a little congratulatory celebration for good collaboration."
             Ry "And why is it a high {i}five{/i}?"
             c "Well, it's named after the fact that humans have five fingers. But since dragon species have varying fingers, we might need to consider renaming it."
             Ry "I see."
@@ -143,7 +144,7 @@ label eval_secret_orphanage_game:
             c "Nice!"
             Am "Thanks!"
             Vr smnone "Me?"
-            m "I reached out to Vara with an outstretched palm. She tenatively gave my hand a light hit."
+            m "I reached out to Vara with an outstretched palm. She tentatively gave my hand a light hit."
             play sound "fx/lighthighfive.mp3"
             c "You can do it harder, Vara. It doesn't hurt me, I promise."
             Vr "Okay."
@@ -153,7 +154,6 @@ label eval_secret_orphanage_game:
             Vr smnormal "Thanks."
         m "Remy glanced at the room."
         $ evalOrphanageScore = 2
-        hide screen evalextrainfo
         jump eval_secret_orphanage_end
     
     #Complete the game if the player runs out of time
@@ -190,6 +190,7 @@ label eval_secret_orphanage_game:
     #Show Remy when he returns and give the player their item
     if evalRemyOnMission and evalMinutesRemyIsGone == 0:
         show amely smnormal with easeinright
+        m "[evalVaraGone]"
         if evalVaraGone:
             show remy normal behind amely with easeinright
         else:
@@ -210,12 +211,14 @@ label eval_secret_orphanage_game:
                 play sound "fx/lightswitch.mp3"
                 $ renpy.pause (1.5)
                 scene evalorphlight
-                show vara smnormal
                 if not evalRemyOnMission:
                     show remy normal behind vara
-                    show vara smnormal behind amely
+                    if not evalVaraGone:
+                        show vara smnormal behind amely
                     show amely smnormal
                 else:
+                    if not evalVaraGone:
+                        show vara smnormal
                     $ evalLightsOnWithoutRemy = True
                 c "Let there be light!"
                 if not evalRemyOnMission:
@@ -235,17 +238,17 @@ label eval_secret_orphanage_game:
             Ry normal "Amely and I are here if you need anything, [player_name]."
 
 #Stuff for Vara's snack
-    if evalRemainingMinutes == 205 and not evalVaraGone:
+    if evalRemainingMinutes <= 205 and not evalVaraGone and not evalVaraHasSnack:
         if evalRemyOnMission:
             $ evalRemyAsksAboutVara = True #This just makes sure he doesn't ask where Vara is later
-            Vr "Stay here, I will make surprise."
+            Vr "Stay here, I will make a surprise."
             c "Okay, Vara."
             show vara smnormal flip with dissolvemed
             hide vara with easeoutright
             m "Vara left the room and went into the back of the orphanage."
             m "I wonder what the surprise is going to be."
         else:
-            Vr "I go make surprise."
+            Vr "I will go make a surprise."
             Ry "A surprise?"
             Vr "Yes."
             Ry "Well, go ahead, Vara."
@@ -253,9 +256,11 @@ label eval_secret_orphanage_game:
             hide vara with easeoutright
             Ry smile "I guess you've lost your little helper for a while."
             c "I'll make do."
+        $ evalVaraHasSnack = True
         $ evalVaraGone = True
     
-    if evalRemainingMinutes == 175:
+    if evalRemainingMinutes <= 175 and evalVaraGone:
+        $ evalVaraGone = False
         $ evalVaraSnack = True
         show vara smnormal behind amely with easeinright
         Vr "I'm back!"
@@ -268,7 +273,7 @@ label eval_secret_orphanage_game:
             Vr "For all of us!"
             m "She took a knife off the plate and used it to cut a small chunk of cheese and place it on a cracker."
             c "(Oh my goodness, the little dragon has a knife again.)"
-            m "She then took a small spoonfull of the jam and rested it on the cheese."
+            m "She then took a small spoonful of the jam and rested it on the cheese."
             play sound "fx/pizzabite2.ogg"
             m "She put the whole cracker in her mouth and bit down."
             Vr "Yum!"
@@ -279,7 +284,7 @@ label eval_secret_orphanage_game:
             Vr "For all of us!"
             m "She took a knife off the plate and used it to cut a small chunk of cheese and place it on a cracker."
             c "(Oh my goodness, the little dragon has a knife again.)"
-            m "She then took a small spoonfull of the jam and rested it on the cheese."
+            m "She then took a small spoonful of the jam and rested it on the cheese."
             play sound "fx/pizzabite2.ogg"
             m "She put the whole cracker in her mouth and bit down."
             Vr "Yum!"
@@ -369,7 +374,7 @@ label eval_secret_orphanage_game:
         "Fix the desk." if not evalApplyDWD or not evalFixLeg:
             jump eval_secret_orphanage_fix_desk
         
-        "Orgainze the books." if not evalPickUpBooks or not evalUncrumplePages or not evalSortBooks: #Add conditionals here
+        "Organize the books." if not evalPickUpBooks or not evalUncrumplePages or not evalSortBooks: #Add conditionals here
             jump eval_secret_orphanage_organize_books
         
         "Sort through papers." if not evalHatchlingArt or not evalPaperwork or not evalFoldNewspaper: #Add conditionals here
@@ -761,7 +766,10 @@ label eval_secret_orphanage_fix_desk:
                     show vara smnormal flip with dissolvemed
                     hide vara with easeoutright
                     m "She grabbed a long metal desk leg from the pile and returned to me."
-                    show vara smnormal with easeinright
+                    if evalRemyOnMission:
+                        show vara smnormal with easeinright
+                    else:
+                        show vara smnormal behind amely with easeinright
                     Vr "Here."
                     c "Thank you, Vara."
                 play sound "fx/screwin.mp3"
@@ -855,9 +863,9 @@ label eval_secret_orphanage_organize_books:
     elif not evalPickUpBooks and evalUncrumplePages and evalSortBooks: #nyy
         m "The books were neatly sorted on the ground, with only faint wrinkles showing on their pages."
     elif evalPickUpBooks and not evalUncrumplePages and not evalSortBooks: #ynn
-        m "The books were rested on the shelves in no particular order and had wrinkled pages."
+        m "The books rested on the shelves in no particular order and had wrinkled pages."
     elif evalPickUpBooks and evalUncrumplePages and not evalSortBooks: #yyn
-        m "The books were rested on the shelves in no particular order."
+        m "The books rested on the shelves in no particular order."
     elif evalPickUpBooks and not evalUncrumplePages and evalSortBooks: #yny
         m "The books were neatly sorted on the shelves. However, their pages still looked wrinkled."
     elif not evalPickUpBooks and evalUncrumplePages and not evalSortBooks: #nyn
@@ -973,7 +981,7 @@ label eval_secret_orphanage_sort_papers:
         m "The newspapers were also neatly folded in the desk drawer."
         m "However, the hatchlings' artwork still lay haphazardly on the table."
     elif evalHatchlingArt and not evalPaperwork and not evalFoldNewspaper:
-        m "The artwork that had littered the table was now corretly sorted into the hatchlings' folders."
+        m "The artwork that had littered the table was now correctly sorted into the hatchlings' folders."
         m "However, the documents and newspaper still lay untouched."
     elif evalHatchlingArt and evalPaperwork and not evalFoldNewspaper:
         m "The papers on the top of the desk were completely organized."
@@ -1019,7 +1027,7 @@ label eval_secret_orphanage_sort_papers:
             play sound "fx/pages.ogg"
             m "I sorted through the important documents at a reasonable pace."
             m "Not sure how exactly to organize them, I based my assumptions off of brief glances at the content."
-            m "There's a surprising lack of adpotion forms here. How sad."
+            m "There's a surprising lack of adoption forms here. How sad."
             jump eval_secret_orphanage_sort_papers
         
         "Fold the newspaper." if not evalFoldNewspaper:
@@ -1143,16 +1151,17 @@ label eval_secret_orphanage_clean:
             jump eval_secret_orphanage_game
 
 label eval_secret_orphanage_end: #Change the music
+    hide screen evalextrainfo
     stop music fadeout 2.0
     $ renpy.pause (3.0)
-    play music "mx/serene.ogg"
+    play music "mx/comfy.ogg" #Custom music for the secret ending. Nice
     if evalOrphanageScore == 2:
         Ry smile "Wow, [player_name]! This place hasn't look this good in years!"
-        Ry "It was definently worthy of a couple high fives."
+        Ry "It was definitely worthy of a couple high fives."
         Ry look "We really need to think about changing the name of that, though."
         c "Couldn't have done it without you and our two little helpers."
         Am "Yay! I help!"
-        m "Vara gave an embarassed smile."
+        m "Vara gave an embarrassed smile."
         Ry normal "Well. It looks like we still have a bit of time to kill."
         Ry "Is there anything else you would like to do?"
         c "That was exhausting, I think I'm too tired to do anything else."
@@ -1167,7 +1176,7 @@ label eval_secret_orphanage_end: #Change the music
             Vr smnormal "Fine..."
             c "Where should we sleep? On the floor?"
             Ry "You guys can sleep on me if you like."
-            c "Oh boy, my very own full sized dragon pillow equipped with a built in heater!"
+            c "Oh boy, my very own full sized dragon pillow equipped with a built-in heater!"
             Ry smile "I'm the latest model."
             m "I carefully propped myself up against Remy's side. I could feel his body rising and falling with each breath."
             m "Amely then crawled up next to me and laid her head on my shoulder."
@@ -1210,7 +1219,7 @@ label eval_secret_orphanage_end: #Change the music
             m "I made my way to take a seat at a desk."
             Ry "Wait, [player_name]. You can rest on me if you like."
             Ry smile "I'm probably much more comfortable than any old desk."
-            c "Oh boy, my very own full sized dragon pillow equipped with a built in heater!"
+            c "Oh boy, my very own full sized dragon pillow equipped with a built-in heater!"
             Ry "I'm the latest model."
             m "I carefully propped myself up against Remy's side. I could feel his body rising and falling with each breath."
             m "Amely then crawled up next to me and laid her head on my shoulder."

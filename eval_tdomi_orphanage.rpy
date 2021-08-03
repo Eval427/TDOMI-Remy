@@ -76,7 +76,6 @@ label eval_orphanage_game:
         m "It looks like we had finished just about everything we could."
         show remy normal with dissolvemed
         $ evalOrphanageScore = 2
-        hide screen evalextrainfo
         jump eval_orphanage_end
     
     #Complete the game if the player runs out of time
@@ -185,7 +184,7 @@ label eval_orphanage_game:
         "Fix the desk." if not evalApplyDWD or not evalFixLeg:
             jump eval_orphanage_fix_desk
         
-        "Orgainze the books." if not evalPickUpBooks or not evalUncrumplePages or not evalSortBooks: #Add conditionals here
+        "Organize the books." if not evalPickUpBooks or not evalUncrumplePages or not evalSortBooks: #Add conditionals here
             jump eval_orphanage_organize_books
         
         "Sort through papers." if not evalHatchlingArt or not evalPaperwork or not evalFoldNewspaper: #Add conditionals here
@@ -595,9 +594,9 @@ label eval_orphanage_organize_books:
     elif not evalPickUpBooks and evalUncrumplePages and evalSortBooks: #nyy
         m "The books were neatly sorted on the ground, with only faint wrinkles showing on their pages."
     elif evalPickUpBooks and not evalUncrumplePages and not evalSortBooks: #ynn
-        m "The books were rested on the shelves in no particular order and had wrinkled pages."
+        m "The books rested on the shelves in no particular order and had wrinkled pages."
     elif evalPickUpBooks and evalUncrumplePages and not evalSortBooks: #yyn
-        m "The books were rested on the shelves in no particular order."
+        m "The books rested on the shelves in no particular order."
     elif evalPickUpBooks and not evalUncrumplePages and evalSortBooks: #yny
         m "The books were neatly sorted on the shelves. However, their pages still looked wrinkled."
     elif not evalPickUpBooks and evalUncrumplePages and not evalSortBooks: #nyn
@@ -702,7 +701,7 @@ label eval_orphanage_sort_papers:
         m "The newspapers were also neatly folded in the desk drawer."
         m "However, the hatchlings' artwork still lay haphazardly on the table."
     elif evalHatchlingArt and not evalPaperwork and not evalFoldNewspaper:
-        m "The artwork that had littered the table was now corretly sorted into the hatchlings' folders."
+        m "The artwork that had littered the table was now correctly sorted into the hatchlings' folders."
         m "However, the documents and newspaper still lay untouched."
     elif evalHatchlingArt and evalPaperwork and not evalFoldNewspaper:
         m "The papers on the top of the desk were completely organized."
@@ -742,7 +741,7 @@ label eval_orphanage_sort_papers:
             play sound "fx/pages.ogg"
             m "I sorted through the important documents at a reasonable pace."
             m "Not sure how exactly to organize them, I based my assumptions off of brief glances at the content."
-            m "There's a surprising lack of adpotion forms here. How sad."
+            m "There's a surprising lack of adoption forms here. How sad."
             jump eval_orphanage_sort_papers
         
         "Fold the newspaper." if not evalFoldNewspaper:
@@ -856,6 +855,7 @@ label eval_orphanage_clean:
             jump eval_orphanage_game
 
 label eval_orphanage_end: #Change the music
+    hide screen evalextrainfo
     stop music fadeout 2.0
     $ renpy.pause (3.0)
     play music "mx/serene.ogg"

@@ -1,3 +1,7 @@
+#Things to remember because I forgetful
+#PS, as soon as I write this down, I will never forget it because I only forget things when I don't write them down
+#Tape measure - If you use it, adine will secretly switch the special and the mango vats, so you get the special
+
 #Changes dialogue for when you arrive at the orphanage
 #Incorporate a Vara mood counter for how she reacts? Oh god that sounds not fun
 label eval_secret_orphanage_arrival:
@@ -159,7 +163,7 @@ label eval_everyone_1:
         Ad giggle b flip "I'm just messing with you guys."
     elif evalOrphanageScore == 1:
         Ad "Wait... Did you guys do something here?"
-        Ry smile "Well, [player_name] and I did a bit of work while we were wating for you."
+        Ry smile "Well, [player_name] and I did a bit of work while we were waiting for you."
         Ad "Really? That's so kind of you! What were you waiting on me for?"
     else:
         Ad normal b flip "I expected to find you here Remy, but what is [player_name] doing here?"
@@ -178,7 +182,7 @@ label eval_everyone_1:
     Ad normal b flip "Coming from someone who has had three scoops in one sitting, it is definitely possible."
     Ry normal "So, Amely and Vara, are you excited to have your first ever scoop of ice cream?"
     Vr "Ice cream!"
-    Am smsad "Ice cream?"
+    Am smsad flip "Ice cream?"
     c "Well, Amely. Ice cream is kind of like... Well... Um..."
     m "I didn't think it would be so difficult to describe something as simple as ice cream."
     Vr "Soft, frozen dessert!"
@@ -192,10 +196,10 @@ label eval_everyone_1:
     m "Amely still didn't look completely sold on the idea of ice cream."
     Am "Sugar?"
     c "Yes, lots of sugar."
-    Am smsmile "Sugar!!!"
+    Am smnormal "Sugar!!!"
     if not evalOrphanageScore == 2:
         Ry look "What about the orphanage, Adine?"
-        Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities these two little dargons would get to experience something like this."
+        Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities these two little dragon would get to experience something like this."
         Ry normal "Good point."
     Ad think b flip "Wait a minute."
     Ad "How are we supposed to get over to Tatsu Park?"
@@ -362,7 +366,7 @@ label eval_everyone_1:
             m "For a few minutes, Remy, Adine and I engaged in lighthearted chatter, discussing the events that had gone on while I was in my coma."
             show amely snormal at left with dissolvemed
             hide amely with easeoutleft
-            m "However, our conversation was rudly inturrupted when I noticed Amely running off."
+            m "However, our conversation was rudely interrupted when I noticed Amely running off."
             c "Ummm, Adine? Where is Amely going?"
             Ad annoyed b flip "Good question. I'll go grab her."
             show adine annoyed b with dissolvemed
@@ -395,17 +399,17 @@ label eval_everyone_1:
             m "As we passed down the line, we were met with a mix of expressions. Some of the people seemed quite intrigued by my appearance, while others seemed annoyed, probably understanding our intentions to skip the line."
             m "Approaching the stand, I caught the attention of Katsuharu. He waved and beckoned us to come."
         
-        scene town7 with dissolveslow
-        show amely amely at right
-        show vara snmornal behind amely at right
-        show remy normal behind vara at right
-        show adine normal b behind remy at Position (xpos=0.6)
-        with dissolvemed
-        show katsu normal flip at Position (xpos=0.1) with easeinleft
+    scene town7 with dissolveslow
+    show amely smnormal at right
+    show vara snmornal behind amely at right
+    show remy normal behind vara at right
+    show adine normal b behind remy at Position (xpos=0.6)
+    with dissolvemed
+    show katsu normal flip at Position (xpos=0.1) with easeinleft
 
-        Ka "Well, if it isn't the business saving human, [player_name]! What brings you here today?"
+    Ka "Well, if it isn't the business saving human, [player_name]! What brings you here today?"
 
-        menu:
+    menu:
         "Hey! Long time no see.":
             c "Yeah, it's really been a while, hasn't it. A lot has gone on since we last saw each other."
             Ka exhausted flip "Quite a lot it seems. You have caused quite the chaos since you arrived."
@@ -471,7 +475,7 @@ label eval_everyone_1:
             Am "I help! I help!"
             Ka excited flip "That's the spirited staff I want! Let's get to work!"
             m "The five dragons made their way behind the cart. I followed closely behind."
-            show katsu normal at Position (xpos=0.1) with dissolvemed
+            show katsu normal at Position (xpos=0.1)
             hide katsu with easeoutleft
             hide adine with easeoutleft
             hide remy with easeoutleft
@@ -504,11 +508,14 @@ label eval_everyone_1:
             Am smsad "Ice cream?"
             Ry "Sorry, Amely. I guess not today."
             Am "Awwwwww."
+            Vr smsad "..."
             show remy sad flip with dissolvemed
+            show vara smsad flip with dissolvemed
             show amely smsad flip with dissolvemed
             hide remy with easeoutright
+            hide vara with easeoutright
             hide amely with easeoutright
-            m "With his head hung low, Remy walked away with Amely."
+            m "With his head hung low, Remy walked away with Amely and Vara."
             Ka "I'll... go get you your ice cream, [player_name]."
             show katsu exhausted with dissolvemed
             hide katsu with easeoutleft
@@ -540,3 +547,225 @@ label eval_everyone_1:
             scene black with dissolveslow
             m "Wow, that was mean!"
             return
+
+label eval_everyone_2:
+    m "I looked out across the park. It seemed that every dragon had gotten their share of ice cream."
+    c "I think we're done, guys!"
+    stop music fadeout 2.0
+    scene black with dissolveslow
+    scene town7 with dissolveslow
+    $ renpy.pause (1.0)
+    show katsu normal flip at Position (xpos = 0.1) with dissolvemed
+    show vara smnormal at right with dissolvemed
+    show remy normal behind vara at right with dissolvemed
+    play music "mx/jazzy2.ogg"
+    Ka excited flip "Wonderful job, everyone!"
+    Ka smile flip "Especially you, Vara. You really have a knack for scooping ice cream."
+    Vr smnone "..."
+    Ka normal flip "Is everything alright?"
+    Ry smile "I think she's just excited. She loves this sort of stuff."
+    Ka "Well, Vara, you can always come by whenever you want to help out."
+    Ka smile flip "I could even teach you how to make the ice cream as well."
+    m "Vara looked longingly at Remy."
+    Vr smnormal "Can I come help again?"
+    Ry normal "Of course you can, Vara!"
+    c "You know, Katsuharu, Vara may be the perfect candidate for a successor to your business."
+    Ka "You know what? You're right."
+    Ka normal flip "She's a bit young, but I'm sure she will learn fast."
+    Ry "Well, I'm sure she would be more than willing to learn from you. Right, Vara?"
+    Vr "Yes!"
+    if evalCustomerScore == 10:
+        Ka smile flip "[player_name], you also did a wonderful job serving everyone. I don't think I saw a single unhappy customer!"
+        c "Thanks, Katsuharu, but I couldn't have done it without you three as well."
+    elif evalCustomerScore > 6:
+        Ka normal flip "Great job serving everyone, [player_name]. I saw a lot of happy customers walking off."
+        c "Thanks, Katsuharu."
+    else:
+        Ka normal flip "You did well serving everyone, [player_name]. There were a few happy customers I saw walking off."
+        c "Thanks, Katsuharu."
+    c "Wait a minute, where are Adine and Amely?"
+    Ry normal "Look up."
+    m "I looked up towards the sky. It took a second, but I found Adine flying in circles with Amely in her claws."
+    Ry "Hold on, let me grab them."
+    show remy normal flip with dissolvemed
+    hide remy with easeoutright
+    play sound "fx/takeoff.ogg"
+    m "Remy took a few steps, then flew into the air."
+    m "He caught up to Adine, and the two hovered in place for a moment before landing next to Katsuharu and I."
+    show amely smnormal at right with easeinright
+    show remy normal behind vara at right with easeinright
+    show adine normal c behind remy at Position (xpos=0.6) with easeinright
+    Ad "Hey guys! Did you have fun?"
+    Vr "Yes!"
+    Ry "I thought it was fun."
+    c "It was a lot of work, but in a way, it was also nice talking to all the locals."
+    Vr "And the big dragon wants me to make more ice cream!"
+    Ad giggle c "His name is Katsuharu, Vara."
+    Vr smnone "Sorry."
+    Ka "No worries! A lot of people have trouble with my name."
+    Vr smnormal "Katsuharu!"
+    Ka smile flip "Well, you got it first try!"
+    m "Vara nodded proudly."
+    Ka normal flip "Although I must say, I think Adine had the hardest job here."
+    m "Adine removed her goggles."
+    Ad annoyed b "Ugh. It's impressive just how much chaos such a small little dragon can cause."
+    show amely smnormal at left with move3
+    Ad normal b "But I still love her. When she isn't causing chaos she's just the sweetest little thi{nw}"
+    Ad annoyed b "Amely, where do you think you're going?"
+    Am "Hehe."
+    hide amely with easeoutleft
+    Ad frustrated b "I take my eyes off her for one second and she runs off."
+    hide adine with easeoutleft
+    Ry "And there they go again."
+    Ka normal flip "Amely seems like quite the troublemaker."
+    Ry look "She isn't normally this energetic and usually doesn't cause this much trouble."
+    Ry normal "I think the idea of ice cream and being out with all of us has gotten her very excited."
+    m "Adine returned with Amely's claw firmly grasped within her own."
+    show adine annoyed b flip behind remy at Position (xpos = 0.6) 
+    show amely smnormal flip behind remy at Position (xpos = 0.6)
+    with easeinleft
+    show adine annoyed b behind amely at Position (xpos = 0.6) 
+    show amely smnormal behind remy at Position (xpos = 0.6)
+    with dissolvemed
+    Ad "Sorry, I had to save Katsuharu's ice cream from this hungry little dragon."
+    Am "Ice cream!"
+    Ka smile flip "Well, how about I start serving you four your ice cream. You deserve it after all."
+    Ry smile "I'm sure Adine could use a bit of ice cream after chasing Amely around all day."
+    Ad normal b "You say that sarcastically, but that's exactly what I need at the moment."
+    Am "Ice cream!"
+    Ad giggle b "And maybe a bit of sugar will calm this little dragon down."
+    Ry normal "I doubt it."
+    Ad normal b "So do I."
+    Ka normal flip "Let's start with [player_name]."
+    $ evalAdineTrick = False
+    jump eval_ice_cream_choice
+
+label eval_everyone_3:
+    Ka normal flip "You're up next, Remy. What will you have?"
+    if evalChosenFlavor == "vanilla":
+        Ry smile "I'll have a scoop of vanilla as well!"
+    else:
+        Ry normal "I'll just take a scoop of vanilla, nothing too special."
+
+    menu:
+        "Your ice cream preference matches you perfectly.":
+            c "Your ice cream preference matches you perfectly."
+            Ry look "How so?"
+            c "Well... white dragon, white ice cream, it all kind of works."
+            show katsu exhausted flip at Position (xpos=0.1) with dissolvemed
+
+            m "Remy sighed."
+            if persistent.adinegoodending and evalCurrentEnding < 3:
+                Ry "First with Adine, now with me."
+                c "Yep, you can't escape it."
+            elif evalCurrentEnding > 2:
+                Ry "I guess you could think about it like that."
+                Ad giggle b "See, Remy? I'm not the only one who thinks that!"
+                c "Am I missing something?"
+                Ad normal b "When we used to get ice cream as kids, everyone would always call Remy the 'Vanilla Dragon'."
+                Ry "Yes, a name I would like to leave in the past."
+                Ad giggle b "Too late, Remy. [player_name] brought it back to light."
+                if evalAdineSlaps == 2:
+                    Ry smile "Well Adine, now that both of us have a flavor associated with us, what should [player_name]'s flavor be?"
+                    Ad think b "That's a good question."
+                    Ad "That skin tone isn't exactly the most appealing in the form of food, so I can't say there's many options."
+                    Ry look "Pumpkin?"
+                    Ad "Too orange. Plus that's not an ice cream flavor."
+                    Ka normal flip "You know, that doesn't sound half bad."
+                    Ka smile flip "Check back this fall. You might just see that on the menu."
+                    Ad normal b "Really? That sounds quite good!"
+                    Ry normal "Well. I'm stumped on [player_name]'s flavor."
+                    Ad "Same here."
+            else:
+                Ry "I guess you could think about it like that."
+        
+        "Good choice.":
+            c "Good choice."
+            Ry normal "Thanks!"
+            Ry "In my opinion, vanilla is the tried and true classic. You can't go wrong with it."
+
+    Ka normal flip "Alright, Adine, it's your turn."
+    if evalChosenFlavor == "special":
+        Ad normal "I'm curious to try the 'special' with [player_name]."
+    else:
+        Ad normal b "I think I'll try the 'special'."
+    Ka "Good choice! I think you'll like it."
+    Ad giggle b "I've served the dish enough times. I'm curious to see how it is as ice cream."
+    Ka smile flip "Much better. I promise."
+    show adine normal b with dissolvemed
+    Ka normal flip "And what about you, Amely?"
+    Am "I want..."
+    Am "Ummm..."
+    Am smsad "..."
+    Ry smile "I think she may be a bit overwhelmed with all of the different flavor choices."
+    Ry normal "How about we get her some chocolate?"
+    Ka "I'm sure she will be quite happy with that choice, Remy."
+    Ka smile "And last but not least my little assistant confectioner."
+    Vr "I want the cherry, please."
+    Ka normal "I think I could make that happen for you."
+    Ka "Just give me a moment to get you five your scoops!"
+    show katsu normal with dissolvemed
+    hide katsu with easeoutleft
+    show amely smnormal behind remy at Position (xpos = 0.6) with dissolvemed
+    m "The dragon walked behind his stand and started preparing the ice cream."
+    m "Expecting the dragon to produce some sort of utensil, I was surprised when he suddenly thrust his hand into the vat and pulled out an almost perfectly spherical scoop of ice cream."
+    c "(Damn, these dragons can fly, shoot fire, run extremely fast, and even make an amazing scoop of ice cream with their bare hands. This truly is the peak of evolution.)"
+    Ka "Y'know, most ice cream vendors use some sort of scoop. But over the years, you learn that your bare hands are faster and more efficient than any of those stupid tools." #Might be a bit pointless to have this
+    c "Don't you walk using your hands?" #Hands, claws, feet, I'm very confused at this point
+    Ry look "You know, I never really thought of that."
+    Ka "Well, I wash my hands before serving the ice cream of course! I have a little station behind here and everything."
+    c "(That's good to hear. I was worried for a moment.)"
+    show remy normal behind vara with dissolvemed
+    m "In another brisk motion, the dragon revealed a standard waffle cone and carefully rested the scoop on top, ligtly pushing it down to make sure it didn't fall out."
+    c "Interesting, those cones look exactly like the ones back in my world."
+    show katsu excited flip at Position (xpos = 0.1) with easeinleft
+    Ka "But I am sure that they don't taste half as good as mine!"
+    m "Katsuharu then handed me the cone, topped with the [evalChosenFlavor] ice cream."
+    show katsu smile flip with dissolvemed
+
+    if evalChosenFlavor == "vanilla":
+        m "The vanilla ice cream itself was quite normal looking. It was a smooth and simple white color." #Kinda bad, should change
+    elif evalChosenFlavor == "chocolate":
+        m "The chocolate ice cream looked almost exactly like it had at home. Dark, cocoa brown with the nice addition of what seemed to be tiny chocolate chips sprinkled within."
+    elif evalChosenFlavor == "strawberry":
+        m "The strawberry ice cream looked different from what I was used to back in my world. Instead of a dark red, the scoop was tinted pinkish green, with small specks of what I assumed to be strawberry dotted within it."
+    elif evalChosenFlavor == "mango":
+        m "The mango ice cream looked very similar to that of my own world. However, upon further inspection, I found that there were chunks of mango within the scoop as well."
+        if persistent.adinegoodending:
+            m "It also resembled the color of a very familiar dragon."
+    elif evalChosenFlavor == "cherry":
+        m "Cherry ice cream in itself was a very unique concept to me. The scoop looked like the strawberry ice cream back in my world, but with a slightly darker shade of red."
+    elif evalChosenFlavor == "special":
+        m "The special had a color uncomfortably close to the color of a mango."
+        if mp.fish:
+            c "(Why does fish translate to yellowish orange in ice cream form?)"
+        else:
+            c "(What kind of special menu item has this yellowish orange hue.)"
+    
+    show katsu normal with dissolvemed
+    hide katsu with easeoutleft
+    m "I watched as Katsuharu repeated the process for Remy and Adine's cones."
+    show katsu normal flip at Position (xpos = 0.1) with easeinleft
+    m "With some difficulty, Katsuharu managed to waddle back over to us on his back legs."
+    Ka "Here you go."
+    m "Adine and Remy graciously took their ice cream from Katsuharu."
+    Ka "Years of experience have taught me how to stand on my hind legs to serve two scoops of ice cream."
+    Ka smile flip "I'm not graceful, but at least I can do it at all."
+    Ry smile "I don't know, Katsuharu, I doubt I could look as good as you doing that."
+    Ka "Maybe so."
+    show katsu normal with dissolvemed
+    hide katsu with easeoutleft
+    m "Katsuharu went back to his stand and made cones for Vara and Amely."
+    show katsu normal flip at Position (xpos = 0.1) with easeinleft
+    Ka "Here you go little ones."
+    m "The two dragons grabbed their cones. Amely looked at her own in wonder, while Vara meticulously inspected hers from all angles."
+    m "Cautiously, Amely tasted her chocolate ice cream."
+    show amely smnormal with dissolvemed
+    m "The instant her tongue made contact with the chocolate, her eyes lit up in excitement and she took another bite."
+    Ad giggle b "Well, I think someone likes ice cream."
+    m "Amely was already attacking her cone from all angles."
+    Ry normal "So, Amely, how's the ice cream?"
+    Am "Ice cream... very good..."
+    m "Her words were muffled as she continued devouring her cone."
+    Ad normal b "I've never seen her eat something so fast!"
+    m "Vara, done watching Amely enjoy her ice cream, took a small taste herself."
