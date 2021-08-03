@@ -128,7 +128,8 @@ label eval_everyone_1:
         Ry "Well, [player_name] and I wanted to surprise you by cleaning up the place a little bit."
         show adine think b with dissolvemed
         $ renpy.pause (0.5)
-        show adine gigglbe b flip with dissolvemed
+        show adine giggle b flip with dissolvemed
+        $ adinestatus="good"#because of how much you have done to help, she now really likes you, the status screen now shows adine as impressed
         Ad "This isn't real. My eyes are deceiving me."
         c "You don't believe us?"
         Ad normal b flip "Are you kidding me? This place hasn't looked this good in years!"
@@ -164,11 +165,15 @@ label eval_everyone_1:
     elif evalOrphanageScore == 1:
         Ad "Wait... Did you guys do something here?"
         Ry smile "Well, [player_name] and I did a bit of work while we were waiting for you."
+        if adinestatus!="good":#if Adine's mood is not impressed, change it to good
+            $ adinestatus="neutral"#for doing some good around the orphanage
         Ad "Really? That's so kind of you! What were you waiting on me for?"
     else:
         Ad normal b flip "I expected to find you here Remy, but what is [player_name] doing here?"
     c "We have come to offer you the deal of a lifetime."
     c "Free ice cream from the world renowned Katsuharu!"
+    if adinestatus!="good":#if Adine's mood is not impressed, change it to good
+        $ adinestatus="neutral"#for free ice cream
     Ad giggle b flip "Can't say I expected that."
     Ad think b flip "I have never heard of that dragon giving anyone free ice cream."
     Ad "You must have done something quite spectacular to get a deal like that."
@@ -196,8 +201,8 @@ label eval_everyone_1:
     m "Amely still didn't look completely sold on the idea of ice cream."
     Am "Sugar?"
     c "Yes, lots of sugar."
-    Am smnormal "Sugar!!!"
-    if not evalOrphanageScore == 2:
+    Am smnormal flip "Sugar!!!"
+    if evalOrphanageScore != 2:
         Ry look "What about the orphanage, Adine?"
         Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities these two little dragon would get to experience something like this."
         Ry normal "Good point."
@@ -401,7 +406,7 @@ label eval_everyone_1:
         
     scene town7 with dissolveslow
     show amely smnormal at right
-    show vara snmornal behind amely at right
+    show vara smnormal behind amely at right
     show remy normal behind vara at right
     show adine normal b behind remy at Position (xpos=0.6)
     with dissolvemed
@@ -417,7 +422,7 @@ label eval_everyone_1:
             c "Hopefully it should all return back to the peaceful way it was."
             c "Everything has more or less resolved itself and the conflict is over."
             Ka smile flip "Glad to hear that."
-            c "Is it alright if I brought these three along as well?"
+            c "Is it alright if I brought these four along as well?"
             Ka exhausted flip "Wow... When I offered you that ice cream, I didn't think you would bring all of your friends as well."
             Ry look "Listen, Katsuharu. If it's too much, just give [player_name] their ice cream."
             Ka "Hmmm..."
@@ -426,11 +431,7 @@ label eval_everyone_1:
             Ka "You four get as much ice cream as you desire. But first, you have to help me serve some customers for a while."
             Ry normal "That doesn't sound that bad."
             Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream."
-            Ad normal b "It might even be fun."
-            Vr "I want to make ice cream!"
-            Am "Ice cream!"
-            Ry "I guess it's really up to you, [player_name]. This was your idea after all."
-        
+            Ad normal b "It might even be fun."        
         "No time for chatting.":
             c "No time for chatting, we are here for important ice cream related matters."
             show remy look at right behind amely with dissolvemed
@@ -456,9 +457,9 @@ label eval_everyone_1:
             Ka "But first, you have to help me serve some customers for a while."
             Ry normal "That doesn't sound that bad."
             Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream. It might even be fun."
-            Vr "I want to make ice cream!"
-            Am "Ice cream!"
-            Ry "I guess it's really up to you, [player_name]. This was your idea after all."
+    Vr "I want to make ice cream!"
+    Am "Ice cream!"
+    Ry "I guess it's really up to you, [player_name]. This was your idea after all."
     
     menu:
         "[[Help out Katsuharu]":
@@ -545,7 +546,10 @@ label eval_everyone_1:
             "???" "I can't believe someone could be that selfish!"
             m "Hearing these comments, I picked up my pace."
             scene black with dissolveslow
-            m "Wow, that was mean!"
+            play sound "fx/system3.wav"
+            s "Wow, that was mean!"
+            play sound "fx/system3.wav"
+            s "How could you be so selfish?"
             return
 
 label eval_everyone_2:
@@ -629,7 +633,7 @@ label eval_everyone_2:
     with dissolvemed
     Ad "Sorry, I had to save Katsuharu's ice cream from this hungry little dragon."
     Am "Ice cream!"
-    Ka smile flip "Well, how about I start serving you four your ice cream. You deserve it after all."
+    Ka smile flip "Well, how about I start serving you five your ice cream. You deserve it after all."
     Ry smile "I'm sure Adine could use a bit of ice cream after chasing Amely around all day."
     Ad normal b "You say that sarcastically, but that's exactly what I need at the moment."
     Am "Ice cream!"
