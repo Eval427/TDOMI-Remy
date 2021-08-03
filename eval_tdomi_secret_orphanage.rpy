@@ -331,21 +331,7 @@ label eval_secret_orphanage_game:
                 m "I made myself another cracker and put it into my mouth."
             play sound "fx/pizzabite.ogg"
             $ renpy.pause (1.0)
-<<<<<<< HEAD
             elif evalCrackersConsumed == 30:
-=======
-            if evalCrackersConsumed == 1:
-                m "It was amazing. I didn't realize just how hungry I was."
-                c "Wow, Vara! This is wonderful."
-                Vr "Thank you!"
-            elif evalCrackersConsumed < 5:
-                m "It still tasted great, and my stomach was feeling less empty."
-            elif evalCrackersConsumed > 4 and evalCrackersConsumed < 7:
-                m "I was starting to get full. Maybe I should stop."
-            elif evalCrackersConsumed > 6 and evalCrackersConsumed < 10:
-                m "I was starting to feel sick, I should have stopped eating a long time ago."
-            elif evalCrackersConsumed == 10:
->>>>>>> upstream/master
                 m "My body would not let me swallow it. I was forced to spit it out on the floor."
                 Vr smshocked "..."
                 stop music fadeout 2.0
@@ -1271,22 +1257,15 @@ label eval_too_many_crackers:
     c "How come?"
     Ry sad "She blames herself for what happened at the orphanage. She locked herself in her room and hasn't come out since."
     c "Oh! Should I go and talk to her?"
-<<<<<<< HEAD
     Ry look "Not yet. You should rest some more."
-=======
-    Ry look "Not yet. Give her some time."
->>>>>>> upstream/master
     Ry sad "I'm going to go and try and get her out of her room. You stay here and get better."
     hide remy with easeoutleft
     play sound "fx/door/doorchain.ogg"
     $ renpy.pause (2.0)
     scene black with dissolveslow
     $ renpy.pause (2.0)
-<<<<<<< HEAD
     #a scene where our MC apologizes for scaring Vara like that,
     #perhaps they mention a few other times they over did something and passed out
     #like that time they OD'd on pain meds in the prologue
     #or the drinking contest with Bryce in chapter 1
-=======
->>>>>>> upstream/master
     return

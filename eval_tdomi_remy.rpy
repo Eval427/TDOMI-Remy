@@ -173,11 +173,7 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 2
             jump eval_remy_amely_1
 
-<<<<<<< HEAD
         "Why don't we invite Amely and Adine?" if adinestatus!="bad" and not adinedead:#adine won't accept the invitation if she dislikes our MC or if she's dead
-=======
-        "Why don't we invite Amely and Adine?" if persistent.adinegoodending and not adinedead:
->>>>>>> upstream/master
             c "Why don't we take Adine and Amely as well?"
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry smile "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
@@ -320,11 +316,7 @@ label eval_tdomi_remy:
                             "!!!" "That's what I thought!"
                             $ renpy.pause (0.5)
                             scene black with dissolveslow
-<<<<<<< HEAD
                             m "At a loss for words, I made my way back home, crawled into bed, and spent the rest of the day wondering what possessed me to be so selfish."
-=======
-                            m "At a loss for words, I made my way back home, crawled into bed, and spend the rest of the day wondering what possessed me to be so selfish."
->>>>>>> upstream/master
                             play sound "fx/system3.wav"
                             s "Why did you go through all the trouble of saving Vara just to do that?"
                             return
@@ -2684,17 +2676,10 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
                                         "[[Bring out your secret weapon]":
                                             m "Suddenly, I remembered something that I had from earlier."
                                             m "I pulled out the tape measure that Leymas had given me."
-<<<<<<< HEAD
                                             m "I slowly extended the tape measure until the end came in contact with Adine's pale chest."
                                             c "I'm..."
                                             Ad frustrated b "What are you doing, [player_name]?"
                                             Ry look "Do you really want to get slapped again, [player_name]?"
-=======
-                                            Ry look "What are you doing, [player_name]?"
-                                            m "I slowly extended the tape measure until the end came in contact with Adine's pale chest."
-                                            Ad frustrated b "Do you really want to get slapped again, [player_name]?"
-                                            c "I'm..."
->>>>>>> upstream/master
                                             m "I readied myself for another slap across the face."
                                             c "I'm measuring your patience."
                                             scene black with dissolvemed
