@@ -11,15 +11,14 @@
 #the hatchery? maybe she actually does open up more because she recognizes you when you found her
 #with her dead mother?
 
-label eval_hatchery_visited: #This is only to incorporate the declaration of a variable
-    if evalFixDoubleOrphanageLine:
+label eval_hatchery_visited:
+    if renpy.python.store_dicts["store"].get("evalFixDoubleOrphanageLine",False):
         m "It wasn't until now that I noticed Vara looking at me curiously."
-        $ evalHatcheryVisited = True
-        $ evalFixDoubleOrphanageLine = False
+        $ evalFixDoubleOrphanageLine = True
     return
 
 label eval_remy_ch4_date_change: #This changes up the end of Remy's date to account for the secret ending
-    if persistent.evalSecretEndingUnlocked and evalHatcheryVisited and varasaved:
+    if persistent.evalSecretEndingUnlocked and c4hatcheryplayed and varasaved:
         if persistent.evalSecretEndingCompleted:
             play sound "fx/system3.wav"
             s "It seems that you have already seen the true ending for TDOMI. Would you like to experience it again or the normal turn of events?"
@@ -187,7 +186,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         show remy normal at right with easeinright
         show vara smnormal at left with easeinright
         show vara smnormal flip at left with dissolvemed
-        $ evalVaraMood = 2
+        $ evalVaraMood = 1
         Ry smile "Impressive, isn't it?"
 
         menu:
@@ -286,7 +285,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         with dissolvemed
         Ry "Well, it's getting to be Vara's bedtime, so we best get going."
         c "I understand."
-        if evalVaraMood >= 4:
+        if evalVaraMood > 0:
             play sound "fx/fireworks2.ogg"
             Vr smshocked flip "..."
             m "What must have been the finale for the day's firework show seemed to frighten Vara."
@@ -405,7 +404,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             Ry "Goodbye, [player_name]. I'll see you around."
             c "Likewise."
             Ry "Can you say goodbye, Vara?"
-            if evalVaraMood == 0:
+            if evalVaraMood < 0:
                 play sound "fx/growl.ogg"
                 $ renpy.pause (2.0)
                 Ry look "I guess not..."

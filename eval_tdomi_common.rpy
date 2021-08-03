@@ -122,7 +122,7 @@ label eval_tdomi_common:
     $ evalRemyDateBed = False
 
     #Basically just a bugfix on a hook
-    $ evalFixDoubleOrphanageLine = True
+    $ evalFixDoubleOrphanageLine = False
 
     #Whether you have the tape measure for a very bad joke
     $ evalTapeMeasure = False

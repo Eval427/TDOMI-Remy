@@ -190,7 +190,6 @@ label eval_secret_orphanage_game:
     #Show Remy when he returns and give the player their item
     if evalRemyOnMission and evalMinutesRemyIsGone == 0:
         show amely smnormal with easeinright
-        m "[evalVaraGone]"
         if evalVaraGone:
             show remy normal behind amely with easeinright
         else:
@@ -331,7 +330,7 @@ label eval_secret_orphanage_game:
                 m "I made myself another cracker and put it into my mouth."
             play sound "fx/pizzabite.ogg"
             $ renpy.pause (1.0)
-            elif evalCrackersConsumed == 30:
+            if evalCrackersConsumed == 30:
                 m "My body would not let me swallow it. I was forced to spit it out on the floor."
                 Vr smshocked "..."
                 stop music fadeout 2.0
@@ -352,7 +351,9 @@ label eval_secret_orphanage_game:
                 c "Wow, Vara! This is wonderful."
                 Vr "Thank you!"
 
-            $ evalRemainingMinutes -= 1 #Why does eating a cracker take 15 minutes? Why not?
+            $ evalRemainingMinutes -= 1
+            if evalRemyOnMission:
+                $ evalMinutesRemyIsGone -= 1
             $ evalJustAteCracker = True
             jump eval_secret_orphanage_game
 
@@ -1209,7 +1210,7 @@ label eval_secret_orphanage_end: #Change the music
             Ry smile "Would you rather miss out on ice cream?"
             c "I guess not..."
             Ry normal "I woke you up just before Adine's shift ends. She should be here any minute now..."
-            jump eval_remy_amely_adine_1
+            jump eval_everyone_1
         else:
             Ry look "I forgot that you aren't as strong as you usually are."
             Ry normal "How about you three sit down and rest for a while. She looks exhausted as well."
