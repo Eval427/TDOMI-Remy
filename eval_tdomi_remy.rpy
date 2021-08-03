@@ -120,6 +120,13 @@ label eval_tdomi_remy:
     Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
     c "I'm sure it will be fine."
     Ry normal "If your pass extends beyond just yourself, is there anyone else you would like to invite?"
+    $ evalVaraAlive=False
+    if evalDoingSecretEnding:#the alternate path eval made to allow vara to survive
+        $ evalVaraAlive=True
+    elif not renpy.python.store_dicts["store"].get("vara_survives_varadead",True):#joeyjumper94's vara survives mod
+        $ evalVaraAlive=True
+    elif renpy.python.store_dicts["store"].get("hatchling","")=="Vara":#if player selected Vara in the remy hatchlings mod, she survives
+        $ evalVaraAlive=True
 
     menu:
         "We should go together.":
@@ -166,7 +173,7 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 2
             jump eval_remy_amely_1
 
-        "Why don't we invite Amely and Adine?" if persistent.adinegoodending and not adinedead:
+        "Why don't we invite Amely and Adine?" if adinestatus!="bad" and not adinedead:#adine won't accept the invitation if she dislikes our MC or if she's dead
             c "Why don't we take Adine and Amely as well?"
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry smile "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
@@ -240,7 +247,7 @@ label eval_tdomi_remy:
                             s "Nice one, child hater."
                             return
 
-        "Everyone." if persistent.evalSecretEndingCompleted or evalDoingSecretEnding:
+        "Everyone." if evalVaraAlive and adinestatus!="bad" and not adinedead:
             c "Why don't we bring everyone?"
             Ry look "Everyone?"
             c "Yes. You, Amely, Vara, Adine, and I."
@@ -309,7 +316,7 @@ label eval_tdomi_remy:
                             "!!!" "That's what I thought!"
                             $ renpy.pause (0.5)
                             scene black with dissolveslow
-                            m "At a loss for words, I made my way back home, crawled into bed, and spend the rest of the day wondering what possessed me to be so selfish."
+                            m "At a loss for words, I made my way back home, crawled into bed, and spent the rest of the day wondering what possessed me to be so selfish."
                             play sound "fx/system3.wav"
                             s "Why did you go through all the trouble of saving Vara just to do that?"
                             return
@@ -1256,7 +1263,8 @@ label eval_remy_amely_2:
                 Ry smile "Whoah! Save some for me!"
                 m "I watched as the two dragons happily enjoyed their ice cream together. While I sat alone on the bench without getting the chance to have any."
                 scene black with dissolveslow
-                m "You missed the entire point of this mod. Ignoring the fact that you tortured a child, you didn't even get to eat any ice cream. Shame on you."
+                play sound "fx/system3.wav"
+                s "You missed the entire point of this mod. Ignoring the fact that you tortured a child, you didn't even get to eat any ice cream. Shame on you."
                 return #for now
             else:
                 Ry "Wow, I've never seen Amely like something quite that much."
@@ -1327,7 +1335,7 @@ label eval_remy_amely_2:
                                     Ka "Anyways, enjoy the chocolate ice cream [player_name]!"
                                     c "Thank you Katsuharu!"
                             
-                            m "The second my tongue lay contact with the smooth [flavor], I lit up in excitement."
+                            m "The second my tongue lay contact with the smooth [evalChosenFlavor], I lit up in excitement."
                             c "Wow! This really is amazing ice cream!"
                             Ry smile "Couldn't agree more."
                             m "The two of us sat for a while, watching the little dragon run around while we finished our cones."
@@ -1368,7 +1376,7 @@ label eval_remy_amely_2:
                             Ka "Anyways, enjoy the chocolate ice cream [player_name]!"
                             c "Thank you Katsuharu!"
                     
-                    m "The second my tongue lay contact with the smooth [flavor], I lit up in excitement."
+                    m "The second my tongue lay contact with the smooth [evalChosenFlavor], I lit up in excitement."
                     c "Wow! This really is amazing ice cream!"
                     Ry smile "Couldn't agree more."
                     m "The two of us sat for a while, watching the little dragon run around while we finished our cones."
@@ -1559,6 +1567,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         show adine think b with dissolvemed
         $ renpy.pause (0.5)
         show adine giggle b flip with dissolvemed
+        $ adinestatus="good"#because of how much you have done to help, she now really likes you, the status screen now shows adine as impressed
         Ad "This isn't real. My eyes are deceiving me."
         c "You don't believe us?"
         Ad normal b flip "Are you kidding me? This place hasn't looked this good in years!"
@@ -1582,6 +1591,8 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     elif evalOrphanageScore == 1:
         Ad "Wait... Did you guys do something here?"
         Ry smile "Well, [player_name] and I did a bit of work while we were wating for you."
+        if adinestatus!="good":#if Adine's mood is not impressed, change it to good
+            $ adinestatus="neutral"#for doing some good around the orphanage
         Ad "Really? That's so kind of you! What were you waiting on me for?"
     else:
         Ad normal b flip "I expected to find you here Remy, but what is [player_name] doing here?"
@@ -1589,6 +1600,8 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     show remy look at right with dissolvemed
     Ad annoyed b flip "What?"
     c "Katsuharu owes me as much ice cream as I want, and I thought who better to bring than you two and Amely?"
+    if adinestatus!="good":#if Adine's mood is not impressed, change it to good
+        $ adinestatus="neutral"#for free ice cream
     Ad think b flip "I have never heard of that dragon giving anyone free ice cream."
     Ad "You must have done something quite spectacular to get a deal like that."
     show remy normal at right with dissolvemed
@@ -1952,7 +1965,10 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             "???" "I can't believe someone could be that selfish!"
             m "Hearing these comments, I picked up my pace."
             scene black with dissolveslow
-            m "Wow, that was mean!"
+            play sound "fx/system3.wav"
+            s "Wow, that was mean!"
+            play sound "fx/system3.wav"
+            s "How could you be so selfish?"
             return
             #Add a bit more to this? Maybe, but now I'm sad. After playtesting, I really do. But now I'm sad again :'(
 
@@ -2660,10 +2676,10 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
                                         "[[Bring out your secret weapon]":
                                             m "Suddenly, I remembered something that I had from earlier."
                                             m "I pulled out the tape measure that Leymas had given me."
-                                            Ry look "What are you doing, [player_name]?"
                                             m "I slowly extended the tape measure until the end came in contact with Adine's pale chest."
-                                            Ad frustrated b "Do you really want to get slapped again, [player_name]?"
                                             c "I'm..."
+                                            Ad frustrated b "What are you doing, [player_name]?"
+                                            Ry look "Do you really want to get slapped again, [player_name]?"
                                             m "I readied myself for another slap across the face."
                                             c "I'm measuring your patience."
                                             scene black with dissolvemed

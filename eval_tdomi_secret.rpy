@@ -128,7 +128,8 @@ label eval_everyone_1:
         Ry "Well, [player_name] and I wanted to surprise you by cleaning up the place a little bit."
         show adine think b with dissolvemed
         $ renpy.pause (0.5)
-        show adine gigglbe b flip with dissolvemed
+        show adine giggle b flip with dissolvemed
+        $ adinestatus="good"#because of how much you have done to help, she now really likes you, the status screen now shows adine as impressed
         Ad "This isn't real. My eyes are deceiving me."
         c "You don't believe us?"
         Ad normal b flip "Are you kidding me? This place hasn't looked this good in years!"
@@ -164,11 +165,15 @@ label eval_everyone_1:
     elif evalOrphanageScore == 1:
         Ad "Wait... Did you guys do something here?"
         Ry smile "Well, [player_name] and I did a bit of work while we were waiting for you."
+        if adinestatus!="good":#if Adine's mood is not impressed, change it to good
+            $ adinestatus="neutral"#for doing some good around the orphanage
         Ad "Really? That's so kind of you! What were you waiting on me for?"
     else:
         Ad normal b flip "I expected to find you here Remy, but what is [player_name] doing here?"
     c "We have come to offer you the deal of a lifetime."
     c "Free ice cream from the world renowned Katsuharu!"
+    if adinestatus!="good":#if Adine's mood is not impressed, change it to good
+        $ adinestatus="neutral"#for free ice cream
     Ad giggle b flip "Can't say I expected that."
     Ad think b flip "I have never heard of that dragon giving anyone free ice cream."
     Ad "You must have done something quite spectacular to get a deal like that."
@@ -197,7 +202,7 @@ label eval_everyone_1:
     Am "Sugar?"
     c "Yes, lots of sugar."
     Am smnormal "Sugar!!!"
-    if not evalOrphanageScore == 2:
+    if evalOrphanageScore != 2:
         Ry look "What about the orphanage, Adine?"
         Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities these two little dragon would get to experience something like this."
         Ry normal "Good point."
@@ -545,7 +550,10 @@ label eval_everyone_1:
             "???" "I can't believe someone could be that selfish!"
             m "Hearing these comments, I picked up my pace."
             scene black with dissolveslow
-            m "Wow, that was mean!"
+            play sound "fx/system3.wav"
+            s "Wow, that was mean!"
+            play sound "fx/system3.wav"
+            s "How could you be so selfish?"
             return
 
 label eval_everyone_2:

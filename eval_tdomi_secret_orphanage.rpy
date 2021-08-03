@@ -92,7 +92,7 @@ label eval_secret_orphanage_game:
             m "I rubbed her head."
             c "I appreciate the effort, but for a high five, you have to open your claw and slap mine."
             c "Open up your claw, I'll show you."
-            Vr none "..."
+            Vr smnone "..."
             play sound "fx/lighthighfive.mp3"
             m "Vara tentatively stretched her claw in my direction. I lightly hit it with my palm."
             m "She recoiled on impact, but after a moment of consideration, smiled."
@@ -157,7 +157,7 @@ label eval_secret_orphanage_game:
         jump eval_secret_orphanage_end
     
     #Complete the game if the player runs out of time
-    if evalRemainingMinutes <= 0:
+    elif evalRemainingMinutes <= 0:
         $ evalDisplayVar1 = 0
         Ry "Adine should be here any minute, [player_name]."
         c "But we aren't done!"
@@ -331,17 +331,7 @@ label eval_secret_orphanage_game:
                 m "I made myself another cracker and put it into my mouth."
             play sound "fx/pizzabite.ogg"
             $ renpy.pause (1.0)
-            if evalCrackersConsumed == 1:
-                m "It was amazing. I didn't realize just how hungry I was."
-                c "Wow, Vara! This is wonderful."
-                Vr "Thank you!"
-            elif evalCrackersConsumed < 5:
-                m "It still tasted great, and my stomach was feeling less empty."
-            elif evalCrackersConsumed > 4 and evalCrackersConsumed < 7:
-                m "I was starting to get full. Maybe I should stop."
-            elif evalCrackersConsumed > 6 and evalCrackersConsumed < 10:
-                m "I was starting to feel sick, I should have stopped eating a long time ago."
-            elif evalCrackersConsumed == 10:
+            elif evalCrackersConsumed == 30:
                 m "My body would not let me swallow it. I was forced to spit it out on the floor."
                 Vr smshocked "..."
                 stop music fadeout 2.0
@@ -349,7 +339,20 @@ label eval_secret_orphanage_game:
                 m "Then, everything went black."
                 play sound "fx/impact3.ogg"
                 jump eval_too_many_crackers
-            $ evalRemainingMinutes -= 15 #Why does eating a cracker take 15 minutes? Why not?
+            elif evalCrackersConsumed >= 27:
+                m "I feel very sick, I should have stopped eating a really long time ago."
+            elif evalCrackersConsumed >= 18:
+                m "I was starting to feel sick, I should have stopped at 17."
+            elif evalCrackersConsumed >= 12:
+                m "I was starting to get full. Maybe I should stop."
+            elif evalCrackersConsumed > 1:
+                m "It still tasted great, and my stomach was feeling less empty."
+            else:
+                m "It was amazing. I didn't realize just how hungry I was."
+                c "Wow, Vara! This is wonderful."
+                Vr "Thank you!"
+
+            $ evalRemainingMinutes -= 1 #Why does eating a cracker take 15 minutes? Why not?
             $ evalJustAteCracker = True
             jump eval_secret_orphanage_game
 
@@ -1254,11 +1257,15 @@ label eval_too_many_crackers:
     c "How come?"
     Ry sad "She blames herself for what happened at the orphanage. She locked herself in her room and hasn't come out since."
     c "Oh! Should I go and talk to her?"
-    Ry look "Not yet. Give her some time."
+    Ry look "Not yet. You should rest some more."
     Ry sad "I'm going to go and try and get her out of her room. You stay here and get better."
     hide remy with easeoutleft
     play sound "fx/door/doorchain.ogg"
     $ renpy.pause (2.0)
     scene black with dissolveslow
     $ renpy.pause (2.0)
+    #a scene where our MC apologizes for scaring Vara like that,
+    #perhaps they mention a few other times they over did something and passed out
+    #like that time they OD'd on pain meds in the prologue
+    #or the drinking contest with Bryce in chapter 1
     return
