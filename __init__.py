@@ -17,7 +17,7 @@ def load_side_ims():
     for expression in varaSmallExpressions:
         renpy.exports.image("side vara %s"%expression.replace("_", " "), clip_vara_side_image("cr/vara_%s.png"%expression))
 
-#Function by 4onen to simplify connecting hooks
+#Function by Joey to simplify connecting hooks
 def connect(node, next):
     hook = modast.hook_opcode(node, None)
     hook.chain(next)
@@ -54,7 +54,9 @@ class AWSWMod(Mod):
         changeRemyGoodEnding = modast.find_label("remy5")
         modast.call_hook(changeRemyGoodEnding, modast.find_label("eval_remy_good_ending_change"))
         
-        #Another hook to allow MC to stay in this current timeline?
+        #Hook to remove any mentions of sweat from the game so my jokes make canotical sense
+        handleSweat = modast.find_say("After holding it for a few seconds, he breathed a sigh of relief as he relaxed and the flapping motion stopped again.")
+        modast.call_hook(handleSweat, modast.find_label("eval_change_sweat_reference"), None, modast.search_for_node_type(handleSweat, ast.Menu))
         
 
     def mod_complete(self):

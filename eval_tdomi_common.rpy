@@ -124,6 +124,12 @@ label eval_tdomi_common:
     #Basically just a bugfix on a hook
     $ evalFixDoubleOrphanageLine = True
 
+    #Whether you have the tape measure for a very bad joke
+    $ evalTapeMeasure = False
+
+    #Whether Adine tricks you
+    $ evalAdineTrick = False
+
 
 
     #A bunch of variables for the orphanage minigame

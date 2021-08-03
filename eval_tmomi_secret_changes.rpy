@@ -117,7 +117,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         Ry "You seem to be doing quite alright in a world full of complete strangers."
         c "You guys are so much nicer than most humans. Plus, it feels much easier talking to a different species."
         Ry look "Strange, I feel the same way."
-        c "Now, Remy. Did you want to clean out my bathroom cabinent while you're here?"
+        c "Now, Remy. Did you want to clean out my bathroom cabinet while you're here?"
         Ry smile "That's a good one."
         show remy normal with dissolvemed
         Ry "This may surprise you, but no. I think I'll let you make the call on what dragon medications you should take."
@@ -171,7 +171,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         play sound "fx/cuttingboard.mp3"
         m "Grabbing the knife in her muzzle, Vara dexterously cut it lengthwise and put it to the side."
         m "Then, without letting go of the knife, Vara grabbed some sort of fish out of a bag and cut it into thin slices."
-        c "How was the fish not expired, Remy?"
+        c "How did the fish not expire, Remy?"
         Ry "Our fish can last for months refrigerated."
         m "Vara proceeded to grab a long, thin green sheet of a substance similar to seaweed and rested rice evenly on top."
         c "Is that seaweed?"
@@ -217,7 +217,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         Ry normal "Could I have one, Vara?"
         m "Vara nodded."
         m "Remy grabbed a piece of sushi and put it in his mouth."
-        Ry "Wow! It's really good Vara!"
+        Ry "Wow! It's really good, Vara!"
         m "Remy took another two pieces, and delicately rested them on his tongue"
         m "Vara suddenly pushed the cutting board in my direction."
         Ry "I think she wants you to try it, [player_name]."
@@ -249,7 +249,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             
             "If I have to.":
                 c "If I have to..."
-                m "I tenatively grabbed a piece of sushi and looked at it for a moment."
+                m "I tentatively grabbed a piece of sushi and looked at it for a moment."
                 show vara smnone flip with dissolvemed
                 m "Vara looked extremely nervous as I put the piece of sushi in my mouth."
                 m "It was amazing. The buttery fish complemented the somewhat tangy taste of the algae and the crispness of the cucumber."
@@ -317,8 +317,8 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             $ renpy.pause (2.0)
             m "I feel to the floor unconscious."
             $ renpy.pause (1.0)
-            m "I awoke when I felt a strange pressing senastion on my cheek."
-            m "It was Vara, who looked down at me with a concerened expression."
+            m "I awoke when I felt a strange pressing sensation on my cheek."
+            m "It was Vara, who looked down at me with a concerned expression."
             scene o3 with dissolveslow
             show remy look
             show vara smshocked
@@ -548,7 +548,7 @@ label eval_remy_ch4_date_change_2:
     m "Remy took a deep breath and wiped away a few tears."
     Ry look "Maybe you're right."
     Ry "I know I couldn't do this alone. But with you? I think we have a chance."
-    c "Glad to hear that, Remy. You're a lot braver than you make youself out to be."
+    c "Glad to hear that, Remy. You're a lot braver than you make yourself out to be."
     Ry "Well, you're making me work double-time here. Before you, I didn't have to worry about all of this nonsense."
     Ry normal "But you know what? I wouldn't have it any other way."
     if remystatus != "neutral":
@@ -648,7 +648,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show remy angry
     with dissolvemed
     Ry "What? Where?"
-    c "What we were talking about earlier? I know how it happens."
+    c "What we were talking about earlier. I know how it happens."
     Ry "Why didn't you say anything before?"
     c "Because I didn't figure it out until now."
     c "I know where Reza is. We need to stop him."
@@ -816,7 +816,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "Upon contact, Reza's skin started to boil."
     m "Reza expressed no signs of pain. I noticed a strange metallic sheen and sparks flying from his hand."
     m "Maverick wrenched the gun out of his grasp with his teeth and tossed it to the side."
-    m "However, some of the acid must have made contact Maverick's muzzle as well."
+    m "However, some of the acid must have made contact with Maverick's muzzle as well."
     play sound "fx/dragonpain.wav"
     m "Maverick released his grip and held onto his muzzle in pain."
     m "Reza instantly made a break for the portal."
@@ -902,7 +902,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     c "When I saw Remy and Vara together in my apartment. I guess it reminded me of something."
     As "Something, as in a ghostly image?"
     c "Yes, I saw Vara resembling a ghost."
-    As "Hmm... you must have experienced fragmentations of this timeline in a previous one."
+    As "Hmm... you must have experienced fragments of this timeline in a previous one."
     As "That was no ghost you saw, but it was Vara in this timeline."
     c "But why would the fragmentation of this time appear as a ghost as well?"
     As "It did not, but rather your mind referenced the fragment from a previous timeline in this current one."
@@ -965,7 +965,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     n "After I awoke from my coma, I had to consider my options."
     n "While the dragons were able to create a new power source for the portal, I wouldn't have known how to send myself back to humanity, as their portal was already deactivated - at least not without the expertise of the dead Administrator."
     n "The only coordinates remaining in the portal were those she left as a last resort. It turned out they were to send someone back in time to the day I arrived here."
-    n "I met with Remy as soon as i could, who told me about everything I had missed."#had to change this to avoid clashing with vara survives mod
+    n "I met with Remy as soon as I could, who told me about everything I had missed."#had to change this to avoid clashing with vara survives mod
 
     window hide
     nvl clear
@@ -1016,7 +1016,7 @@ label eval_post_secret_remy_meeting:
     c "I bet you and Vara wouldn't mind that, would you?"
     Ry smile "You know how I am. Humans just fascinate me."
     Ry "And you are the only person, other than myself and Adine, that Vara seems to have taken a liking to."
-    Ry normal "This isn't just about us, though. Of course we would love if you stayed with us, but I know there are many other factors at play here, and that it won't be an easy decision for you to make."
+    Ry normal "This isn't just about us, though. Of course we would love it if you stayed with us, but I know there are many other factors at play here, and that it won't be an easy decision for you to make."
     Ry "Don't let us stop you from going back if that's what you want to do, though. We'll be fine."
     c "Are you sure about that?"
     Ry "Yes. After all, I have Vara to keep me company. Also, while you were busy these last few weeks, I spent a lot of time with Adine, and we rekindled our lost friendship."

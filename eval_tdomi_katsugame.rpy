@@ -79,8 +79,13 @@ label eval_katsu_help:
             Op "Thank you."
             m "I turned back to Katsuharu."
             c "One last scoop of mango ice cream."
-            Ka "On it!"
-            m "The two dragons quickly made the scoop and passed it over to me."
+            if evalCurrentEnding == 4:
+                Ka "Alright...{nw}!"
+                Vr "I'll do it!"
+                m "Vara quickly made the scoop and passed it over to me."
+            else:
+                Ka "On it!"
+                m "The two dragons quickly made the scoop and passed it over to me."
             m "I turned back to the dragon."
             c "Here you are!"
             Op "Thank you!"
@@ -92,11 +97,14 @@ label eval_katsu_help:
             Op "Thank you again for the ice cream!"
             c "No problem..."
             hide ophinia with easeoutleft
-            m "With that, she paid and left for a second time"
-            c "(I am still very confused on what just happened.)"
+            m "With that, she paid and left for a second time."
+            c "(That was a very confusing series of events.)"
             $ evalCustomerScore += 1
         hide screen evalextrainfo
-        jump eval_remy_amely_adine_2
+        if evalCurrentEnding == 3:
+            jump eval_remy_amely_adine_2
+        elif evalCurrentEnding == 4:
+            jump eval_everyone_2
     
     #Some intermediate dialogue
     if evalServedCustomers == 2:
@@ -175,26 +183,41 @@ label eval_katsu_help_2:
         "Make it quickly.":
             c "One scoop of [evalCharacterPreferredFlavor] Katsuharu! Let's go a bit quickly on this one!"
             Ka "On it!"
-            m "The dragon quickly grabbed a sugar cone while Remy took out a large scoop of [evalCharacterPreferredFlavor] and placed it on top."
+            if evalCurrentEnding == 4:
+                m "Remy grabbed a sugar cone while Vara took out a scoop of [evalCharacterPreferredFlavor] and placed it on top."
+            else:
+                m "The dragon quickly grabbed a sugar cone while Remy took out a scoop of [evalCharacterPreferredFlavor] and placed it on top."
             m "It wasn't perfect, but it still looked okay."
             $ evalQualityServed = 0
         
         "Make it carefully.":
             c "One scoop of [evalCharacterPreferredFlavor] Katsuharu! Let's take our time on this one and make it look good!"
             Ka "On it!"
-            m "The dragon grabbed a sugar cone, inspected it, and then chose another. Remy then took a large scoop of [evalCharacterPreferredFlavor] and carefully rested it on top."
+            if evalCurrentEnding == 4:
+                m "Remy grabbed a sugar cone from the pile. Katsuharu grabbed it from Remy's grasp and threw it away."
+                Ka "That cone didn't look great. Let's get another."
+                m "Remy carefully chose another cone and handed it to Vara, who took a scoop of [evalCharacterPreferredFlavor] and carefully rested it on top."
+            else:
+                m "The dragon grabbed a sugar cone, inspected it, and then chose another. Remy then took a scoop of [evalCharacterPreferredFlavor] and carefully rested it on top."
             m "It looked remarkable. I was tempted to take a bite myself."
             $ evalQualityServed = 1
         
         "Make it large.":
             c "A nice, large helping of [evalCharacterPreferredFlavor], Katsuharu!"
             Ka "On it!"
-            m "The dragon grabbed a sugar cone while Remy took out a large scoop of [evalCharacterPreferredFlavor] and placed it on top."
-            m "Katsuharu looked at the cone for a second."
-            Ka "Let's add a bit more."
-            m "Remy added a bit more ice cream to the top."
-            Ka "Perfect. Nice job Remy."
-            Ry "Thanks!"
+            if evalCurrentEnding == 4:
+                m "Remy grabbed a sugar cone while Vara took out a large scoop of [evalCharacterPreferredFlavor] and placed it on top."
+                m "Katsuharu looked at the cone for a second."
+                Ka "Let's add a bit more."
+                m "Katsuaru dipped his claw into the vat of [evalCharacterPreferredFlavor] and added a bit more to the top."
+                Ka "Perfect."
+            else:
+                m "The dragon grabbed a sugar cone while Remy took out a large scoop of [evalCharacterPreferredFlavor] and placed it on top."
+                m "Katsuharu looked at the cone for a second."
+                Ka "Let's add a bit more."
+                m "Remy added a bit more ice cream to the top."
+                Ka "Perfect. Nice job Remy."
+                Ry "Thanks!"
             $ evalQualityServed = 2
 
     m "Katsuharu handed me the cone."
@@ -739,7 +762,29 @@ label eval_help_ley: #Ask for a tape measure for poking Adine
             Le "Thanks a ton! I really needed some extra ice cream today!"
             $ evalCustomerScore += 1
     
-    hide leymas with easeoutleft #Add a bit more here possibly. Idk why I like leymas more than the other characters I made up
+    if evalCharacterMood == evalQualityServed and evalCurrentEnding == 4:
+        m "Looking at Leymas' toolbelt, an idea struck me."
+        c "Leymas, would you mind if I borrowed your tape measure?"
+        Le "What for?"
+        c "Measuring, of course."
+        Le "That is very vague."
+        c "I know, but if I explained what I wanted to do, it wouldn't make sense."
+        Le "Well, I guess I'm not going to be using it today."
+        Le "I'll agree if you promise you can return it by tomorrow."
+
+        menu:
+            "I promise.":
+                c "Sure, I can do that."
+                Le "Alright then, here you go."
+                $ evalTapeMeasure = True
+                play sound "fx/sys.wav"
+                s "You got a tape measure! What could that be used for?"
+
+            "Nevermind.":
+                c "Nevermind, I think I might be too busy to return it to you."
+                Le "Alright then."
+
+    hide leymas with easeoutleft
     m "With that, Leymas paid and left."
 
     $ evalServedCustomers += 1
@@ -772,11 +817,11 @@ label eval_help_oph:
         c "You know what? Maybe this should be a test."
         c "I won't give you any input. You have to decide on your own."
         Op "Oh, well..."
-        m "Once again looking at the flavors, I could see sweat on her brow."
+        m "Once again looking at the flavors, I could see her brows furl in concentration."
         Op "I think..."
-        m "The sweat started dripping down her face."
+        m "Her hand went up to her muzzle and the tip of her tongue escaped the side of her mouth."
         Op "I'll have..."
-        m "Her face suddenly lit up. She wiped off the sweat."
+        m "Her face suddenly lit up and her facial features returned to normal."
         Op "The mango, please."
         c "Wow! I'm impressed. Why the mango?"
         Op "Like you said before, I just went with the one I thought I would like the most."
