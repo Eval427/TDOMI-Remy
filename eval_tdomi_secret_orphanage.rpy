@@ -135,17 +135,17 @@ label eval_secret_orphanage_game:
             Ry normal "Interesting. Why do people high five?"
             c "It's a little congratulatory celebration for good collaboration."
             Ry "And why is it a high {i}five{/i}?"
-            c "Well, it's named after the fact that humans have five fingers. But since dragon species have varying fingers, we might need to consider renaming it."
+            c "Well, it's named after the fact that humans have five fingers. But since dragon species have varying amounts of digits, we might need to consider renaming it."
             Ry "I see."
             Am "I try?"
             c "Sure, Amely."
             play sound "fx/goodhighfive.mp3"
             m "I stretched out my arm, and the little dragon gave it a nice slap with her claw."
             c "Nice!"
-            Am "Thanks!"
+            Am "Yay!"
             Vr smnone "Me?"
-            m "I reached out to Vara with an outstretched palm. She tentatively gave my hand a light hit."
             play sound "fx/lighthighfive.mp3"
+            m "I reached out to Vara with an outstretched palm. She tentatively gave my hand a light hit."
             c "You can do it harder, Vara. It doesn't hurt me, I promise."
             Vr "Okay."
             play sound "fx/goodhighfive.mp3"
@@ -239,7 +239,7 @@ label eval_secret_orphanage_game:
 #Stuff for Vara's snack
     if evalRemainingMinutes <= 205 and not evalVaraGone and not evalVaraHasSnack:
         if evalRemyOnMission:
-            $ evalRemyAsksAboutVara = True #This just makes sure he doesn't ask where Vara is later
+            $ evalRemyAsksAboutVara = True
             Vr "Stay here, I will make a surprise."
             c "Okay, Vara."
             show vara smnormal flip with dissolvemed
@@ -255,14 +255,15 @@ label eval_secret_orphanage_game:
             hide vara with easeoutright
             Ry smile "I guess you've lost your little helper for a while."
             c "I'll make do."
+            $ evalRemyAsksAboutVara = True #This just makes sure he doesn't ask where Vara is later
         $ evalVaraHasSnack = True
         $ evalVaraGone = True
     
     if evalRemainingMinutes <= 175 and evalVaraGone:
         $ evalVaraGone = False
         $ evalVaraSnack = True
-        show vara smnormal behind amely with easeinright
         Vr "I'm back!"
+        show vara smnormal behind amely with easeinright
         m "Vara walked into the room balancing a large helping of cheese, crackers, and jam on her head."
         c "Oh! Let me help you with that, Vara."
         m "I lifted the plate off her head and set it on a nearby desk."
@@ -334,14 +335,15 @@ label eval_secret_orphanage_game:
                 m "My body would not let me swallow it. I was forced to spit it out on the floor."
                 Vr smshocked "..."
                 stop music fadeout 2.0
+                hide screen evalextrainfo
                 scene black with dissolvemed
                 m "Then, everything went black."
                 play sound "fx/impact3.ogg"
                 jump eval_too_many_crackers
             elif evalCrackersConsumed >= 27:
-                m "I feel very sick, I should have stopped eating a really long time ago."
+                m "I could fell a raging turmoil in my stomach, I could just manage to swallow the cracker."
             elif evalCrackersConsumed >= 18:
-                m "I was starting to feel sick, I should have stopped at 17."
+                m "I was starting to feel sick, I should have stopped eating a while ago."
             elif evalCrackersConsumed >= 12:
                 m "I was starting to get full. Maybe I should stop."
             elif evalCrackersConsumed > 1:
@@ -351,9 +353,9 @@ label eval_secret_orphanage_game:
                 c "Wow, Vara! This is wonderful."
                 Vr "Thank you!"
 
-            $ evalRemainingMinutes -= 1
+            $ evalRemainingMinutes -= 5
             if evalRemyOnMission:
-                $ evalMinutesRemyIsGone -= 1
+                $ evalMinutesRemyIsGone -= 5
             $ evalJustAteCracker = True
             jump eval_secret_orphanage_game
 
@@ -428,7 +430,7 @@ label eval_secret_orphanage_remy_item_gather:
                         $ evalMinutesRemyIsGone = 15
                         $ evalRemyOnMission = True
                         c "We should grab some WD-40. That stuff always comes in handy."
-                        Ry look "You mean DWD-40?"
+                        Ry look "Do you mean DWD-40?"
                         c "What does that even stand for?"
                         Ry normal "Dragon Water Displacement 40, obviously."
                         c "(I guess that's what the WD stands for.)"
@@ -679,7 +681,7 @@ label eval_secret_orphanage_fix_desk:
         else:
             c "Vara why don't you try the desk out now?"
             m "Vara sat at the desk Remy said was broken."
-        m "It seemed perfectly fine now. It no longer made hideous squeaking noises and it didn't rock when I moved around."
+        m "It seemed perfectly fine now. It no longer made hideous squeaking noises and didn't rock when she moved around."
         $ evalTasksComplete += 1
         $ evalDisplayVar3 = evalTasksComplete
         jump eval_secret_orphanage_game
@@ -1158,7 +1160,7 @@ label eval_secret_orphanage_end: #Change the music
     hide screen evalextrainfo
     stop music fadeout 2.0
     $ renpy.pause (3.0)
-    play music "mx/comfy.ogg" #Custom music for the secret ending. Nice
+    play music "mx/comfy.mp3" #Custom music for the secret ending. Nice
     if evalOrphanageScore == 2:
         Ry smile "Wow, [player_name]! This place hasn't look this good in years!"
         Ry "It was definitely worthy of a couple high fives."
@@ -1204,8 +1206,10 @@ label eval_secret_orphanage_end: #Change the music
             $ renpy.pause (3.0)
             m "I was awoken when my dragon pillow suddenly started moving."
             scene evalorphlight with dissolveslow
-            show amely smnormal with dissolvemed
-            show remy normal behind vara with dissolvemed
+            show amely smnormal
+            show vara smnormal behind amely
+            show remy normal behind vara
+            with dissolvemed
             c "Hey! Pillows aren't supposed to move!"
             Ry smile "Would you rather miss out on ice cream?"
             c "I guess not..."

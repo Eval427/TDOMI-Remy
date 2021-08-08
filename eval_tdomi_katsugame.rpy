@@ -43,9 +43,6 @@ label eval_katsu_help_init:
     $ evalOphSeconds = False
     $ evalOphPosition = 0
 
-    #Whether Xith can talk about his job as a reporter
-    $ evalXithReporter = True
-
     #Show ECK's extra info display
     show screen evalextrainfo
     $ evalextradisplay = 2
@@ -1030,7 +1027,6 @@ label eval_help_xith:
             $ evalCustomerScore += 1
         else:
             Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
-            $ evalXithReporter = False
     elif evalCharacterMood == 1:
         if evalCharacterMood == evalQualityServed:
             Xi "This is quite a stunning specimen of ice cream!"
@@ -1054,36 +1050,6 @@ label eval_help_xith:
             Xi "Damn, I should have requested more ice cream."
             c "You still could if you want."
             Xi "I think I'll have to pass. I should be cutting back on my sugar intake anyways."
-    
-    if evalXithReporter:
-        $ renpy.pause (0.5)
-        Xi "You know, I'm actually a reporter."
-        c "Really?"
-        Xi "Yeah, I came here for the inside {i}scoop{/i} on things."
-        c "Did you make that up just to make that joke?"
-        Xi "That would be pretty clever, but no."
-        Xi "I write articles for the local paper."
-        c "Interesting. Is there a lot to write about?"
-        Xi "There's always the small stuff, like recent achievements of the locals or new stores, but usually nothing interesting."
-        c "Have you written anything on the events that just took place?"
-        Xi "I would love to, but the council wouldn't let me have access to any of the archives."
-        Xi "Therefore, I have nothing to base my writing on."
-        c "That's too bad."
-        Xi "I was actually wondering if you would be willing to answer a few questions for me."
-        c "Sorry, but not at the moment. I have a pretty packed schedule today."
-        Xi "Of course not right now, but maybe another time?"
-
-        menu:
-            "Sure.":
-                c "Sure. I'd love to help you!"
-                Xi "Really? Thanks..."
-                c "It's [player_name]."
-                Xi "Oh, thanks [player_name]. I'm Xith."
-                c "Nice to meet your acquaintance."
-                $ evalHelpXith = True
-            "I don't want to think about that quite yet.":
-                c "Sorry, but I really don't want to think about those events yet. They still make me uneasy."
-                Xi "I understand. Well, thanks for the ice cream!"
     
     hide xith with easeoutleft
     m "With that, he paid and left."

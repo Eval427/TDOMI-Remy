@@ -17,6 +17,7 @@ label eval_tdomi_remy:
         #Custom credits
         #Finish this lol
         #Reference an earlier node and change the dialogue so that Remy doesn't say he's spending more time w/ Adine? Idk, implies romance to me.
+        #It's possible I add a counter for "unique" scenes played (to make it clearer how much you have missed)
 
     #Plot issue of other kids in the orphanage:
         #After the incident at the portal, the children were put into emergency foster care outside of the town and still have not returned
@@ -87,14 +88,15 @@ label eval_tdomi_remy:
     Ry look "Ice cream?"
     Ry normal "Oh, you mean Katsuharu. I haven't had anything from him in quite some time."
     c "Well, I was offered as much ice cream as I could eat, and still need to take him up on his offer."
-    Ry "Can I ask why exactly he agreed to give you so much ice cream?"
+    c "I was thinking I could take you along as well."
+    Ry "Can I ask why he agreed to give you so much ice cream?"
     Ry smile "I've seen your appetite, and it's quite impressive."
 
     menu:
         "Are you calling me fat?":
             $ evalAskIfFat = True
             c "Are you calling me fat?"
-            Ry shy "N... No of course not, I didn't mean it that way... I just meant..."
+            Ry shy "N... No of course not. I didn't mean it that way... I just meant..."
             c "I'm kidding, don't sweat it."
             Ry normal "Dragons don't sweat."
             c "Noted."
@@ -105,28 +107,29 @@ label eval_tdomi_remy:
             $ evalAskIfFat = True #This basically means the same thing as the first option
             Ry shy "Hey! I didn't mean it that way!"
             c "Sure you didn't."
+            show remy normal with dissolvemed
 
         "Hey, in my defense, that was some really good cooking.":
             c "Hey, in my defense, that was some really good cooking."
             Ry smile "Why thank you. I have been cooking for myself for a while, it's nice to know that my food still holds up strong with other people."
+            show remy normal with dissolvemed
     
-    show remy normal with dissolveslow
     c "Anyways, to make matters short, I gave him some advice about location, and it seemed to put him back on the radar."
     Ry "Where did you tell him to move?"
     c "Here. Tatsu Park."
-    Ry look "I find it strange that he didn't think to move to Tatsu Park earlier."
+    Ry look "I find it strange that he didn't think to move here earlier."
     c "Considering his old spot worked well for forty years, it was probably pretty difficult to decide on a move." #Gonna want to change this a bit
     Ry normal "I guess you're right."
     Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
     c "I'm sure it will be fine."
-    Ry normal "If your pass extends beyond just yourself, is there anyone else you would like to invite?"
+    Ry normal "In that case, is there anyone else you would like to invite?"
     $ evalVaraAlive=False
     if evalDoingSecretEnding:#the alternate path eval made to allow vara to survive
-        $ evalVaraAlive=True
-    elif not renpy.python.store_dicts["store"].get("vara_survives_varadead",True):#joeyjumper94's vara survives mod
-        $ evalVaraAlive=True
-    elif renpy.python.store_dicts["store"].get("hatchling","")=="Vara":#if player selected Vara in the remy hatchlings mod, she survives
-        $ evalVaraAlive=True
+        $ evalVaraAlive = True
+    elif not renpy.python.store_dicts["store"].get("vara_survives_varadead", True):#joeyjumper94's vara survives mod
+        $ evalVaraAlive = True
+    elif renpy.python.store_dicts["store"].get("hatchling","") == "Vara":#if player selected Vara in the remy hatchlings mod, she survives
+        $ evalVaraAlive = True
 
     menu:
         "We should go together.":
@@ -250,13 +253,13 @@ label eval_tdomi_remy:
         "Everyone." if evalVaraAlive and adinestatus!="bad" and not adinedead:
             c "Why don't we bring everyone?"
             Ry look "Everyone?"
-            c "Yes. You, Amely, Vara, Adine, and I."
+            c "Yes. You, Amely, Vara, Adine and I."
             c "After everything that has happened, we could all use a bit of ice cream."
             Ry normal "That sounds like a great idea, [player_name]!"
             Ry smile "I can't remember the last time I had an outing with this many people."
-            Ry look "We may have to wait a bit, though. Adine is probably busy delivering food."
+            Ry normal "We may have to wait a bit, though. Adine is probably busy delivering food."
             c "Good point..."
-            Ry normal "We could make ourselves useful at the orphanage until she's done."
+            Ry "We could make ourselves useful at the orphanage until she's done."
             Ry "She usually comes to check on the orphanage as soon as she's finished, and it would be a nice surprise for her to find the place spotless."
             $ evalCurrentEnding = 4
 
@@ -323,7 +326,7 @@ label eval_tdomi_remy:
 
 label eval_trip_to_orphanage:
     c "It's a bit far, is it not? The doctor said I shouldn't be walking too much."
-    Ry normal "Well, you could always ride me instead of walking."
+    Ry normal "Well, you could always ride me instead."
     if evalDoingSecretEnding and mp.remyromance:
         c "Maybe not in public, Remy."
     else:
@@ -342,11 +345,11 @@ label eval_trip_to_orphanage:
             hide remy with dissolvemed
             play sound "fx/bed.ogg" #Change Later
             m "Remy got down on all fours."
-            m "Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
+            m "Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings to give me as much room as possible."
             Ry "Oof, maybe you're a bit heavier than the books I'm used to."
             c "Wait a minute..."
             Ry "Hey, books don't complain."
-            m "After finding a relatively comfortable spot on his back, Remy lifted his body."
+            m "After I found a relatively comfortable spot on his back, Remy lifted his body."
             Ry "How is it back there?"
             c "A bit uncomfortable. I think I need a saddle."
             Ry "Funnily enough, you can actually buy dragon saddles."
@@ -824,7 +827,7 @@ label eval_solo_remy_2:
             c "Wow, this is disgusting."
         Ry look "Are you not a big fan of the special?"
         c "Not to offend anyone, but it's pretty gross."
-        Ry normal "It isn't for everyone, , it is for me. Would you like to switch?"
+        Ry normal "It isn't for everyone, but luckily for you, I happen to quite enjoy it. Would you like to switch?"
 
         menu:
             "Sure.":
@@ -894,7 +897,6 @@ label eval_solo_remy_2:
                     scene black with dissolveslow
                     stop music fadeout 2.0
                     $ renpy.pause (4.0)
-                    play sound "mx/eveningmelody.ogg"
                     $ persistent.evalSoloRemyEnding = True
                     return
                 
@@ -904,7 +906,6 @@ label eval_solo_remy_2:
                     scene black with dissolveslow
                     stop music fadeout 2.0
                     $ renpy.pause (4.0)
-                    play sound "mx/eveningmelody.ogg"
                     m "But why? Why would you choose this in the first place?"
                     return
 
@@ -920,7 +921,6 @@ label eval_solo_remy_2:
             $ renpy.pause (0.5)
             scene black with dissolveslow
             stop music fadeout 2.0
-            play sound "mx/eveningmelody.ogg"
             $ persistent.evalSoloRemyEnding = True
             return
     
@@ -2013,7 +2013,7 @@ label eval_remy_amely_adine_2:
     if evalCustomerScore == 10:
         Ka smile flip "[player_name], you did a wonderful job serving everyone. I don't think I saw a single unhappy customer!"
         c "Thanks, Katsuharu, but I couldn't have done it without all of you as well."
-        Ad normal b "Even though I was busy coralling Amely the whole time?"
+        Ad normal b "Even though I was busy corralling Amely the whole time?"
         c "If you weren't, I'm sure Amely would make a few of the customers unhappy."
         Ad giggle b "Good point."
     elif evalCustomerScore > 6:
@@ -2276,9 +2276,8 @@ label eval_remy_amely_adine_3:
         c "You actually like this, Adine?"
         Ad normal b flip "Yeah! I think it's really good!"
         c "I find that hard to believe."
-        Ry look "I have to agree with [player_name] here. Ice cream or not, the special is disgusting."
-        Ad giggle b flip "Suit yourselves. That just leaves more ice cream for me!"
-        Ry "Well, what are you going to do now?"
+        Ad giggle b flip "Suit yourself. That just leaves more ice cream for me!"
+        Ry look "Well, what are you going to do now?"
         Ry normal "I would give you some of mine, but I've already finished."
         c "No worries, Remy."
         c "Ice cream was never really my end goal today. It was hanging out with you guys."
@@ -2289,7 +2288,7 @@ label eval_remy_amely_adine_3:
         show adine normal b flip at Position (xpos=0.6) behind remy with move
         show adine normal b at Position (xpos=0.6) behind remy
         show remy normal at right behind amely with move
-        show katsu normal flip with easeinleft
+        show katsu normal flip at Position (xpos = 0.1) with easeinleft
         c "How did you know?"
         Ka smile "I have a sixth sense for customer satisfaction."
         m "Katsuharu reached out and handed me a fresh scoop of vanilla."
@@ -2615,6 +2614,16 @@ label eval_remy_amely_adine_sleep_select:
 
 label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had the special
     Ka "What flavor would you like?"
+    #Possibly add something here to accomidate for Katsuharu's apparent lack of diversity he promised earlier.
+    #Ideas for out of stock:
+        #He makes fresh batches of ice cream and waffle cones more consistently because it is the most popular and easy to make
+        #therefore everything else is currently out of stock because he has been so busy
+
+        #He hasn't been able to keep up with customer demand, so he just sticks with ice cream for the time being
+        #since the switch has brought in so many more customers
+
+        #He makes everything but the ice cream at the beginning of the month, and it is towards the end, meaning that there is no stock
+        #for anything but ice cream
 
     menu:
         "Vanilla":
@@ -2735,7 +2744,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
             Ka "Have you had the fish special?"
 
             if mp.fish:
-                if evalCurrentEnding == 3:
+                if evalCurrentEnding > 2:
                     Ad think b "Ummm... [player_name], are you sure you want to have this flavor?"
                     Ka "What's wrong?"
                     Ad normal b "[player_name] had the fish at the diner a little while ago, and I don't think they liked it very much."

@@ -7,15 +7,29 @@ from modloader.modgame import sprnt
 from modloader.modgame import base as ml
 from modloader.modclass import Mod, loadable_mod
 
-#Adding side images for small Vara
+#Adding side images for unique character expressions
 varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked_b", "smsad", "smnormal_ghost"]
+adineIceCreamExpressions = ["annoyed_eval_icecream", "disappoint_eval_icecream", "frustrated_eval_icecream", "giggle_eval_icecream", "normal_eval_icecream", "sad_eval_icecream", "think_eval_icecream"]
+remyShotExpressions = ["angry_eval_shot", "look_eval_shot", "normal_eval_shot", "sad_eval_shot", "shy_eval_shot", "smile_eval_shot"]
 
 def load_side_ims():
     def clip_vara_side_image(imagefile):
         return im.Flip(im.Scale(im.Crop(imagefile, (0, 150, 350, 400)), 250, 300), horizontal=True)
+
+    def clip_adine_side_image(imagefile):
+        return im.Flip(im.Scale(im.Crop(imagefile, (50, 0, 500, 600)), 250, 300), horizontal=True)
+    
+    def clip_remy_side_image(imagefile):
+        return im.Flip(im.Scale(im.Crop(imagefile, (5, 30, 500, 600)), 250, 300), horizontal=True)
     
     for expression in varaSmallExpressions:
         renpy.exports.image("side vara %s"%expression.replace("_", " "), clip_vara_side_image("cr/vara_%s.png"%expression))
+    
+    for expression in adineIceCreamExpressions:
+        renpy.exports.image("side adine %s"%expression.replace("_", " "), clip_adine_side_image("cr/adine_%s.png"%expression))
+    
+    for expression in remyShotExpressions:
+        renpy.exports.image("side remy %s"%expression.replace("_", " "), clip_remy_side_image("cr/remy_%s.png"%expression))
 
 #Function by Joey to simplify connecting hooks
 def connect(node, next):
