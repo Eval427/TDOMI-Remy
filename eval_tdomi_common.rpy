@@ -23,7 +23,7 @@ label eval_tdomi_common:
     image amely smsad = "cr/amely_smsad.png"
     image amely smsad flip = "cr/amely_smsad_flip.png"
 
-    #Vara
+    #Vara small
     image vara smnormal ghost = "cr/vara_smnormal_ghost.png"
     image vara smnormal ghost flip = im.Flip("cr/vara_smnormal_ghost.png", horizontal=True)
     image vara smnormal = "cr/vara_smnormal.png"
@@ -52,6 +52,22 @@ label eval_tdomi_common:
     image remy shy eval shot flip = im.Flip("cr/remy_shy_eval_shot.png", horizontal=True)
     image remy angry eval shot = "cr/remy_angry_e.png"
     image remy angry eval shot flip = im.Flip("cr/remy_angry_eval_shot.png", horizontal=True)
+
+    #Adine ice cream face - Why doesn't this one make sense flipped either? I need the image flipped and can't be bothered to make a flipped sprite I won't use
+    image adine normal eval icecream = "cr/adine_normal_eval_icecream.png"
+    image adine normal eval icecream flip = im.Flip("cr/adine_normal_eval_icecream.png", horizontal=True)
+    image adine annoyed eval icecream = "cr/adine_annoyed_eval_icecream.png"
+    image adine annoyed eval icecream flip = im.Flip("cr/adine_annoyed_eval_icecream.png", horizontal=True)
+    image adine disappoint eval icecream = "cr/adine_disappoint_eval_icecream.png"
+    image adine disappoint eval icecream flip = im.Flip("cr/adine_disappoint_eval_icecream.png", horizontal=True)
+    image adine frustrated eval icecream = "cr/adine_frustrated_eval_icecream.png"
+    image adine frustrated eval icecream flip = im.Flip("cr/adine_frustrated_eval_icecream.png", horizontal=True)
+    image adine giggle eval icecream = "cr/adine_giggle_eval_icecream.png"
+    image adine giggle eval icecream flip = im.Flip("cr/adine_giggle_eval_icecream.png", horizontal=True)
+    image adine sad eval icecream = "cr/adine_sad_eval_icecream.png"
+    image adine sad eval icecream flip = im.Flip("cr/adine_sad_eval_icecream.png", horizontal=True)
+    image adine think eval icecream = "cr/adine_think_eval_icecream.png"
+    image adine think eval icecream flip = im.Flip("cr/adine_think_eval_icecream.png", horizontal=True)
 
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
@@ -93,9 +109,6 @@ label eval_tdomi_common:
 
     #How well the player did on the orphanage minigame. 0-2 - 0 bad - 1 good - 2 perfect
     $ evalOrphanageScore = 0
-    
-    #Whether you agree to help Xith with his report
-    $ evalHelpXith = False
 
     #Whether you played Katsu's game
     $ evalPlayedKatsuGame = False

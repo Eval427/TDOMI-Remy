@@ -234,7 +234,7 @@ label eval_orphanage_remy_item_gather:
                         $ evalMinutesRemyIsGone = 15
                         $ evalRemyOnMission = True
                         c "We should grab some WD-40. That stuff always comes in handy."
-                        Ry look "You mean DWD-40?"
+                        Ry look "Do you mean DWD-40?"
                         c "What does that even stand for?"
                         Ry normal "Dragon Water Displacement 40, obviously."
                         c "(I guess that's what the WD stands for.)"
