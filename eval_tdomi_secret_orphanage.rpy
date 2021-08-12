@@ -1269,8 +1269,9 @@ label eval_too_many_crackers:
     $ renpy.pause (2.0)
     scene black with dissolveslow
     $ renpy.pause (2.0)
+    $ evalFail = "Cracker Addict"
+    jump eval_fails
     #a scene where our MC apologizes for scaring Vara like that,
     #perhaps they mention a few other times they over did something and passed out
     #like that time they OD'd on pain meds in the prologue
     #or the drinking contest with Bryce in chapter 1
-    return
