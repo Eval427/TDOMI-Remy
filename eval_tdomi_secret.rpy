@@ -598,7 +598,7 @@ label eval_everyone_1:
                     c "Sure! I'd love to listen to some of your music!"
                     Ka smile "Great! I've got some amazing stuff here!"
                     $ evalKatsuMusic = True
-                    queue music ["mx/cassette.mp3", "mx/tunnel.mp3", "mx/neonlights.mp3"]
+                    queue music ["mx/cassette.mp3", "mx/Cozy Snail.mp3", "mx/neonlights.mp3", "mx/nurture.mp3", "mx/tunnel.mp3"]
                     m "With a soft click, Katsuharu slid a cassette into the player and hit play."
                     Ka "How's that?"
 
@@ -801,15 +801,25 @@ label eval_everyone_3:
     Ka "Y'know, most ice cream vendors use some sort of scoop. But over the years, you learn that your bare hands are faster and more efficient than any of those stupid tools." #Might be a bit pointless to have this
     c "Don't you walk using your hands?" #Hands, claws, feet, I'm very confused at this point
     Ry look "You know, I never really thought of that."
-    Ka "Well, I wash my hands before serving the ice cream of course! I have a little station behind here and everything."
+    Ka "Well, I wash my hands before serving the ice cream, of course! I have a little station behind here and everything."
     c "(That's good to hear. I was worried for a moment.)"
     show remy normal behind vara with dissolvemed
-    m "In another brisk motion, the dragon revealed a standard waffle cone and carefully rested the scoop on top, ligtly pushing it down to make sure it didn't fall out."
-    c "Interesting, those cones look exactly like the ones back in my world."
-    show katsu excited flip at Position (xpos = 0.1) with easeinleft
-    Ka "But I am sure that they don't taste half as good as mine!"
-    m "Katsuharu then handed me the cone, topped with the [evalChosenFlavor] ice cream."
-    show katsu smile flip with dissolvemed
+    if evalChosenFlavor == "spaghettieis":
+        m "With his other hand, Katsuharu grabbed a cup and ducked below his cart, tinkering with some sort of machine."
+        c "(That must be the spaetzle, or whatever it was called.)"
+        m "After a few moments, the dragon reappeared behind his cart, the cup full of what appeared to be ice cream in the shape of noodles."
+        m "He reached under his cart once more, revealing a large bottle of a opaque, red syrup, and added a healthy portion to the cup."
+        m "As a final touch, Katsuharu garnished the dessert with coconut shavings."
+        m "He added a spoon and handed the cup over to me."
+        show katsu smile flip at position (xpos = 0.1) with easeinleft
+        Ka "Here you are!"
+    else:
+        m "In another brisk motion, the dragon revealed a standard waffle cone and carefully rested the scoop on top."
+        c "Interesting, those cones look exactly like the ones back in my world."
+        show katsu excited flip at Position (xpos = 0.1) with easeinleft
+        Ka "But I am sure they don't taste half as good as mine!"
+        m "Katsuharu then handed me the cone, topped with the [evalChosenFlavor] ice cream."
+        show katsu smile flip with dissolvemed
 
     if evalChosenFlavor == "vanilla":
         m "The vanilla ice cream itself was quite normal looking. It was a smooth and simple white color." #Kinda bad, should change

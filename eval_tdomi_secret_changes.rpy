@@ -1041,8 +1041,8 @@ label eval_post_secret_remy_meeting:
     c "Me too. See you around, Maverick."
     show maverick normal b at Position(xpos=0.1) with dissolvemed
     hide maverick with easeoutleft
-    show remy normal at center with move
-    Ry "What will you do now, [player_name]?"
+    show remy smile at center with move
+    Ry normal "What will you do now, [player_name]?"
     c "I could use the portal to return to the day of my arrival. After all, I came here to save our dying city, which is something I failed to do."
     Ry "But you saved us. You saved Vara."
     c "That is true, but I can't help thinking that there could have been a solution that saved both worlds."
@@ -1054,9 +1054,8 @@ label eval_post_secret_remy_meeting:
     Ry normal "This isn't just about us, though. Of course we would love it if you stayed with us, but I know there are many other factors at play here, and that it won't be an easy decision for you to make."
     Ry "Don't let us stop you from going back if that's what you want to do, though. We'll be fine."
     c "Are you sure about that?"
-    Ry "Yes. After all, I have Vara to keep me company. Also, while you were busy these last few weeks, I spent a lot of time with Adine, and we rekindled our lost friendship."
-    Ry "Aside from Vara, there is another girl that we have been taking care of at the orphanage."
-    Ry "Maybe you've seen her. Her name is Amely, and she's just the sweetest little girl."
+    Ry "Yes. After all, I have Vara to keep me company."
+    Ry "Also, while you were busy these last few weeks, I spent a lot of time with Adine, and we rekindled our lost friendship."
     Ry smile "Besides, if you really end up going back in time, I'll see you again."
     jump eval_tdomi_remy
 #Thus marks the end of the changes required to actually get Vara's extended ending

@@ -47,12 +47,13 @@ class AWSWMod(Mod):
         varInitHook = modast.find_say("I'll leave the stuff for you here, and I'll take care of the rest once I get back, alright?")# modast.find_say("Getting ready, I noticed something lying on the table. It was the note Remy had left for me in case I needed anything. Along with his own home phone and work number, there were also some numbers for delivery of food and other necessities, as well as emergency and even janitorial services. He had certainly thought of everything, even though I now had to wonder what a dragon plumber might look like.")
         modast.call_hook(varInitHook, modast.find_label("eval_tdomi_common"))
         
+        #Early variable init hook. This is similar to the one above, but initializes variables at the very start of the game. Trust me, it helps with conflicts
+        earlyVarInitHook = modast.find_say("I awoke from uneasy dreams looking at an unfamiliar ceiling. Just for a moment, I wondered where I was before the events of last night all came back to me.")
+        modast.call_hook(earlyVarInitHook, modast.find_label("eval_tdomi_early"))
+        
         #Remy's ending hook - Note I need to push this back earlier to change some prior dialogue
-        endHookSource = modast.find_say("Besides, if you really end up going back in time, I'll see you again.")
-        common_hook = modast.find_label("eval_extended_ending")
-        hook = modast.hook_opcode(endHookSource, None)
-        modast.call_hook(endHookSource, common_hook, None)
-        hook.chain(modast.search_for_node_type(endHookSource, ast.Scene))
+        endingHook = modast.find_say("Besides, if you really end up going back in time, I'll see you again.")
+        modast.call_hook(endingHook, modast.find_label("eval_extended_ending"))
         
         #Hook to add variable to determine whether MC visited the hatchery to drop off the eggs
         for node in renpy.game.script.all_stmts:
@@ -72,6 +73,18 @@ class AWSWMod(Mod):
         #Hook to remove any mentions of sweat from the game so my jokes make canotical sense
         handleSweat = modast.find_say("After holding it for a few seconds, he breathed a sigh of relief as he relaxed and the flapping motion stopped again.")
         modast.call_hook(handleSweat, modast.find_label("eval_change_sweat_reference"), None, modast.search_for_node_type(handleSweat, ast.Menu))
+        
+        #Hook to add a variable as to whether you have met Lucius in the current playthrough.
+        metLucius = modast.find_say("Just as I entered the southern part of the park, I found myself tumbling to the ground when someone suddenly bumped into me.")
+        modast.call_hook(metLucius, modast.find_label("eval_met_lucius"), None, modast.find_say("Sorry about that. Are you alright?"))
+        
+        #Hook to add a variable as to whether you have met Kalinth in the current playthrough.
+        metKalinth = modast.find_say("You're in luck, [player_name]! Bryce compiled all the case files a while ago. Ever since you came to our world, he seems to be a lot more interested in these human mysteries. I wonder if it has something to do with you?")
+        modast.call_hook(metKalinth, modast.find_label("eval_met_kalinth"), None, modast.find_say("Anyway, you can find all the files here. I'll leave the rest to you."))
+        
+        #Hook to add a variable as to whether you have met Dramavian in the current playthrough.
+        metDram = modast.find_say("(Well, maybe it {i}is{/i} a statue. Or I just turned invisible.)")
+        modast.call_hook(metDram, modast.find_label("eval_met_dram"), None, modast.find_say("(I hope it's not the latter.)"))
         
         #Adding stuff to the main menu screen. Code by ECK
         tocompile = """

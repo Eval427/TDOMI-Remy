@@ -83,6 +83,12 @@ label eval_tdomi_common:
     #Shows/hides the menu option for the special flavor
     $ evalShowSpecialFlavor = True
 
+    #Shows/hides the menu option for spaghettieis
+    $ evalShowSpaghettieis = True
+
+    #Whether you have had spaghettieis explained
+    $ evalExplainSpaghettieis = False
+
     #Tracks current ending (1 = solo remy, 2 = remy + amely, 3 = remy + amely + adine)
     $ evalCurrentEnding = 0
 
@@ -217,10 +223,10 @@ label eval_tdomi_common:
         $ evalVaraSurvives = True
 
     python:
-        if not persistent.evalSeenDramavian: #Detects whether you have seen Dramavian a second time in this mod
-            persistent.evalSeenDramavian = False
         if not persistent.evalSecretEndingUnlocked: #[REDACTED]
             persistent.evalSecretEndingUnlocked = False
+        if not persistent.evalFirstTimePlaying:
+            persistent.evalFirstTimePlaying = True
         
         #Endings
         if not persistent.evalEndingA: #Unlike ECK, endings aren't named and "A" isn't the best
@@ -295,6 +301,13 @@ label eval_tdomi_common:
     $ evalDisplayVar8name = ""
     $ evalDisplayVar8 = 0
     $ evalDisplayVar8unit = ""
+
+    return
+
+label eval_tdomi_early:
+    $ evalMetLucius = False
+    $ evalMetKalinth = False
+    $ evalMetDram = False
 
     return
 
