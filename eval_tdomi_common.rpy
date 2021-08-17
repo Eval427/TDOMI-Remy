@@ -143,12 +143,6 @@ label eval_tdomi_common:
     #Whether Adine tricks you
     $ evalAdineTrick = False
 
-    #Whether you walk with Remy. Does some logic to account for sleeping
-    $ evalScenicWalk = False
-
-    #Whether you listen to Katsu's music
-    $ evalKatsuMusic = False
-
 
 
     #A bunch of variables for the orphanage minigame
@@ -217,56 +211,16 @@ label eval_tdomi_common:
         $ evalVaraSurvives = True
 
     python:
+        if not persistent.evalSoloRemyEnding: #Whether you have seen the Remy ending
+            persistent.evalSoloRemyEnding = False
+        if not persistent.evalAmelyEnding: #Whether you have seen the Remy + Amely ending
+            persistent.evalAmelyEnding = False
         if not persistent.evalSeenDramavian: #Detects whether you have seen Dramavian a second time in this mod
             persistent.evalSeenDramavian = False
         if not persistent.evalSecretEndingUnlocked: #[REDACTED]
             persistent.evalSecretEndingUnlocked = False
-        
-        #Endings
-        if not persistent.evalEndingA: #Unlike ECK, endings aren't named and "A" isn't the best
-            persistent.evalEndingA = False #Just Remy - Vanilla
-        if not persistent.evalEndingB:
-            persistent.evalEndingB = False #Remy and Amely - Strawberry
-        if not persistent.evalEndingC:
-            persistent.evalEndingC = False #Remy, Amely, and Adine - Mango
-        if not persistent.evalEndingD:
-            persistent.evalEndingD = False #Everyone - Cherry
-        
-        #Fails
-        if not persistent.evalUniqueFails:
-            persistent.evalUniqueFails = []
-        
-        #Skips
-
-        #General Skips
-        if not persistent.evalOrphanageTripSkip:
-            persistent.evalOrphanageTripSkip = False
-        if not persistent.evalOrphanageSleepSkip:
-            persistent.evalOrphanageSleepSkip = False
-
-        #Ending A
-        if not persistent.evalA1Skip:
-            persistent.evalA1Skip = False
-        if not persistent.evalA2Skip:
-            persistent.evalA2Skip = False
-        
-        #Ending B
-        if not persistent.evalB1Skip:
-            persistent.evalB1Skip = False
-
-        #Ending C
-        if not persistent.evalC1Skip:
-            persistent.evalC1Skip = False
-        if not persistent.evalC2Skip:
-            persistent.evalC2Skip = False
-
-        #Ending D
-        if not persistent.evalD1Skip:
-            persistent.evalD1Skip = False
-        
-    #Unique fails/quick endings
-    $ evalFail = ""
-    $ evalTotalFails = 0
+        if not persistent.evalSecretEndingCompleted: #[REDACTED]
+            persistent.evalSecretEndingCompleted = False
     
     #Stuff for orphanage minigame display. Thanks EvilChaosKnight :)
     $ evalDisplayVar1name = ""

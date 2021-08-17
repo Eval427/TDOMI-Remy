@@ -1,7 +1,6 @@
 import renpy
 import renpy.ast as ast
 import renpy.display.im as im
-import renpy.parser as parser
 
 from modloader import modinfo, modast
 from modloader.modgame import sprnt
@@ -40,7 +39,7 @@ def connect(node, next):
 @loadable_mod
 class AWSWMod(Mod):
     def mod_info(self):
-        return ("This Man Owes me Ice Cream! Remy Edition", "v0.9.0", "Eval")
+        return ("This Man Owes me Ice Cream! Remy Edition", "v0.7.0", "Eval")
 
     def mod_load(self):
         #Variable init hook. I'm lazy, so I just decided to define all my variables early instead of having a dedicated label to call whenever I needed to confirm vars
@@ -73,29 +72,6 @@ class AWSWMod(Mod):
         handleSweat = modast.find_say("After holding it for a few seconds, he breathed a sigh of relief as he relaxed and the flapping motion stopped again.")
         modast.call_hook(handleSweat, modast.find_label("eval_change_sweat_reference"), None, modast.search_for_node_type(handleSweat, ast.Menu))
         
-        #Adding stuff to the main menu screen. Code by ECK
-        tocompile = """
-        screen dummy:
-            if persistent.evalEndingA:
-                add "image/ui/title/vanillaEnding.png"
-            
-            if persistent.evalEndingB:
-                add "image/ui/title/strawberryEnding.png"
-            
-            if persistent.evalEndingC:
-                add "image/ui/title/mangoEnding.png"
-            
-            if persistent.evalEndingD:
-                add "image/ui/title/cherryEnding.png"
-            
-            if persistent.evalEndingA and persistent.evalEndingB and persistent.evalEndingC and persistent.evalEndingD:
-                add "image/ui/title/chocolateEnding.png"
-        """
-        compiled = parser.parse("FNDummy", tocompile)
-        for node in compiled:
-            if isinstance(node, ast.Init):
-                for child in node.block[0].screen.children:
-                    modast.get_slscreen("main_menu").children.append(child)
 
     def mod_complete(self):
         if "Side Images" in modinfo.get_mods():
