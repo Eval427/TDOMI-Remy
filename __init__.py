@@ -1,7 +1,6 @@
 import renpy
 import renpy.ast as ast
 import renpy.display.im as im
-import renpy.parser as parser
 
 from modloader import modinfo, modast
 from modloader.modgame import sprnt
@@ -40,63 +39,53 @@ def connect(node, next):
 @loadable_mod
 class AWSWMod(Mod):
     def mod_info(self):
-        return ("This Man Owes me Ice Cream! Remy Edition", "v0.9.0", "Eval")
+        return ("This Dragon Owes Me Icecream! Remy Edition", "v0.9.1", "Eval")
 
     def mod_load(self):
+        menu = modast.get_slscreen("main_menu")
+        addition = modast.get_slscreen("main_menu_eval_icecream")
+        menu.children.append(addition.children[0])
+
         #Variable init hook. I'm lazy, so I just decided to define all my variables early instead of having a dedicated label to call whenever I needed to confirm vars
         varInitHook = modast.find_say("I'll leave the stuff for you here, and I'll take care of the rest once I get back, alright?")# modast.find_say("Getting ready, I noticed something lying on the table. It was the note Remy had left for me in case I needed anything. Along with his own home phone and work number, there were also some numbers for delivery of food and other necessities, as well as emergency and even janitorial services. He had certainly thought of everything, even though I now had to wonder what a dragon plumber might look like.")
         modast.call_hook(varInitHook, modast.find_label("eval_tdomi_common"))
-        
-        #Remy's ending hook - Note I need to push this back earlier to change some prior dialogue
-        endHookSource = modast.find_say("Besides, if you really end up going back in time, I'll see you again.")
+
         common_hook = modast.find_label("eval_extended_ending")
-        hook = modast.hook_opcode(endHookSource, None)
-        modast.call_hook(endHookSource, common_hook, None)
-        hook.chain(modast.search_for_node_type(endHookSource, ast.Scene))
-        
-        #Hook to add variable to determine whether MC visited the hatchery to drop off the eggs
+        for node in renpy.game.script.all_stmts:
+            if isinstance(node, ast.Say) and node.what == "Besides, if you really end up going back in time, I'll see you again.":
+                connect(node,common_hook)
+
+        #Hook to add line of dialog when our MC dropps off the eggs at the hatchery
         for node in renpy.game.script.all_stmts:
             if isinstance(node, ast.Say) and node.what == "Well, see you some other time, [player_name].":
                 modast.call_hook(node, modast.find_label("eval_hatchery_visited"))
-
+        #hatchery post scene
+        c4sections=modast.find_label("c4sections")
+        c4sections_next=c4sections.next
+        connect(c4sections,modast.find_label("eval_c4_hatchery_init"))
+        connect(modast.find_label("eval_c4_hatchery_init_return"),c4sections_next)
+        #changes some dialog from adine's 4th date
+        eval_c4_adine4_change=modast.find_say("We walked away from the festival and sat down under a tree in the outskirts of town. As the competition was already nearly over, the darkness had already set in.")
+        eval_c4_adine4_change_fail=eval_c4_adine4_change.next
+        eval_c4_adine4_change_success=modast.find_say("Hey, [player_name]. Look at the sky. Can you see that light? The one that looks a bit brighter than all the others?")
+        connect(eval_c4_adine4_change,modast.find_label("eval_c4_adine4_change"))
+        connect(modast.find_label("eval_c4_adine4_change_fail"),eval_c4_adine4_change_fail)
+        connect(modast.find_label("eval_c4_adine4_change_success"),eval_c4_adine4_change_success)
         #Hook for changed chapter 4 Remy date
         changeCh4Date = modast.find_say("You know about her, then? It's such a sad story.")
+        changeCh4Date_next=changeCh4Date.next
         #postChangeCh4Date = modast.find_label("eval_post_date_change")
         #changeCh4Date.next = postChangeCh4Date
-        modast.call_hook(changeCh4Date, modast.find_label("eval_remy_ch4_date_change"))
-        
+        connect(changeCh4Date, modast.find_label("eval_remy_ch4_date_change"))
+        connect(modast.find_label("eval_remy_ch4_date_change_fail"),changeCh4Date_next)
         #Hook for changed Remy ending
-        changeRemyGoodEnding = modast.find_label("remy5")
-        modast.call_hook(changeRemyGoodEnding, modast.find_label("eval_remy_good_ending_change"))
-        
-        #Hook to remove any mentions of sweat from the game so my jokes make canotical sense
+        remy5=modast.find_label("remy5")
+        remy5_next=remy5.next
+        connect(remy5,modast.find_label("eval_remy_good_ending_change"))
+        connect(modast.find_label("eval_remy_good_ending_change_fail"),remy5_next)
+        #Hook to remove any mentions of sweat from the game so my jokes make canonotical sense
         handleSweat = modast.find_say("After holding it for a few seconds, he breathed a sigh of relief as he relaxed and the flapping motion stopped again.")
         modast.call_hook(handleSweat, modast.find_label("eval_change_sweat_reference"), None, modast.search_for_node_type(handleSweat, ast.Menu))
-        
-        #Adding stuff to the main menu screen. Code by ECK
-        tocompile = """
-        screen dummy:
-            if persistent.evalEndingA:
-                add "image/ui/title/vanillaEnding.png"
-            
-            if persistent.evalEndingB:
-                add "image/ui/title/strawberryEnding.png"
-            
-            if persistent.evalEndingC:
-                add "image/ui/title/mangoEnding.png"
-            
-            if persistent.evalEndingD:
-                add "image/ui/title/cherryEnding.png"
-            
-            if persistent.evalEndingA and persistent.evalEndingB and persistent.evalEndingC and persistent.evalEndingD:
-                add "image/ui/title/chocolateEnding.png"
-        """
-        compiled = parser.parse("FNDummy", tocompile)
-        for node in compiled:
-            if isinstance(node, ast.Init):
-                for child in node.block[0].screen.children:
-                    modast.get_slscreen("main_menu").children.append(child)
-
     def mod_complete(self):
         if "Side Images" in modinfo.get_mods():
             load_side_ims()

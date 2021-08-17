@@ -58,14 +58,13 @@ label eval_tdomi_remy:
         #Get the worst score in Katsuharu's minigame
         #Fix everything in the orphanage
         #Fix nothing in the orphanage
-        #Get slapped by Adine twice
+        #Get slapped by Adine 4 times
+        #Get pranked by Adine
         #Become a pumpkin?
         #Try to give Amely 3 scoops of ice cream
         #Fail to get ice cream
         #It's like the pasta kiss, except with ice cream
         #Maximum meetups (get every extra cutscene with customers)
-
-    $ save_name = (_("Ice Cream"))
 
     stop music fadeout 2.0
     scene black with dissolveslow
@@ -136,7 +135,7 @@ label eval_tdomi_remy:
         $ evalVaraAlive = True
 
     menu:
-        "We should go together.":
+        "No.":
             c "Why don't we go with just the two of us? It'll be a nice outing, and maybe we won't eat Katsuharu entirely out of his stock."
             Ry smile "Sounds fun! Lets go."
             stop music fadeout 2.0
@@ -145,7 +144,7 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 1
             jump eval_solo_remy_1
         
-        "We should bring Amely along with us." if persistent.evalEndingD or not evalDoingSecretEnding:
+        "Amely.":
             c "Why don't we go together with Amely?"
             c "She's a hatchling, so I'm sure she would love to go and get some ice cream with us. Especially from the renowned Katsuharu."
             Ry smile "Good idea. You know, I'm not even sure if she has ever had ice cream before."
@@ -180,7 +179,9 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 2
             jump eval_remy_amely_1
 
-        "Why don't we invite Amely and Adine?" if persistent.evalEndingD or (adinestatus != "bad" and not adinedead and not evalDoingSecretEnding): #adine won't accept the invitation if she dislikes our MC or if she's dead
+        #adine won't accept the invitation if she dislikes our MC or if she's dead
+        "Amely and Adine" if not evalVaraAlive and adinestatus!="bad" and not adinedead:#this option becomes unavailable if vara is alive becuase you shouldn't leave vara out
+            $ evalCurrentEnding = 3
             c "Why don't we take Adine and Amely as well?"
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry smile "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
@@ -191,7 +192,6 @@ label eval_tdomi_remy:
             c "Good point..."
             Ry normal "You know, we could make ourselves useful at the orphanage until she's done."
             Ry "She usually comes down to check on things as soon as she's off of work, and it may be a nice surprise for her to find us there."
-            $ evalCurrentEnding = 3
 
             menu:
                 "Sure.":
@@ -207,9 +207,9 @@ label eval_tdomi_remy:
                     Ry normal "So, what were you thinking?"
                     c "How about a nice walk around the area?"
                     Ry look "You really think that walking is more interesting than taking care of children?"
-                    c "It beats the yelling and screaming."
                     $ evalRemyStatus = remystatus#store remy's original status
                     $ remystatus = "bad"#having Remy's status change to bad can add a punch to the gut
+                    c "It beats the yelling and screaming."
                     Ry angry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
                     hide remy with dissolvemed
                     stop music fadeout 2.0
@@ -250,6 +250,7 @@ label eval_tdomi_remy:
                             $ renpy.pause (0.5)
                             scene black with dissolveslow
                             m "At a loss for words, I made my way back home, crawled into bed, and spend the rest of the day wondering what possessed me to be so selfish."
+                            play sound "fx/system3.wav"
                             s "Nice one, child hater."
                             $ evalFail = "Child Hater"
                             jump eval_fails
@@ -281,9 +282,9 @@ label eval_tdomi_remy:
                     Ry normal "So, what were you thinking?"
                     c "How about a nice walk around the area?"
                     Ry look "You really think that walking is more interesting than taking care of children?"
-                    c "It beats the yelling and screaming."
                     $ evalRemyStatus=remystatus#store remy's original status
                     $ remystatus="bad"#having Remy's status change to bad can add a punch to the gut
+                    c "It beats the yelling and screaming."
                     Ry angry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
                     hide remy with dissolvemed
                     stop music fadeout 2.0
@@ -299,8 +300,8 @@ label eval_tdomi_remy:
                             show remy look with dissolvemed #Wtf is happening here?
                             Ry "What?"
                             play music "mx/jazzy.ogg"
-                            c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
                             $ remystatus=evalRemyStatus#you were quick to apolgize for your rash decision and his mood is restored
+                            c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
                             Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
                             c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
                             Ry "Well, so can dragon children, but you just learn to accept that they haven't had as much time on the planet as us, and sometimes have difficulty expressing their emotions in other ways."
@@ -326,8 +327,7 @@ label eval_tdomi_remy:
                             m "At a loss for words, I made my way back home, crawled into bed, and spent the rest of the day wondering what possessed me to be so selfish."
                             play sound "fx/system3.wav"
                             s "Why did you go through all the trouble of saving Vara just to do that?"
-                            $ evalFail = "Child Hater"
-                            jump eval_fails
+                            return
 
 label eval_trip_to_orphanage:
     c "It's a bit far, is it not? The doctor said I shouldn't be walking too much."
@@ -1038,9 +1038,9 @@ label eval_solo_remy_2:
     menu:
         "Kiss him." if mp.remyromance:
             c "Sure. But on the first night would I do this?"
+            play sound "fx/kiss.wav"
             m "I pulled Remy's muzzle to my lips and gave him a big kiss."
             Ry shy "I don't think you would then, but I'm glad you would now."
-
             if evalSwitchedCones:
                 Ry normal "Your breath smells like vanilla."
                 c "And yours of fish. I think I got the shorter end of the stick."
@@ -1959,20 +1959,13 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     scene black with dissolveslow
     if not evalRodeRemy:
         m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
-        $ evalRodeRemy = True
-    else:
-        m "Remy walked forward and quickly picked up speed."
-
-    if not evalRodeRemy:
+        m "It wasn't as uncomfortable as I had first imagined."
+        m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
         if evalRodeBryce:
-            m "It wasn't as uncomfortable as I had first imagined."
-            m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
             m "In a way, it also felt strangely familiar, like I had done this before."
             m "The experience was almost relaxing, with the light breeze and rhythmic thumping of Remy's feet on the grass and pavement."
-        else:
-            m "It wasn't as uncomfortable as I had first imagined."
-            m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
     else:
+        m "Remy walked forward and quickly picked up speed."
         m "As a seasoned dragon rider. I sat back and gazed up at the sky." #Is this too... weird?
     
     $ renpy.pause (0.5)
@@ -1992,6 +1985,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     if evalRodeRemy:
         c "That was fun! I should ride you around more often!"
     else:
+        $ evalRodeRemy = True
         c "Damn, why didn't I just ride you over to the orphanage as well. That was fun!"
     Ry smile "Wow, [player_name], I didn't know you wanted to ride me so badly."
     m "My face turned bright red."
@@ -2112,8 +2106,6 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             Ry normal "That doesn't sound that bad."
             Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream."
             Ad normal b "It might even be fun."
-            Am "Ice cream!"
-            Ry "I guess it's really up to you, [player_name]. This was your idea after all."
         
         "No time for chatting.":
             c "No time for chatting, we are here for important ice cream related matters."
@@ -2140,9 +2132,8 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             Ka "But first, you have to help me serve some customers for a while."
             Ry normal "That doesn't sound that bad."
             Ad think b "Yeah, I honestly wouldn't mind doing that for some ice cream. It might even be fun."
-            Am "Ice cream!"
-            Ry "I guess it's really up to you, [player_name]. This was your idea after all."
-    
+    Am "Ice cream!"
+    Ry "I guess it's really up to you, [player_name]. This was your idea after all."
     menu:
         "[[Help out Katsuharu]":
             c "You really think I would leave you guys like that? Of course we can help you, Katsuharu."
@@ -2169,7 +2160,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             Ka normal "Alright, here's the plan everyone."
             Ka "Remy, grab a scoop from that drawer there."
             Ka "[player_name], you take orders."
-            Ka "And Adine... {w}Just make sure Amely doesn't cause too much chaos"
+            Ka "And Adine... {w}Just make sure Amely doesn't cause too much chaos."
             Ry normal "Yes sir!"
             Ad giggle b "Sounds good, Katsuharu."
             Ka "Quick tip, [player_name]. Customers don't always want the same thing. Try adapting to their interests."

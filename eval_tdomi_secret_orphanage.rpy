@@ -96,13 +96,13 @@ label eval_secret_orphanage_game:
             play sound "fx/lighthighfive.mp3"
             m "Vara tentatively stretched her claw in my direction. I lightly hit it with my palm."
             m "She recoiled on impact, but after a moment of consideration, smiled."
-            Vr "My turn."
+            Vr smnormal "My turn."
             play sound "fx/goodhighfive.mp3"
             m "I stretched my palm and Vara hit my palm. Her claws made it a bit painful, but nothing intolerable."
             c "As high fives go, that was quite impressive."
             show remy normal behind vara
             show amely smnormal
-            with dissolvemed
+            with easeinright
             Ry "We're back!"
             c "Oh hey, Remy. We just finished up."
             Vr "I learned a high five!"

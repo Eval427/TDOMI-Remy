@@ -1,4 +1,4 @@
-label eval_tdomi_common:
+init:
 
     #Backgrounds
     image evalwildlands = "bg/evalwildlands.jpg" #Tysm EvilChaosKnight
@@ -68,7 +68,77 @@ label eval_tdomi_common:
     image adine sad eval icecream flip = im.Flip("cr/adine_sad_eval_icecream.png", horizontal=True)
     image adine think eval icecream = "cr/adine_think_eval_icecream.png"
     image adine think eval icecream flip = im.Flip("cr/adine_think_eval_icecream.png", horizontal=True)
+init python:
+    if not persistent.evalSeenDramavian: #Detects whether you have seen Dramavian a second time in this mod
+        persistent.evalSeenDramavian = False
+    if not persistent.evalSecretEndingUnlocked: #[REDACTED]
+        persistent.evalSecretEndingUnlocked = False
+    
+    #Endings
+    if not persistent.evalEndingA: #Unlike ECK, endings aren't named and "A" isn't the best
+        persistent.evalEndingA = False #Just Remy - Vanilla
+    if not persistent.evalEndingB:
+        persistent.evalEndingB = False #Remy and Amely - Strawberry
+    if not persistent.evalEndingC:
+        persistent.evalEndingC = False #Remy, Amely, and Adine - Mango
+    if not persistent.evalEndingD:
+        persistent.evalEndingD = False #Everyone - Cherry
+    
+    #Fails
+    if not persistent.evalUniqueFails:
+        persistent.evalUniqueFails = []
+    
+    #Skips
 
+    #General Skips
+    if not persistent.evalOrphanageTripSkip:
+        persistent.evalOrphanageTripSkip = False
+    if not persistent.evalOrphanageSleepSkip:
+        persistent.evalOrphanageSleepSkip = False
+
+    #Ending A
+    if not persistent.evalA1Skip:
+        persistent.evalA1Skip = False
+    if not persistent.evalA2Skip:
+        persistent.evalA2Skip = False
+    
+    #Ending B
+    if not persistent.evalB1Skip:
+        persistent.evalB1Skip = False
+
+    #Ending C
+    if not persistent.evalC1Skip:
+        persistent.evalC1Skip = False
+    if not persistent.evalC2Skip:
+        persistent.evalC2Skip = False
+
+    #Ending D
+    if not persistent.evalD1Skip:
+        persistent.evalD1Skip = False
+label eval_tdomi_common:
+    #Whether you will actually get the secret ending or not
+    $ evalPathToSecretComplete = False
+    #Whether you have experienced the secret ending and currently in that timeline
+    $ evalDoingSecretEnding = False
+    #Whether you share the bed in the changed Ch4 Remy date
+    $ evalRemyDateBed = False
+    #Whether you visit the hatchery in chapter 4
+    $ evalHatcheryVisited = False
+    #Vara's mood during the chapter 4 Remy date change\
+    $ evalVaraMood = 2
+    return
+screen main_menu_eval_icecream:
+    if persistent.evalEndingA:
+        add "image/ui/title/vanillaEnding.png"
+    if persistent.evalEndingB:
+        add "image/ui/title/strawberryEnding.png"
+    if persistent.evalEndingC:
+        add "image/ui/title/mangoEnding.png"
+    if persistent.evalEndingD:
+        add "image/ui/title/cherryEnding.png"
+    if persistent.evalEndingA and persistent.evalEndingB and persistent.evalEndingC and persistent.evalEndingD:
+        add "image/ui/title/chocolateEnding.png"
+label eval_extended_ending:
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
 
@@ -118,24 +188,6 @@ label eval_tdomi_common:
 
     #Whether you share the bed with Remy in the third ending
     $ evalRemyShareBed3 = False
-
-    #Whether you visit the hatchery in chapter 4
-    $ evalHatcheryVisited = False
-
-    #Vara's mood during the chapter 4 Remy date change\
-    $ evalVaraMood = 2
-
-    #Whether you will actually get the secret ending or not
-    $ evalPathToSecretComplete = False
-
-    #Whether you have experienced the secret ending and currently in that timeline
-    $ evalDoingSecretEnding = False
-
-    #Whether you share the bed in the changed Ch4 Remy date
-    $ evalRemyDateBed = False
-
-    #Basically just a bugfix on a hook
-    $ evalFixDoubleOrphanageLine = False
 
     #Whether you have the tape measure for a very bad joke
     $ evalTapeMeasure = False
@@ -210,59 +262,6 @@ label eval_tdomi_common:
     $ evalRemyGoneWhileSnack = False
     $ evalCrackersConsumed = 0
     $ evalJustAteCracker = False
-
-    #Tie-in with Remy Hatchlings mod as an alternate way to get the secret ending. I need to move this later
-    $ evalVaraSurvives = False
-    if renpy.python.store_dicts["store"].get("hatchling", "") == "Vara":
-        $ evalVaraSurvives = True
-
-    python:
-        if not persistent.evalSeenDramavian: #Detects whether you have seen Dramavian a second time in this mod
-            persistent.evalSeenDramavian = False
-        if not persistent.evalSecretEndingUnlocked: #[REDACTED]
-            persistent.evalSecretEndingUnlocked = False
-        
-        #Endings
-        if not persistent.evalEndingA: #Unlike ECK, endings aren't named and "A" isn't the best
-            persistent.evalEndingA = False #Just Remy - Vanilla
-        if not persistent.evalEndingB:
-            persistent.evalEndingB = False #Remy and Amely - Strawberry
-        if not persistent.evalEndingC:
-            persistent.evalEndingC = False #Remy, Amely, and Adine - Mango
-        if not persistent.evalEndingD:
-            persistent.evalEndingD = False #Everyone - Cherry
-        
-        #Fails
-        if not persistent.evalUniqueFails:
-            persistent.evalUniqueFails = []
-        
-        #Skips
-
-        #General Skips
-        if not persistent.evalOrphanageTripSkip:
-            persistent.evalOrphanageTripSkip = False
-        if not persistent.evalOrphanageSleepSkip:
-            persistent.evalOrphanageSleepSkip = False
-
-        #Ending A
-        if not persistent.evalA1Skip:
-            persistent.evalA1Skip = False
-        if not persistent.evalA2Skip:
-            persistent.evalA2Skip = False
-        
-        #Ending B
-        if not persistent.evalB1Skip:
-            persistent.evalB1Skip = False
-
-        #Ending C
-        if not persistent.evalC1Skip:
-            persistent.evalC1Skip = False
-        if not persistent.evalC2Skip:
-            persistent.evalC2Skip = False
-
-        #Ending D
-        if not persistent.evalD1Skip:
-            persistent.evalD1Skip = False
         
     #Unique fails/quick endings
     $ evalFail = ""
@@ -295,12 +294,16 @@ label eval_tdomi_common:
     $ evalDisplayVar8name = ""
     $ evalDisplayVar8 = 0
     $ evalDisplayVar8unit = ""
-
-    return
-
-label eval_extended_ending:
     #Updated to require the player to meet with katsu every playthrough they want the ending
     if chap3picka == "katsu" or chap3pickb == "katsu":
+        if renpy.python.store_dicts["store"].get("evalDoingSecretEnding",None)==None:
+            play sound "fx/system3.wav"
+            s "uh oh, it seems like you loaded a \"broken\" save, let me see if i can fix it"
+            call eval_tdomi_common from eval_tdomi_common_init_late
+            play sound "fx/system3.wav"
+            s "Ok I think I fixed it"
+            play sound "fx/system3.wav"
+            s "you may want to play from very start to eliminate the remaining errors"
         jump eval_tdomi_remy
     elif evalPathToSecretComplete:
         play sound "fx/system3.wav"
