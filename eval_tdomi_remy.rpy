@@ -3095,17 +3095,22 @@ label eval_change_sweat_reference: #This is literally just to make a joke make s
     return
 
 label eval_fails:
-    if not evalFail in persistent.evalUniqueFails:
-        $ persistent.evalUniqueFails.append(evalFail)
-        play sound "fx/system3.wav"
-        if len(persistent.evalUniqueFails) == 1:
-            s "It seems that this is your first time experiencing a fail in this mod!"
-            s "There's a few of them scattered around. Can you get them all?"
-            s "It might even unlock something, just saying."
-        s "You have experienced a new fail: [evalFail]!"
-        $ evalTotalFails = len(persistent.evalUniqueFails)
-        s "Total fails: [evalTotalFails] of 6."
-    else:
+    if evalFail in persistent.evalUniqueFails:
         play sound "fx/system3.wav"
         s "It seems that you have already experienced this fail before."
+        play sound "fx/system3.wav"
         s "Either you got it in another ending, or you just like to watch characters suffer."
+    else:
+        $ persistent.evalUniqueFails.append(evalFail)
+        if len(persistent.evalUniqueFails) == 1:
+            play sound "fx/system3.wav"
+            s "It seems that this is your first time experiencing a fail in this mod!"
+            play sound "fx/system3.wav"
+            s "There's a few of them scattered around. Can you get them all?"
+            play sound "fx/system3.wav"
+            s "It might even unlock something, just saying."
+        play sound "fx/system3.wav"
+        s "You have experienced a new fail: [evalFail]!"
+        $ evalTotalFails = len(persistent.evalUniqueFails)
+        play sound "fx/system3.wav"
+        s "Total fails: [evalTotalFails] of 6."
