@@ -1057,7 +1057,7 @@ label eval_post_secret_remy_meeting:
     c "Are you sure about that?"
     Ry "Yes. After all, I have Vara to keep me company."
     Ry "Also, while you were busy these last few weeks, I spent a lot of time with Adine, and we rekindled our lost friendship."
-    Ry smile "Besides, if you really end up going back in time, I'll see you again."
+    Ry smile "Besides, if you really go back in time, I'll see you again."
     jump eval_tdomi_remy
 #Thus marks the end of the changes required to actually get Vara's extended ending
 
