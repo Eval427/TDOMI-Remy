@@ -112,7 +112,7 @@ label eval_katsu_help:
     
     #Some fun scenes to throw in
     if evalServedCustomers == 3:
-        m "Suddenly, I saw two streaks pass my vision."
+        m "Suddenly, I saw two dragons dart pass my vision."
         Ad normal b "Amely! Where are you going?"
         show amely smnormal flip with easeinleft
         Am "Wheeeeeeeeeee!!!!"
@@ -174,6 +174,15 @@ label eval_katsu_help:
 label eval_katsu_help_2:
     #I might add a bit of random variation in the text to spice this up, although it's also fine how it is now IMO
     m "I turned back to Katsuharu."
+    if evalCharacterPreferredFlavor == "spaghettieis":
+        c "Katsuharu, someone asked for some spaghetti? I didn't know you even served that."
+        Ka smile "It's not spaghetti! It's {i}spaghettieis{/i}."
+        c "Oh, what's that?"
+        Ka normal flip "Well, it's more of a novelty than anything else. Spaghettieis is made by pressing some of my vanilla ice cream through a spaetzle press and then topping it off with strawberry sauce and coconut to make it look like spaghetti."
+        c "A... what?"
+        Ka "A noodle maker, in simpler terms."
+        c "Ah, I see."
+        $ evalExplainSpaghettieis = True
 
     menu:
         c "(How should I tell Katsuharu to make the ice cream?)"
@@ -229,7 +238,7 @@ label eval_katsu_help_2:
 
 #If you're looking for "cheats" for this minigame, you're in the right place.
 label eval_help_8th:
-    $ evalCharacterPreferredFlavor = "strawberry"
+    $ evalCharacterPreferredFlavor = "spaghettieis"
     show 8th normal with easeinright
     Ei "Hello. You must be [player_name]."
     c "Sure am!"
@@ -242,10 +251,12 @@ label eval_help_8th:
         Ei "The line was a bit long, but I didn't mind. It was nice chatting with the other dragons."
         c "Glad to hear that. What would you like?"
     elif evalCharacterMood == 2:
-        Ei "All this waiting has really gotten to my stomach."
+        Ei "You know, all this waiting has really gotten to my stomach."
         c "I can relate. What would you like?"
-    Ei "Could I get a scoop of strawberry, please?"
-    c "Yep. One scoop of strawberry coming right up."
+    Ei "Could I get the spaghettieis, please?"
+    c "Spaghetti?"
+    Ei "Of course not. It's {i}spaghettieis{/i}. Just ask Katsuharu, he will know what I mean."
+    c "Okay..."
     call eval_katsu_help_2 from eval_help_8th_2
     c "Here you are. Enjoy!"
 
@@ -289,7 +300,7 @@ label eval_help_dram: #... dot dot dot ...
     show dramavian normal with easeinright
     Dr "..."
 
-    if persistent.evalSeenDramavian:
+    if evalMetDram:
         c "Hello again..."
         Dr "..."
         m "I already knew how this was going to go."
@@ -306,7 +317,7 @@ label eval_help_dram: #... dot dot dot ...
     m "He nodded."
 
     if evalCharacterMood == 0:
-        if persistent.evalSeenDramavian:
+        if evalMetDram:
             Dr "Quick..."
             c "Did you just say something?"
             Dr "..."
@@ -315,7 +326,7 @@ label eval_help_dram: #... dot dot dot ...
             Dr "..."
             m "He looked down to where one would normally wear a watch."
     elif evalCharacterMood == 1:
-        if persistent.evalSeenDramavian:
+        if evalMetDram:
             Dr "Good..."
             c "Did you just say something?"
             Dr "..."
@@ -324,25 +335,25 @@ label eval_help_dram: #... dot dot dot ...
             Dr "..."
             m "He looked around, seeming to judge the scoops others had received before him."
     elif evalCharacterMood == 2:
-        if persistent.evalSeenDramavian:
+        if evalMetDram:
             Dr "Big..."
             c "Did you just say something?"
             Dr "..."
             c "Nevermind."
         else:
             Dr "..."
-            m "He continued looking at the mango ice cream, drool welling up on his muzzle."
+            m "He continued looking at the mango ice cream, drool welling up on his lips."
     
     call eval_katsu_help_2 from eval_help_dram_2
     c "Here you go..."
-    if persistent.evalSeenDramavian:
+    if evalMetDram:
         m "I purposely said the three dots out loud."
     else:
         m "I found myself also saying the three dots out loud."
     
     if evalCharacterMood == evalQualityServed:
         Dr "..."
-        if persistent.evalSeenDramavian:
+        if evalMetDram:
             Dr "Thanks..."
             m "I smiled."
             c "Any time."
@@ -351,7 +362,7 @@ label eval_help_dram: #... dot dot dot ...
         $ evalCustomerScore += 1
     else:
         Dr "..."
-        if persistent.evalSeenDramavian:
+        if evalMetDram:
             Dr "Good..."
             c "Glad to hear it."
     
@@ -437,7 +448,7 @@ label eval_help_grey:
         c "No worries! What can I get you?"
         Gr "Could I get a scoop of vanilla, please?"
     elif evalCharacterMood == 1:
-        Gr "Did you notice how many people are here today? Sometimes, it's nice to just be able to hang out and talk. Especially if ice cream is involved as well."
+        Gr "Did you notice how many people are here today? Sometimes, it's nice to just be able to hang out and talk. Especially if ice cream is involved."
         c "Couldn't agree more. What flavor would you like?"
         Gr "I'll take the vanilla, please."
     elif evalCharacterMood == 2:
@@ -512,18 +523,27 @@ label eval_help_grey:
 label eval_help_kali:
     $ evalCharacterPreferredFlavor = "chocolate"
     show kalinth normal with easeinright
-    Kl "Oh! Hello again, [player_name]."
-    c "Hello Kalinth. It's nice to meet you in a less... stressful environment."
-    Kl "Likewise. I had to sort more papers in these past few weeks than I have in my entire career as an archivist."
-    c "Sounds like a lot of fun."
-    Kl "So much fun..."
+    if evalMetKalinth:
+        Kl "Oh! Hello again, [player_name]."
+        c "Hello Kalinth. It's nice to meet you in a less... stressful environment."
+        Kl "Likewise. I had to sort more papers in these past few weeks than I have in my entire career as an archivist."
+        c "Sounds like a lot of fun."
+        Kl "So much fun..."
+    else:
+        Kl "Oh, hello human."
+        c "It's [player_name]."
+        Kl "Well, nice to meet you, [player_name]. I don't think we've met. I'm the archivist at the police department."
+        c "Then I assume you've been quite busy these past few weeks."
+        Kl "Very. I've had to sort more papers in these past few weeks than I have in my entire career as an archivist."
+        c "Sounds like a lot of fun."
+        Ka "So much fun..."
     if evalCharacterMood == 0:
-        Kl "This line was much longer than I was anticipating, and Bryce wants me at the police station to finish up on the investigation papers, so I shouldn't stay too long."
+        Kl "Well, this line was much longer than I was anticipating, and Bryce wants me at the police station to finish up on the investigation papers, so I shouldn't stay too long."
         c "You still aren't done?"
         Kl "This may be the biggest investigation in dragon history. There was bound to be endless paperwork."
         c "Understandable. I'll try not to keep you too long. What flavor did you have in mind?"
     elif evalCharacterMood == 1:
-        Kl "Although I must say, despite this line being quite long, it was nice to get out of the station for a while."
+        Kl "You know, I've never had to wait for ice cream this long before. Although I must say, despite this line being quite long, it was nice to get out of the station for a while."
         Kl "I'm in no rush to go back into that stuffy building."
         c "They should really open a few windows in there."
         Kl "Right?"
@@ -650,8 +670,8 @@ label eval_help_kev:
         if evalCharacterMood == evalQualityServed:
             Kv normal "Thanks for making it quick, I've really got to go."
             if not kevinunplayed:
-                c "Go do me proud and give out those flyers."
-                Kv face "I'll do it for you, [player_name], but only you"
+                c "Make me proud and give out those flyers."
+                Kv face "I'll do it for you, [player_name], but only you."
                 show kevin normal with dissolvemed
             else:
                 c "Of course. Have a nice day!"
@@ -912,7 +932,7 @@ label eval_help_luc:
     c "It's [player_name]."
     Lu "Lucius."
 
-    if not chap2park3unvisited:
+    if not evalMetLucius: #Fix because its possible to not see him while still visiting the park
         Lu "Hey, I apologize again for what happened at the park before."
         c "No worries. I almost forgot it even happened."
         Lu "Am I just that forgettable?"

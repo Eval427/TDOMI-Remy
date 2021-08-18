@@ -38,6 +38,8 @@ init:
     image vara smshocked flip = im.Flip("cr/vara_smshocked.png", horizontal=True)
     image vara smshocked b = "cr/vara_smshocked_b.png"
     image vara smshocked b flip = im.Flip("cr/vara_smshocked_b.png", horizontal=True)
+    image vara smsmile = "cr/vara_smsmile.png"
+    image vara smsmile flip = im.Flip("cr/vara_smsmile.png", horizontal=True)
 
     #Remy wounded - Why a bullet on both sides? Well, I need him facing the right with the wound, and it felt weird to leave a non-flipped image in here as well
     image remy normal eval shot = "cr/remy_normal_eval_shot.png"
@@ -126,6 +128,9 @@ label eval_tdomi_common:
     $ evalHatcheryVisited = False
     #Vara's mood during the chapter 4 Remy date change\
     $ evalVaraMood = 2
+    $ evalMetLucius = False
+    $ evalMetKalinth = False
+    $ evalMetDram = False
     return
 screen main_menu_eval_icecream:
     if persistent.evalEndingA:
@@ -152,6 +157,12 @@ label eval_extended_ending:
 
     #Shows/hides the menu option for the special flavor
     $ evalShowSpecialFlavor = True
+
+    #Shows/hides the menu option for spaghettieis
+    $ evalShowSpaghettieis = True
+
+    #Whether you have had spaghettieis explained
+    $ evalExplainSpaghettieis = False
 
     #Tracks current ending (1 = solo remy, 2 = remy + amely, 3 = remy + amely + adine)
     $ evalCurrentEnding = 0
@@ -262,7 +273,7 @@ label eval_extended_ending:
     $ evalRemyGoneWhileSnack = False
     $ evalCrackersConsumed = 0
     $ evalJustAteCracker = False
-        
+
     #Unique fails/quick endings
     $ evalFail = ""
     $ evalTotalFails = 0
@@ -294,6 +305,9 @@ label eval_extended_ending:
     $ evalDisplayVar8name = ""
     $ evalDisplayVar8 = 0
     $ evalDisplayVar8unit = ""
+    return
+
+label eval_extended_ending:
     #Updated to require the player to meet with katsu every playthrough they want the ending
     if chap3picka == "katsu" or chap3pickb == "katsu":
         if renpy.python.store_dicts["store"].get("evalDoingSecretEnding",None)==None:
