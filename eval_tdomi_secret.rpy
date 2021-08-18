@@ -15,7 +15,7 @@ label eval_secret_orphanage_arrival:
     show vara smnormal behind amely with easeinright
     Vr "..."
     c "Hi, Vara."
-    Vr "Hello."
+    Vr smsmile "Hello."
     Ry "She's been talking much more since you last saw her, [player_name]."
     c "That's great to hear."
     Vr "It's dark."
@@ -296,7 +296,7 @@ label eval_everyone_1:
     Am smnormal flip "Sugar!!!"
     if evalOrphanageScore != 2:
         Ry look "What about the orphanage, Adine?"
-        Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities these two little dragon would get to experience something like this."
+        Ad normal b flip "We can do the maintenance work any time we want. I don't know how many other opportunities these two little dragons would get to experience something like this."
         Ry normal "Good point."
     Ad think b flip "Wait a minute."
     Ad "How are we supposed to get over to Tatsu Park?"
@@ -381,7 +381,7 @@ label eval_everyone_1:
     m "It seemed as if it took mere minutes to arrive back at Tatsu Park."
     Ry "Ladies and gentledragons, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
     if not evalRodeRemy:
-        c "Very funny Remy."
+        c "Very funny, Remy."
         Ry "Thanks, I can tell that you sincerely mean that."
     else:
         c "Saying the same joke twice doesn't make it funnier, Remy."
@@ -459,7 +459,7 @@ label eval_everyone_1:
             Ry normal "I would have to agree with you. All of these people have been waiting for a long time to get their ice cream, and I'm sure it would make them unhappy if we just skipped ahead."
             Ad think b flip "I'm not too sure."
             Ad "If Katsuharu was willing to give you free ice cream, I'm sure he would be more than willing to let you skip the line as well."
-            Ry normal "It's not that. I just don't want to attact too much attention to ourselves."
+            Ry normal "It's not that. I just don't want to attract too much attention to ourselves."
             Ad normal b flip "I guess."
             c "Looks like the line is about an hour long." #Do I add a mini game??? Tune in next time for //Is Eval Lazy?\\ Yes I am no minigame for you.
             m "For a few minutes, Remy, Adine and I engaged in lighthearted chatter, discussing the events that had gone on while I was in my coma."
@@ -808,7 +808,7 @@ label eval_everyone_3:
         m "With his other hand, Katsuharu grabbed a cup and ducked below his cart, tinkering with some sort of machine."
         c "(That must be the spaetzle, or whatever it was called.)"
         m "After a few moments, the dragon reappeared behind his cart, the cup full of what appeared to be ice cream in the shape of noodles."
-        m "He reached under his cart once more, revealing a large bottle of a opaque, red syrup, and added a healthy portion to the cup."
+        m "He reached under his cart once more, revealing a large bottle of an opaque, red syrup, and added a healthy portion to the cup."
         m "As a final touch, Katsuharu garnished the dessert with coconut shavings."
         m "He added a spoon and handed the cup over to me."
         show katsu smile flip at position (xpos = 0.1) with easeinleft
@@ -1056,7 +1056,7 @@ label eval_everyone_3:
             c "No."
             Ad normal b flip "Damn."
         Ry "I'm glad you're back, though. I wanted to wait for you before I started, but I was starting to worry my ice cream would melt."
-        Ad giggle b flip "Then let's eat before that does inevitably happen."
+        Ad giggle b flip "Then let's eat before that inevitably happens."
         show adine normal b flip with dissolvemed
         Ry "You first, [player_name]. I want to see your reaction."
         m "Excited to finally try my ice cream, I saw Amely longingly look up at me."
@@ -1081,7 +1081,7 @@ label eval_everyone_3:
                 Ry look "What do you mean by that, Adine?"
                 Ad annoyed eval icecream flip "Well, I tried to get back at [player_name] by switching the special and the mango in Katsuharu's cart."
                 if mp.fish:
-                    Ad "I knew that they didn't like it because they tried it at the diner a while ago, so I thought it would be harmless joke."
+                    Ad "I knew that they didn't like it because they tried it at the diner a while ago, so I thought it would be a harmless joke."
                 else:
                     Ad "Since the special is such an acquired taste, I assumed that they wouldn't enjoy it, so I thought it would be a harmless joke."
                 c "Wait, so that wasn't mango ice cream?"
@@ -1399,8 +1399,8 @@ label eval_everyone_3:
     play music "mx/pier.mp3"
     Ry "Surprise!"
     c "What? A surprise?"
-    Ry "Well, on our way back to the orphanage, Vara had the bright idea to come here instead and prepare you a surprise meal."
-    Ry "So we made a quick stop there for ingredients and came over."
+    Ry "Well, on our way back to the orphanage, Vara had the bright idea to come here and prepare you a surprise meal."
+    Ry "So we made a quick stop there for ingredients and came right over."
     c "Really? That's so sweet."
     c "But how did you manage to get in?"
     Ry normal "When you first arrived in our world, I left a spare key hidden near the door."
@@ -1426,7 +1426,7 @@ label eval_everyone_3:
     m "Remy walked over to the edge of the countertop and stood parallel to it."
     m "Vara then hopped up onto his back and rested her front legs on the countertop."
     c "Now I see what you mean."
-    Ry "I love helping her cook, but I still can't help looking forward to when Vara is tall enough to reach the countertop herself."
+    Ry "I love assisting her while she cooks, but I still can't help looking forward to when Vara is tall enough to reach the countertop herself."
     m "I sat down at the table and watched Vara as she skillfully navigated her ingredients."
     m "I couldn't tell exactly what she was making, but it seemed to be some sort of meat similar to steak."
     m "I looked around the room, taking in the smaller details I had failed to notice earlier."
@@ -1437,7 +1437,7 @@ label eval_everyone_3:
     show vara smnormal flip with dissolvemed
     m "After a little bit longer, Vara and Remy returned to the table with three plates."
     c "Wow! This looks amazing!"
-    Vr "It's Mouflon made with my own recipe."
+    Vr smsmile flip "It's Mouflon made with my own recipe."
     if annascenesfinished > 1 and not nofood:
         c "Oh! I've had that before, but not so finely prepared. I'm excited to try it!"
     else:
@@ -1452,42 +1452,42 @@ label eval_everyone_3:
     Vr smshocked flip "Really?"
     c "I'm completely serious."
     Vr "..."
-    Vr smnormal flip "Thank you!"
+    Vr smsmile flip "Thank you!"
     m "Remy and Vara proceeded to eat their own portions as well."
-    Ry "[player_name] isn't wrong, Vara. This is amazing."
+    Ry smile "[player_name] isn't wrong, Vara. This is amazing."
     Vr "Could use less salt, but yes."
     c "Can I ask how you made it?"
     Vr "Nope! It's a secret."
-    Ry look "Good luck trying to get any of Vara's recipes, [player_name]. Even I don't know any of them."
+    Ry look "Good luck trying to get any of Vara's recipes, [player_name]. Even I don't know them."
     Vr "They are my secret!"
     Vr "Maybe I will tell you later."
     Ry normal "It's not like either of us could cook them as well as you, anyways."
-    m "It didn't take long for the three of us to clean our plates. Normally, I couldn't eat this much in one sitting, but this was an exception."
+    m "It didn't take long for the three of us to clean our plates. Normally, I couldn't eat this much in one sitting, but this was an exception." #Possible to delete
     Ry "I'm impressed you were able to eat a course big enough for a dragon, [player_name]!"
     c "So am I. It was so good I just couldn't stop eating."
     m "Remy started taking our dishes and rinsing them off in the sink."
     c "Don't worry about the dishes, Remy. It's the least I can do to make up for this amazing meal."
     Ry smile "Personally I would never give up an offer for free dish washing, but suit yourself."
     scene black with dissolveslow
-    m "The three of us made our way into the main room."
     stop music fadeout 2.0
+    m "The three of us made our way into the main room."
     scene o2
     show remy normal at right
-    show vara smnormal flip at left
+    show vara smsmile flip at left
     with dissolveslow
     Ry "Well, Vara. Are you ready to go home?"
-    Vr "The orphanage?"
+    Vr smnormal flip "The orphanage?"
     Ry shy "Well..."
     play sound "fx/envelope.wav"
-    play music "mx/slow.ogg" fadein 2.0
-    m "Remy lifted his wing, revealing a stack of paper that fell to the floor. He clumisly picked them up."
+    play music "mx/slow.ogg" fadein 4.0
+    m "Remy lifted his wing, revealing a stack of paper that fell to the floor. He clumsily picked them up."
     Ry "I don't mean the orphanage, Vara. {w}I mean home."
     show vara smnone flip with dissolvemed
     m "Vara looked at Remy with a confused stare."
     Vr smnone flip "..."
     Vr smnone flip "..."
     Vr smshocked flip "..."
-    Ry look "Vara are you alri{w=0.3}{nw}"
+    Ry look "Vara are you alri-{w=0.3}{nw}"
     show vara smshocked flip behind remy at Position (xpos = 0.35) with move9
     show vara smsad flip behind remy
     show remy shy
@@ -1503,7 +1503,7 @@ label eval_everyone_3:
     hide remy
     hide vara
     with dissolvemed
-    stop music fadeout 6.0
+    stop music fadeout 10.0
     m "It felt awkward to stand and watch the two dragons, so I rested on the nearby couch and idly skimmed through a book on the desk next to me."
     m "After a while, the crying subsided, and I heard Remy walk over to me."
     show remy normal
@@ -1513,52 +1513,80 @@ label eval_everyone_3:
     Ry "{i}Draconic Desires{/i}? Really, [player_name]?"
     m "I hadn't even noticed that I had chosen that as my reading material."
     c "Oh! I didn't even notice, I was just idly skimming it."
-    c "It was such an emotional moment between the two of you, I felt awkward just standing and watching."
-    Ry "I understand. I was going to tell Vara once we arrived at the orphanage, but I thought it would be better if we did it here instead."
-    Ry "You mean a lot to the both of us, you know."
-    Ry shy "I know I may sound like a broken record at this point, but thank you for everything, [player_name]."
-    Ry "This day out, this wonderful little dragon that I can call my daughter, and even my life. I owe it all to you."
+    m "I closed the book and placed it back on the desk."
+    c "It was such an emotional moment between the two of you. I felt awkward just standing and watching."
+    Ry "I understand. I was going to tell Vara once we arrived at the orphanage, but when she had the idea to surprise you, I decided to announce it here instead."
+    Ry "You mean a lot to the both of us, [player_name]. It felt only natural that you would be present when I broke the news to her."
+    Ry shy "I know I may sound like a broken record at this point, but thank you for everything."
+    Ry "This day out{w}, this wonderful little dragon that I can call my daughter{w}, and even my life. I owe it all to you."
     c "Remy, I don't know what to say."
-    Ry "Then don't say anything."
-    hide remy
-    hide vara
-    with dissolvemed
-    if mp.remyromance: #This if else is pretty meh. I can't write this crap.
-        m "I was suddenly wrapped in Remy's warm embrace as he sat down and used his front legs to pull me into a big hug."
-        m "Using his wings to cover up Vara, he pressed his lips against mine. I embraced him with my arms and pulled in closer."
-        m "As we parted, he playfully flicked his tongue on my nose."
-    else:
-        m "I was suddenly wrapped in Remy's warm embrace as he sat down and used his front legs to pull me into a big hug."
-        m "There was no escaping his grasp, so I wrapped my arms around his neck and hugged him as well."
-        m "Suddenly, I felt Vara embrace me as well. Since she was too short to hug my upper body, so she resorted to squeezing my legs instead."
-        m "After a few tender moments, we parted."
-    show remy normal
-    show vara smnone
-    with dissolvemed
-    Ry smile "We should do this sort of thing more often."
-    c "Well, now that I'm not chasing around criminals or in a coma, I should have a lot more free time."
+    Ry "Then don't say anything. What you have done for us speaks louder than any words could."
+    hide remy with dissolvemed
     if mp.remyromance:
-        Ry smile "I meant the kiss."
-        c "Who said more free time couldn't lead to that?"
-        Ry normal "Point taken."
-    Ry look "But won't you be going back through the portal soon?"
+        m "Remy enveloped me in his wing and pulled me closer to him. His scales radiated with a soft warmth."
+        m "Playfully, he gave my nose a lick."
+    else:
+        m "Remy gently enveloped me in his wing and pulled me closer.  His scales radiated with a soft warmth."
+    hide vara with dissolvemed
+    m "Suddenly, I felt Vara hug me as well. Since she couldn't make it onto the couch, she resorted to squeezing my legs instead."
+    m "While awkward, the little dragon's embrace was warm and comforting."
+    m "We sat still for a few moments before Remy, with a relaxed sigh, released me from the clutches of his wing. Vara, however, stayed latched to my legs."
+    show remy normal with dissolvemed
+    Ry "You know, we should do this sort of thing more often."
+    c "Well, now that I'm not chasing around murderers or in a coma, I should have a lot more free time."
+
+    #Ry "You mean a lot to the both of us, you know."
+    #Ry shy "I know I may sound like a broken record at this point, but thank you for everything, [player_name]."
+    #Ry "This day out, this wonderful little dragon that I can call my daughter, and even my life. I owe it all to you."
+    #c "Remy, I don't know what to say."
+    #Ry "Then don't say anything."
+    #hide remy
+    #hide vara
+    #with dissolvemed
+    #if mp.remyromance: #This if else is pretty meh. I can't write this crap.
+    #    m "I was suddenly wrapped in Remy's warm embrace as he sat down and used his front legs to pull me into a big hug."
+    #    m "Using his wings to cover up Vara, he pressed his lips against mine. I embraced him with my arms and pulled in closer."
+    #    m "As we parted, he playfully flicked his tongue on my nose."
+    #else:
+    #    m "I was suddenly wrapped in Remy's warm embrace as he sat down and used his front legs to pull me into a big hug."
+    #    m "There was no escaping his grasp, so I wrapped my arms around his neck and hugged him as well."
+    #    m "Suddenly, I felt Vara embrace me as well. Since she was too short to hug my upper body, so she resorted to squeezing my legs instead."
+    #    m "After a few tender moments, we parted."
+    #show remy normal
+    #show vara smnone
+    #with dissolvemed
+    #Ry smile "We should do this sort of thing more often."
+    #c "Well, now that I'm not chasing around criminals or in a coma, I should have a lot more free time."
+    #if mp.remyromance:
+    #    Ry smile "I meant the kiss."
+    #    c "Who said more free time couldn't lead to that?"
+    #    Ry normal "Point taken."
+    Ry shy "I just worry the time we have together is running thin."
+    c "How so?"
+    Ry look "Won't you be going back through the portal soon?"
     c "I've been trying not to think about that, but I feel obligated to do everything in my power to save humanity."
     Ry sad "It's going to be difficult when we have to part ways."
-    Vr "[player_name] is leaving?"
-    c "No, I'm not leaving. I'm just going back to the day I got here."
-    Ry "Still, I can't shake off the feeling that we won't ever see you again."
+    c "I'm not leaving. I'm just going back to the day I got here."
+    Ry "Still, I can't shake off the feeling that I won't ever see you again."
     c "What do you mean?"
     Ry "I know I said that I would see you again after you went through the portal, but in a way, I feel like when you enter that portal, you don't go back to my world, but a world exactly like mine with a dragon exactly like me."
     c "I see."
-    Ry look "But in the foreseeable future, you aren't going anywhere, and I am going to appreciate the time that we have together."
+    m "Vara finally released her grip from my legs and returned to Remy's side."
+    show vara smnormal with dissolvemed
+    m "Remy looked down at Vara."
+    show vara smsmile with dissolvemed
+    m "Gently, he nuzzled her frills. As a result, a small smile formed at her lips."
+    Ry normal "But in the foreseeable future, you aren't going anywhere, and I am going to appreciate the time that we have together."
     c "So will I."
-    Ry normal "I think that Vara and I should get going. We won't start moving her stuff in until tomorrow, but she still needs to settle in."
+    Ry "I think that Vara and I should get going. We won't start moving her stuff in until tomorrow, but she still needs to settle in."
     c "I understand. Goodnight you two."
     Ry "Goodnight, [player_name]."
-    Vr smnormal "Goodnight!"
+    Vr "Goodnight!"
     hide remy
     hide vara
     with easeoutleft
+    play sound "fx/door/doorchain.ogg"
+    m "With that, the two dragons left through the door, leaving me alone in my apartment."
     m "I made my way over to the bedroom to get ready to sleep."
     c "(It's wonderful that Remy and Vara are a real family now.)"
     stop music fadeout 2.0
@@ -1566,10 +1594,10 @@ label eval_everyone_3:
     scene o2
     play sound "fx/knocking1.ogg"
     m "Suddenly, there was a knock at the door."
-    c "(Who could be knocking at this hour?)"
+    c "(Remy and Vara must have forgotten something.)"
     play sound "fx/door/doorchain.ogg"
     m "I walked to the door and opened it."
-    play music "mx/cavern.mp3" fadein 2.0
+    play music "mx/cavern.mp3" fadein 3.0
     show izumi normal 7 with dissolvemed
     As "Hello, [player_name]."
     c "Izumi? But I thought you died during the portal incident."
@@ -1617,14 +1645,15 @@ label eval_everyone_3:
     As "Then my work here is done. Enjoy your life in the dragon world, [player_name]. It seems you've made some friends already."
     show izumi normal 7 at left with move
     c "Wait, Izumi."
+    show izumi normal 7 flip with dissolvemed
     m "I looked at her one last time, taking in the sight of the last human I was ever going to see."
     m "I took a deep breath."
     c "Okay, you can go now."
     As "Goodbye, [player_name]."
+    show izumi normal 7 with dissolvemed
     hide izumi with easeoutleft
     play sound "fx/door/doorchain.ogg"
     m "With that, I was left alone with my thoughts."
-    m "I made my way to the bedroom and prepared for bed."
     m "I'll have to call Remy tomorrow and break the news to him."
     stop music fadeout 2.0
     scene black with dissolveslow
@@ -1651,9 +1680,7 @@ label eval_everyone_3:
 
     $ renpy.pause (1.5)
     scene o
-    show remy look
-    show vara smnormal
-    with dissolveslow
+    show remy look with dissolveslow
     play music "mx/fragments.ogg"
     Ry "You sounded serious on the phone, [player_name]. Is everything alright?"
     c "I talked to Izumi again."
@@ -1668,10 +1695,7 @@ label eval_everyone_3:
     c "Izumi said that there were other versions of myself still working to save humanity. If I were to try and help now, I might mess everything up."
     Ry look "I see. So you're staying here forever?"
     c "Seems like it."
-    Ry normal "This is so exciting! Did you hear that, Vara? [player_name] is staying with us!"
-    Vr smnone "[player_name] was going to leave?"
-    Ry look "Right. I never told her about that."
-    Ry smile "But let's not worry about that any more. It seems as if that is part of the past now."
+    Ry smile "This is so exciting! I didn't even consider the possibility of you staying in our world."
     c "It was a rough night thinking about my future here."
     Ry look "I can see that. It must be so difficult having to accept the fact that you will never see another human again."
     c "It is, trust me. But at least I have you guys to help me through it all."
@@ -1684,38 +1708,44 @@ label eval_everyone_3:
     Ry "..."
     Ry "Would you be interested in a... {w}more meaningful relationship?"
     c "How so?"
-    Ry "Well, what we have now is great, but I was looking for something... more."
+    Ry "Well, what we have now is great, but I was looking for something... {w}more."
     Ry "I wasn't going to say any of this to you before because I thought you were going through the portal."
     c "Why not?"
     Ry sad "Because I couldn't take losing another person that close to me."
     Ry "Don't get me wrong, what we have is strong and special, but I was afraid to go any further because I didn't want to feel the pain like I did losing Amelia."
     Ry "It hurt me so badly, and I knew that if I developed a deeper relationship with you and you one day went through that portal, I would be crushed."
     Ry shy "But now that you're staying, I feel comfortable asking for more."
-    Ry "What do you say, [player_name]. I'll be happy either way, I promise."
+    Ry normal "What do you say, [player_name]. I'll be happy either way, I promise."
 
     menu:
         "[[Accept]":
             c "I think we should give this a shot. We've been through so much together, and there is nobody I would rather spend my time with than you."
             c "Maybe we could even be our own little family."
-            Ry "You do not understand how happy that makes me feel, [player_name]."
+            Ry shy "You do not understand how happy that makes me feel, [player_name]."
             Ry sad "For so long, I've had this hole in my heart that Amelia used to fill."
-            Ry "I thought that all this time, everything I did was for her. To let her live on inside of me."
+            Ry "I thought that all this time, everything I did was for her. To let her live on through my actions."
             Ry "I tried to fill that hole by isolating myself and remorsing over who had used to fill it."
-            Ry shy "But with you, I think I can finally be whole again."
+            Ry shy "But with you, {w}I think I can finally be whole again."
             hide remy
-            hide vara
             with dissolvemed
-            m "Remy once again sat down and grabbed me with his front legs, pulling me into his soft, scaly underbelly."
-            m "I embraced him as well and pulled myself in as close as I could."
-            m "He rested the top of his head on my own, and I felt his tears form on my head and roll down my cheeks."
+            m "Before I could react, I was wrapped within Remy's tight embrace as he sat down and used his front legs to pull me into a big hug."
+            if mp.remyromance:
+                m "He pressed his lips against mine. I embraced him with my arms and pulled in closer."
+            m "As we parted, he rested his head on top of my own. I felt a stream of tears form on my head and roll down my cheeks."
             m "It was possible that a few of those tears were mine as well."
-            m "We embraced for what seemed like hours. Time around us stopped."
-            m "At that moment, nothing else mattered. I buried my face deeper into his scales and closed my eyes."
+            m "We embraced for what felt like hours. Time around us seemed to stop dead in its tracks."
+            m "At that moment, nothing else mattered. I buried my face deeper into his soft underbelly scales and closed my eyes."
+            #m "Remy once again sat down and grabbed me with his front legs, pulling me into his soft, scaly underbelly."
+            #m "I embraced him as well and pulled myself in as close as I could."
+            #m "He rested the top of his head on my own, and I felt his tears form on my head and roll down my cheeks."
+            #m "It was possible that a few of those tears were mine as well."
+            #m "We embraced for what seemed like hours. Time around us stopped."
+            #m "At that moment, nothing else mattered. I buried my face deeper into his scales and closed my eyes."
             stop music fadeout 2.0
             scene black with dissolveslow
             $ renpy.pause (3.0)
             $ persistent.evalEndingD = True
-            return
+            jump eval_custom_credits
         
         "[[Reject]":
             c "Sorry, Remy, but I don't think I'm ready to take our relationship any further."
@@ -1731,7 +1761,6 @@ label eval_everyone_3:
             Ry "Goodbye, [player_name]! We need to plan some more things together."
             c "Absolutely."
             hide remy
-            hide vara
             with easeoutleft
             $ renpy.pause (0.5)
             play sound "fx/door/door_chain.wav"
@@ -1740,7 +1769,7 @@ label eval_everyone_3:
             scene black with dissolveslow
             $ renpy.pause (1.0)
             $ persistent.evalEndingD = True
-            return
+            jump eval_custom_credits
     #With one fragment could come many more, leading to disatrous timelines.
     #There is a delicate balance between your interaction with the dragon world and saving humanity.
     #Add something about Remy wanting a real relationship now that you will be staying and he didn't want to bring it up before b/c he thought he would lose you like he lost amelia (didn't want to establish the same connection)

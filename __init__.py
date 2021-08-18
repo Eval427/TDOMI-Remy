@@ -9,7 +9,7 @@ from modloader.modgame import base as ml
 from modloader.modclass import Mod, loadable_mod
 
 #Adding side images for unique character expressions
-varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked_b", "smsad", "smnormal_ghost"]
+varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked_b", "smsad", "smnormal_ghost", "smsmile"]
 adineIceCreamExpressions = ["annoyed_eval_icecream", "disappoint_eval_icecream", "frustrated_eval_icecream", "giggle_eval_icecream", "normal_eval_icecream", "sad_eval_icecream", "think_eval_icecream"]
 remyShotExpressions = ["angry_eval_shot", "look_eval_shot", "normal_eval_shot", "sad_eval_shot", "shy_eval_shot", "smile_eval_shot"]
 
@@ -70,7 +70,7 @@ class AWSWMod(Mod):
         changeRemyGoodEnding = modast.find_label("remy5")
         modast.call_hook(changeRemyGoodEnding, modast.find_label("eval_remy_good_ending_change"))
         
-        #Hook to remove any mentions of sweat from the game so my jokes make canotical sense
+        #Hook to remove any mentions of sweat from the game so my jokes make canonical sense
         handleSweat = modast.find_say("After holding it for a few seconds, he breathed a sigh of relief as he relaxed and the flapping motion stopped again.")
         modast.call_hook(handleSweat, modast.find_label("eval_change_sweat_reference"), None, modast.search_for_node_type(handleSweat, ast.Menu))
         

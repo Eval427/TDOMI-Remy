@@ -38,6 +38,8 @@ label eval_tdomi_common:
     image vara smshocked flip = im.Flip("cr/vara_smshocked.png", horizontal=True)
     image vara smshocked b = "cr/vara_smshocked_b.png"
     image vara smshocked b flip = im.Flip("cr/vara_smshocked_b.png", horizontal=True)
+    image vara smsmile = "cr/vara_smsmile.png"
+    image vara smsmile flip = im.Flip("cr/vara_smsmile.png", horizontal=True)
 
     #Remy wounded - Why a bullet on both sides? Well, I need him facing the right with the wound, and it felt weird to leave a non-flipped image in here as well
     image remy normal eval shot = "cr/remy_normal_eval_shot.png"

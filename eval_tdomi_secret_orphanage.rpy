@@ -95,6 +95,7 @@ label eval_secret_orphanage_game:
             Vr smnone "..."
             play sound "fx/lighthighfive.mp3"
             m "Vara tentatively stretched her claw in my direction. I lightly hit it with my palm."
+            show vara smsmile with dissolvemed
             m "She recoiled on impact, but after a moment of consideration, smiled."
             Vr "My turn."
             play sound "fx/goodhighfive.mp3"
@@ -240,18 +241,18 @@ label eval_secret_orphanage_game:
     if evalRemainingMinutes <= 205 and not evalVaraGone and not evalVaraHasSnack:
         if evalRemyOnMission:
             $ evalRemyAsksAboutVara = True
-            Vr "Stay here, I will make a surprise."
+            Vr smsmile "Stay here, I will make a surprise."
             c "Okay, Vara."
-            show vara smnormal flip with dissolvemed
+            show vara smsmile flip with dissolvemed
             hide vara with easeoutright
             m "Vara left the room and went into the back of the orphanage."
             m "I wonder what the surprise is going to be."
         else:
-            Vr "I will go make a surprise."
+            Vr smsmile "I will go make a surprise."
             Ry "A surprise?"
             Vr "Yes."
             Ry "Well, go ahead, Vara."
-            show vara smnormal flip with dissolvemed
+            show vara smsmile flip with dissolvemed
             hide vara with easeoutright
             Ry smile "I guess you've lost your little helper for a while."
             c "I'll make do."

@@ -47,7 +47,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         Ry "You know, speaking of Vara, why don't we go grab her?"
         c "How come?"
         Ry "When you went and visited the hatchery earlier, Vara seemed very interested in you."
-        Ry shy "You've done miracles to help me move on from my past, and I was thinking you could do the same for her as well."
+        Ry shy "You've done miracles to help me with my past, and I was thinking you could do the same for her as well."
         c "I did notice her looking at me earlier. I would love to try and help if I could."
         c "But what about the festival?"
         Ry normal "Well, if you still want to go, we could watch the big fireworks show together in a few days."
@@ -131,11 +131,13 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         show remy normal with dissolvemed
         Ry "This may surprise you, but no. I think I'll let you make the call on what dragon medications you should take."
         c "(I don't even want to imagine the terrible repercussions that could have.)"
+        m "Remy let out a long sigh."
         Ry look "You know, maybe I should have just brought Vara to the park and had her watch the fireworks with us instead of coming back here."
+        Ry "I feel bad for forcing you to miss out on the show tonight."
         c "Don't say that. We're still going to see the fireworks together."
         c "We can bring Vara as well, I think it would be fun!"
-        Ry smile "That's true."
-        Ry normal "You know, I'm very curious to see what your reaction to the show will be. It's quite a sight to behold."
+        Ry normal "That's true."
+        Ry "You know, I'm very curious to see what your reaction to the show will be. It's quite a sight to behold."
         c "People just keep saying that."
         Ry "Maybe you will, too."
         c "We'll see."
@@ -147,12 +149,13 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         c "I know, I'm kidding."
         Ry normal "I'm not."
         scene black with dissolveslow
-        m "We made our way into the kitchen."
 
         scene evalplayerkitchen with dissolveslow
-        show remy normal at right with dissolvemed
-        show vara smnormal flip at left with dissolvemed
+        show remy normal at right
+        show vara smnormal flip at left
+        with dissolvemed
         Ry "Well, Vara, go ahead."
+        Vr smsmile flip "..."
         hide vara with easeoutright
         play sound "fx/fridge.mp3"
         m "Vara made her way over to the fridge and grabbed a few ingredients."
@@ -205,7 +208,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             "Looks amazing.":
                 $ evalVaraMood += 2
                 c "I'll say! That looks wonderful."
-                m "I saw the corners of Vara's mouth form a small smile."
+                show vara smsmile with dissolvemed
             
             "It looks alright.":
                 $ evalVaraMood += 1
@@ -222,7 +225,6 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         m "Vara started carefully cutting the sushi roll. In the end, there were ten bite-sized pieces."
         $ renpy.pause (0.5)
         m "Once finished, she rested the knife down and popped a piece of the sushi in her mouth."
-        show vara smnormal flip with dissolvemed
         m "Seemingly satisfied, she ate two more in rapid succession."
         $ renpy.pause (1.0)
         Ry normal "Could I have one, Vara?"
@@ -230,7 +232,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         m "Remy grabbed a piece of sushi and put it in his mouth."
         Ry "Wow! It's really good, Vara!"
         m "Remy took another two pieces, and delicately rested them on his tongue"
-        m "Vara suddenly pushed the cutting board in my direction."
+        m "Vara pushed the cutting board in my direction."
         Ry "I think she wants you to try it, [player_name]."
 
         menu:
@@ -239,13 +241,13 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                 c "I'd love to."
                 m "I grabbed a piece of sushi and looked at it for a moment."
                 show vara smnone flip with dissolvemed
-                m "Vara looked extremely nervous as I put the piece of sushi in my mouth."
+                m "Vara looked at my nervously as I put the piece of sushi in my mouth."
                 m "It was amazing. The buttery fish complemented the somewhat tangy taste of the algae and the crispness of the cucumber."
                 c "Wow, Vara! This is really good!"
                 if evalVaraMood >= 4:
                     Vr "..."
                     Vr smnone flip "T... {w}T..."
-                    Vr smnormal flip "Thanks."
+                    Vr smsmile flip "Thanks."
                     c "You're welcome, Vara. I really mean it too."
                     Ry smile "You should be honored, [player_name]. Vara doesn't just speak to everyone."
                     c "After everything she's been through, I can't blame her."
@@ -291,11 +293,11 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                 m "Vara and Remy shared the remaining pieces of sushi and washed off the cutting board."
 
         
-        m "We made our way back to the main room."
-        scene o3
+        scene black with dissolveslow
+        scene o3 with dissolveslow
         show vara smnormal flip at left
         show remy normal at right behind vara
-        with dissolveslow
+        with dissolvemed
         Ry "Well, it's getting to be Vara's bedtime, so we best get going."
         c "I understand."
         if evalVaraMood > 0:
@@ -303,7 +305,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             Vr smshocked flip "..."
             m "What must have been the finale for the day's firework show seemed to frighten Vara."
             show vara at right with move
-            show vara smshocked
+            show vara smshocked with dissolvemed
             Ry "It's alright, Vara. It's just some fireworks."
             Vr "..."
             play sound "fx/hug.mp3"
@@ -327,8 +329,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             scene black with dissolvemed
             play sound "fx/impact.wav"
             $ renpy.pause (2.0)
-            m "I feel to the floor unconscious."
-            $ renpy.pause (1.0)
+            m "The world around me went black as I fell to the floor, unconscious"
             m "I awoke when I felt a strange pressing sensation on my cheek."
             m "It was Vara, who looked down at me with a concerned expression."
             scene o3 with dissolveslow
@@ -341,17 +342,19 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             Ry "Just a few minutes."
             Ry "[player_name], what was that?"
             c "I..."
-            m "My mind was foggy. Faint memories of something were rolling around in my head."
-            c "I think I'm remembering something. Something important."
+            m "My mind was foggy. Faint memories flickering in my head."
+            c "I think I'm remembering something. {w}Something important."
             Ry "What do you mean?"
             c "I'm not quite sure myself."
             Ry "Do you need to go to the hospital? Do you think it was the sushi?"
             Vr smsad "..."
             c "No, it wasn't the sushi."
-            show vara smnone with dissolvemed
             c "I saw something. I just need my mind to clear up."
+            show vara smnone with dissolvemed
             c "Let me sleep on it."
             Ry "I refuse to leave you alone after what just happened."
+            c "Remy, I'll be alright."
+            Ry "No. We don't know what that was, and I can't risk leaving you alone and having something happen to you."
             c "Well, I guess you'll just have to sleep here for the night then."
             Ry normal "I guess I will."
             c "What about Vara?"
@@ -402,13 +405,12 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                         hide remy with dissolvemed
                         m "Remy climbed up onto the bed next to me."
                         m "Vara followed closely behind and wedged her way between Remy and I."
-                        Vr "Warm..."
-                        m "She snuggled a bit closer to me."
-                        Ry "Look's like you're Vara's personal heated pillow."
-                        c "I don't mind."
+                        Vr "..."
+                        m "Vara snuggled a bit closer to me, seemingly attracted to my body heat."
                         Ry "It seems that she's taken a liking to you, [player_name]."
                         m "I looked down at Vara, who was snuggled against my side."
                         c "It seems that way."
+                        m "Remy let out a big yawn. As if contagious, I did as well."
                         Ry "Goodnight, [player_name]."
                         c "Goodnight, Remy."
                         c "And goodnight to you as well, Vara."
@@ -448,13 +450,12 @@ label eval_remy_ch4_date_change_2:
     if evalRemyDateBed:
         m "I woke up to find that I was alone in the bed."
         c "(How long did I sleep?)"
-        m "I got up and walked out into the main room. Remy was sitting on the couch."
     else:
         m "I woke up with the sun shining brightly through the blinds."
         c "(How long did I sleep?)"
-        m "I got up and walked out into the main room. Remy was sitting on the couch."
+    m "I got up and walked out into the main room. Remy was sitting on the couch."
     show remy smile with dissolvemed
-    Ry "Hi there sleepy head!"
+    Ry "Hi there, sleepy head!"
     c "Good morning. Where's Vara?"
     Ry normal "I think you mean good afternoon. I brought her back to the orphanage."
     if remystatus != "neutral": #Obligatory inclusion of the kiss scene. Can't be the fourth date without it, really
@@ -1022,7 +1023,7 @@ label eval_post_secret_remy_meeting:
     c "Oh, what did he have to say?"
     Ry "I think it would be better if he explained himself."
     show remy normal at right with move
-    show maverick normal b flip at Position(xpos=0.1) with easeinleft
+    show maverick normal b flip at Position (xpos=0.1) with easeinleft
     Mv "Hello, [player_name]."
     c "Hello, Maverick."
     Mv "Listen, [player_name]. I think I owe you an apology."

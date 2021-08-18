@@ -103,7 +103,7 @@ label eval_tdomi_remy:
         "Are you calling me fat?":
             $ evalAskIfFat = True
             c "Are you calling me fat?"
-            Ry shy "N... No of course not. I didn't mean it that way... {w}I just meant..."
+            Ry shy "N... No of course not. I didn't mean it that way... {w=2.0}I just meant..."
             c "I'm kidding, don't sweat it."
             Ry normal "Dragons don't sweat."
             c "Noted."
@@ -267,9 +267,9 @@ label eval_tdomi_remy:
             c "After everything that has happened, we could all use a bit of ice cream."
             Ry normal "That sounds like a great idea, [player_name]!"
             Ry smile "I can't remember the last time I had an outing with this many people."
-            Ry normal "We may have to wait a bit, though. Adine is probably busy delivering food."
-            c "Good point..."
-            Ry "We could make ourselves useful at the orphanage until she's done."
+            Ry normal "We may have to wait a bit, though. Adine is busy delivering food."
+            c "Good point. What should we do in the meantime?"
+            Ry "Well, we could make ourselves useful at the orphanage until she's done."
             Ry "She usually comes to check on the orphanage as soon as she's finished, and it would be a nice surprise for her to find the place spotless."
             $ evalCurrentEnding = 4
 
@@ -288,8 +288,8 @@ label eval_tdomi_remy:
                     c "How about a nice walk around the area?"
                     Ry look "You really think that walking is more interesting than taking care of children?"
                     c "It beats the yelling and screaming."
-                    $ evalRemyStatus=remystatus#store remy's original status
-                    $ remystatus="bad"#having Remy's status change to bad can add a punch to the gut
+                    $ evalRemyStatus = remystatus #store remy's original status
+                    $ remystatus = "bad" #having Remy's status change to bad can add a punch to the gut
                     Ry angry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
                     hide remy with dissolvemed
                     stop music fadeout 2.0
@@ -306,7 +306,7 @@ label eval_tdomi_remy:
                             Ry "What?"
                             play music "mx/jazzy.ogg"
                             c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
-                            $ remystatus=evalRemyStatus#you were quick to apolgize for your rash decision and his mood is restored
+                            $ remystatus = evalRemyStatus #you were quick to apolgize for your rash decision and his mood is restored
                             Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
                             c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
                             Ry "Well, so can dragon children, but you just learn to accept that they haven't had as much time on the planet as us, and sometimes have difficulty expressing their emotions in other ways."
@@ -1090,7 +1090,7 @@ label eval_solo_remy_2:
                     stop music fadeout 2.0
                     $ renpy.pause (4.0)
                     $ persistent.evalEndingA = True
-                    return
+                    jump eval_custom_credits
                 
                 "Sorry, but no.":
                     c "Sorry, but the bed is cramped enough for me as it is."
@@ -1099,7 +1099,7 @@ label eval_solo_remy_2:
                     stop music fadeout 2.0
                     $ renpy.pause (4.0)
                     $ persistent.evalEndingA = True
-                    return
+                    jump eval_custom_credits
 
         "Good memories.":
             c "Those were the times, before everything devolved into madness and chaos."
@@ -1116,7 +1116,7 @@ label eval_solo_remy_2:
             scene black with dissolveslow
             stop music fadeout 2.0
             $ persistent.evalEndingA = True
-            return
+            jump eval_custom_credits
     
     #And... scene!
 
@@ -1761,7 +1761,7 @@ label eval_remy_amely_2:
                     stop music fadeout 2.0
                     scene black with dissolveslow
                     $ persistent.evalEndingB = True
-                    return
+                    jump eval_custom_credits
                 
                 "Let him have the couch.":
                     c "The couch is pretty big. You should be quite comfortable sleeping there for the night."
@@ -1774,7 +1774,7 @@ label eval_remy_amely_2:
                     scene black with dissolveslow
                     stop music fadeout 2.0
                     $ persistent.evalEndingB = True
-                    return
+                    jump eval_custom_credits
         
         "It's quite late, you best be getting home.":
             c "You should probably make your way home, Remy. It's getting quite dark."
@@ -1791,7 +1791,7 @@ label eval_remy_amely_2:
             scene black with dissolveslow
             stop music fadeout 2.0
             $ persistent.evalEndingB = True
-            return
+            jump eval_custom_credits
 
 label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyone, idk what you're talking about.
     #Going to use this twice, one where you DO ride remy beforehand and when you DO help at the orphanage. That's gonna be a lot of refactoring...
@@ -2915,7 +2915,7 @@ label eval_remy_amely_adine_sleep_select:
                 stop music fadeout 2.0
                 $ persistent.evalSecretEndingUnlocked = True
                 $ persistent.evalEndingC = True
-                return
+                jump eval_custom_credits
 
             else:
                 c "Why don't we get ready for bed now?"
@@ -2942,7 +2942,7 @@ label eval_remy_amely_adine_sleep_select:
                     stop music fadeout 2.0
                     m "I slowly closed my eyes, Remy's warmth and gentle breathing lulling me to sleep."
                     $ persistent.evalEndingC = True
-                    return
+                    jump eval_custom_credits
                 else:
                     hide remy with dissolvemed
                     m "I made my way to the bedroom while Remy removed his tie."
@@ -2958,7 +2958,7 @@ label eval_remy_amely_adine_sleep_select:
                     stop music fadeout 2.0
                     scene black with dissolveslow
                     $ persistent.evalEndingC = True
-                    return
+                    jump eval_custom_credits
 
         "Let him leave.":
             c "I understand. Bye Remy!"
@@ -2970,7 +2970,7 @@ label eval_remy_amely_adine_sleep_select:
             stop music fadeout 2.0
             scene black with dissolveslow
             $ persistent.evalEndingC = True
-            return
+            jump eval_custom_credits
 
 label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had the special
     Ka "What flavor ice cream would you like?"
@@ -3254,3 +3254,18 @@ label eval_special_mentions: #Special mentions to those who helped me
             s "Hello, Charu. It's Eval."
             s "Don't judge my writing too hard, alright?"
             s "Anyways, thanks for all the help and enjoy the mod."
+
+label eval_custom_credits:
+    m "Thank you for playing the (almost) finished version of This Dragon Owes Me Ice Cream!"
+    m "Currently, I have no credits made, so live with this while I work on that."
+    m "This was a lot of fun to make, and I hope you enjoyed!"
+    if evalCurrentEnding == 1:
+        m "You got Remy's ending!"
+    elif evalCurrentEnding == 2:
+        m "You got Remy and Amely's ending!"
+    elif evalCurrentEnding == 3:
+        m "You got Remy, Amely, and Adine's ending!"
+    elif evalCurrentEnding == 4:
+        m "You got the final ending! Good job!"
+    m "By the way, if you for some reason jump to the beginning of the game after this, I'll fix it later."
+    return
