@@ -1724,6 +1724,7 @@ label eval_remy_amely_2:
                 m "Our cones did not last long. Soon, the only remnants of our ice cream lay in our stomachs or dried on our hands."
 
     #Wow that was a long and confusing series of events to program, hopefully it isn't all messed up - It was, I fixed it I think
+    scene black with dissolvemed
     scene evalpark2 with dissolveslow
     show remy normal with dissolvemed
     Ry "It's getting pretty late, [player_name]. I should probably be getting little Amely back to the orphanage."
@@ -1792,8 +1793,6 @@ label eval_remy_amely_2:
                     m "Remy grabbed me and pulled me in closer to him, engulfing me in his soft, white scales."
                     Ry "Better?"
                     c "Much."
-                    #Add something to do with the dragon pillow variable
-                    m "More to this epic romance tale coming soon because I suck at writing this stuff!" #Add more here later
                     stop music fadeout 2.0
                     scene black with dissolveslow
                     $ persistent.evalEndingB = True
@@ -3279,6 +3278,7 @@ label eval_fails:
         s "Enjoy."
         $ renpy.pause (0.5)
         jump eval_goggles
+    return
 
 label eval_goggles: #Meme scene. It's like bacon Naomi!
     scene remyapt with dissolveslow
