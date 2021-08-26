@@ -219,7 +219,7 @@ label eval_everyone_1:
         show adine think b with dissolvemed
         $ renpy.pause (0.5)
         show adine giggle b flip with dissolvemed
-        $ adinestatus="good"#because of how much you have done to help, she now really likes you, the status screen now shows adine as impressed
+        $ adinestatus="good"
         Ad "This isn't real. My eyes are deceiving me."
         c "You don't believe us?"
         Ad normal b flip "Are you kidding me? This place hasn't looked this good in years!"
@@ -256,15 +256,15 @@ label eval_everyone_1:
     elif evalOrphanageScore == 1:
         Ad "Wait... Did you guys do something here?"
         Ry smile "Well, [player_name] and I did a bit of work while we were waiting for you."
-        if adinestatus != "good":#if Adine's mood is not impressed, change it to good
-            $ adinestatus="neutral"#for doing some good around the orphanage
+        if adinestatus != "good":
+            $ adinestatus = "neutral"
         Ad "Really? That's so kind of you! What were you waiting on me for?"
     else:
         Ad normal b flip "I expected to find you here Remy, but what is [player_name] doing here?"
     c "We have come to offer you the deal of a lifetime."
     c "Free ice cream from the world renowned Katsuharu!"
-    if adinestatus!="good":#if Adine's mood is not impressed, change it to good
-        $ adinestatus="neutral"#for free ice cream
+    if adinestatus != "good":
+        $ adinestatus = "neutral"
     Ad giggle b flip "Can't say I expected that."
     Ad think b flip "I have never heard of that dragon giving anyone free ice cream."
     Ad "You must have done something quite spectacular to get a deal like that."
@@ -825,7 +825,7 @@ label eval_everyone_3:
         show katsu smile flip with dissolvemed
 
     if evalChosenFlavor == "vanilla":
-        m "The vanilla ice cream itself was quite normal looking. It was a smooth and simple white color." #Kinda bad, should change
+        m "The vanilla ice cream itself was quite normal looking. It was a smooth and simple white color."
     elif evalChosenFlavor == "chocolate":
         m "The chocolate ice cream looked almost exactly like it had at home. Dark, cocoa brown with the nice addition of what seemed to be tiny chocolate chips sprinkled within."
     elif evalChosenFlavor == "strawberry":

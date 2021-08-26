@@ -130,7 +130,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         Ry smile "That's a good one."
         show remy normal with dissolvemed
         Ry "This may surprise you, but no. I think I'll let you make the call on what dragon medications you should take."
-        if medsuntaken:
+        if renpy.python.store_dicts['store'].get('medunstaken', True):
             c "(I don't even want to imagine the terrible repercussions that could have.)"
         else:
             m "I recalled that I had attempted this earlier, and it wasn't a pretty result."
@@ -735,7 +735,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Mv scared flip "What do you mean, Remy?"
     Ry "I've gone through hell and back, and you know very well why."
     Ry "I was close to the edge, Maverick. Close to ending it once and for all."
-    Ry "But you know what? [player_name] saved my life." #Change
+    Ry "But you know what? [player_name] saved my life."
     Ry "They helped me reunite with old friends, move on from the past, and find this lovely little dragon next to me."
     Mv "I... I didn't know it was that bad, Remy. I'm so sorry."
     Ry "Feel bad for me later, Maverick. We have to help [player_name]."
