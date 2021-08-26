@@ -83,7 +83,7 @@ label eval_tdomi_remy:
     m "Wait a minute!" with Shake ((0, 0, 0, 0), 2, dist=10)
     $ renpy.pause (1.0)
     call eval_special_mentions from _eval_mentions
-    $ persistent.evalFirstTimePlaying = False\
+    $ persistent.evalFirstTimePlaying = False
     if evalDoingSecretEnding:
         scene np1x
         show remy look
