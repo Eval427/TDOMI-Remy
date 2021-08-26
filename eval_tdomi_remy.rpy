@@ -2,6 +2,12 @@ label eval_tdomi_remy:
 
     #So you're taking a peek at the code, eh? Well, enjoy all my comments, cause I'm not gonna delete anything
 
+    #Some cool statistics because why not
+    #Around 10,500 lines of code
+    #Around 70,000 words of script
+    #Probably like, 50 unique branches of dialogue. I'm not going to actually count
+    #Around 3-4 months of developmet. I estimate around 100-150 hours of work
+
     #This big old wall of comments is, like, super old now. But I said I wasn't gonna delete anything so read on I guess
     #Current Issues:
         #Custom sounds and backgrounds arent working FIXED - NEVERMIND NOT FIXED - HAHA FIXED
@@ -150,6 +156,13 @@ label eval_tdomi_remy:
         Ry look "I find it strange that he didn't think to move here earlier."
         c "Considering his old spot worked well for forty years, it was probably pretty difficult to decide on a move."
         Ry normal "I guess you're right."
+    if not persistent.evalEndingBUnlocked and not persistent.evalEndingCUnlocked:
+        c "Why don't we go with just the two of us? It'll be a nice outing, and maybe we won't eat Katsuharu entirely out of his stock."
+        Ry smile "Sounds fun! Lets go."
+        stop music fadeout 2.0
+        scene black with dissolveslow
+        $ evalCurrentEnding = 1
+        jump eval_solo_remy_1
     Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
     c "I'm sure it will be fine."
     Ry normal "In that case, is there anyone else you would like to invite?"
@@ -989,7 +1002,7 @@ label eval_solo_remy_2:
     c "Of course, Remy, I'll always be there for you, even when I inevitably have to leave through the portal."
     Ry look "Yeah. I've been thinking about that recently. I really don't know what I am going to do once you leave."
     c "Remember, I'm not leaving. I'm just going back to the day I got here."
-    Ry sad "Still, I can't shake off the felling that I won't ever see you again."
+    Ry sad "Still, I can't shake off the feeling that I won't ever see you again."
     c "What do you mean?"
     Ry "I know I said that I would see you again after you went through the portal, but in a way, I feel like when you enter that portal, you don't go back to my world, but a world exactly like mine with a dragon exactly like me."
     c "I see."
@@ -1063,7 +1076,7 @@ label eval_solo_remy_2:
     hide remy
     with dissolveslow
 
-    m "The two of us talked for what must have been hours. The last remanining hours of daylight dwindled as I finished the last bite of my cone."
+    m "The two of us talked for what must have been hours. The last remaining hours of daylight dwindled as I finished the last bite of my cone."
     
     scene evalpark2 behind remy with dissolveslow
     show remy normal with dissolvemed
@@ -1469,7 +1482,7 @@ label eval_remy_amely_2:
     c "Of course, Remy, I'll always be there for you, even when I inevitably have to leave through the portal."
     Ry look "Yeah. I've been thinking about that recently. I really don't know what I am going to do once you leave."
     c "Remember, I'm not leaving, just going back to the day I got here."
-    Ry sad "Still, I can't shake off the felling that I won't ever see you again."
+    Ry sad "Still, I can't shake off the feeling that I won't ever see you again."
     c "What do you mean?"
     Ry "I know I said that I would see you again after you went through the portal, but in a way, I feel like when you enter that portal, you don't go back to my world, but a world exactly like mine with a dragon exactly like me."
     c "I see."
