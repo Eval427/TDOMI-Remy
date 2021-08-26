@@ -760,6 +760,7 @@ label eval_everyone_2:
     Ka "No worries! A lot of people have trouble with my name."
     Vr smnormal "Katsuharu!"
     Ka smile flip "Well, you got it first try!"
+    show vara smsmile with dissolvemed
     m "Vara nodded proudly."
     Ka normal flip "Although I must say, I think Adine had the hardest job here."
     Ad annoyed b "Ugh. It's impressive just how much chaos such a small little dragon can cause."
@@ -907,8 +908,6 @@ label eval_everyone_3:
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
     show amely smnormal behind remy at Position (xpos = 0.6) with dissolvemed #Fix this it's ugly and broken
-    show katsu normal with dissolvemed
-    hide katsu with easeoutleft
     m "I watched as Katsuharu repeated the process for Remy and Adine's cones."
     show katsu normal flip at Position (xpos = 0.1) with easeinleft
     m "With some difficulty, Katsuharu managed to waddle back over to us on his back legs."
@@ -1585,9 +1584,10 @@ label eval_everyone_3:
     #m "Gently, he nuzzled her frills. As a result, a small smile formed at her lips."
     #Ry normal "But in the foreseeable future, you aren't going anywhere, and I am going to appreciate the time that we have together."
     #c "So will I."
+    show vara smsmile with dissolvemed
     Ry "It's been fun, but I think that Vara and I should get going. We won't start moving her stuff in, but she still needs to settle in."
     Ry "Can we meet tomorrow, though? There's something I need to ask you."
-    c "Of coruse we can. Goodnight you two."
+    c "Of course we can. Goodnight you two."
     Ry "Goodnight, [player_name]."
     Vr "Goodnight!"
     hide remy
@@ -1689,7 +1689,8 @@ label eval_everyone_3:
 
     $ renpy.pause (1.5)
     scene o
-    show remy normal with dissolveslow
+    show remy normal
+    with dissolveslow
     play music "mx/fragments.ogg"
     Ry "Hey, [player_name]. Long time no see."
     c "Remy, we just saw each other last night."
@@ -1698,7 +1699,7 @@ label eval_everyone_3:
     Ry normal "There is, but first, look what I brought."
     m "Remy revealed a bottle of wine."
     c "Oh boy, is this the {i}third{/i} cheapest wine this time? I feel spoiled."
-    Ry smile "That would have been quite funny, but I deicded that instead of getting the second cheapest wine, I would get us the second most expensive one instead."
+    Ry smile "That would have been quite funny, but I decided that instead of getting the second cheapest wine, I would get us the second most expensive instead."
     c "Wow! How expensive was it?"
     Ry look "Let's just say that the cashier gave me a concerned look when I was checking out."
     Ry normal "But let's not worry about that and enjoy it."
@@ -1755,7 +1756,7 @@ label eval_everyone_3:
     Ry normal "What do you say, [player_name]. I'll be happy either way, I promise."
 
     menu:
-        "[[Accept]":
+        "[[Accept.]":
             c "I think we should give this a shot. We've been through so much together, and there is nobody I would rather spend my time with than you."
             c "Maybe we could even be our own little family."
             Ry shy "You do not understand how happy that makes me feel, [player_name]."
@@ -1784,7 +1785,7 @@ label eval_everyone_3:
             $ persistent.evalEndingD = True
             jump eval_custom_credits
         
-        "[[Reject]":
+        "[[Reject.]":
             c "Sorry, Remy, but I don't think I'm ready to take our relationship any further."
             c "You mean a lot to me, but I just can't say I'm ready."
             Ry "I understand. Maybe I was pushing you too hard. Would you be open to something in the future."

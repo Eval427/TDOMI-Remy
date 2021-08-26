@@ -1093,7 +1093,7 @@ label eval_post_secret_remy_meeting:
     Ry normal "Well, it's quite possible that in one of those timelines, you save humanity as well."
     m "I pondered what Remy had just said. It seemed crazy, yet it also made too much sense."
     c "Huh. Guess you're right."
-    Ry "You don't have to back and attempt to fix everything, especially if it's no longer possible."
+    Ry "You don't have to go back and attempt to fix everything, especially if it's no longer possible."
     Ry "You've done everything you could, and you managed to save all of dragonkind in the process."
     Ry smile "Besides, I would be more than happy to have you stay here with us."
     scene black with dissolveslow

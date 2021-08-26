@@ -13,6 +13,9 @@ varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked
 adineIceCreamExpressions = ["annoyed_eval_icecream", "disappoint_eval_icecream", "frustrated_eval_icecream", "giggle_eval_icecream", "normal_eval_icecream", "sad_eval_icecream", "think_eval_icecream"]
 remyShotExpressions = ["angry_eval_shot", "look_eval_shot", "normal_eval_shot", "sad_eval_shot", "shy_eval_shot", "smile_eval_shot"]
 adineGoggleExpressions = ["annoyed", "disappoint", "frustrated", "giggle", "normal", "sad", "think"]
+remyGoggleExpressions = ["look", "normal", "sad", "shy", "smile"]
+varaGoggleExpressions = ["smnone", "smnormal", "smsmile"]
+amelyGoggleExpressions = ["smnormal", "smsad"]
 
 def load_side_ims():
     def clip_vara_side_image(imagefile):
@@ -33,18 +36,37 @@ def load_side_ims():
     for expression in remyShotExpressions:
         renpy.exports.image("side remy %s"%expression.replace("_", " "), clip_remy_side_image("cr/remy_%s.png"%expression))
     
+    for expression in remyGoggleExpressions:
+        renpy.exports.image("side remy %s goggles"%expression, clip_remy_side_image("cr/remy_%s_goggles.png"%expression))
+    
+    for expression in varaGoggleExpressions:
+        renpy.exports.image("side vara %s goggles"%expression, clip_vara_side_image("cr/vara_%s_goggles.png"%expression))
+    
+    for expression in amelyGoggleExpressions:
+        renpy.exports.image("side amely %s goggles"%expression, clip_vara_side_image("cr/amely_%s_goggles.png"%expression))
+        renpy.exports.image("side amely %s goggles flip"%expression, clip_vara_side_image("cr/amely_%s_goggles_flip.png"%expression))
+    
     #For most of Adine's goggle expressions
     for expression in adineGoggleExpressions:
         if expression in ["giggle", "think"]:
             for letter in ["a", "b", "c", "d"]:
-                renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
+                if letter == "a":
+                    renpy.exports.image("side adine %s goggles"%expression, clip_adine_side_image("cr/adine_%s_goggles.png"%expression))
+                else:
+                    renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
         else:
             for letter in ["a", "b", "c", "d", "e"]:
-                renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
+                if letter == "a":
+                    renpy.exports.image("side adine %s goggles"%expression, clip_adine_side_image("cr/adine_%s_goggles.png"%expression))
+                else:
+                    renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
     
     #For Adine's sad shot expressions that had to be differently formatted
     for letter in ["a", "b", "c", "d", "e"]:
-        renpy.exports.image("side adine sad goggles shot %s"%letter, clip_adine_side_image("cr/adine_sad_goggles_%s.png"%letter))
+        if letter == "a":
+            renpy.exports.image("side adine %s goggles"%expression, clip_adine_side_image("cr/adine_%s_goggles.png"%expression))
+        else:
+            renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
             
 
 #Function by Joey to simplify connecting hooks

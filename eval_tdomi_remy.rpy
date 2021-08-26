@@ -96,7 +96,10 @@ label eval_tdomi_remy:
 
     #Options for music: clouds, fountain, fun, funness. Also I need to somehow fix the sound when scrolling back. Don't know if that's a game bug or I'm doing something wrong
     Ry "What is it, [player_name]?"
-    c "Before I go back, there is one very important matter that we must attend to."
+    if evalDoingSecretEnding:
+        c "Before we go, there is one very important matter that we must attend to."
+    else:
+        c "Before I go back, there is one very important matter that we must attend to."
     Ry sad "Please tell me this isn't anything too serious."
     c "There is a dragon..."
     c "And that dragon..."
@@ -167,7 +170,7 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 1
             jump eval_solo_remy_1
         
-        "Amely." if not evalDoingSecretEnding:
+        "Amely." if not evalDoingSecretEnding and persistent.evalEndingBUnlocked:
             c "Why don't we go together with Amely?"
             c "She's a hatchling, so I'm sure she would love to go and get some ice cream with us. Especially from the renowned Katsuharu."
             Ry smile "Good idea. You know, I'm not even sure if she has ever had ice cream before."
@@ -204,7 +207,7 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 2
             jump eval_remy_amely_1
 
-        "Amely and Adine." if adinestatus != "bad" and not adinedead and not evalDoingSecretEnding: #adine won't accept the invitation if she dislikes our MC or if she's dead
+        "Amely and Adine." if adinestatus != "bad" and not adinedead and not evalDoingSecretEnding and persistent.evalEndingCUnlocked: #adine won't accept the invitation if she dislikes our MC or if she's dead
             c "Why don't we take Amely and Adine as well?"
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry smile "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
@@ -3342,7 +3345,7 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     show adine giggle goggles flip behind amely at left with dissolvemed
     Ad "They look great on you, [player_name]."
     Ry normal goggles "Yes. Very dapper."
-    Ad normal goggles flip "Try them on over your eyes. I want to see how it looks like that."
+    Ad normal goggles flip "Try them on over your eyes. I want to see how it looks."
     c "Sure."
     scene black with dissolvemed
     m "I rested the lenses of the goggles over my eyes."

@@ -385,7 +385,7 @@ label eval_help_em:
         c "No problem. What can I get you?"
         Em ques "I'll take the cherry please. It is quite a sophisticated flavor if you ask me."
     elif evalCharacterMood == 1:
-        Em "Sorry, but much as I would love to spend all day chatting, I don't think it would look good on my record to hold up the line." #This might be a little too confusing
+        Em "You know, I've heard great things about Katsuharu's ice cream. I hope I'm not disappointed."
         c "Of course. What can I get you?"
         Em ques "I'll take only your finest scoop of cherry, please. It is quite a sophisticated flavor if you ask me."
     elif evalCharacterMood == 2:
