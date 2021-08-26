@@ -12,6 +12,7 @@ from modloader.modclass import Mod, loadable_mod
 varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked_b", "smsad", "smnormal_ghost", "smsmile"]
 adineIceCreamExpressions = ["annoyed_eval_icecream", "disappoint_eval_icecream", "frustrated_eval_icecream", "giggle_eval_icecream", "normal_eval_icecream", "sad_eval_icecream", "think_eval_icecream"]
 remyShotExpressions = ["angry_eval_shot", "look_eval_shot", "normal_eval_shot", "sad_eval_shot", "shy_eval_shot", "smile_eval_shot"]
+adineGoggleExpressions = ["annoyed", "disappoint", "frustrated", "giggle", "normal", "sad", "think"]
 
 def load_side_ims():
     def clip_vara_side_image(imagefile):
@@ -31,6 +32,20 @@ def load_side_ims():
     
     for expression in remyShotExpressions:
         renpy.exports.image("side remy %s"%expression.replace("_", " "), clip_remy_side_image("cr/remy_%s.png"%expression))
+    
+    #For most of Adine's goggle expressions
+    for expression in adineGoggleExpressions:
+        if expression in ["giggle", "think"]:
+            for letter in ["a", "b", "c", "d"]:
+                renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
+        else:
+            for letter in ["a", "b", "c", "d", "e"]:
+                renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
+    
+    #For Adine's sad shot expressions that had to be differently formatted
+    for letter in ["a", "b", "c", "d", "e"]:
+        renpy.exports.image("side adine sad goggles shot %s"%letter, clip_adine_side_image("cr/adine_sad_goggles_%s.png"%letter))
+            
 
 #Function by Joey to simplify connecting hooks
 def connect(node, next):
@@ -40,7 +55,7 @@ def connect(node, next):
 @loadable_mod
 class AWSWMod(Mod):
     def mod_info(self):
-        return ("This Man Owes me Ice Cream! Remy Edition", "v0.9.0", "Eval")
+        return ("This Dragon Owes me Ice Cream!", "v0.9.0", "Eval")
 
     def mod_load(self):
         #Variable init hook. I'm lazy, so I just decided to define all my variables early instead of having a dedicated label to call whenever I needed to confirm vars
@@ -51,9 +66,12 @@ class AWSWMod(Mod):
         earlyVarInitHook = modast.find_say("I awoke from uneasy dreams looking at an unfamiliar ceiling. Just for a moment, I wondered where I was before the events of last night all came back to me.")
         modast.call_hook(earlyVarInitHook, modast.find_label("eval_tdomi_early"))
         
-        #Remy's ending hook - Note I need to push this back earlier to change some prior dialogue
-        endingHook = modast.find_say("Besides, if you really end up going back in time, I'll see you again.")
-        modast.call_hook(endingHook, modast.find_label("eval_extended_ending"))
+        #Remy's ending hook
+        endHookSource = modast.find_say("Besides, if you really end up going back in time, I'll see you again.")
+        common_hook = modast.find_label("eval_extended_ending")
+        hook = modast.hook_opcode(endHookSource, None)
+        modast.call_hook(endHookSource, common_hook, None)
+        hook.chain(modast.search_for_node_type(endHookSource, ast.Scene))
         
         #Hook to add variable to determine whether MC visited the hatchery to drop off the eggs
         for node in renpy.game.script.all_stmts:
@@ -101,7 +119,7 @@ class AWSWMod(Mod):
             if persistent.evalEndingD:
                 add "image/ui/title/cherryEnding.png"
             
-            if persistent.evalEndingA and persistent.evalEndingB and persistent.evalEndingC and persistent.evalEndingD:
+            if persistent.evalGogglesScene:
                 add "image/ui/title/chocolateEnding.png"
         """
         compiled = parser.parse("FNDummy", tocompile)

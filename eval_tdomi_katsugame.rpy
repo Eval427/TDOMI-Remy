@@ -441,7 +441,7 @@ label eval_help_grey:
     $ evalCharacterPreferredFlavor = "vanilla"
     show grey normal with easeinright
     Gr "Oh! Fancy meeting you here again!"
-    c "Quite a conincidence that both times we've met, I've been working with Katsuharu."
+    c "Quite a coincidence that both times we've met, I've been working with Katsuharu."
     Gr "Indeed."
     if evalCharacterMood == 0:
         Gr "Sorry to be so cut and dry, but I'm running late to an art showing."

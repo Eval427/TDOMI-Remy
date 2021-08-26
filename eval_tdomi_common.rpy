@@ -12,6 +12,8 @@ label eval_tdomi_common:
     image evalorphevening = "bg/evalorphevening.jpg"
     image evalorphdark = "bg/evalorphdark.jpg"
     image evalplayerkitchen = "bg/evalplayerkitchen.jpg" #Tysm again again ECK
+    image evalportalb = "bg/evalportalb.png"
+    image evalgoggleoverlay = "bg/evalgoggleoverlay.png"
 
     #Characters
 
@@ -70,6 +72,108 @@ label eval_tdomi_common:
     image adine sad eval icecream flip = im.Flip("cr/adine_sad_eval_icecream.png", horizontal=True)
     image adine think eval icecream = "cr/adine_think_eval_icecream.png"
     image adine think eval icecream flip = im.Flip("cr/adine_think_eval_icecream.png", horizontal=True)
+
+    #Goggles
+    image amely smnormal goggles = "cr/amely_smnormal_goggles.png"
+    image amely smnormal goggles flip = "cr/amely_smnormal_goggles_flip.png"
+    image amely smsad goggles = "cr/amely_smsad_goggles.png"
+    image amely smsad goggles flip = "cr/amely_smsad_goggles_flip.png"
+
+    image remy normal goggles = "cr/remy_normal_goggles.png"
+    image remy normal goggles flip = im.Flip("cr/remy_normal_goggles.png", horizontal=True)
+    image remy look goggles = "cr/remy_look_goggles.png"
+    image remy look goggles flip = im.Flip("cr/remy_look_goggles.png", horizontal=True)
+    image remy shy goggles = "cr/remy_shy_goggles.png"
+    image remy shy goggles flip = im.Flip("cr/remy_shy_goggles.png", horizontal=True)
+    image remy sad goggles = "cr/remy_sad_goggles.png"
+    image remy sad goggles flip = im.Flip("cr/remy_sad_goggles.png", horizontal=True)
+    image remy smile goggles = "cr/remy_smile_goggles.png"
+    image remy smile goggles flip = im.Flip("cr/remy_smile_goggles.png", horizontal=True)
+
+    image vara smnone goggles = "cr/vara_smnone_goggles.png"
+    image vara smnone goggles flip = im.Flip("cr/vara_smnone_goggles.png", horizontal=True)
+    image vara smnormal goggles = "cr/vara_smnormal_goggles.png"
+    image vara smnormal goggles flip = im.Flip("cr/vara_smnormal_goggles.png", horizontal=True)
+    image vara smsmile goggles = "cr/vara_smsmile_goggles.png"
+    image vara smsmile goggles flip = im.Flip("cr/vara_smsmile_goggles.png", horizontal=True)
+
+    #Probably won't even use all these images. But if someone wants them here you go
+    image adine annoyed goggles = "cr/adine_annoyed_goggles.png"
+    image adine annoyed  goggles flip = im.Flip("cr/adine_annoyed_goggles.png", horizontal=True)
+    image adine annoyed goggles b = "cr/adine_annoyed_goggles_b.png"
+    image adine annoyed goggles b flip = im.Flip("cr/adine_annoyed_goggles_b.png", horizontal=True)
+    image adine annoyed goggles c = "cr/adine_annoyed_goggles_c.png"
+    image adine annoyed goggles c flip = im.Flip("cr/adine_annoyed_goggles_c.png", horizontal=True)
+    image adine annoyed goggles d = "cr/adine_annoyed_goggles_d.png"
+    image adine annoyed goggles d flip = im.Flip("cr/adine_annoyed_goggles_d.png", horizontal=True)
+    image adine annoyed goggles e = "cr/adine_annoyed_goggles_e.png"
+    image adine annoyed goggles e flip = im.Flip("cr/adine_annoyed_goggles_e.png", horizontal=True)
+    image adine disappoint goggles = "cr/adine_disappoint_goggles.png"
+    image adine disappoint goggles flip = im.Flip("cr/adine_disappoint_goggles.png", horizontal=True)
+    image adine disappoint goggles b = "cr/adine_disappoint_goggles_b.png"
+    image adine disappoint goggles b flip = im.Flip("cr/adine_disappoint_goggles_b.png", horizontal=True)
+    image adine disappoint goggles c = "cr/adine_disappoint_goggles_c.png"
+    image adine disappoint goggles c flip = im.Flip("cr/adine_disappoint_goggles_c.png", horizontal=True)
+    image adine disappoint goggles d = "cr/adine_disappoint_goggles_d.png"
+    image adine disappoint goggles d flip = im.Flip("cr/adine_disappoint_goggles_d.png", horizontal=True)
+    image adine disappoint goggles e = "cr/adine_disappoint_goggles_e.png"
+    image adine disappoint goggles e flip = im.Flip("cr/adine_disappoint_goggles_e.png", horizontal=True)
+    image adine frustrated goggles = "cr/adine_frustrated_goggles.png"
+    image adine frustrated goggles flip = im.Flip("cr/adine_frustrated_goggles.png", horizontal=True)
+    image adine frustrated goggles b = "cr/adine_frustrated_goggles_b.png"
+    image adine frustrated goggles b flip = im.Flip("cr/adine_frustrated_goggles_b.png", horizontal=True)
+    image adine frustrated goggles c = "cr/adine_frustrated_goggles_c.png"
+    image adine frustrated goggles c flip = im.Flip("cr/adine_frustrated_goggles_c.png", horizontal=True)
+    image adine frustrated goggles d = "cr/adine_frustrated_goggles_d.png"
+    image adine frustrated goggles d flip = im.Flip("cr/adine_frustrated_goggles_d.png", horizontal=True)
+    image adine frustrated goggles e = "cr/adine_frustrated_goggles_e.png"
+    image adine frustrated goggles e flip = im.Flip("cr/adine_frustrated_goggles_e.png", horizontal=True)
+    image adine giggle goggles = "cr/adine_giggle_goggles.png"
+    image adine giggle goggles flip = im.Flip("cr/adine_giggle_goggles.png", horizontal=True)
+    image adine giggle goggles b = "cr/adine_giggle_goggles_b.png"
+    image adine giggle goggles b flip = im.Flip("cr/adine_giggle_goggles_b.png", horizontal=True)
+    image adine giggle goggles c = "cr/adine_giggle_goggles_c.png"
+    image adine giggle goggles c flip = im.Flip("cr/adine_giggle_goggles_c.png", horizontal=True)
+    image adine giggle goggles d = "cr/adine_giggle_goggles_d.png"
+    image adine giggle goggles d flip = im.Flip("cr/adine_giggle_goggles_d.png", horizontal=True)
+    image adine normal goggles = "cr/adine_normal_goggles.png"
+    image adine normal goggles flip = im.Flip("cr/adine_normal_goggles.png", horizontal=True)
+    image adine normal goggles b = "cr/adine_normal_goggles_b.png"
+    image adine normal goggles b flip = im.Flip("cr/adine_normal_goggles_b.png", horizontal=True)
+    image adine normal goggles c = "cr/adine_normal_goggles_c.png"
+    image adine normal goggles c flip = im.Flip("cr/adine_normal_goggles_c.png", horizontal=True)
+    image adine normal goggles d = "cr/adine_normal_goggles_d.png"
+    image adine normal goggles d flip = im.Flip("cr/adine_normal_goggles_d.png", horizontal=True)
+    image adine normal goggles e = "cr/adine_normal_goggles_e.png"
+    image adine normal goggles e flip = im.Flip("cr/adine_normal_goggles_e.png", horizontal=True)
+    image adine sad goggles = "cr/adine_sad_goggles.png"
+    image adine sad goggles flip = im.Flip("cr/adine_sad_goggles.png", horizontal=True)
+    image adine sad goggles b = "cr/adine_sad_goggles_b.png"
+    image adine sad goggles b flip = im.Flip("cr/adine_sad_goggles_b.png", horizontal=True)
+    image adine sad goggles c = "cr/adine_sad_goggles_c.png"
+    image adine sad goggles c flip = im.Flip("cr/adine_sad_goggles_c.png", horizontal=True)
+    image adine sad goggles d = "cr/adine_sad_goggles_d.png"
+    image adine sad goggles d flip = im.Flip("cr/adine_sad_goggles_d.png", horizontal=True)
+    image adine sad goggles e = "cr/adine_sad_goggles_e.png"
+    image adine sad goggles e flip = im.Flip("cr/adine_sad_goggles_e.png", horizontal=True)
+    image adine think goggles = "cr/adine_think_goggles.png"
+    image adine think goggles flip = im.Flip("cr/adine_think_goggles.png", horizontal=True)
+    image adine think goggles b = "cr/adine_think_goggles_b.png"
+    image adine think goggles b flip = im.Flip("cr/adine_think_goggles_b.png", horizontal=True)
+    image adine think goggles c = "cr/adine_think_goggles_c.png"
+    image adine think goggles c flip = im.Flip("cr/adine_think_goggles_c.png", horizontal=True)
+    image adine think goggles d = "cr/adine_think_goggles_d.png"
+    image adine think goggles d flip = im.Flip("cr/adine_think_goggles_d.png", horizontal=True)
+    image adine sad goggles shot a = "cr/adine_sad_goggles_shot.png"
+    image adine sad goggles shot a flip = im.Flip("cr/adine_sad_goggles_shot.png", horizontal=True)
+    image adine sad goggles shot b = "cr/adine_sad_goggles_shot_b.png"
+    image adine sad goggles shot b flip = im.Flip("cr/adine_sad_goggles_shot_b.png", horizontal=True)
+    image adine sad goggles shot c = "cr/adine_sad_goggles_shot_c.png"
+    image adine sad goggles shot c flip = im.Flip("cr/adine_sad_goggles_shot_c.png", horizontal=True)
+    image adine sad goggles shot d = "cr/adine_sad_goggles_shot_d.png"
+    image adine sad goggles shot d flip = im.Flip("cr/adine_sad_goggles_shot_d.png", horizontal=True)
+    image adine sad goggles shot e = "cr/adine_sad_goggles_shot_e.png"
+    image adine sad goggles shot e flip = im.Flip("cr/adine_sad_goggles_shot_e.png", horizontal=True)
 
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
@@ -243,6 +347,8 @@ label eval_tdomi_common:
         #Fails
         if not persistent.evalUniqueFails:
             persistent.evalUniqueFails = []
+        if not persistent.evalGogglesScene:
+            persistent.evalGogglesScene = False
         
         #Skips
 

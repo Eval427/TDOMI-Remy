@@ -194,7 +194,6 @@ label eval_everyone_1:
     Am "I missed you!"
     play sound "fx/undress.ogg"
     show adine giggle b flip with dissolvemed
-    m "Adine took off her goggles."
     Ad normal b flip "Anyways, hey guys! What are you doing here?"
     Ry "Looking for you!"
     Ad giggle b flip "Well, I guess you found me, or rather, I found you."
@@ -257,7 +256,7 @@ label eval_everyone_1:
     elif evalOrphanageScore == 1:
         Ad "Wait... Did you guys do something here?"
         Ry smile "Well, [player_name] and I did a bit of work while we were waiting for you."
-        if adinestatus!="good":#if Adine's mood is not impressed, change it to good
+        if adinestatus != "good":#if Adine's mood is not impressed, change it to good
             $ adinestatus="neutral"#for doing some good around the orphanage
         Ad "Really? That's so kind of you! What were you waiting on me for?"
     else:
@@ -330,7 +329,7 @@ label eval_everyone_1:
     hide vara
     with dissolvemed
     play sound "fx/bed.ogg"
-    m "Remy got down on all fours."
+    m "Remy lowered his body."
     m "Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings back to give me as much room as possible."
     m "Vara sat on her hind legs and stretched her arms towards me. I lifted her up and placed her in front of me on Remy's back."
     Ry "How is it back there?"
@@ -357,6 +356,7 @@ label eval_everyone_1:
     m "Remy walked over to the pot and tilted it up with his muzzle."
     m "I put the key back, and he carefully rested the pot back in it's upright position."
     Ry "Perfect! Let's go!"
+    scene black with dissolveslow
     if not evalRodeRemy:
         m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
         $ evalRodeRemy = True
@@ -376,10 +376,10 @@ label eval_everyone_1:
             m "I gently held onto Vara to keep her safe as I watched the dragon world pass by me."
     else:
         m "As a seasoned dragon rider. I sat back and gazed up at the sky, gently holding onto Vara to keep her secure on Remy's back." #Is this too... weird?
-    
+
     $ renpy.pause (0.5)
     m "It seemed as if it took mere minutes to arrive back at Tatsu Park."
-    Ry "Ladies and gentledragons, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
+    Ry "Ladies and gentlemen, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
     if not evalRodeRemy:
         c "Very funny, Remy."
         Ry "Thanks, I can tell that you sincerely mean that."
@@ -397,6 +397,7 @@ label eval_everyone_1:
         c "That was fun! I should ride you around more often!"
     else:
         c "Damn, why didn't I just ride you over to the orphanage as well. That was fun!"
+    $ evalRodeRemy = True
     Ry smile "Wow, [player_name], I didn't know you wanted to ride me so badly."
     m "My face turned bright red."
     Ry "You look like a tomato."
@@ -537,10 +538,11 @@ label eval_everyone_1:
             Ad normal b "It might even be fun."        
         "No time for chatting.":
             c "No time for chatting, we are here for important ice cream related matters."
-            show remy look at right behind amely with dissolvemed
-            show adine annoyed b at Position (xpos=0.6) behind remy with dissolvemed
-            Ka smile flip "*chuckles* Well, I guess I can't blame you for the enthusiasm."
-            Ka normal flip"I actually remember Remy's first time getting ice cream from me, back when he was just a young little dragon."
+            show remy look at right behind amely
+            show adine annoyed b at Position (xpos=0.6) behind remy
+            with dissolvemed
+            Ka smile flip "Well, I guess I can't blame you for the enthusiasm."
+            Ka normal flip "I actually remember Remy's first time getting ice cream from me, back when he was just a young little dragon."
             Ry shy "You do?"
             Ka smile flip "Yep, you were just as enthusiastic. Your eyes were practically bulging out of your head looking at all of the different flavors."
             Ry normal "I... guess I do remember being quite excited that day."
@@ -580,7 +582,7 @@ label eval_everyone_1:
             Am "I help! I help!"
             Ka excited flip "That's the spirited staff I'm looking for! Let's get to work!"
             m "The five dragons made their way behind the cart. I followed closely behind."
-            show katsu normal at Position (xpos=0.1) with dissolvemed
+            show katsu normal with dissolvemed
             hide katsu with easeoutleft
             hide adine with easeoutleft
             hide remy with easeoutleft
@@ -644,6 +646,8 @@ label eval_everyone_1:
             jump eval_katsu_help_init
 
         "[[Enjoy your ice cream alone]":
+            $ adinestatus = "bad"
+            $ remystatus = "bad"
             stop music fadeout 2.0
             if evalHelpOrphanage:
                 c "I think I've already done enough work today helping at the orphanage."
@@ -758,7 +762,6 @@ label eval_everyone_2:
     Ka smile flip "Well, you got it first try!"
     m "Vara nodded proudly."
     Ka normal flip "Although I must say, I think Adine had the hardest job here."
-    m "Adine removed her goggles."
     Ad annoyed b "Ugh. It's impressive just how much chaos such a small little dragon can cause."
     show amely smnormal at left with move3
     Ad normal b "But I still love her. When she isn't causing chaos she's just the sweetest little thi{nw}"
@@ -903,7 +906,7 @@ label eval_everyone_3:
     Ka "Just give me a moment to get you your scoops!"
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
-    show amely smnormal behind remy at Position (xpos = 0.6) with dissolvemed
+    show amely smnormal behind remy at Position (xpos = 0.6) with dissolvemed #Fix this it's ugly and broken
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
     m "I watched as Katsuharu repeated the process for Remy and Adine's cones."
@@ -924,7 +927,7 @@ label eval_everyone_3:
     Ka "I'm sure she will be quite happy with that choice, Remy."
     Ka smile flip "And last but not least my little assistant confectioner."
     Vr "I want the cherry, please."
-    Ka normal "I think I could make that happen for you."
+    Ka normal flip "I think I could make that happen for you."
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
     m "Katsuharu went back to his stand and made cones for Vara and Amely."
@@ -1008,6 +1011,7 @@ label eval_everyone_3:
         Ad "By the way, [player_name]."
         c "Yes?"
         play sound "fx/slap1.wav"
+        $ evalAdineSlaps += 1
         m "Giving me no time to react, I got another slap across the face."
         m "Taken aback, my cone fell from my grasp and onto the concrete."
         Ad giggle b "You're joke wasn't funny. I just wanted to catch you off guard."
@@ -1037,12 +1041,12 @@ label eval_everyone_3:
         Ka "You too, [player_name]."
         scene black with dissolveslow
         m "Upon returning I found Adine, Remy, and Vara waiting with their ice cream while Amely was just finishing her own."
-        scene evalpark1 with dissolveslow
+        scene evalpark1
         show adine normal b flip at left
         show amely smnormal flip at left
         show remy normal at right
         show vara smnormal at right
-        with dissolvemed
+        with dissolveslow
         Ry "What happened back there, [player_name]?"
         c "Oh, I dropped my ice cream and Katsuharu had to get me another."
         Ry look "I guess that explains the bruise."
@@ -1066,18 +1070,19 @@ label eval_everyone_3:
             "Give Amely my ice cream.":
                 c "Would you like some more ice cream, Amely?"
                 Am "Yes!"
-                Ry "That's a little too much ice crea{w=1.0}{nw}"
-                Ad sad b flip "No wait, don't give it t{w=1.0}{nw}"
+                Ry "That's a little too much ice cre-{w=0.5}{nw}"
+                Ad sad b flip "No wait, don't give it t-{w=0.5}{nw}"
                 m "I reached down to hand Amely my scoop of mango ice cream. She hungrily snatched it from my grasp and took a huge bite."
                 Ad "Oh no..."
                 $ renpy.pause (1.0)
-                Am smsad flip "{size=+10}BLEAH!!!{/size}" with hpunch
+                show amely smsad flip with dissolvemed
+                Am "{size=+10}BLEAH!!!{/size}" with hpunch
                 Am "Ice cream bad!"
                 Am "{size=+10}Ice cream bad!{/size}"
                 m "With as much force as she could muster, Amely threw the scoop of ice cream."
                 m "The scoop of mango landed directly on Adine, while the cone bounced and landed on the ground beside her."
                 Ad annoyed eval icecream flip "Ack! Right on the muzzle!"
-                Ad sad eval icecream flip "Oh, Amely! I am so sorry! I didn't mean for things to go this way?"
+                Ad sad eval icecream flip "Oh, Amely! I am so sorry! I didn't mean for things to go this way."
                 Ry look "What do you mean by that, Adine?"
                 Ad annoyed eval icecream flip "Well, I tried to get back at [player_name] by switching the special and the mango in Katsuharu's cart."
                 if mp.fish:
@@ -1111,6 +1116,7 @@ label eval_everyone_3:
                 m "Amely took another big bite of the ice cream."
                 Vr smshocked "I need some too!"
                 Am "Sorry!"
+                show vara smsmile with dissolvemed
                 Ad giggle eval icecream flip "Vara! That's so nice of you."
                 Ry normal "I'm glad everything seems to have sorted itself out for the most part."
                 c "What about you, Adine?"
@@ -1127,7 +1133,7 @@ label eval_everyone_3:
                 m "Still wary about which flavor I was really about to eat, I was pleasantly surprised when my tongue made contact with the cool, delicious flavor of mango ice cream."
                 m "Any ice cream I had previously had could not compare with the smooth, creamy texture of Katsuharu's."
             
-            "Keep my ice cream.":
+            "[[Keep your ice cream.]":
                 c "Sorry, Amely. But I think you've had enough ice cream for today."
                 Am smsad "Awwww..."
                 Ry "Amely, you've already had two scoops."
@@ -1278,12 +1284,12 @@ label eval_everyone_3:
     else:
         scene black with dissolveslow
         m "I followed the four dragons to a small clearing in the park."
-        scene evalpark1 with dissolveslow
+        scene evalpark1
         show adine normal b flip at left
-        show amely smnormal at left
+        show amely smnormal flip at left
         show remy normal at right
         show vara smnormal at right
-        with dissolvemed
+        with dissolveslow
         Ry "This is as good of a spot as any."
         Ad "You should try yours first, [player_name]. I want to see how you like the [evalChosenFlavor]."
         m "Adine and Remy eagerly watched as I took a small bite of the [evalChosenFlavor] ice cream."
@@ -1341,6 +1347,7 @@ label eval_everyone_3:
         m "As the cool ice cream dissolved on my tongue, my face lit up in excitement."
         Ad giggle b flip "Now that's the reaction I would expect from Katsuharu's ice cream."
         c "This is really good!"
+        scene black with dissolveslow
         m "I quickly devoured the cone, rivaling Amely in speed."
         scene evalpark2
         show remy normal at right
@@ -1526,7 +1533,7 @@ label eval_everyone_3:
         m "Remy enveloped me in his wing and pulled me closer to him. His scales radiated with a soft warmth."
         m "Playfully, he gave my nose a lick."
     else:
-        m "Remy gently enveloped me in his wing and pulled me closer.  His scales radiated with a soft warmth."
+        m "Remy gently enveloped me in his wing and pulled me closer. His scales radiated with a soft warmth."
     hide vara with dissolvemed
     m "Suddenly, I felt Vara hug me as well. Since she couldn't make it onto the couch, she resorted to squeezing my legs instead."
     m "While awkward, the little dragon's embrace was warm and comforting."
@@ -1561,25 +1568,26 @@ label eval_everyone_3:
     #    Ry smile "I meant the kiss."
     #    c "Who said more free time couldn't lead to that?"
     #    Ry normal "Point taken."
-    Ry shy "I just worry the time we have together is running thin."
-    c "How so?"
-    Ry look "Won't you be going back through the portal soon?"
-    c "I've been trying not to think about that, but I feel obligated to do everything in my power to save humanity."
-    Ry sad "It's going to be difficult when we have to part ways."
-    c "I'm not leaving. I'm just going back to the day I got here."
-    Ry "Still, I can't shake off the feeling that I won't ever see you again."
-    c "What do you mean?"
-    Ry "I know I said that I would see you again after you went through the portal, but in a way, I feel like when you enter that portal, you don't go back to my world, but a world exactly like mine with a dragon exactly like me."
-    c "I see."
-    m "Vara finally released her grip from my legs and returned to Remy's side."
-    show vara smnormal with dissolvemed
-    m "Remy looked down at Vara."
-    show vara smsmile with dissolvemed
-    m "Gently, he nuzzled her frills. As a result, a small smile formed at her lips."
-    Ry normal "But in the foreseeable future, you aren't going anywhere, and I am going to appreciate the time that we have together."
-    c "So will I."
-    Ry "I think that Vara and I should get going. We won't start moving her stuff in until tomorrow, but she still needs to settle in."
-    c "I understand. Goodnight you two."
+    #Ry shy "I just worry the time we have together is running thin."
+    #c "How so?"
+    #Ry look "Won't you be going back through the portal soon?"
+    #c "I've been trying not to think about that, but I feel obligated to do everything in my power to save humanity."
+    #Ry sad "It's going to be difficult when we have to part ways."
+    #c "I'm not leaving. I'm just going back to the day I got here."
+    #Ry "Still, I can't shake off the feeling that I won't ever see you again."
+    #c "What do you mean?"
+    #Ry "I know I said that I would see you again after you went through the portal, but in a way, I feel like when you enter that portal, you don't go back to my world, but a world exactly like mine with a dragon exactly like me."
+    #c "I see."
+    #m "Vara finally released her grip from my legs and returned to Remy's side."
+    #show vara smnormal with dissolvemed
+    #m "Remy looked down at Vara."
+    #show vara smsmile with dissolvemed
+    #m "Gently, he nuzzled her frills. As a result, a small smile formed at her lips."
+    #Ry normal "But in the foreseeable future, you aren't going anywhere, and I am going to appreciate the time that we have together."
+    #c "So will I."
+    Ry "It's been fun, but I think that Vara and I should get going. We won't start moving her stuff in, but she still needs to settle in."
+    Ry "Can we meet tomorrow, though? There's something I need to ask you."
+    c "Of coruse we can. Goodnight you two."
     Ry "Goodnight, [player_name]."
     Vr "Goodnight!"
     hide remy
@@ -1591,72 +1599,73 @@ label eval_everyone_3:
     c "(It's wonderful that Remy and Vara are a real family now.)"
     stop music fadeout 2.0
     scene black with dissolveslow
-    scene o2
-    play sound "fx/knocking1.ogg"
-    m "Suddenly, there was a knock at the door."
-    c "(Remy and Vara must have forgotten something.)"
-    play sound "fx/door/doorchain.ogg"
-    m "I walked to the door and opened it."
-    play music "mx/cavern.mp3" fadein 3.0
-    show izumi normal 7 with dissolvemed
-    As "Hello, [player_name]."
-    c "Izumi? But I thought you died during the portal incident."
-    As "Did I? That must explain why I did not see myself when coming here."
-    As "Do you have what I am looking for?"
-    c "I don't think I understand."
-    As "Izumi revealed a small, pendant-like device identical to the previous Izumi had given me."
-    As "This."
-    c "I think so."
-    m "I dug into the pocket where I had kept the pendant. Luckily, it was still there."
-    m "I handed it to Izumi, who slid the cover up and inspected the light."
-    c "Can you explain what exactly these pendants do?"
-    As "In simple terms, they detect corrupted timelines."
-    c "Corrupted?"
-    As "Timelines influenced by others in ways they should not."
-    As "Over your many attempts going through the portal, certain continuities have been established between timelines."
-    As "While most of these are harmless to our cause to save both the dragon and human world, some have the potential be catastrophic."
-    As "I do not know the explanation for these continuities, but this device informs me of their existence and their position."
-    m "Izumi took the two pendants and pressed the two pulsing red lights against each other."
-    play sound "fx/glassimpact2.ogg"
-    m "With a loud bang, the glass within the pendants shattered."
-    As "Good. I'm in the right place."
-    c "What does the shattered glass mean?"
-    As "It means that this timeline is corrupted and cannot interact with other timelines."
-    As "Do you know why this happened?"
-    c "The first Izumi said something about a fragment of events from alternate timelines."
-    As "I see. Events from other timelines have influenced your mind in this one."
-    As "While it is entirely possible that these fragments can be beneficial, this specific circumstance could spell disaster for our plans."
-    c "How so?"
-    As "With one fragment could come many more. Going back to the day you arrived could have irreversible consequences."
-    c "How could retaining knowledge of one timeline negatively impact another? Would that not better prepare me for the events that unfold and stop them in their tracks?"
-    As "There is a delicate balance between your interaction with the dragon world and saving humanity."
-    As "I cannot let you go through the portal with the possibility of my plans failing."
-    c "But what about my people? Are they destined to fall if I stay?"
-    As "There are others that will take your place to save humanity."
-    c "Others?"
-    As "Alternate versions of yourself, created in other timelines."
-    As "They will take your place."
-    c "So I have to stay here?"
-    As "You have no other choice."
-    c "But what about yourself?"
-    As "I do not belong here, nor do I need to be here any longer. I will leave and completely deactivate the portal."
-    m "I took a deep breath. It took a moment for Izumi's words to penetrate my mind."
-    c "I think I understand, Izumi."
-    As "Then my work here is done. Enjoy your life in the dragon world, [player_name]. It seems you've made some friends already."
-    show izumi normal 7 at left with move
-    c "Wait, Izumi."
-    show izumi normal 7 flip with dissolvemed
-    m "I looked at her one last time, taking in the sight of the last human I was ever going to see."
-    m "I took a deep breath."
-    c "Okay, you can go now."
-    As "Goodbye, [player_name]."
-    show izumi normal 7 with dissolvemed
-    hide izumi with easeoutleft
-    play sound "fx/door/doorchain.ogg"
-    m "With that, I was left alone with my thoughts."
-    m "I'll have to call Remy tomorrow and break the news to him."
-    stop music fadeout 2.0
-    scene black with dissolveslow
+    #scene o2
+    #play sound "fx/knocking1.ogg"
+    #Another scrapped scene
+    #m "Suddenly, there was a knock at the door."
+    #c "(Remy and Vara must have forgotten something.)"
+    #play sound "fx/door/doorchain.ogg"
+    #m "I walked to the door and opened it."
+    #play music "mx/cavern.mp3" fadein 3.0
+    #show izumi normal 7 with dissolvemed
+    #As "Hello, [player_name]."
+    #c "Izumi? But I thought you died during the portal incident."
+    #As "Did I? That must explain why I did not see myself when coming here."
+    #As "Do you have what I am looking for?"
+    #c "I don't think I understand."
+    #As "Izumi revealed a small, pendant-like device identical to the previous Izumi had given me."
+    #As "This."
+    #c "I think so."
+    #m "I dug into the pocket where I had kept the pendant. Luckily, it was still there."
+    #m "I handed it to Izumi, who slid the cover up and inspected the light."
+    #c "Can you explain what exactly these pendants do?"
+    #As "In simple terms, they detect corrupted timelines."
+    #c "Corrupted?"
+    #As "Timelines influenced by others in ways they should not."
+    #As "Over your many attempts going through the portal, certain continuities have been established between timelines."
+    #As "While most of these are harmless to our cause to save both the dragon and human world, some have the potential to be catastrophic."
+    #As "I do not know the explanation for these continuities, but this device informs me of their existence and their position."
+    #m "Izumi took the two pendants and pressed the two pulsing red lights against each other."
+    #play sound "fx/glassimpact2.ogg"
+    #m "With a loud bang, the glass within the pendants shattered."
+    #As "Good. I'm in the right place."
+    #c "What does the shattered glass mean?"
+    #As "It means that this timeline is corrupted and cannot interact with other timelines."
+    #As "Do you know why this happened?"
+    #c "The first Izumi said something about a fragment of events from alternate timelines."
+    #As "I see. Events from other timelines have influenced your mind in this one."
+    #As "While it is entirely possible that these fragments can be beneficial, this specific circumstance could spell disaster for our plans."
+    #c "How so?"
+    #As "With one fragment could come many more. Going back to the day you arrived could have irreversible consequences."
+    #c "How could retaining knowledge of one timeline negatively impact another? Would that not better prepare me for the events that unfold and stop them in their tracks?"
+    #As "There is a delicate balance between your interaction with the dragon world and saving humanity."
+    #As "I cannot let you go through the portal with the possibility of my plans failing."
+    #c "But what about my people? Are they destined to fall if I stay?"
+    #As "There are others that will take your place to save humanity."
+    #c "Others?"
+    #As "Alternate versions of yourself, created in other timelines."
+    #As "They will take your place."
+    #c "So I have to stay here?"
+    #As "You have no other choice."
+    #c "But what about yourself?"
+    #As "I do not belong here, nor do I need to be here any longer. I will leave and completely deactivate the portal."
+    #m "I took a deep breath. It took a moment for Izumi's words to penetrate my mind."
+    #c "I think I understand, Izumi."
+    #As "Then my work here is done. Enjoy your life in the dragon world, [player_name]. It seems you've made some friends already."
+    #show izumi normal 7 at left with move
+    #c "Wait, Izumi."
+    #show izumi normal 7 flip with dissolvemed
+    #m "I looked at her one last time, taking in the sight of the last human I was ever going to see."
+    #m "I took a deep breath."
+    #c "Okay, you can go now."
+    #As "Goodbye, [player_name]."
+    #show izumi normal 7 with dissolvemed
+    #hide izumi with easeoutleft
+    #play sound "fx/door/doorchain.ogg"
+    #m "With that, I was left alone with my thoughts."
+    #m "I'll have to call Remy tomorrow and break the news to him."
+    #stop music fadeout 2.0
+    #scene black with dissolveslow
 
     #This dialogue kinda sucks rn - deleting until someone who can actually write this stuff looks over it
     #nvl clear
@@ -1680,35 +1689,63 @@ label eval_everyone_3:
 
     $ renpy.pause (1.5)
     scene o
-    show remy look with dissolveslow
+    show remy normal with dissolveslow
     play music "mx/fragments.ogg"
-    Ry "You sounded serious on the phone, [player_name]. Is everything alright?"
-    c "I talked to Izumi again."
-    Ry "Wait, the human? Didn't she die back at the portal?"
-    c "It was another version of Izumi from a different timeline."
-    Ry sad "I don't think I'll ever be able to understand all of this time travel nonsense."
-    c "Well, you won't have to anymore, because I'm not going anywhere."
-    Ry "Wait. {w}What?"
-    c "Because I saved Vara, I get to stay here with you two."
-    Ry normal "Really? That's wonderful!"
-    Ry sad "But what about humanity? Aren't you their only hope?"
-    c "Izumi said that there were other versions of myself still working to save humanity. If I were to try and help now, I might mess everything up."
-    Ry look "I see. So you're staying here forever?"
-    c "Seems like it."
-    Ry smile "This is so exciting! I didn't even consider the possibility of you staying in our world."
-    c "It was a rough night thinking about my future here."
-    Ry look "I can see that. It must be so difficult having to accept the fact that you will never see another human again."
-    c "It is, trust me. But at least I have you guys to help me through it all."
-    Ry normal "Vara, Adine, Amely and I will always be there for you, [player_name]. I'm sure there's also a lot of other wonderful people you will meet as well."
-    c "Thanks, Remy."
+    Ry "Hey, [player_name]. Long time no see."
+    c "Remy, we just saw each other last night."
+    Ry smile "I know."
+    c "Well, was there any specific reason you wanted to come over and visit, or was it just to make that joke?"
+    Ry normal "There is, but first, look what I brought."
+    m "Remy revealed a bottle of wine."
+    c "Oh boy, is this the {i}third{/i} cheapest wine this time? I feel spoiled."
+    Ry smile "That would have been quite funny, but I deicded that instead of getting the second cheapest wine, I would get us the second most expensive one instead."
+    c "Wow! How expensive was it?"
+    Ry look "Let's just say that the cashier gave me a concerned look when I was checking out."
+    Ry normal "But let's not worry about that and enjoy it."
+    hide remy with easeoutleft
+    m "Remy made his way into the kitchen and returned with two empty glasses."
+    show remy normal flip with easeinleft
+    show remy normal with dissolvemed
+    play sound "fx/pouringwine.ogg"
+    m "He carefully uncorcked the bottle with his claw and poured us two glasses of the wine."
+    m "Remy raised his glass."
+    Ry smile "Cheers!"
+    play sound "fx/clink.ogg"
+    $ renpy.pause (1.0)
+    show remy normal with dissolvemed
+    m "I took a sip from my wine glass. Words couldn't describe just how much better this wine was compared to the last."
+    Ry "Well, is the second most expensive wine any better than the second cheapest?"
+    c "So much better. This is great."
+    Ry "Well you better enjoy every last drop of it because there is no way I'm letting any of this go to waste."
     stop music fadeout 2.0
     $ renpy.pause (2.0)
+    m "The two of us quietly sipped at our wine glasses until Remy once again spoke."
+
+    #Ry "You sounded serious on the phone, [player_name]. Is everything alright?"
+    #c "I talked to Izumi again."
+    #Ry "Wait, the human? Didn't she die back at the portal?"
+    #c "It was another version of Izumi from a different timeline."
+    #Ry sad "I don't think I'll ever be able to understand all of this time travel nonsense."
+    #c "Well, you won't have to anymore, because I'm not going anywhere."
+    #y "Wait. {w}What?"
+    #c "Because I saved Vara, I get to stay here with you two."
+    #Ry normal "Really? That's wonderful!"
+    #Ry sad "But what about humanity? Aren't you their only hope?"
+    #c "Izumi said that there were other versions of myself still working to save humanity. If I were to try and help now, I might mess everything up."
+    #Ry look "I see. So you're staying here forever?"
+    #c "Seems like it."
+    #Ry smile "This is so exciting! I didn't even consider the possibility of you staying in our world."
+    #c "It was a rough night thinking about my future here."
+    #Ry look "I can see that. It must be so difficult having to accept the fact that you will never see another human again."
+    #c "It is, trust me. But at least I have you guys to help me through it all."
+    #Ry normal "Vara, Adine, Amely and I will always be there for you, [player_name]. I'm sure there's also a lot of other wonderful people you will meet as well."
+    #c "Thanks, Remy."
     play music "mx/gravity.ogg" fadein 2.0
-    Ry shy "[player_name], now that you're staying here, there's something I need to ask you."
+    Ry shy "[player_name], there's something I've been meaning to ask you."
     Ry "..."
     Ry "Would you be interested in a... {w}more meaningful relationship?"
     c "How so?"
-    Ry "Well, what we have now is great, but I was looking for something... {w}more."
+    Ry "Well, what we have now is great, but I was looking for something... {w}deeper and more personal."
     Ry "I wasn't going to say any of this to you before because I thought you were going through the portal."
     c "Why not?"
     Ry sad "Because I couldn't take losing another person that close to me."
@@ -1733,7 +1770,7 @@ label eval_everyone_3:
                 m "He pressed his lips against mine. I embraced him with my arms and pulled in closer."
             m "As we parted, he rested his head on top of my own. I felt a stream of tears form on my head and roll down my cheeks."
             m "It was possible that a few of those tears were mine as well."
-            m "We embraced for what felt like hours. Time around us seemed to stop dead in its tracks."
+            m "We embraced for what felt like hours. Time around us seemed to stop."
             m "At that moment, nothing else mattered. I buried my face deeper into his soft underbelly scales and closed my eyes."
             #m "Remy once again sat down and grabbed me with his front legs, pulling me into his soft, scaly underbelly."
             #m "I embraced him as well and pulled myself in as close as I could."
