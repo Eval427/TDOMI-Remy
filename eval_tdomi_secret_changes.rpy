@@ -265,7 +265,11 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         Ry smile "That's a good one."
         show remy normal with dissolvemed
         Ry "This may surprise you, but no. I think I'll let you make the call on what dragon medications you should take."
-        c "(I don't even want to imagine the terrible repercussions that could have.)"
+        if renpy.python.store_dicts['store'].get('medunstaken', True):
+            c "(I don't even want to imagine the terrible repercussions that could have.)"
+        else:
+            m "I recalled that I had attempted this earlier, and it wasn't a pretty result."
+            c "(I probably shouldn't do that again.)"
         m "Remy let out a long sigh."
         Ry look "You know, maybe I should have just brought Vara to the park and had her watch the fireworks with us instead of coming back here."
         Ry "I feel bad for forcing you to miss out on the show tonight."
@@ -365,7 +369,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         m "Vara nodded."
         m "Remy grabbed a piece of sushi and put it in his mouth."
         Ry "Wow! It's really good, Vara!"
-        m "Remy took another two pieces, and delicately rested them on his tongue"
+        m "Remy took another two pieces, and delicately rested them on his tongue."
         m "Vara pushed the cutting board in my direction."
         Ry "I think she wants you to try it, [player_name]."
 
@@ -656,7 +660,7 @@ label eval_remy_ch4_date_change_2:
     $ renpy.pause (2.0)
     m "Suddenly, it hit me."
     play music "mx/judgement.ogg"
-    c "The big fireworks show, Remy. Vara dies."
+    c "The big fireworks show, Remy. {w}Vara dies."
     Ry "What?"
     show remy angry with dissolvemed
     Ry "How do you know this?" with hpunch
@@ -835,7 +839,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     stop music fadeout 2.0
     $ renpy.pause (3.0)
 
-    #Add a POV that isn't from the MC's POV. Oooo, fancy!
+    #Add a POV that isn't from the MC's POV. Oooo, fancy! - Maverick shouldn't be wearing his badge. Have something where Remy goes looking for Maverick and catches him snooping at the PD
     play music "mx/prayer.ogg" fadein 2.0
     scene office at Pan ((128, 250), (0, 250), 3.0) with dissolveslow
     $ renpy.pause(2.0)
@@ -843,10 +847,10 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show vara smsad at right
     with easeinright
     Ry "Hello?"
-    show maverick normal b flip at Position (xpos=0.1) with easeinleft
+    show maverick normal b flip at Position (xpos = 0.1) with easeinleft
     Mv nice b flip "What are you doing here, Remy? Why aren't you two seeing the fireworks?"
     Ry "Reza is at the portal as we speak."
-    Mv normal b flip "What?"
+    Mv normal flip "What?"
     Mv "How do you know this?"
     Ry "[player_name] told me."
     Mv angry b flip "What?"
@@ -861,20 +865,19 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Ry "Maverick, that's not tr-{w=0.5}{nw}"#a "-" implies they were cut off
     Mv "Isn't it so convenient that [player_name]'s little plan involves both himself and Reza alone near the portal?"
     show remy angry with dissolvemed
-    Ry "{size=+20}STOP!{/size}" with Shake((0, 0, 0, 0), 2, dist=10)
+    Ry "{size=+20}STOP!{/size}" with hpunch
     show maverick angry b flip with dissolvemed
     Ry "You do not understand {size=+20}ANYTHING{/size} about [player_name], Maverick."
     Ry "Without them, I wouldn't be here."
     Ry "Without them, I would be hanging limp from my ceiling."
-    show maverick scared b flip with dissolvemed
-    Mv "What do you mean, Remy?"
+    Mv scared b flip "What do you mean, Remy?"
     Ry "I've gone through hell and back, and you know very well why."
     Ry "I was close to the edge, Maverick. Close to ending it once and for all."
-    Ry "But you know what? [player_name] saved my life." #Change
+    Ry "But you know what? [player_name] saved my life."
     Ry "They helped me reunite with old friends, move on from the past, and find this lovely little dragon next to me."
     Mv "I... I didn't know it was that bad, Remy. I'm so sorry."
     Ry "Feel bad for me later, Maverick. We have to help [player_name]."
-    Mv normal b flip "I can't say I fully trust [player_name], Remy, but I'll still help you."
+    Mv normal flip "I can't say I fully trust [player_name], Remy, but I'll still help you."
     Vr "I help?"
     Ry sad "Vara, you should stay here where you'll be safe."
     Vr "..."
@@ -882,7 +885,6 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Vr "..."
     Ry "Come on, Maverick. Let's go."
     Mv normal b flip "Okay, Remy. I'm with you."
-    show remy sad flip with dissolvemed
     hide remy
     hide maverick
     with easeoutright
@@ -916,6 +918,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "Confused, Reza spun around, aiming his gun at the newcomer who was slowly walking towards him."
     Rz "Who the fuck are you? Freeze! I said freeze!"
     show izumi at Position(xpos=0.8, xanchor='center') with ease
+    $ persistent.izumiseen = True
     As "Want to waste your bullets on me? Feel free."
     Rz gunpoint flip "If you say so."
     play sound "fx/gunshot2.wav"
@@ -931,7 +934,9 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show izumiinjured4 at Pan((300, 0), (600, 608), 7.0) with fade
     $ renpy.pause (5.0)
     hide izumiinjured4
-    Rz gunself "Enough with your tricks, [player_name]. Let's go."
+    show reza gunself
+    with dissolveslow
+    Rz "Enough with your tricks, [player_name]. Let's go."
     m "Reza escorted me outside, his gun barrel trained on my skull."
     scene black with dissolvemed
     $ renpy.pause (0.5)
@@ -980,19 +985,24 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "From a different direction, a ball of liquid flew at Reza's gun hand."
     m "Upon contact, Reza's skin started to boil."
     m "Reza expressed no signs of pain and I noticed a strange metallic sheen and sparks flying from his hand."
-    m "Maverick wrenched the gun out of his grasp with his teeth and tossed it to the side."
-    m "However, some of the acid must have made contact with Maverick's muzzle as well."
+    # m "Maverick wrenched the gun out of his grasp with his teeth and tossed it to the side."
+    m "Maverick sunk his teeth into Reza and attempted to wrench the weapon out of his. However, Reza held an iron grip on the gun."
+    m "Some of the acid must have made contact with Maverick's maw as well."
     play sound "fx/dragonpain.wav"
     m "Maverick released his grip and held onto his muzzle in pain."
-    m "Reza instantly made a break for the portal."
+    m "Within an instant, Reza made a break for the portal."
     play sound "fx/acid.mp3" fadein 0.5
     m "Another ball of acid flew at Reza, hitting his foreleg."
     play sound "fx/impact3.ogg"
     m "This time, Reza screamed in pain and dropped to the ground."
-    m "He clutched his burning leg, the acid melting away at his skin and muscle."
-    m "Weakly, he crawled towards the portal, but his movements grew sluggish and he slumped to the ground motionless."
-    hide maverick
-    show maverick rage d at Position(xpos=0.9, xanchor="center") with easeinright
+    play sound "fx/gunshot2.wav"
+    m "On impact, a single shot was fired off in front of him."
+    play sound "fx/portalhit.mp3"
+    m "Sparks flew from the portal's terminal as the bullet pierced the metal frame and lodged itself within its inner mechanisms."
+    c "(That can't be good.)"
+    m "He clutched his burning leg in agony, the acid melting away at his skin and muscle."
+    m "Weakly, he crawled towards the portal, but his movements soon grew sluggish as he slumped to the ground, motionless."
+    show maverick rage d at Position(xpos = 0.9, xanchor = "center") with easeinright
     stop music fadeout 2.0
     $ renpy.pause (1.0)
     play music "mx/infinite.mp3" fadein 1.0
@@ -1001,7 +1011,6 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     #play sound "fx/bite.ogg" This was a previous rendition where Reza didn't escape and was killed. This is too close to the true ending, so he had to escape
     #m "In another swift motion, Maverick's jaws clamped down on Reza's neck."
     #m "Reza fell limp on the ground."
-    #Art of cripy Reza?
     show vara smshocked b with easeinright
     Vr "Remy!"
     hide vara with easeoutleft
@@ -1085,39 +1094,21 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
         c "Wormholes?"
         As "There's someone here who could do a much better job explaining this than I could."
     m "Her voice wavered, and her legs started shaking."
-    if persistent.remybadending:
-        c "Izumi. Are you okay?"
-    else:
-        c "Are you okay?"
-    #As "My time here is limited. I will not be alive for much longer."
-    #As "There are emergency coordinates in the portal."
-    #As "They are tied to your biometric data, and will send you back to the day you arrived in this world."
+    c "Izumi. Are you okay?"
+    As "My time here is limited. I will not be alive for much longer."
+    As "There are emergency coordinates in the portal."
+    As "They are tied to your biometric data, and will send you back to the day you arrived in this world."
     $ renpy.pause (1.5)
     hide izumi with easeoutbottom
     play sound "fx/impact3.ogg"
-    if persistent.remybadending:
-        m "Izumi suddenly fell to the ground."
-    else:
-        m "The Administrator suddenly fell to the ground."
-    show vara smshocked flip with dissolvemed
+    m "Izumi suddenly fell to the ground."
+
     c "Are you okay?"
-    if persistent.annabadending==True:
-        As normal 4 d "Quickly, take this."
+    if persistent.annabadending:
+        As normal 4 d "You will know what to do, [player_name]."
     else:
-        As normal 4 c "Quickly, take this."
-    if persistent.remybadending:
-        m "Izumi weakly reached into a pocket and revealed a strange device that looked similar to a pendant."
-    else:
-        m "The Administrator weakly reached into a pocket and revealed a strange device that looked similar to a pendant."
-    m "I found that the top could slide upwards, revealing a dim, pulsing red light."
-    c "What is this?"
-    if persistent.annabadending==True:
-        As normal 4 d "You will understand soon, [player_name]."
-    else:
-        As normal 4 c "You will understand soon, [player_name]."
+        As normal 4 c "You will know what to do, [player_name]."
     m "With that, she closed her eyes and her body went limp."
-    m "I slid the pendant into a pocket."
-    c "(Hopefully I'll know what to do with it.)"
 
     stop music fadeout 3.0
     $ renpy.pause (0.5)
@@ -1128,35 +1119,31 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     window show
 
     n "Soon, more help arrived. Remy and I got all the medical attention we needed while Vara was sent to Adine to be taken care of."
-    if persistent.remybadending:
-        n "Maverick had only sustained minor burn injuries and abrasions. However, Reza and Izumi were both dead."
-    else:
-        n "Maverick had only sustained minor burn injuries and abrasions. However, Reza and the Administrator were both dead."
-    n "I warned the dragons about the comet, and told them to check the PDAs I had given them for verification of my claims."
-    n "A few minutes later, EMTs arrived and I was put into a medically induced coma due to my injuries."
-    n "In the weeks I was out, a number of things happened."
-    n "After everything that had taken place, negotiations were fierce between humanity and the dragons. "
-    n "Out of respect, Reza's body was returned to humanity via the portal. While his actions had shattered all goodwill on the dragon's side, Reza's wounds did their job to do the same for humanity."
+    n "Maverick had only sustained minor burn injuries and abrasions. However, Reza and Izumi were both dead."
+    n "I warned the dragons about the comet, telling them to check the PDAs I had given them for verification of my claims."
+    n "A few minutes later, EMTs arrived and I was put into an artificial coma due to my injuries."
+    n "In the weeks I was out, a variety of things happened."
+    n "Out of respect, Reza's body was given a proper funeral in a remote location. His weapon and remaining ammunition were to be left in my care."
+    n "After attempts were made to make contact with the human world, it was discovered that the portal was no longer operational."
 
     window hide
     nvl clear
     window show
 
-    n "I, too, was to be returned to humanity, but as my condition didn't allow it, humanity took dragonkind's refusal to transfer me as a sign they were keeping me as a hostage."
-    n "I wasn't a priority for humanity, though - a fact I was aware of well before I ever arrived in this world. As far as they were concerned, Reza and I had our chance, and the results were bad."
-    n "Ultimately, the dragons decided to return the PDAs before all contact was cut. "
-    n "Luckily, my claims were taken seriously, and there was already a plan in place to divert the comet. "
-    n "While they would have to use the lab's generators to do it, humanity decided to use their portal's power source to support their slowly failing city for a while longer as they looked for other, more long-term solutions. "
+    n "Upon this discovery, the dragons sent their brightest engineers in attempts to restablish a connection with the human world."
+    n "However, after weeks of unsuccessful attempts, the operation was deemed to be a failure."
+    n "Ultimately, the dragons decided to leave the portal standing in its current state."
+    n "Luckily, my claims were taken seriously, and there was already a plan in place to divert the comet."
+    n "Using the lab's generators, the dragons were successfully able to redirect the comet's path away from Earth."
 
     window hide
     nvl clear
     window show
 
-    n "After I woke up from my coma, I had to consider my options."
-    n "While the dragons were able to create a new power source for the portal, I wouldn't have known how to send myself back to humanity, as their portal was already deactivated."
-    n "At least not without the expertise of the dead Administrator. "
-    n "The only coordinates remaining in the portal were those she left as a last resort. It turned out they were to send someone back in time to the day I arrived here. "
-    n "I met with Remy as soon as I could, who told me about everything I had missed. "#had to change this to avoid clashing with vara survives mod
+    n "After I awoke from my coma, I had to consider what my future held."
+    n "With my limited knowledge of the portal, there was very little possibility of fixing it without the expertise of the dead Administrator.."
+    n "Any possibilities of my return to the human world had vanished with the destruction of the portal."
+    n "I met with Remy as soon as I could, who told me about everything I had missed."
 
     window hide
     nvl clear
@@ -1172,9 +1159,9 @@ label eval_post_secret_remy_meeting:
     scene park2 with dissolveslow
     show remy normal with dissolvemed
     play music "mx/library.ogg" fadein 2.0
-    c "So, the comet was diverted, and you've replaced the power source for the portal. I guess I must've been gone for a long time."
-    Ry "A few weeks."
-    Ry "By the way, I talked with Maverick a few days ago."
+    c "So, the comet has been diverted, and you've replaced the power source for the portal. I guess I must've been gone for a long time."
+    Ry look "Yes you were. A lot has happened since then."
+    Ry normal "By the way, I talked with Maverick a few days ago."
     c "Oh, what did he have to say?"
     Ry "I think it would be better if he explained himself."
     show remy normal at right with move
@@ -1199,19 +1186,72 @@ label eval_post_secret_remy_meeting:
     hide maverick with easeoutleft
     show remy smile at center with move
     Ry normal "What will you do now, [player_name]?"
-    c "I could use the portal to return to the day of my arrival. After all, I came here to save our dying city, which is something I failed to do."
-    Ry "But you saved us. You saved Vara."
-    c "That is true, but I can't help thinking that there could have been a solution that saved both worlds."
-    Ry "Whatever you want to do now, you can be sure that you'll have the council's support."
-    Ry "You could just stay here if you wanted to."
-    c "I bet you and Vara wouldn't mind that, would you?"
-    Ry smile "You know how I am. Humans just fascinate me."
-    Ry "And you are the only person, other than myself and Adine, that Vara seems to have taken a liking to."
-    Ry normal "This isn't just about us, though. Of course we would love it if you stayed with us, but I know there are many other factors at play here, and that it won't be an easy decision for you to make."
-    Ry "Don't let us stop you from going back if that's what you want to do, though. We'll be fine."
-    c "Are you sure about that?"
-    Ry "Yes. After all, I have Vara to keep me company."
-    Ry "Also, while you were busy these last few weeks, I spent a lot of time with Adine, and we rekindled our lost friendship."
-    Ry smile "Besides, if you really go back in time, I'll see you again."
+    c "I don't know. As you probably have heard, the portal is no longer operational."
+    Ry sad "I know, and I'm sorry. I can't imagine how terrible it must feel knowing that you have no way to save humanity."
+    m "I can't give up hope now. Maybe they just missed an emergency failsafe only intended for myself to discover."
+    c "Do you think we could look at the portal? Maybe they missed something."
+    Ry look "Of course. Although I doubt we're going to fix anything a team of our most talented engineers couldn't."
+    scene black with dissolveslow
+    scene np1x
+    show remy look
+    with dissolveslow
+    Ry "Here we are. What were you interested in looking at?"
+    c "Let me get a closer look."
+    hide remy with dissolvemed
+    play sound "fx/evalgrasswalk2.ogg"
+    m "I made my way over to the portal while Remy made himself comfortable in the grass."
+    scene black with dissolve
+    scene evalportalb at Pan ((0, 0), (600, 380), 4.0) with dissolveslow
+    $ renpy.pause (4.0)
+    m "Aside from a few meager attempts to put the portal's terminal back together, the components still lay in tatters."
+    m "I attempted to interact with the terminal. However, I recieved no reponse."
+    m "Looking down again, I noticed a small bullet hole near the base of the terminal's housing."
+    c "(So that's where Reza's final bullet landed.)"
+    m "The damage it had caused wasn't pretty. It had managed to pierce through the metal frame and much of the hardware."
+    m "In one last desperate attempt, I tried the terminal screen again."
+    m "There was no response."
+    m "With a sigh of defeat, I made my way back over to Remy."
+    scene black with dissolveslow
+    play sound "fx/evalgrasswalk2.ogg"
+    $ renpy.pause (1.0)
+    scene np1x
+    show remy normal
+    with dissolveslow
+    Ry "So, any luck?"
+    c "No, I don't think there's any way to fix the portal and travel back to the day I came here without the help of the dead Administrator."
+    Ry "Wait, go back to the day you got here? Doesn't that imply time travel."
+    c "Yes. The portal can be used to manipulate time."
+    Ry "I guess that makes sense. In most circumstances, the probability for an alien life form to be able to live in the conditions of another planet would be astronomically low."
+    Ry "However, if you instead came from another time period on Earth, then it would make sense why you are accustomed to our environment."
+    Ry look "You know, if you were supposed to go back to the day you came here, does that mean that you have done this before?"
+    c "Yes. I mean, I think so. The memories are vague."
+    Ry "Did things happen the same way they did here?"
+    c "I really can't remember. The only thing I can say for sure is that at some point, Vara was dead."
+    Ry "Then that must mean that alternate timelines exist."
+    Ry "And in that case, if you've experienced something as significant as Vara dying, what's to say that other factors couldn't change in those timelines as well?"
+    c "What do you mean by that?"
+    Ry normal "Well, it's quite possible that in one of those timelines, you save humanity as well."
+    m "I pondered what Remy had just said. It seemed crazy, yet it also made too much sense."
+    c "Huh. Guess you're right."
+    Ry "You don't have to go back and attempt to fix everything, especially if it's no longer possible."
+    Ry "You've done everything you could, and you managed to save all of dragonkind in the process."
+    Ry smile "Besides, I would be more than happy to have you stay here with us."
+    scene black with dissolveslow
+
+    # More scrapped stuff
+    #c "That is true, but I can't help thinking that there could have been a solution that saved both worlds."
+    #Ry "Whatever you want to do now, you can be sure that you'll have the council's support."
+    #Ry "You could just stay here if you wanted to."
+    #c "I bet you and Vara wouldn't mind that, would you?"
+    #Ry smile "You know how I am. Humans just fascinate me."
+    #Ry "And you are the only person, other than myself and Adine, that Vara seems to have taken a liking to."
+    #Ry normal "This isn't just about us, though. Of course we would love it if you stayed with us, but I know there are many other factors at play here, and that it won't be an easy decision for you to make."
+    #Ry "Don't let us stop you from going back if that's what you want to do, though. We'll be fine."
+    #c "Are you sure about that?"
+    #Ry "Yes. After all, I have Vara to keep me company."
+    #Ry "Also, while you were busy these last few weeks, I spent a lot of time with Adine, and we rekindled our lost friendship."
+    #Ry smile "Besides, if you really go back in time, I'll see you again."
+    $ renpy.pop_call()
     jump eval_tdomi_remy
 #Thus marks the end of the changes required to actually get Vara's extended ending
+

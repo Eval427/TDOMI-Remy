@@ -51,65 +51,8 @@ Why did I even do this in the first place/what gave me inspiration?
 
  ________________________________________________________________________________________________
 
-What am I working on now?
-
-- My main priority is getting all of the content finished. I have a set end goal in mind, and I need to get there before going back and polishing everything
-
-- I know many of the transitions are extremely ugly. I'm working to fix that.
-
-- Grammar. I've gone through a lot of it, but there's still probably a ton I'm missing.
-
-- Adding endings. They exist, but there isn't a tangible way to determine if you've seen one.
-
--Adding achievements. I might do this if I feel like it. I have a few ideas
-
- ________________________________________________________________________________________________
-
  Feedback:
 
  - If you have any feedback whatsoever, please hit me up on discord (Eval#4270). This is especially true for writing, since I know a lot of it is just "OK".
 
-  ________________________________________________________________________________________________
-
- Conflicts:
-
- - This mod conflicts with the Remy Hatchlings mod. Sorry :/
-
- ________________________________________________________________________________________________
-
-
-  How do I get the most out of the mod?
-
-  - When given the option to go with certain characters. Choose the least amount of characters to the most. It's better, I promise. Endings go from least content/branches to most depending on characters.
-
-  - Only the dialogue options that are really mean will end in a quick game over. Each one IS unique, however, so if you do decide to end it early, at least you get new content each time.
-
-  - Do the extra content listed above
-
- ________________________________________________________________________________________________
-
-SPOILERS AHEAD!!! BE WARNED.
-
-  Tips for Katsuharu's minigame:
-
-  - If a character says they are in a hurry or seem annoyed, they most likely want their ice cream fast
-
-  - If a character says they don't mind waiting, or ask for extra care for their ice cream, they most likely want you to take your time
-
-  - If a character mentions their stomach at all, they want extra ice cream
-
-  - It's all randomized each playthrough, so the only way you can find a "guide" is looking through the code
-
-  - There's actually a few pretty funny secrets hidden in the game. Probably difficult to get them by chance, though.
-    
-    - The biggest of these is probably Ophinia's. To get this, have her want the large ice cream, but don't give it to her. RNG based, I know, but it's the only way it makes sense.
-
- ________________________________________________________________________________________________
-
- Tips for the orphanage minigame:
-
- - For the first part of the game, always have Remy sent off gathering items
-
- - While Remy is gathering items, work on tasks you are able to do (obviously)
-
- - There are 2 unnecessary red herring items. The large spare parts and the spare lightswitch.
+________________________________________________________________________________________________

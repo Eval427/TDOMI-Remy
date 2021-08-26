@@ -11,6 +11,10 @@ from modloader.modclass import Mod, loadable_mod
 varaSmallExpressions = ["smnormal", "smgrowl", "smnone", "smshocked", "smshocked_b", "smsad", "smnormal_ghost", "smsmile"]
 adineIceCreamExpressions = ["annoyed_eval_icecream", "disappoint_eval_icecream", "frustrated_eval_icecream", "giggle_eval_icecream", "normal_eval_icecream", "sad_eval_icecream", "think_eval_icecream"]
 remyShotExpressions = ["angry_eval_shot", "look_eval_shot", "normal_eval_shot", "sad_eval_shot", "shy_eval_shot", "smile_eval_shot"]
+adineGoggleExpressions = ["annoyed", "disappoint", "frustrated", "giggle", "normal", "sad", "think"]
+remyGoggleExpressions = ["look", "normal", "sad", "shy", "smile"]
+varaGoggleExpressions = ["smnone", "smnormal", "smsmile"]
+amelyGoggleExpressions = ["smnormal", "smsad"]
 
 def load_side_ims():
     def clip_vara_side_image(imagefile):
@@ -30,6 +34,39 @@ def load_side_ims():
     
     for expression in remyShotExpressions:
         renpy.exports.image("side remy %s"%expression.replace("_", " "), clip_remy_side_image("cr/remy_%s.png"%expression))
+    
+    for expression in remyGoggleExpressions:
+        renpy.exports.image("side remy %s goggles"%expression, clip_remy_side_image("cr/remy_%s_goggles.png"%expression))
+    
+    for expression in varaGoggleExpressions:
+        renpy.exports.image("side vara %s goggles"%expression, clip_vara_side_image("cr/vara_%s_goggles.png"%expression))
+    
+    for expression in amelyGoggleExpressions:
+        renpy.exports.image("side amely %s goggles"%expression, clip_vara_side_image("cr/amely_%s_goggles.png"%expression))
+        renpy.exports.image("side amely %s goggles flip"%expression, clip_vara_side_image("cr/amely_%s_goggles_flip.png"%expression))
+    
+    #For most of Adine's goggle expressions
+    for expression in adineGoggleExpressions:
+        if expression in ["giggle", "think"]:
+            for letter in ["a", "b", "c", "d"]:
+                if letter == "a":
+                    renpy.exports.image("side adine %s goggles"%expression, clip_adine_side_image("cr/adine_%s_goggles.png"%expression))
+                else:
+                    renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
+        else:
+            for letter in ["a", "b", "c", "d", "e"]:
+                if letter == "a":
+                    renpy.exports.image("side adine %s goggles"%expression, clip_adine_side_image("cr/adine_%s_goggles.png"%expression))
+                else:
+                    renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
+    
+    #For Adine's sad shot expressions that had to be differently formatted
+    for letter in ["a", "b", "c", "d", "e"]:
+        if letter == "a":
+            renpy.exports.image("side adine %s goggles"%expression, clip_adine_side_image("cr/adine_%s_goggles.png"%expression))
+        else:
+            renpy.exports.image("side adine %s goggles %s"%(expression, letter), clip_adine_side_image("cr/adine_%s_goggles_%s.png"%(expression, letter)))
+            
 
 #Function by Joey to simplify connecting hooks
 def connect(node, next):
@@ -39,8 +76,7 @@ def connect(node, next):
 @loadable_mod
 class AWSWMod(Mod):
     def mod_info(self):
-        return ("This Dragon Owes Me Icecream! Remy Edition", "v0.9.1", "Eval")
-
+        return ("This Dragon Owes me Ice Cream!", "v0.9.1", "Eval")
     def mod_load(self):
         menu = modast.get_slscreen("main_menu")
         addition = modast.get_slscreen("main_menu_eval_icecream")
@@ -53,6 +89,11 @@ class AWSWMod(Mod):
         for node in renpy.game.script.all_stmts:
             if isinstance(node, ast.Say) and node.what == "Besides, if you really end up going back in time, I'll see you again.":
                 connect(node,common_hook)
+
+        
+        #Early variable init hook. This is similar to the one above, but initializes variables at the very start of the game. Trust me, it helps with conflicts
+        earlyVarInitHook = modast.find_say("I awoke from uneasy dreams looking at an unfamiliar ceiling. Just for a moment, I wondered where I was before the events of last night all came back to me.")
+        modast.call_hook(earlyVarInitHook, modast.find_label("eval_tdomi_early"))
 
         #Hook to add line of dialog when our MC dropps off the eggs at the hatchery
         for node in renpy.game.script.all_stmts:
@@ -85,6 +126,42 @@ class AWSWMod(Mod):
         #Hook to remove any mentions of sweat from the game so my jokes make canonotical sense
         handleSweat = modast.find_say("After holding it for a few seconds, he breathed a sigh of relief as he relaxed and the flapping motion stopped again.")
         modast.call_hook(handleSweat, modast.find_label("eval_change_sweat_reference"), None, modast.search_for_node_type(handleSweat, ast.Menu))
+        #Hook to add a variable as to whether you have met Lucius in the current playthrough.
+        metLucius = modast.find_say("Just as I entered the southern part of the park, I found myself tumbling to the ground when someone suddenly bumped into me.")
+        modast.call_hook(metLucius, modast.find_label("eval_met_lucius"), None, modast.find_say("Sorry about that. Are you alright?"))
+        
+        #Hook to add a variable as to whether you have met Kalinth in the current playthrough.
+        metKalinth = modast.find_say("You're in luck, [player_name]! Bryce compiled all the case files a while ago. Ever since you came to our world, he seems to be a lot more interested in these human mysteries. I wonder if it has something to do with you?")
+        modast.call_hook(metKalinth, modast.find_label("eval_met_kalinth"), None, modast.find_say("Anyway, you can find all the files here. I'll leave the rest to you."))
+        
+        #Hook to add a variable as to whether you have met Dramavian in the current playthrough.
+        metDram = modast.find_say("(Well, maybe it {i}is{/i} a statue. Or I just turned invisible.)")
+        modast.call_hook(metDram, modast.find_label("eval_met_dram"), None, modast.find_say("(I hope it's not the latter.)"))
+        
+        #Adding stuff to the main menu screen. Code by ECK
+        tocompile = """
+        screen dummy:
+            if persistent.evalEndingA:
+                add "image/ui/title/vanillaEnding.png"
+            
+            if persistent.evalEndingB:
+                add "image/ui/title/strawberryEnding.png"
+            
+            if persistent.evalEndingC:
+                add "image/ui/title/mangoEnding.png"
+            
+            if persistent.evalEndingD:
+                add "image/ui/title/cherryEnding.png"
+            
+            if persistent.evalGogglesScene:
+                add "image/ui/title/chocolateEnding.png"
+        """
+        compiled = parser.parse("FNDummy", tocompile)
+        for node in compiled:
+            if isinstance(node, ast.Init):
+                for child in node.block[0].screen.children:
+                    modast.get_slscreen("main_menu").children.append(child)
+
     def mod_complete(self):
         if "Side Images" in modinfo.get_mods():
             load_side_ims()

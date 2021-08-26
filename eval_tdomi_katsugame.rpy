@@ -385,7 +385,7 @@ label eval_help_em:
         c "No problem. What can I get you?"
         Em ques "I'll take the cherry please. It is quite a sophisticated flavor if you ask me."
     elif evalCharacterMood == 1:
-        Em "Sorry, but much as I would love to spend all day chatting, I don't think it would look good on my record to hold up the line." #This might be a little too confusing
+        Em "You know, I've heard great things about Katsuharu's ice cream. I hope I'm not disappointed."
         c "Of course. What can I get you?"
         Em ques "I'll take only your finest scoop of cherry, please. It is quite a sophisticated flavor if you ask me."
     elif evalCharacterMood == 2:
@@ -441,7 +441,7 @@ label eval_help_grey:
     $ evalCharacterPreferredFlavor = "vanilla"
     show grey normal with easeinright
     Gr "Oh! Fancy meeting you here again!"
-    c "Quite a conincidence that both times we've met, I've been working with Katsuharu."
+    c "Quite a coincidence that both times we've met, I've been working with Katsuharu."
     Gr "Indeed."
     if evalCharacterMood == 0:
         Gr "Sorry to be so cut and dry, but I'm running late to an art showing."
