@@ -815,7 +815,7 @@ label eval_everyone_3:
         m "He reached under his cart once more, revealing a large bottle of an opaque, red syrup, and added a healthy portion to the cup."
         m "As a final touch, Katsuharu garnished the dessert with coconut shavings."
         m "He added a spoon and handed the cup over to me."
-        show katsu smile flip at position (xpos = 0.1) with easeinleft
+        show katsu smile flip at Position (xpos = 0.1) with easeinleft
         Ka "Here you are!"
     else:
         m "In another brisk motion, the dragon revealed a standard waffle cone and carefully rested the scoop on top."
