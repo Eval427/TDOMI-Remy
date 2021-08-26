@@ -1064,31 +1064,31 @@ label eval_post_secret_remy_meeting:
     scene evalportalb at Pan ((0, 0), (600, 380), 4.0) with dissolveslow
     $ renpy.pause (4.0)
     m "Aside from a few meager attempts to put the portal's terminal back together, the components still lay in tatters."
-    m "The damage was great, but the portal should have still been operational."
-    m "I attempted to interact with the portal. However, i recieved no reponse from it's terminal."
-    m "Looking down again, I noticed a small bullet hole near the base of the terminal."
+    m "I attempted to interact with the terminal. However, I recieved no reponse."
+    m "Looking down again, I noticed a small bullet hole near the base of the terminal's housing."
     c "(So that's where Reza's final bullet landed.)"
-    m "The damage the bullet had caused wasn't pretty. It had managed to pierce through the metal frame and much of the hardware."
+    m "The damage it had caused wasn't pretty. It had managed to pierce through the metal frame and much of the hardware."
     m "In one last desperate attempt, I tried the terminal screen again."
-    m "There was no response. With a sigh of defeat, I made my way back over to Remy."
+    m "There was no response."
+    m "With a sigh of defeat, I made my way back over to Remy."
     scene black with dissolveslow
     play sound "fx/evalgrasswalk2.ogg"
+    $ renpy.pause (1.0)
     scene np1x
     show remy normal
     with dissolveslow
     Ry "So, any luck?"
     c "No, I don't think there's any way to fix the portal and travel back to the day I came here without the help of the dead Administrator."
-    Ry look "Wait, travel back to the day you got here? Doesn't that imply time travel."
+    Ry "Wait, go back to the day you got here? Doesn't that imply time travel."
     c "Yes. The portal can be used to manipulate time."
-    Ry "That makes sense. In most circumstances the probability for an alien life form to be able to live in the conditions of another planet would be astronomically low."
-    c "However, if you instead came from another time period on Earth, then it would make sense why you are accustomed to our conditions."
-    $ renpy.pause (1.0)
-    Ry "You know, if you were supposed to go back to the day you came here, does that mean that you have done this before?"
+    Ry "I guess that makes sense. In most circumstances, the probability for an alien life form to be able to live in the conditions of another planet would be astronomically low."
+    Ry "However, if you instead came from another time period on Earth, then it would make sense why you are accustomed to our environment."
+    Ry look "You know, if you were supposed to go back to the day you came here, does that mean that you have done this before?"
     c "Yes. I mean, I think so. The memories are vague."
-    Ry "Did things happen the same way?"
+    Ry "Did things happen the same way they did here?"
     c "I really can't remember. The only thing I can say for sure is that at some point, Vara was dead."
     Ry "Then that must mean that alternate timelines exist."
-    Ry "And in that case, if you've experienced something as significant as Vara dying, what's to say that other factors could change in those timelines as well?"
+    Ry "And in that case, if you've experienced something as significant as Vara dying, what's to say that other factors couldn't change in those timelines as well?"
     c "What do you mean by that?"
     Ry normal "Well, it's quite possible that in one of those timelines, you save humanity as well."
     m "I pondered what Remy had just said. It seemed crazy, yet it also made too much sense."

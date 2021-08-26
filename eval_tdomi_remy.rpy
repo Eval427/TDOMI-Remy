@@ -83,10 +83,15 @@ label eval_tdomi_remy:
     m "Wait a minute!" with Shake ((0, 0, 0, 0), 2, dist=10)
     $ renpy.pause (1.0)
     call eval_special_mentions from _eval_mentions
-    $ persistent.evalFirstTimePlaying = False
-    scene park2
-    show remy look
-    with dissolveslow
+    $ persistent.evalFirstTimePlaying = False\
+    if evalDoingSecretEnding:
+        scene np1x
+        show remy look
+        with dissolveslow
+    else:
+        scene park2
+        show remy look
+        with dissolveslow
     $ renpy.pause (0.5)
 
     #Options for music: clouds, fountain, fun, funness. Also I need to somehow fix the sound when scrolling back. Don't know if that's a game bug or I'm doing something wrong
@@ -162,7 +167,7 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 1
             jump eval_solo_remy_1
         
-        "Amely." if persistent.evalEndingD or not evalDoingSecretEnding:
+        "Amely." if not evalDoingSecretEnding:
             c "Why don't we go together with Amely?"
             c "She's a hatchling, so I'm sure she would love to go and get some ice cream with us. Especially from the renowned Katsuharu."
             Ry smile "Good idea. You know, I'm not even sure if she has ever had ice cream before."
@@ -2866,26 +2871,25 @@ label eval_remy_amely_adine_sleep_select:
                 show remy look with dissolvemed
                 show vara smnormal ghost with dissolvemed #Change this so that MC doesn't say anything about Vara (internal dialogue)
                 Ry "Are you alright, [player_name]?"
-                c "Vara?"
+                c "I don't understand what's going on."
                 Ry look "[player_name], what are you talking about?"
-                c "Vara... She's next to you, Remy."
-                Ry sad "Don't do this to me, [player_name]."
+                c "Well..."
+                m "I considered telling Remy about the ghostly apparition of Vara standing directly in front of him, but stopped myself."
+                Ry "[player_name]."
                 hide vara with dissolvemed
-                c "No, Remy. I just saw Vara. She looked almost like a ghost."
+                c "I'm sorry, Remy. I think my eyes are playing tricks on me."
                 Ry "Maybe that ice cream isn't sitting well with you."
-                c "I saw Vara, Remy. There is no denying that."
-                Ry angry "Enough, [player_name]! Her death has hurt us all, especially me."
-                Ry "Do you know how many sleepless nights I've had?"
-                Ry "I blame myself for her death."
-                c "Remy, Vara is still here. She's somewhere."
-                Ry sad "What do you mean? She's dead."
-                c "I can't explain this."
-                Ry look "I have no reason to believe anything you just said."
-                Ry "But for some reason, I still believe you."
-                Ry sad "Maybe in some other world, Vara is still here with us."
-                c "We can only hope, Remy."
-                m "Remy took a deep breath and regained his composure."
-                Ry normal "Let's go to bed, [player_name]."
+                c "I'm not sure."
+                Ry sad "Do you think you need to go to the hospital?"
+                c "No, I don't think so. I think what I really need is some sleep."
+                Ry "Are you {i}sure{/i} you're alright? You look quite dazed."
+                c "I really do think I'm just tired."
+                Ry "Well, I'm staying here just in case."
+                c "Not that I mind the company."
+                m "Remy sighed and regained some of his composure."
+                Ry normal "You say that, but sometimes I snore."
+                ac "Oh no."
+                Ry "I'm just trying to lighten up the mood. Let's go to bed, [player_name]."
                 c "Agreed."
                 if evalRemyShareBed3:
                     hide remy with dissolvemed
@@ -3403,17 +3407,27 @@ label eval_special_mentions: #Special mentions to those who helped me
     return
 
 label eval_custom_credits:
+    $ renpy.pop_call()
     m "Thank you for playing the (almost) finished version of This Dragon Owes Me Ice Cream!"
     m "Currently, I have no credits made, so live with this while I work on that."
     m "This was a lot of fun to make, and I hope you enjoyed!"
     if evalCurrentEnding == 1:
         m "You got Remy's ending!"
+        if not persistent.evalEndingBUnlocked:
+            play sound "fx/system3.wav"
+            s "It seems that you have unlocked another ending!"
+            s "Play through the content again to discover it!"
+            $ persistent.evalEndingBUnlocked = True
     elif evalCurrentEnding == 2:
         m "You got Remy and Amely's ending!"
+        if not persistent.evalEndingCUnlocked:
+            play sound "fx/system3.wav"
+            s "It seems that you have unlocked another ending!"
+            s "Play through the content again to discover it!"
+            $ persistent.evalEndingCUnlocked = True
     elif evalCurrentEnding == 3:
         m "You got Remy, Amely, and Adine's ending!"
     elif evalCurrentEnding == 4:
         m "You got the final ending! Good job!"
-    m "By the way, if you for some reason jump to the beginning of the game after this, I'll fix it later."
     return
 #This file is way too long.

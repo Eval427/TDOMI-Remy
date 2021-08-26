@@ -73,7 +73,7 @@ label eval_tdomi_common:
     image adine think eval icecream = "cr/adine_think_eval_icecream.png"
     image adine think eval icecream flip = im.Flip("cr/adine_think_eval_icecream.png", horizontal=True)
 
-    #Goggles
+    #Goggles - Some of these images aren't used, but I might as well add compatability for everything I have
     image amely smnormal goggles = "cr/amely_smnormal_goggles.png"
     image amely smnormal goggles flip = "cr/amely_smnormal_goggles_flip.png"
     image amely smsad goggles = "cr/amely_smsad_goggles.png"
@@ -343,6 +343,11 @@ label eval_tdomi_common:
             persistent.evalEndingC = False #Remy, Amely, and Adine - Mango
         if not persistent.evalEndingD:
             persistent.evalEndingD = False #Everyone - Cherry
+        
+        if not persistent.evalEndingBUnlocked:
+            persistent.evalEndingBUnlocked = False
+        if not persistent.evalEndingCUnlocked:
+            persistent.evalEndingCUnlocked = False
         
         #Fails
         if not persistent.evalUniqueFails:
