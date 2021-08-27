@@ -624,7 +624,7 @@ label eval_everyone_1:
                     c "Sure! I'd love to listen to some of your music!"
                     Ka smile "Great! I've got some amazing stuff here!"
                     $ evalKatsuMusic = True
-                    queue music ["mx/cassette.mp3", "mx/Cozy Snail.mp3", "mx/neonlights.mp3", "mx/nurture.mp3", "mx/tunnel.mp3"]
+                    queue music ["mx/cassette.mp3", "mx/cozysnail.mp3", "mx/neonlights.mp3", "mx/nurture.mp3", "mx/tunnel.mp3"]
                     m "With a soft click, Katsuharu slid a cassette into the player and hit play."
                     Ka "How's that?"
 
