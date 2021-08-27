@@ -538,10 +538,43 @@ label eval_trip_to_orphanage:
             Ry smile "Sorry. Amely and I will grab you the supplies you need since we are very familiar with this place."
             Am "Yay!!!"
             c "Sounds like a plan. Let's do this!"
+            if persistent.evalEndingD:
+                play sound "fx/system3.wav"
+                s "It turns out you've already played this minigame enough. Would you like to skip it?"
+                menu:
+                    "Yes.":
+                        s "Would you like to beat it?"
+                        menu:
+                            "Yes.":
+                                $ evalOrphanageScore = 3
+                                play sound "fx/system3.wav"
+                                s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                                stop music fadeout 2.0
+                                scene black with dissolveslow
+                                scene evalorphlight with dissolveslow
+
+                            "No.":
+                                $ evalCustomerScore = 1
+                                play sound "fx/system3.wav"
+                                s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                                stop music fadeout 2.0
+                                scene black with dissolveslow
+                                scene evalorphdark with dissolveslow
+
+                        show remy normal
+                        show amely smnormal
+                        with dissolvemed
+                        jump eval_remy_amely_adine_1
+                    
+                    "No.":
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        pass
+
             show remy normal with dissolvemed
             jump eval_orphanage_game_init
             
-        "Take a scenic walk to the orphanage.": #Add a skip here
+        "Take a scenic walk to the orphanage.":
             $ evalScenicWalk = True
             c "I think we should just walk and enjoy the scenery on our way there."
             Ry look "Are you sure, [player_name]? I thought you just said you shouldn't be walking."
@@ -1538,7 +1571,7 @@ label eval_remy_amely_2:
             m "Amely eagerly grabbed the cone from my hands and took a giant bite of the [evalChosenFlavor] ice cream."
             if evalChosenFlavor == "special": #Add a bit extra where MC takes the ice cream back from Amely and tastes it themself
                 m "Her face instantly contorted into disgust."
-                Am smsad "{size+=10}BAD!!!{/size}"
+                Am smsad "{size=+10}BAD!!!{/size}"
                 m "Angrily, the little dragon threw the ice cream onto the ground."
                 Am "Ice cream bad... {w}Ice cream bad... {w}Ice cream bad..."
                 c "I don't think she's a fan of the special."
@@ -1862,6 +1895,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
                 $ renpy.pause (1.0)
                 $ persistent.skipnumber += 1
                 call skipcheck from evalSkipCheckC1
+                play music "mx/funness.ogg"
                 jump eval_skip_C1
 
             "No. Don't skip ahead.":
@@ -2258,6 +2292,71 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             hide amely with easeoutleft
             scene black with dissolveslow
             scene evalkatsucart with dissolveslow
+            if persistent.evalEndingD:
+                play sound "fx/system3.wav"
+                s "It turns out you've already played this minigame enough. Would you like to skip it?"
+                menu:
+                    "Yes.":
+                        s "Would you like a perfect score?"
+                        menu:
+                            "Yes.":
+                                $ evalCustomerScore = 10
+
+                            "No.":
+                                $ evalCustomerScore = 5
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        stop music fadeout 2.0
+                        scene black with dissolveslow
+                        scene evalkatsucart with dissolveslow
+                        jump eval_everyone_2
+                    
+                    "No.":
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        pass
+
+            Ka normal "Before we start, would you mind if I put on some music for us to listen to? I have a small cassette player in my cart that I use to pass the time."
+
+            menu:
+                "Sure.":
+                    stop music
+                    $ renpy.music.set_pause(False, "music")
+                    c "Sure! I'd love to listen to some of your music!"
+                    Ka smile "Great! I've got some amazing stuff here!"
+                    $ evalKatsuMusic = True
+                    queue music ["mx/cassette.mp3", "mx/Cozy Snail.mp3", "mx/neonlights.mp3", "mx/nurture.mp3", "mx/tunnel.mp3"]
+                    m "With a soft click, Katsuharu slid a cassette into the player and hit play."
+                    Ka "How's that?"
+
+                    menu:
+                        "I like it!":
+                            c "You have good taste in music, Katsuharu."
+                            Ka "Thanks!"
+                        
+                        "Actually, why don't we turn it off.":
+                            c "Sorry, Katsuharu, but I think that might distract me while I work."
+                            Ka "It's okay! I understand."
+                            stop music fadeout 2.0
+                            m "Katsuharu reached down and paused his cassette player."
+                            play sound "fx/system3.wav"
+                            s "Back to your regularly scheduled programming."
+                            play music "mx/funness.ogg"
+                            $ renpy.pause (2.0)
+                            s "Actually, why not go even further? Would you like to play this minigame out in complete silence?"
+
+                            menu:
+                                "Yes.":
+                                    s "Well, this is going to be awkward, but suit yourself."
+                                    stop music fadeout 2.0
+                                
+                                "No.":
+                                    s "Good choice."
+                
+                "No thanks.":
+                    c "Sorry, I don't feel like listening to anything at the moment."
+                    Ka normal "No problem."
+                    $ renpy.music.set_pause(False, "music")
             Ka normal "Alright, here's the plan everyone."
             Ka "Remy, grab a scoop from that drawer there."
             Ka "[player_name], you take orders."
@@ -2443,17 +2542,6 @@ label eval_remy_amely_adine_3:
                 Ad normal b "When we used to get ice cream as kids, everyone would always call Remy the 'Vanilla Dragon'."
                 Ry "Yes, a name I would like to leave in the past."
                 Ad giggle b "Too late, Remy. [player_name] brought it back to light."
-                if evalAdineSlaps == 2:
-                    Ry smile "Well Adine, now that both of us have a flavor associated with us, what should [player_name]'s flavor be?"
-                    Ad think b "That's a good question."
-                    Ad "That skin tone isn't exactly the most appealing in the form of food, so I can't say there's many options."
-                    Ry look "Pumpkin?"
-                    Ad "Too orange. Plus that's not an ice cream flavor."
-                    Ka normal flip "You know, that doesn't sound half bad."
-                    Ka smile flip "Check back this fall. You might just see that on the menu."
-                    Ad normal b "Really? That sounds quite good!"
-                    Ry normal "Well. I'm stumped on [player_name]'s flavor."
-                    Ad "Same here."
             else:
                 m "Remy sighed."
                 Ry "I guess you could think about it like that."
@@ -2465,7 +2553,7 @@ label eval_remy_amely_adine_3:
 
     Ka normal flip "Okay, Adine. What can I get you?"
     if evalChosenFlavor == "special":
-        Ad normal "I'm curious to try the 'special' with [player_name]."
+        Ad normal b "I'm curious to try the 'special' with [player_name]."
     else:
         Ad normal b "I think I'll try the 'special'."
     Ka "Good choice! I think you'll like it."
@@ -2631,7 +2719,7 @@ label eval_remy_amely_adine_3:
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
     $ renpy.pause (2.0)
-    show katsu normal flip at Position (xpos = 0.1) with easeinleft
+    show katsu normal flip with easeinleft
     show katsu normal with dissolvemed
     Ka "Here you go."
     c "This one somehow looks even better than the last."
@@ -2732,7 +2820,7 @@ label eval_remy_amely_adine_3:
     play sound "fx/takeoff.ogg"
     m "Adine took a few steps and took flight into the air."
     m "After gaining altitude, she tucked in her wings and zeroed in on Amely."
-    m "In the next instant, Adine had Amely firmly in her claws and took off towards the orphanage."
+    m "In the next instant, Adine had Amely firmly in her claws and lifted her into the air."
     Ry normal "That was entertaining."
     c "Very."
     Ry "Well, I'll take you home."
@@ -2903,7 +2991,7 @@ label eval_remy_amely_adine_sleep_select:
                 c "Not that I mind the company."
                 m "Remy sighed and regained some of his composure."
                 Ry normal "You say that, but sometimes I snore."
-                ac "Oh no."
+                c "Oh no."
                 Ry "I'm just trying to lighten up the mood. Let's go to bed, [player_name]."
                 c "Agreed."
                 if evalRemyShareBed3:
@@ -3377,7 +3465,7 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     c "That raises a good question. Do we get to keep these goggles?"
     Ad annoyed goggles flip "Heck no! I paid good money for these goggles!"
     c "Then why do you have so many in the first place?"
-    Ad normal goggles flip "Just in case. On occasion they come off while I'm flying or break."
+    Ad normal goggles flip "Just in case. On occasion they come off while I'm flying or I'll drop them."
     Ad "Plus, what else am I supposed to put in my closet? It's not like I have any clothes."
     Ry "I must say, this has been quite the experience."
     c "(That it has.)"
@@ -3389,7 +3477,7 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     s "At this point you have most likely completed most if not all mod content."
     s "Thank you for playing!"
     $ persistent.evalGogglesScene = True
-    return
+    jump eval_custom_credits
 
 label eval_special_mentions: #Special mentions to those who helped me
     if persistent.evalFirstTimePlaying:

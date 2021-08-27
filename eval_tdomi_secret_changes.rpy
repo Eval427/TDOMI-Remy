@@ -370,7 +370,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             if remystatus == "neutral":
                 m "My mind still spinning, I made my way into the bedroom."
                 play sound "fx/undress.ogg"
-                m "I quickly undressed, and too tired to prepare any further, fell asleep."
+                m "I quickly undressed and, too tired to prepare any further, fell asleep."
                 scene black with dissolveslow
             else:
                 menu:
@@ -387,7 +387,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                         Ry "Goodnight, [player_name]."
                         m "My mind still spinning, I made my way into the bedroom."
                         play sound "fx/undress.ogg"
-                        m "I quickly undressed, and too tired to prepare any further, fell asleep."
+                        m "I quickly undressed and, too tired to prepare any further, fell asleep."
                         scene black with dissolvemed
                     
                     "Share the bed.":

@@ -591,6 +591,30 @@ label eval_everyone_1:
             $ renpy.music.set_pause(True, "music")
             scene black with dissolveslow
             scene evalkatsucart with dissolveslow
+            if persistent.evalEndingD:
+                play sound "fx/system3.wav"
+                s "It turns out you've already played this minigame enough. Would you like to skip it?"
+                menu:
+                    "Yes.":
+                        s "Would you like a perfect score?"
+                        menu:
+                            "Yes.":
+                                $ evalCustomerScore = 10
+
+                            "No.":
+                                $ evalCustomerScore = 5
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        stop music fadeout 2.0
+                        scene black with dissolveslow
+                        scene evalkatsucart with dissolveslow
+                        jump eval_everyone_2
+                    
+                    "No.":
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        pass
+
             Ka normal "Before we start, would you mind if I put on some music for us to listen to? I have a small cassette player in my cart that I use to pass the time."
 
             menu:
@@ -868,17 +892,6 @@ label eval_everyone_3:
                 Ad normal b "When we used to get ice cream as kids, everyone would always call Remy the 'Vanilla Dragon'."
                 Ry "Yes, a name I would like to leave in the past."
                 Ad giggle b "Too late, Remy. [player_name] brought it back to light."
-                if evalAdineSlaps == 2:
-                    Ry smile "Well Adine, now that both of us have a flavor associated with us, what should [player_name]'s flavor be?"
-                    Ad think b "That's a good question."
-                    Ad "That skin tone isn't exactly the most appealing in the form of food, so I can't say there's many options."
-                    Ry look "Pumpkin?"
-                    Ad "Too orange. Plus that's not an ice cream flavor."
-                    Ka normal flip "You know, that doesn't sound half bad."
-                    Ka smile flip "Check back this fall. You might just see that on the menu."
-                    Ad normal b "Really? That sounds quite good!"
-                    Ry normal "Well. I'm stumped on [player_name]'s flavor."
-                    Ad "Same here."
             else:
                 Ry "I guess you could think about it like that."
         
@@ -889,7 +902,7 @@ label eval_everyone_3:
 
     Ka normal flip "Alright, Adine, I'll take your order as well."
     if evalChosenFlavor == "special":
-        Ad normal "I'm curious to try the 'special' with [player_name]."
+        Ad normal b "I'm curious to try the 'special' with [player_name]."
         Ka "Good choice! I think you'll like it."
         Ad giggle b "I've served the dish enough times. I'm curious to see how it is as ice cream."
         Ka smile flip "Much better. I promise."
@@ -1131,7 +1144,12 @@ label eval_everyone_3:
                 m "In unison, Remy and I both took a bite of our respective scoops of ice cream."
                 m "Still wary about which flavor I was really about to eat, I was pleasantly surprised when my tongue made contact with the cool, delicious flavor of mango ice cream."
                 m "Any ice cream I had previously had could not compare with the smooth, creamy texture of Katsuharu's."
-            
+                c "Wow! This is amazing!"
+                Ry smile "I'm glad you like it!"
+                stop music fadeout 2.0
+                scene black with dissolveslow
+                m "For the next while the five of us sat quietly as we enjoyed our ice cream. Adine had some difficulties with hers, but after a while she had completely cleaned off her muzzle."
+
             "[[Keep your ice cream.]":
                 c "Sorry, Amely. But I think you've had enough ice cream for today."
                 Am smsad "Awwww..."
@@ -1163,12 +1181,12 @@ label eval_everyone_3:
                 m "I carefully took a taste of the ice cream."
                 m "Preparing my taste buds for the worse, I was pleasantly surprised when my tongue made contact with the cool, delicious flavor of mango ice cream."
                 m "Any ice cream I had previously had could not compare with the smooth, creamy texture of Katsuharu's."
-        
-        c "Wow! This is amazing!"
-        Ry smile "I'm glad you like it!"
-        stop music fadeout 2.0
-        scene black with dissolveslow
-        m "For the next while the five of us sat quietly as we enjoyed our ice cream. Adine had some difficulties with hers, but after a while she had completely cleaned off her muzzle."
+                c "Wow! This is amazing!"
+                Ry smile "I'm glad you like it!"
+                stop music fadeout 2.0
+                scene black with dissolveslow
+                m "For the next while the five of us sat quietly as we enjoyed our ice cream."
+
         scene evalpark2
         show adine normal b flip at left #No more ice cream on her face. How sad.
         show amely smnormal flip at left
@@ -1310,14 +1328,14 @@ label eval_everyone_3:
             Ad annoyed b flip "Let's just hope my stomach doesn't say something to contradict that statement later."
             Ry look "Well, what are we going to do now? It's ironic that [player_name] brought us all out here to treat us to ice cream but isn't able to have any themself."
             Ka "Did I hear something about an unhappy customer?"
-            show adine normal b flip at Position (xpos = 0.6) behind remy
             show amely smnormal flip at Position (xpos = 0.6) behind remy
+            show adine normal b flip at Position (xpos = 0.6) behind amely
             with move
-            show adine normal b behind amely
-            show amely smnormal behind remy
+            show adine normal b at Position (xpos = 0.6) behind amely
+            show amely smnormal at Position (xpos = 0.6) behind remy
             show remy normal behind vara
             with dissolvemed
-            show katsu at Position (xpos = 0.1) with easeinleft
+            show katsu normal flip at Position (xpos = 0.1) with easeinleft
             c "How did you know?"
             Ka smile flip "As a businessman, I have a sixth sense for customer satisfaction."
             m "Katsuharu quickly produced a fresh scoop of vanilla ice cream."
