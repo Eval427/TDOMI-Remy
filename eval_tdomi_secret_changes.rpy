@@ -18,6 +18,7 @@
 label eval_hatchery_visited:
     if not renpy.python.store_dicts["store"].get("evalFixDoubleOrphanageLine", False):
         m "It wasn't until now that I noticed Vara looking at me with a curious expression."
+        c "(I wonder what that's about.)"
         if adinescenesfinished != 3:
             $ renpy.pop_call()
             stop music fadeout 2.0

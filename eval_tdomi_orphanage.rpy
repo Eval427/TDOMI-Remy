@@ -205,7 +205,7 @@ label eval_orphanage_remy_item_gather:
             "Supply Closet." if "lightbulbs" not in evalGatheredItems or "lightswitch" not in evalGatheredItems or "DWD-40" not in evalGatheredItems:
 
                 menu:
-                    "Lightbulbs." if "lightbulbs" not in evalGatheredItems:
+                    "Lightbulbs." if "lightbulbs" not in evalGatheredItems and not (evalReplaceBulbs and evalResetBreaker):
                         $ evalRemyItem = "lightbulbs"
                         $ evalMinutesRemyIsGone = 15
                         $ evalRemyOnMission = True

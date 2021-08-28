@@ -540,7 +540,7 @@ label eval_trip_to_orphanage:
             c "Sounds like a plan. Let's do this!"
             if persistent.evalEndingD:
                 play sound "fx/system3.wav"
-                s "It turns out you've already played this minigame enough. Would you like to skip it?"
+                s "It turns out you've already played this minigame. Would you like to skip it?"
                 menu:
                     "Yes.":
                         s "Would you like to beat it?"
@@ -2091,7 +2091,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             m "It wasn't as uncomfortable as I had first imagined."
             m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
     else:
-        m "As a seasoned dragon rider. I sat back and gazed up at the sky." #Is this too... weird?
+        m "I sat back and gazed up at the sky." #Is this too... weird?
     
     $ renpy.pause (0.5)
     m "It seemed as if it took mere minutes to arrive back at Tatsu Park."
@@ -2294,7 +2294,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             scene evalkatsucart with dissolveslow
             if persistent.evalEndingD:
                 play sound "fx/system3.wav"
-                s "It turns out you've already played this minigame enough. Would you like to skip it?"
+                s "It turns out you've already played this minigame. Would you like to skip it?"
                 menu:
                     "Yes.":
                         s "Would you like a perfect score?"
@@ -2320,7 +2320,6 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
 
             menu:
                 "Sure.":
-                    stop music
                     $ renpy.music.set_pause(False, "music")
                     c "Sure! I'd love to listen to some of your music!"
                     Ka smile "Great! I've got some amazing stuff here!"

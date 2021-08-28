@@ -175,7 +175,6 @@ label eval_tdomi_common:
     image adine sad goggles shot e = "cr/adine_sad_goggles_shot_e.png"
     image adine sad goggles shot e flip = im.Flip("cr/adine_sad_goggles_shot_e.png", horizontal=True)
 
-    #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
 
     #Check if player has ridden Bryce in ECK's Savior Mod.
@@ -195,7 +194,7 @@ label eval_tdomi_common:
     #Whether you have had spaghettieis explained
     $ evalExplainSpaghettieis = False
 
-    #Tracks current ending (1 = solo remy, 2 = remy + amely, 3 = remy + amely + adine)
+    #Tracks current ending (1 = solo remy, 2 = remy + amely, 3 = remy + amely + adine, 4 = everyone)
     $ evalCurrentEnding = 0
 
     #Whether you decide to switch cones with Remy

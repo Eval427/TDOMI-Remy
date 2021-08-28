@@ -1,7 +1,6 @@
 #Things to remember because I forgetful
 #PS, as soon as I write this down, I will never forget it because I only forget things when I don't write them down
 #Tape measure - If you use it, adine will secretly switch the special and the mango vats, so you get the special
-#It's possible I add dialogue to account for the possiblility that multiple Izumi's attempt to go into the timeline to stop MC from returning through the portal (maybe the pendants are linked directly to each other or once 2 exist in 1 corrupted timeline other's don't detect it)
 
 #Changes dialogue for when you arrive at the orphanage
 #Incorporate a Vara mood counter for how she reacts? Oh god that sounds not fun
@@ -78,6 +77,38 @@ label eval_secret_orphanage_arrival:
     Vr "I'll stay here."
     c "It'll be nice to have an extra set of hands, or I guess claws, to help."
     Ry smile "Sounds like a plan. Let's do this!"
+    if persistent.evalEndingD:
+    play sound "fx/system3.wav"
+    s "It turns out you've already played this minigame. Would you like to skip it?"
+    menu:
+        "Yes.":
+            s "Would you like to beat it?"
+            menu:
+                "Yes.":
+                    $ evalOrphanageScore = 3
+                    play sound "fx/system3.wav"
+                    s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                    stop music fadeout 2.0
+                    scene black with dissolveslow
+                    scene evalorphlight with dissolveslow
+
+                "No.":
+                    $ evalCustomerScore = 1
+                    play sound "fx/system3.wav"
+                    s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                    stop music fadeout 2.0
+                    scene black with dissolveslow
+                    scene evalorphdark with dissolveslow
+
+            show remy normal
+            show amely smnormal
+            with dissolvemed
+            jump eval_everyone_1
+        
+        "No.":
+            play sound "fx/system3.wav"
+            s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+            pass
     show remy normal behind vara with dissolvemed
     jump eval_secret_orphanage_game_init
 
@@ -178,6 +209,7 @@ label eval_everyone_1:
                 $ persistent.skipnumber += 1
                 call skipcheck from evalSkipCheckD1
                 play music "mx/funness.ogg"
+                $ evalAdineSlaps += 1
                 jump eval_skip_D1
 
             "No. Don't skip ahead.":
