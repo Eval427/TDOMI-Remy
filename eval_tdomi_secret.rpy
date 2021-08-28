@@ -78,39 +78,39 @@ label eval_secret_orphanage_arrival:
     c "It'll be nice to have an extra set of hands, or I guess claws, to help."
     Ry smile "Sounds like a plan. Let's do this!"
     if persistent.evalEndingD:
-    play sound "fx/system3.wav"
-    s "It turns out you've already played this minigame. Would you like to skip it?"
-    menu:
-        "Yes.":
-            s "Would you like to beat it?"
-            menu:
-                "Yes.":
-                    $ evalOrphanageScore = 3
-                    play sound "fx/system3.wav"
-                    s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
-                    stop music fadeout 2.0
-                    scene black with dissolveslow
-                    scene evalorphlight with dissolveslow
+        play sound "fx/system3.wav"
+        s "It turns out you've already played this minigame. Would you like to skip it?"
+        menu:
+            "Yes.":
+                s "Would you like to beat it?"
+                menu:
+                    "Yes.":
+                        $ evalOrphanageScore = 3
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        stop music fadeout 2.0
+                        scene black with dissolveslow
+                        scene evalorphlight with dissolveslow
 
-                "No.":
-                    $ evalCustomerScore = 1
-                    play sound "fx/system3.wav"
-                    s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
-                    stop music fadeout 2.0
-                    scene black with dissolveslow
-                    scene evalorphdark with dissolveslow
+                    "No.":
+                        $ evalCustomerScore = 1
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        stop music fadeout 2.0
+                        scene black with dissolveslow
+                        scene evalorphdark with dissolveslow
 
-            show remy normal
-            show amely smnormal
-            with dissolvemed
-            jump eval_everyone_1
-        
-        "No.":
-            play sound "fx/system3.wav"
-            s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
-            pass
-    show remy normal behind vara with dissolvemed
-    jump eval_secret_orphanage_game_init
+                show remy normal
+                show amely smnormal
+                with dissolvemed
+                jump eval_everyone_1
+            
+            "No.":
+                play sound "fx/system3.wav"
+                s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                pass
+        show remy normal behind vara with dissolvemed
+        jump eval_secret_orphanage_game_init
 
 label eval_everyone_sleep:
     Ry "Well, here we are!"
