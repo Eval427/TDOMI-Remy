@@ -31,7 +31,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
     if persistent.evalSecretEndingUnlocked and c4hatcheryplayed and varasaved:
         if persistent.evalSecretEndingCompleted:
             play sound "fx/system3.wav"
-            s "It seems that you have already seen the true ending for TDOMI. Would you like to experience it again or the normal turn of events?"
+            s "It seems that you have already seen the true ending for This Dragon Owes me Ice Cream. Would you like to experience it again or the normal turn of events?"
 
             menu:
                 "True ending path.":
@@ -246,7 +246,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                 c "I'd love to."
                 m "I grabbed a piece of sushi and looked at it for a moment."
                 show vara smnone flip with dissolvemed
-                m "Vara looked at my nervously as I put the piece of sushi in my mouth."
+                m "Vara looked at me nervously as I put the piece of sushi in my mouth."
                 m "It was amazing. The buttery fish complemented the somewhat tangy taste of the algae and the crispness of the cucumber."
                 c "Wow, Vara! This is really good!"
                 if evalVaraMood >= 4:
@@ -691,7 +691,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Vr smsad "Scared..."
     m "Vara escaped from Remy's protective grasp and ran over to me."
     hide vara with dissolvemed
-    m "She pressed her head into my idly open hand. I could feel tears forming at her eyes."
+    m "She pressed her head into my idly open hand. I could feel tears forming in her eyes."
     c "It'll be alright, Vara. I promise everything will be okay."
     m "I gently rubbed her head."
     Ry "Come on, Vara. Let's go help [player_name]."
@@ -991,7 +991,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     nvl clear
     window show
 
-    n "Upon this discovery, the dragons sent their brightest engineers in attempts to restablish a connection with the human world."
+    n "Upon this discovery, the dragons sent their brightest engineers in attempts to establish a connection with the human world."
     n "However, after weeks of unsuccessful attempts, the operation was deemed to be a failure."
     n "Ultimately, the dragons decided to leave the portal standing in its current state."
     n "Luckily, my claims were taken seriously, and there was already a plan in place to divert the comet."
@@ -1065,7 +1065,7 @@ label eval_post_secret_remy_meeting:
     scene evalportalb at Pan ((0, 0), (600, 380), 4.0) with dissolveslow
     $ renpy.pause (4.0)
     m "Aside from a few meager attempts to put the portal's terminal back together, the components still lay in tatters."
-    m "I attempted to interact with the terminal. However, I recieved no reponse."
+    m "I attempted to interact with the terminal. However, I received no response."
     m "Looking down again, I noticed a small bullet hole near the base of the terminal's housing."
     c "(So that's where Reza's final bullet landed.)"
     m "The damage it had caused wasn't pretty. It had managed to pierce through the metal frame and much of the hardware."

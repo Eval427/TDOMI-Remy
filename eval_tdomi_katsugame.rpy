@@ -112,7 +112,7 @@ label eval_katsu_help:
     
     #Some fun scenes to throw in
     if evalServedCustomers == 3:
-        m "Suddenly, I saw two dragons dart pass my vision."
+        m "Suddenly, I saw two dragons dart past my vision."
         Ad normal b "Amely! Where are you going?"
         show amely smnormal flip with easeinleft
         Am "Wheeeeeeeeeee!!!!"
@@ -399,7 +399,7 @@ label eval_help_em:
 
     if evalCharacterMood == 0:
         if evalCharacterMood == evalQualityServed:
-            Em laugh "Thank's for making it fast. Now I should have plenty of time to make it to the meeting."
+            Em laugh "Thanks for making it fast. Now I should have plenty of time to make it to the meeting."
             c "Happy to help."
             $ evalCustomerScore += 1
         else:
@@ -418,7 +418,7 @@ label eval_help_em:
             Em "Don't bother. This will suffice."
         else:
             Em frown "This is a lot of ice cream. Are you implying I look fat?"
-            c "N... No. Of course not! I just thought that a bit of extra ice cream never hurt."
+            c "N... No. Of course not! I just thought that a bit of extra ice cream wouldn't hurt."
             if askiffat:
                 m "So this is how Remy felt earlier."
             Em normal "I will choose to believe your statement this time, [player_name]."
@@ -694,7 +694,7 @@ label eval_help_kev:
             Kv normal "Normally, Katsuharu spends a lot of time making his ice cream look perfect."
             Kv "But with the line, I can excuse the sloppiness."
             c "I could get you another if you wish."
-            Kv "Please, don't worry about it. I don't want to hold up the line any longer. And it's not like presentation makes the actual ice cream any worse!"
+            Kv "Please, don't worry about it. I don't want to hold up the line any longer, and it's not like the presentation makes the actual ice cream any worse!"
         else:
             Kv normal "Wow, that's a lot of ice cream! I'm not even sure I can eat all of this!"
     else:
@@ -1046,7 +1046,7 @@ label eval_help_xith:
             c "Of course. Can't let you be late."
             $ evalCustomerScore += 1
         else:
-            Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
+            Xi "Looks spectacular, but I've got to go to make it to my appointment on time."
     elif evalCharacterMood == 1:
         if evalCharacterMood == evalQualityServed:
             Xi "This is quite a stunning specimen of ice cream!"

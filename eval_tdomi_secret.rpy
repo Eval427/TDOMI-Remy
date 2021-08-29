@@ -90,6 +90,8 @@ label eval_secret_orphanage_arrival:
                         s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
                         stop music fadeout 2.0
                         scene black with dissolveslow
+                        $ evalReplaceBulbs = True
+                        $ evalResetBreaker = True
                         scene evalorphlight with dissolveslow
 
                     "No.":
@@ -780,6 +782,7 @@ label eval_everyone_2:
     m "Vara looked longingly at Remy."
     Vr smnormal "Can I come help again?"
     Ry normal "Of course you can, Vara!"
+    show vara smsmile with dissolvemed
     c "You know, Katsuharu, Vara may be the perfect candidate for a successor to your business."
     Ka "You know what? You're right."
     Ka normal flip "She's a bit young, but I'm sure she will learn fast."
@@ -803,15 +806,16 @@ label eval_everyone_2:
     play sound "fx/takeoff.ogg"
     m "Remy took a few steps, then flew into the air."
     m "He caught up to Adine, and the two hovered in place for a moment before landing next to Katsuharu and I."
-    show amely smnormal at right with easeinright
     show remy normal behind vara at right with easeinright
-    show adine normal c behind remy at Position (xpos=0.6) with easeinright
-    Ad "Hey guys! Did you have fun?"
+    show amely smnormal behind remy at Position (xpos = 0.6)
+    show adine normal c behind amely at Position (xpos = 0.6)
+    with easeinright
+    Ad normal b "Hey guys! Did you have fun?"
     Vr "Yes!"
     Ry "I thought it was fun."
     c "It was a lot of work, but in a way, it was also nice talking to all the locals."
     Vr "And the big dragon wants me to make more ice cream!"
-    Ad giggle c "His name is Katsuharu, Vara."
+    Ad giggle b "His name is Katsuharu, Vara."
     Vr smnone "Sorry."
     Ka "No worries! A lot of people have trouble with my name."
     Vr smnormal "Katsuharu!"
@@ -821,7 +825,6 @@ label eval_everyone_2:
     Ka normal flip "Although I must say, I think Adine had the hardest job here."
     Ad annoyed b "Ugh. It's impressive just how much chaos such a small little dragon can cause."
     show amely smnormal at left with move3
-    Ad normal b "But I still love her. When she isn't causing chaos she's just the sweetest little thi{nw}"
     Ad annoyed b "Amely, where do you think you're going?"
     Am "Hehe."
     hide amely with easeoutleft
@@ -841,7 +844,7 @@ label eval_everyone_2:
     Ad "Sorry, I had to save Katsuharu's ice cream from this hungry little dragon."
     Am "Ice cream!"
     Ka smile flip "Well, how about I start serving you five your ice cream. You deserve it after all."
-    Ry smile "I'm sure Adine could use a bit of ice cream after chasing Amely around all day."
+    Ry smile "I'm sure Adine could use a bit after chasing Amely around all day."
     Ad normal b "You say that sarcastically, but that's exactly what I need at the moment."
     Am "Ice cream!"
     Ad giggle b "And maybe a bit of sugar will calm this little dragon down."
@@ -923,7 +926,7 @@ label eval_everyone_3:
                 c "Am I missing something?"
                 Ad normal b "When we used to get ice cream as kids, everyone would always call Remy the 'Vanilla Dragon'."
                 Ry "Yes, a name I would like to leave in the past."
-                Ad giggle b "Too late, Remy. [player_name] brought it back to light."
+                Ad "Too late, Remy. [player_name] brought it back to light."
             else:
                 Ry "I guess you could think about it like that."
         
@@ -936,7 +939,7 @@ label eval_everyone_3:
     if evalChosenFlavor == "special":
         Ad normal b "I'm curious to try the 'special' with [player_name]."
         Ka "Good choice! I think you'll like it."
-        Ad giggle b "I've served the dish enough times. I'm curious to see how it is as ice cream."
+        Ad "I've served the dish enough times. I'm curious to see how it is as ice cream."
         Ka smile flip "Much better. I promise."
     elif evalAdineTrick:
         Ad "You know what? I made all that fuss, but I think I'll have the mango ice cream as well."
@@ -946,9 +949,8 @@ label eval_everyone_3:
     else:
         Ad normal b "I think I'll try the 'special'."
         Ka "Good choice! I think you'll like it."
-        Ad giggle b "I've served the dish enough times. I'm curious to see how it is as ice cream."
+        Ad"I've served the dish enough times. I'm curious to see how it is as ice cream."
         Ka smile flip "Much better. I promise."
-    show adine normal b with dissolvemed
     Ka "Just give me a moment to get you your scoops!"
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
@@ -1758,7 +1760,7 @@ label eval_everyone_3:
     show remy normal flip with easeinleft
     show remy normal with dissolvemed
     play sound "fx/pouringwine.ogg"
-    m "He carefully uncorcked the bottle with his claw and poured us two glasses of the wine."
+    m "He carefully uncorked the bottle with his claw and poured us two glasses of the wine."
     m "Remy raised his glass."
     Ry smile "Cheers!"
     play sound "fx/clink.ogg"

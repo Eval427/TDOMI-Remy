@@ -15,6 +15,9 @@ label eval_tdomi_common:
     image evalportalb = "bg/evalportalb.png"
     image evalgoggleoverlay = "bg/evalgoggleoverlay.png"
 
+    #Credits
+    image evalcustomcredits1 = "cg/evalcustomcredits1.png"
+
     #Characters
 
     #Amely brought to you by ECK
@@ -330,8 +333,8 @@ label eval_tdomi_common:
     python:
         if not persistent.evalSecretEndingUnlocked: #[REDACTED]
             persistent.evalSecretEndingUnlocked = False
-        if not persistent.evalFirstTimePlaying:
-            persistent.evalFirstTimePlaying = True
+        if not persistent.evalFirstSecretUnlock:
+            persistent.evalFirstSecretUnlock = True
         
         #Endings
         if not persistent.evalEndingA: #Unlike ECK, endings aren't named and "A" isn't the best
