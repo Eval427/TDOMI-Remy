@@ -287,7 +287,7 @@ label eval_tdomi_remy:
                             "!!!" "That's what I thought!"
                             $ renpy.pause (0.5)
                             scene black with dissolveslow
-                            m "At a loss for words, I made my way back home, crawled into bed, and spend the rest of the day wondering what possessed me to be so selfish."
+                            m "At a loss for words, I made my way back home, crawled into bed, and spent the rest of the day wondering what possessed me to be so selfish."
                             play sound "fx/system3.ogg"
                             s "Nice one, child hater."
                             $ evalFail = "Child Hater"
