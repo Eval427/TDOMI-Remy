@@ -403,11 +403,6 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                         with dissolvemed
                         m "The three of us made our way into the bedroom."
                         m "Too tired to even take off my clothes, I laid down on the bed."
-                        m "Remy removed his tie and rested it on the nightstand."
-                        show remy normal b with dissolvemed
-                        Ry "Can't have this on while I sleep."
-                        c "It doesn't look like the most comfortable sleeping attire."
-                        hide remy with dissolvemed
                         m "Remy climbed up onto the bed next to me."
                         m "Vara followed closely behind and wedged her way between Remy and I."
                         Vr "..."

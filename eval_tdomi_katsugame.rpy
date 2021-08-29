@@ -176,7 +176,7 @@ label eval_katsu_help_2:
     m "I turned back to Katsuharu."
     if evalCharacterPreferredFlavor == "spaghettieis":
         c "Katsuharu, someone asked for some spaghetti? I didn't know you even served that."
-        Ka smile "It's not spaghetti! It's {i}spaghettieis{/i}."
+        Ka smile flip "It's not spaghetti! It's {i}spaghettieis{/i}."
         c "Oh, what's that?"
         Ka normal flip "Well, it's more of a novelty than anything else. Spaghettieis is made by pressing some of my vanilla ice cream through a spaetzle press and then topping it off with strawberry sauce and coconut to make it look like spaghetti."
         c "A... what?"
@@ -419,8 +419,8 @@ label eval_help_em:
         else:
             Em frown "This is a lot of ice cream. Are you implying I look fat?"
             c "N... No. Of course not! I just thought that a bit of extra ice cream wouldn't hurt."
-            if askiffat:
-                m "So this is how Remy felt earlier."
+            if askIfFat:
+                c "(So this is how Remy felt earlier.)"
             Em normal "I will choose to believe your statement this time, [player_name]."
     else:
         if evalCharacterMood == evalQualityServed:
@@ -643,7 +643,7 @@ label eval_help_kev:
             c "Flyers?"
             Kv ramble "Yeah! I took up a summer job as a recruiter for Midwest Institution."
             c "Is that some kind of religious thing?"
-            Kv "Not at all! It's a college"
+            Kv "Not at all! It's a college."
             c "College. Wonderful times."
             Kv brow "Is that sarcasm?"
             c "Maybe. Anyways, what flavor would you like?"
@@ -657,7 +657,7 @@ label eval_help_kev:
             c "Flyers?"
             Kv ramble "Yeah! I took up a summer job as a recruiter for Midwest Institution."
             c "Is that some kind of religious thing?"
-            Kv "Not at all! It's a college"
+            Kv "Not at all! It's a college."
             c "College. Wonderful times."
             Kv brow "Is that sarcasm?"
             c "Maybe. Anyways, what flavor would you like?"

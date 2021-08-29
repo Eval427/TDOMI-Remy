@@ -445,6 +445,7 @@ label eval_trip_to_orphanage:
             m "We made our way through the city with a few dragons giving us strange looks."
             m "It seemed as if it took no time at all to arrive at the orphanage."
             Ry "Ladies and gentlemen, this will be our stop. Please make sure to grab all of your belongings and safely exit the vehicle."
+            $ evalBadRemyJoke = True
             c "Very funny, Remy."
             Ry "Thanks, I can tell that you sincerely mean that."
             play sound "fx/bed.ogg"
@@ -946,7 +947,7 @@ label eval_solo_remy_2:
         if mp.fish:
             c "(Why does fish translate to yellowish orange in ice cream form?)"
         else:
-            c "(What kind of special menu item has this yellowish orange hue.)"
+            c "(What kind of special menu item has this yellowish orange hue?)"
     
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
@@ -1238,7 +1239,7 @@ label eval_remy_amely_1:
         c "Do you always sit here?"
         Dr "..."
         m "This was the first time that I noticed that all this dragon audibly said was the word \"dot\" three times."
-        c "Why do you only say \"dot dot dot\""
+        c "Why do you only say \"dot dot dot\"?"
         Dr "..."
         Dr "dot dot dot"
         c "Um..."
@@ -1438,7 +1439,7 @@ label eval_remy_amely_2:
         if mp.fish:
             c "(Why does fish translate to yellowish orange in ice cream form?)"
         else:
-            c "(What kind of special menu item has this yellowish orange hue.)"
+            c "(What kind of special menu item has this yellowish orange hue?)"
 
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
@@ -1813,11 +1814,6 @@ label eval_remy_amely_2:
                     c "Glad to hear it. Maybe we could have some fun as well."
                     Ry smile "We'll see where things go, [player_name]."
                     hide remy with dissolvemed
-                    m "The dragon and I made our way to the bedroom. Without hesitation, Remy removed his tie and rested it on the nightstand."
-                    show remy normal b with dissolvemed
-                    Ry "Can't have this thing on while I sleep."
-                    c "Doesn't look like the most comfortable sleeping attire."
-                    hide remy with dissolvemed
                     play sound "fx/undress.ogg"
                     m "I got undressed, and the two of us got into the bed together."
                     c "A bit cramped, don't you think?"
@@ -1892,6 +1888,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
                 show black with dissolvemed
                 $ renpy.pause (1.0)
                 $ persistent.skipnumber += 1
+                $ evalAdineSlaps += 1
                 call skipcheck from evalSkipCheckC1
                 play music "mx/funness.ogg"
                 jump eval_skip_C1
@@ -2094,7 +2091,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     $ renpy.pause (0.5)
     m "It seemed as if it took mere minutes to arrive back at Tatsu Park."
     Ry "Ladies and gentlemen, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
-    if not evalRodeRemy:
+    if not evalBadRemyJoke:
         c "Very funny, Remy."
         Ry "Thanks, I can tell that you sincerely mean that."
     else:
@@ -2610,7 +2607,7 @@ label eval_remy_amely_adine_3:
         if mp.fish:
             c "(Why does fish translate to yellowish orange in ice cream form?)"
         else:
-            c "(What kind of special menu item has this yellowish orange hue.)"
+            c "(What kind of special menu item has this yellowish orange hue?)"
 
     m "I watched as Katsuharu went back to his stand and repeated the process for Remy, Adine, and Amely."
     show katsu normal at Position (xpos = 0.1) with dissolvemed
@@ -2670,9 +2667,8 @@ label eval_remy_amely_adine_3:
     hide remy with easeoutright
     show adine normal b flip
     hide adine with easeoutright
-    hide katsu with dissolvemed
     show katsu at center with ease
-    show katsu normal
+    show katsu normal with dissolvemed
     Ka "I wanted to speak privately with you for a moment, [player_name]."
     c "What about?"
     Ka exhausted "Well, it's about my business. If today has taught me anything, it's that I can't do this alone anymore."
@@ -3232,7 +3228,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
             $ evalChosenFlavor = "spaghettieis"
             if not evalExplainSpaghettieis:
                 c "Spaghetti? Isn't that more of a meal than an ice cream?"
-                Ka smile "It's not spaghetti! It's {i}spaghettieis{/i}."
+                Ka smile flip "It's not spaghetti! It's {i}spaghettieis{/i}."
                 c "Oh, what's that?"
                 Ka normal flip "Well, it's more of a novelty than anything else. Spaghettieis is made by pressing some of my vanilla ice cream through a spaetzle press and then topping it off with strawberry sauce and coconut to make it look like spaghetti."
                 c "A... what?"
@@ -3634,7 +3630,7 @@ label eval_custom_credits:
 
     elif evalCurrentEnding == 4:
         m "You got the final ending! Good job!"
-        if len(evalUniqueFails) < 6:
+        if len(persistent.evalUniqueFails) < 6:
             m "However, there is still more content!"
             m "Try to get every fail. You might just get a reward..."
     else:

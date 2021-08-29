@@ -263,6 +263,9 @@ label eval_tdomi_common:
     #Whether you listen to Katsu's music
     $ evalKatsuMusic = False
 
+    #Whether you heard a specific bad joke from Remy
+    $ evalBadRemyJoke = False
+
 
 
     #A bunch of variables for the orphanage minigame

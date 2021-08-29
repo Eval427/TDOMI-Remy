@@ -319,7 +319,7 @@ label eval_everyone_1:
     c "Yes, Vara described it perfectly."
     m "Vara gave us a proud expression."
     Vr "I read about it in a book!"
-    c "Have you tried it before."
+    c "Have you tried it before?"
     Vr smnone "No..."
     Ry "Well, I'm sure you'll love it, Vara."
     Vr smnormal "Okay."
@@ -414,7 +414,7 @@ label eval_everyone_1:
     $ renpy.pause (0.5)
     m "It seemed as if it took mere minutes to arrive back at Tatsu Park."
     Ry "Ladies and gentlemen, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
-    if not evalRodeRemy:
+    if not evalBadRemyJoke:
         c "Very funny, Remy."
         Ry "Thanks, I can tell that you sincerely mean that."
     else:
@@ -634,6 +634,8 @@ label eval_everyone_1:
                         menu:
                             "Yes.":
                                 $ evalCustomerScore = 10
+                                $ evalReplaceBulbs = True
+                                $ evalResetBreaker = True
 
                             "No.":
                                 $ evalCustomerScore = 5
@@ -901,7 +903,7 @@ label eval_everyone_3:
         if mp.fish:
             c "(Why does fish translate to yellowish orange in ice cream form?)"
         else:
-            c "(What kind of special menu item has this yellowish orange hue.)"
+            c "(What kind of special menu item has this yellowish orange hue?)"
 
     Ka normal flip "You're up next, Remy. What will you have?"
     if evalChosenFlavor == "vanilla":
@@ -946,6 +948,7 @@ label eval_everyone_3:
         c "Mango ice cream for a mang...{nw}"
         Ad frustrated b "Stop."
         c "Point taken."
+        Ad normal b "Good."
     else:
         Ad normal b "I think I'll try the 'special'."
         Ka "Good choice! I think you'll like it."
@@ -1182,7 +1185,31 @@ label eval_everyone_3:
                 Ry smile "I'm glad you like it!"
                 stop music fadeout 2.0
                 scene black with dissolveslow
-                m "For the next while the five of us sat quietly as we enjoyed our ice cream. Adine had some difficulties with hers, but after a while she had completely cleaned off her muzzle."
+                m "For the next while, the five of us sat quietly as we enjoyed our ice cream. Adine had some difficulties with hers, but after a while she had completely cleaned off her muzzle."
+                scene evalpark2
+                show adine normal b flip at left #No more ice cream on her face. How sad.
+                show amely smnormal flip at left
+                show vara smnormal behind amely at right
+                show remy normal behind vara at right
+                with dissolveslow
+                play music "mx/campfire.ogg" fadein 2.0
+                $ renpy.pause (1.0)
+                play sound "fx/bite.ogg"
+                m "I took the final piece of my cone and bit down on it with a satisfying crunch."
+                c "Well, I'm full."
+                Ry smile "Same here."
+                Am "Vara!"
+                Vr "..."
+                Am "Thanks!"
+                show vara smnone with dissolvemed
+                show amely smnormal flip at Position(xpos = 0.5) with move
+                play sound "fx/hug.mp3"
+                m "Amely wrapped her arms tightly around Vara's body."
+                Vr smnormal "You're welcome."
+                Ad giggle b flip "That's adorable."
+                show amely smnormal with dissolvemed
+                show amely smnormal at left with move
+                show amely smnormal flip with dissolvemed
 
             "[[Keep your ice cream.]":
                 c "Sorry, Amely. But I think you've had enough ice cream for today."
@@ -1220,31 +1247,19 @@ label eval_everyone_3:
                 stop music fadeout 2.0
                 scene black with dissolveslow
                 m "For the next while the five of us sat quietly as we enjoyed our ice cream."
+                scene evalpark2
+                show adine normal b flip at left
+                show amely smnormal flip at left
+                show vara smnormal behind amely at right
+                show remy normal behind vara at right
+                with dissolveslow
+                play music "mx/campfire.ogg" fadein 2.0
+                $ renpy.pause (1.0)
+                play sound "fx/bite.ogg"
+                m "I took the final piece of my cone and bit down on it with a satisfying crunch."
+                c "Well, I'm full."
+                Ry smile "Same here."
 
-        scene evalpark2
-        show adine normal b flip at left #No more ice cream on her face. How sad.
-        show amely smnormal flip at left
-        show vara smnormal behind amely at right
-        show remy normal behind vara at right
-        with dissolveslow
-        play music "mx/campfire.ogg" fadein 2.0
-        $ renpy.pause (1.0)
-        play sound "fx/bite.ogg"
-        m "I took the final piece of my cone and bit down on it with a satisfying crunch."
-        c "Well, I'm full."
-        Ry smile "Same here."
-        Am "Vara!"
-        Vr "..."
-        Am "Thanks!"
-        show vara smnone with dissolvemed
-        show amely smnormal flip at Position(xpos = 0.5) with move
-        play sound "fx/hug.mp3"
-        m "Amely wrapped her arms tightly around Vara's body."
-        Vr smnormal "You're welcome."
-        Ad giggle b flip "That's adorable."
-        show amely smnormal with dissolvemed
-        show amely smnormal at left with move
-        show amely smnormal flip with dissolvemed
         Ad disappoint b flip "Now that I'm thinking about it, I may have been a bit too harsh on you, [player_name]. I'm sorry."
         
         menu:
@@ -1743,7 +1758,7 @@ label eval_everyone_3:
     scene o
     show remy normal
     with dissolveslow
-    play music "mx/fragments.ogg"
+    play music "mx/serene.ogg"
     Ry "Hey, [player_name]. Long time no see."
     c "Remy, we just saw each other last night."
     Ry smile "I know."
