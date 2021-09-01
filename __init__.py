@@ -26,6 +26,9 @@ def load_side_ims():
     
     def clip_remy_side_image(imagefile):
         return im.Flip(im.Scale(im.Crop(imagefile, (5, 30, 500, 600)), 250, 300), horizontal=True)
+
+    def clip_amely_side_image(imagefile):
+        return im.Scale(im.Crop(imagefile, (180, 114, 500, 500)), 250, 250)
     
     for expression in varaSmallExpressions:
         renpy.exports.image("side vara %s"%expression.replace("_", " "), clip_vara_side_image("cr/vara_%s.png"%expression))
@@ -43,8 +46,8 @@ def load_side_ims():
         renpy.exports.image("side vara %s goggles"%expression, clip_vara_side_image("cr/vara_%s_goggles.png"%expression))
     
     for expression in amelyGoggleExpressions:
-        renpy.exports.image("side amely %s goggles"%expression, clip_vara_side_image("cr/amely_%s_goggles.png"%expression))
-        renpy.exports.image("side amely %s goggles flip"%expression, clip_vara_side_image("cr/amely_%s_goggles_flip.png"%expression))
+        renpy.exports.image("side amely %s goggles"%expression, clip_amely_side_image("cr/amely_%s_goggles.png"%expression))
+        renpy.exports.image("side amely %s goggles flip"%expression, clip_amely_side_image("cr/amely_%s_goggles_flip.png"%expression))
     
     #For most of Adine's goggle expressions
     for expression in adineGoggleExpressions:

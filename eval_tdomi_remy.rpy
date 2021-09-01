@@ -3389,7 +3389,7 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     Ad giggle goggles d flip "What does it look like? I got a bunch of goggles!"
     c "But... Why are you wearing them all?"
     Ad think goggles d flip "Good question. {w}I have no idea."
-    Ad normal goggles d flip "I actually brought a pair for all of us to try."
+    Ad normal goggles e flip "I actually brought a pair for all of us to try."
     Ry smile "That's actually quite cute."
     Ad "I know, right?"
     hide adine
@@ -3450,13 +3450,13 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     show vara smsmile goggles at right
     show evalgoggleoverlay
     with dissolvemed
-    c "Well, how does it look?"
+    c "Well, do I look stylish?"
     Ad giggle goggles flip "You look ready to take flight."
     c "Great. Now all I'm missing is a pair of wings and I'm good to go."
     Ry "What about your extra pair of goggles, Adine?"
     Ad normal goggles flip "I'm keeping them on, of course. I think it looks good."
     c "That raises a good question. Do we get to keep these goggles?"
-    Ad annoyed goggles flip "Heck no! I paid good money for these goggles!"
+    Ad annoyed goggles flip "Heck no! I paid good money for these things!"
     c "Then why do you have so many in the first place?"
     Ad normal goggles flip "Just in case. On occasion they come off while I'm flying or I'll drop them."
     Ad "Plus, what else am I supposed to put in my closet? It's not like I have any clothes."
