@@ -438,4 +438,4 @@ label eval_extended_ending:
         s "You saved Vara, but there is still more to her story..."
         stop music fadeout 2.0
         scene black with dissolveslow
-        return
+        jump eval_custom_credits

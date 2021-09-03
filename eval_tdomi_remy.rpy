@@ -545,7 +545,7 @@ label eval_trip_to_orphanage:
                         s "Would you like to beat it?"
                         menu:
                             "Yes.":
-                                $ evalOrphanageScore = 3
+                                $ evalOrphanageScore = 2
                                 play sound "fx/system3.wav"
                                 s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
                                 stop music fadeout 2.0

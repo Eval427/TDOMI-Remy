@@ -536,7 +536,7 @@ label eval_help_kali:
         c "Then I assume you've been quite busy these past few weeks."
         Kl "Very. I've had to sort more papers in these past few weeks than I have in my entire career as an archivist."
         c "Sounds like a lot of fun."
-        Ka "So much fun..."
+        Kl "So much fun..."
     if evalCharacterMood == 0:
         Kl "Well, this line was much longer than I was anticipating, and Bryce wants me at the police station to finish up on the investigation papers, so I shouldn't stay too long."
         c "You still aren't done?"
@@ -932,7 +932,7 @@ label eval_help_luc:
     c "It's [player_name]."
     Lu "Lucius."
 
-    if not evalMetLucius: #Fix because its possible to not see him while still visiting the park
+    if evalMetLucius:
         Lu "Hey, I apologize again for what happened at the park before."
         c "No worries. I almost forgot it even happened."
         Lu "Am I just that forgettable?"
@@ -944,7 +944,7 @@ label eval_help_luc:
         Lu "I've had my eye on Katsuharu's newest flavor for a while. Could I get that?"
     elif evalCharacterMood == 1:
         Lu "Did you see those dragons over there?"
-        m "He pointed to a few younger dragons on skateboards."
+        m "He pointed to a few younger dragons on what seemed to be modified skateboards."
         Lu "They're pretty good, aren't they."
         c "Can't say I've really been watching. But they seem alright."
         Lu "Not as good as me, but they're pretty close. I had a great time watching them while I was in line."
