@@ -112,8 +112,8 @@ label eval_secret_orphanage_arrival:
                 play sound "fx/system3.wav"
                 s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
                 pass
-        show remy normal behind vara with dissolvemed
-        jump eval_secret_orphanage_game_init
+    show remy normal behind vara with dissolvemed
+    jump eval_secret_orphanage_game_init
 
 label eval_everyone_sleep:
     Ry "Well, here we are!"

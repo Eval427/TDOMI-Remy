@@ -23,7 +23,6 @@ label eval_hatchery_visited:
             $ renpy.pop_call()
             stop music fadeout 2.0
             scene black with dissolveslow
-            jump eval_hatchery_extension
         $ evalFixDoubleOrphanageLine = True
     return
 
@@ -1119,103 +1118,103 @@ label eval_post_secret_remy_meeting:
 #Thus marks the end of the changes required to actually get Vara's extended ending
 
 #Extra stuff to explain why Adine doesn't die because why not
-label eval_hatchery_extension:
-    m "Meanwhile, inside the orphanage..."
-    scene evalorphlight with dissolveslow
-    show remy normal flip at left
-    show vara smnormal flip at left
-    if adinestatus == "bad":
-        show adine annoyed b at right
-    else:
-        show adine normal b at right
-    show amely smnormal at right
-    with dissolvemed
-    play music "mx/neptune.mp3" fadein 2.0
-
-    if adinestatus == "bad":
-        Ad "Ugh, I'm glad they're gone."
-        Ry look flip "What's wrong with [player_name]?"
-        Ad disappoint b "They said that they didn't want to see me again."
-        Ad sad b "I didn't know I was such bad company."
-        Ry "You're not, Adine. [player_name] is going through a lot at the moment, and probably needs time alone to think."
-        Ad disappoint b "You may be right, but it still hurts."
-    elif adinestatus == "neutral":
-        Ad "They seem nice enough."
-        Ry "Agreed."
-        Ad disappoint b "Sorry, Remy, but I don't know how much I can help out today. Work has been getting to me lately."
-        Ry look flip "That's not good."
-    else:
-        Ad giggle b "I'm glad [player_name] stopped by to visit. It's nice having their company."
-        Ry smile flip "Agreed."
-        Ad disappoint b "Sorry, Remy, but I don't know how much I can help out today. Work has been getting to me lately."
-        Ry look flip "That's not good."
-    Ry normal flip "Here, I think I know what will help."
-    play sound "fx/hug.mp3"
-    hide remy with dissolvemed
-    $ renpy.pause (1.5)
-    show remy normal flip behind vara at left
-    show adine giggle b
-    with dissolvemed
-    Ad "I guess you were right, that did help."
-    Ry smile flip "Glad I could be of assistance."
-    Am "I want hug!"
-    Ad normal b "Okay, Amely."
-    play sound "fx/hug.mp3"
-    hide adine with dissolvemed
-    $ renpy.pause (1.5)
-    show adine normal b at right behind amely with dissolvemed
-    Am "Yay!"
-    Ry "How about you, Vara?"
-    Vr smnone flip "..."
-    play sound "fx/hug.mp3"
-    hide remy with dissolvemed
-    $ renpy.pause (1.5)
-    show remy normal flip behind vara at left
-    show vara smnormal flip
-    with dissolvemed
-    Ad giggle b "Hugs all around."
-    Ry smile flip "Indeed."
-    Ry normal flip "Adine, there's something I would like to discuss with you quickly."
-    Ad normal b "What is it, Remy?"
-    Ry "I've noticed that your wing has been sagging recently. Is everything alright?"
-    Ad "Yeah, I just strained it while practicing my routine for the upcoming flight competition."
-    Ry look flip "Please tell me you aren't thinking of participating in the competition with your wing in the state it is."
-    Ad giggle b "Don't worry about me, Remy. I'll be fine."
-    Ry "Adine, I'm serious. I don't think you should enter the competition this year."
-    Ad disappoint b "I... just have to try, you know?"
-    Ry "What if something goes wrong, though? You don't want to be in that position."
-    Ad "If I start making excuses now, maybe I'll never stop. I'll always be too nervous, or too injured, or didn't eat right the day before."
-    Ad "I need to take this opportunity, Remy. Because if I don't now, maybe I never will."
-    Ry sad flip "But Adine, think of the children here."
-    Ad frustrated b "Don't you dare bring them into this! They have nothing to do with it."
-    show amely smsad
-    show vara smsad flip
-    with dissolvemed
-    Ry "If something happens to you, I don't know what any of us would do."
-    Ry "I couldn't support the orphanage without you, and you would crush the hearts of Vara and Amely."
-    Ad sad b "Remy, don't say that. I would never leave you three."
-    Ad disappoint b "I just want to do more with my life. I want to be more than just a server and a delivery girl making minimum wage."
-    Ad "Is this one opportunity to do something more with my life really too much to ask for?"
-    Ry look flip "If you tell them you're injured, they might let you fly another year instead. You shouldn't taint your flying reputation by attempting tricks with an injured wing."
-    Ad frustrated b "I don't want to wonder if I'll ever amount to anything more than a waitress. I want to be able to follow my dream, and I don't want to wait another year to find out."
-    Ad "You mean a lot to me, Remy. But I won't let you get in the way of my{nw}"
-    Am "I'm scared."
-    Ad sad b "No, Amely, there's no reason to be scared. I'm just..."
-    $ renpy.pause (2.0)
-    Ad disappoint b "I need to give this some thought."
-    Ad "I need to go now. I'll see you around."
-    show adine disappoint b flip with dissolvemed
-    Ry sad flip "Wait, Adine."
-    Ad "What?"
-    Ry "Just know that we care about you. I can't just watch you crash and burn without attempting to intervene."
-    Ad "Thank you Remy. I just need time to think over all of this."
-    hide adine with easeoutright
-    play sound "fx/door/door_chain.ogg"
-    Vr "..."
-    Am "Adine leaving?"
-    Ry look flip "I hope that Adine will make the right decision when the time comes."
-    stop music fadeout 2.0
-    scene black with dissolveslow
-    $ renpy.pause (0.5)
-    scene office at Pan ((128, 250), (0, 250), 3.0) with dissolvemed
-    jump c4sections
+#label eval_hatchery_extension:
+#    m "Meanwhile, inside the orphanage..."
+#    scene evalorphlight with dissolveslow
+#    show remy normal flip at left
+#    show vara smnormal flip at left
+#    if adinestatus == "bad":
+#        show adine annoyed b at right
+#    else:
+#        show adine normal b at right
+#    show amely smnormal at right
+#    with dissolvemed
+#    play music "mx/neptune.mp3" fadein 2.0
+#
+#    if adinestatus == "bad":
+#        Ad "Ugh, I'm glad they're gone."
+#        Ry look flip "What's wrong with [player_name]?"
+#        Ad disappoint b "They said that they didn't want to see me again."
+#        Ad sad b "I didn't know I was such bad company."
+#        Ry "You're not, Adine. [player_name] is going through a lot at the moment, and probably needs time alone to think."
+#        Ad disappoint b "You may be right, but it still hurts."
+#    elif adinestatus == "neutral":
+#        Ad "They seem nice enough."
+#        Ry "Agreed."
+#        Ad disappoint b "Sorry, Remy, but I don't know how much I can help out today. Work has been getting to me lately."
+#        Ry look flip "That's not good."
+#    else:
+#        Ad giggle b "I'm glad [player_name] stopped by to visit. It's nice having their company."
+#        Ry smile flip "Agreed."
+#        Ad disappoint b "Sorry, Remy, but I don't know how much I can help out today. Work has been getting to me lately."
+#        Ry look flip "That's not good."
+#    Ry normal flip "Here, I think I know what will help."
+#    play sound "fx/hug.mp3"
+#    hide remy with dissolvemed
+#    $ renpy.pause (1.5)
+#    show remy normal flip behind vara at left
+#    show adine giggle b
+#    with dissolvemed
+#    Ad "I guess you were right, that did help."
+#    Ry smile flip "Glad I could be of assistance."
+#    Am "I want hug!"
+#    Ad normal b "Okay, Amely."
+#    play sound "fx/hug.mp3"
+#    hide adine with dissolvemed
+#    $ renpy.pause (1.5)
+#    show adine normal b at right behind amely with dissolvemed
+#    Am "Yay!"
+#    Ry "How about you, Vara?"
+#    Vr smnone flip "..."
+#    play sound "fx/hug.mp3"
+#    hide remy with dissolvemed
+#    $ renpy.pause (1.5)
+#    show remy normal flip behind vara at left
+#    show vara smnormal flip
+#    with dissolvemed
+#    Ad giggle b "Hugs all around."
+#    Ry smile flip "Indeed."
+#    Ry normal flip "Adine, there's something I would like to discuss with you quickly."
+#    Ad normal b "What is it, Remy?"
+#    Ry "I've noticed that your wing has been sagging recently. Is everything alright?"
+#    Ad "Yeah, I just strained it while practicing my routine for the upcoming flight competition."
+#    Ry look flip "Please tell me you aren't thinking of participating in the competition with your wing in the state it is."
+#    Ad giggle b "Don't worry about me, Remy. I'll be fine."
+#    Ry "Adine, I'm serious. I don't think you should enter the competition this year."
+#    Ad disappoint b "I... just have to try, you know?"
+#    Ry "What if something goes wrong, though? You don't want to be in that position."
+#    Ad "If I start making excuses now, maybe I'll never stop. I'll always be too nervous, or too injured, or didn't eat right the day before."
+#    Ad "I need to take this opportunity, Remy. Because if I don't now, maybe I never will."
+#    Ry sad flip "But Adine, think of the children here."
+#    Ad frustrated b "Don't you dare bring them into this! They have nothing to do with it."
+#    show amely smsad
+#    show vara smsad flip
+#    with dissolvemed
+#    Ry "If something happens to you, I don't know what any of us would do."
+#    Ry "I couldn't support the orphanage without you, and you would crush the hearts of Vara and Amely."
+#    Ad sad b "Remy, don't say that. I would never leave you three."
+#    Ad disappoint b "I just want to do more with my life. I want to be more than just a server and a delivery girl making minimum wage."
+#    Ad "Is this one opportunity to do something more with my life really too much to ask for?"
+#    Ry look flip "If you tell them you're injured, they might let you fly another year instead. You shouldn't taint your flying reputation by attempting tricks with an injured wing."
+#    Ad frustrated b "I don't want to wonder if I'll ever amount to anything more than a waitress. I want to be able to follow my dream, and I don't want to wait another year to find out."
+#    Ad "You mean a lot to me, Remy. But I won't let you get in the way of my{nw}"
+#    Am "I'm scared."
+#    Ad sad b "No, Amely, there's no reason to be scared. I'm just..."
+#   $ renpy.pause (2.0)
+#    Ad disappoint b "I need to give this some thought."
+#    Ad "I need to go now. I'll see you around."
+#    show adine disappoint b flip with dissolvemed
+#    Ry sad flip "Wait, Adine."
+#    Ad "What?"
+#    Ry "Just know that we care about you. I can't just watch you crash and burn without attempting to intervene."
+#    Ad "Thank you Remy. I just need time to think over all of this."
+#    hide adine with easeoutright
+#    play sound "fx/door/door_chain.ogg"
+#    Vr "..."
+#    Am "Adine leaving?"
+#    Ry look flip "I hope that Adine will make the right decision when the time comes."
+#    stop music fadeout 2.0
+#    scene black with dissolveslow
+#    $ renpy.pause (0.5)
+#    scene office at Pan ((128, 250), (0, 250), 3.0) with dissolvemed
+#    jump c4sections
