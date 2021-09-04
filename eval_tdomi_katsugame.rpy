@@ -649,7 +649,7 @@ label eval_help_kev:
             c "Maybe. Anyways, what flavor would you like?"
     elif evalCharacterMood == 2:
         Kv "I've been running around like crazy giving dragons flyers, so I've really worked up an appetite."
-        if not kevinunplayed: #HAHA I GOT TO COPY PASTE THIS LETS GO LAZINESS
+        if not kevinunplayed:
             c "I'm sure they were all very excited."
             Kv face "Some were... Less excited than others, to say the least."
             c "I can relate. Anyways, which flavor would you like?"

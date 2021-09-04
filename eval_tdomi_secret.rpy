@@ -1602,7 +1602,7 @@ label eval_everyone_3:
     c "Remy, I don't know what to say."
     Ry "Then don't say anything. What you have done for us speaks louder than any words could."
     hide remy with dissolvemed
-    if mp.remyromance:
+    if evalRemyRomance:
         m "Remy enveloped me in his wing and pulled me closer to him. His scales radiated with a soft warmth."
         m "Playfully, he gave my nose a lick."
     else:
@@ -1623,7 +1623,7 @@ label eval_everyone_3:
     #hide remy
     #hide vara
     #with dissolvemed
-    #if mp.remyromance: #This if else is pretty meh. I can't write this crap.
+    #if evalRemyRomance: #This if else is pretty meh. I can't write this crap.
     #    m "I was suddenly wrapped in Remy's warm embrace as he sat down and used his front legs to pull me into a big hug."
     #    m "Using his wings to cover up Vara, he pressed his lips against mine. I embraced him with my arms and pulled in closer."
     #    m "As we parted, he playfully flicked his tongue on my nose."
@@ -1637,7 +1637,7 @@ label eval_everyone_3:
     #with dissolvemed
     #Ry smile "We should do this sort of thing more often."
     #c "Well, now that I'm not chasing around criminals or in a coma, I should have a lot more free time."
-    #if mp.remyromance:
+    #if evalRemyRomance:
     #    Ry smile "I meant the kiss."
     #    c "Who said more free time couldn't lead to that?"
     #    Ry normal "Point taken."
@@ -1841,7 +1841,7 @@ label eval_everyone_3:
             hide remy
             with dissolvemed
             m "Before I could react, I was wrapped within Remy's tight embrace as he sat down and used his front legs to pull me into a big hug."
-            if mp.remyromance:
+            if evalRemyRomance:
                 m "He pressed his lips against mine. I embraced him with my arms and pulled in closer."
             m "As we parted, he rested his head on top of my own. I felt a stream of tears form on my head and roll down my cheeks."
             m "It was possible that a few of those tears were mine as well."

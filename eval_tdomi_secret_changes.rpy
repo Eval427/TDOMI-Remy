@@ -494,7 +494,7 @@ label eval_remy_ch4_date_change_2:
                 $ renpy.pause (1.0)
             
             "Kiss him.":
-                $ mp.remyromance = True
+                $ evalRemyRomance = True
                 $ mp.save()
                 hide remyrom
                 hide remy
