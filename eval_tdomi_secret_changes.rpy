@@ -16,15 +16,19 @@
 #with her dead mother?
 
 label eval_hatchery_visited:
-    if not renpy.python.store_dicts["store"].get("evalFixDoubleOrphanageLine", False):
+    if not renpy.python.store_dicts["store"].get("evalFixDoubleOrphanageLine", False) and varasaved:
         m "It wasn't until now that I noticed Vara looking at me with a curious expression."
         c "(I wonder what that's about.)"
         if adinescenesfinished != 3:
-            $ renpy.pop_call()
             stop music fadeout 2.0
             scene black with dissolveslow
         $ evalFixDoubleOrphanageLine = True
     return
+        #stop music fadeout 2.0
+        #scene black with dissolveslow
+        #$ renpy.pause (0.5)
+        #scene office at Pan ((128, 250), (0, 250), 3.0) with dissolvemed
+        #jump c4sections
 
 label eval_remy_ch4_date_change: #This changes up the end of Remy's date to account for the secret ending
     if persistent.evalSecretEndingUnlocked and c4hatcheryplayed and varasaved:
@@ -378,13 +382,13 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                         m "I watched as Vara hopped up onto the couch while Remy removed his tie."
                         hide vara with dissolvemed
                         play sound "fx/undress.ogg"
-                        show remy smile b with dissolvemed
+                        show remy smile nude with dissolvemed
                         Ry "Can't let this get wrinkled while I sleep, can I?"
                         hide remy with dissolvemed
                         m "He rested his tie on the desk next to the couch."
                         m "While they were a bit cramped, the two dragons seemed rather comfortable snuggled close together."
                         c "Goodnight you two."
-                        Ry "Goodnight, [player_name]."
+                        Ry smile nude "Goodnight, [player_name]."
                         m "My mind still spinning, I made my way into the bedroom."
                         play sound "fx/undress.ogg"
                         m "I quickly undressed and, too tired to prepare any further, fell asleep."
@@ -403,18 +407,18 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                         m "The three of us made our way into the bedroom."
                         m "Too tired to even take off my clothes, I laid down on the bed."
                         m "I watched as Remy removed his tie and placed it on the nightstand next to the bed."
-                        show remy smile b with dissolvemed
+                        show remy smile nude with dissolvemed
                         Ry "Can't let this get wrinkled while I sleep. It's expensive to get clothing pressed."
                         hide remy with dissolvemed
                         m "Remy climbed up onto the bed next to me."
                         m "Vara followed closely behind and wedged her way between Remy and I."
                         Vr smnormal "..."
                         m "Vara snuggled a bit closer to me, seemingly attracted to my body heat."
-                        Ry "It seems that she's taken a liking to you, [player_name]."
+                        Ry smile nude "It seems that she's taken a liking to you, [player_name]."
                         m "I looked down at Vara, who was snuggled against my side."
                         c "It seems that way."
                         m "Remy let out a big yawn. As if contagious, I did as well."
-                        Ry "Goodnight, [player_name]."
+                        Ry smile nude "Goodnight, [player_name]."
                         c "Goodnight, Remy."
                         c "And goodnight to you as well, Vara."
                         Vr smnormal "..."

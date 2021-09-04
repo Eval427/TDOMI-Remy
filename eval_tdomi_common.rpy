@@ -20,6 +20,9 @@ label eval_tdomi_common:
 
     #Characters
 
+    # :)
+    image remy smile nude = "cr/remy_smile_nude.png"
+
     #Amely brought to you by ECK
     image amely smnormal = "cr/amely_smnormal.png"
     image amely smnormal flip = "cr/amely_smnormal_flip.png"
@@ -102,7 +105,7 @@ label eval_tdomi_common:
 
     #Probably won't even use all these images. But if someone wants them here you go
     image adine annoyed goggles = "cr/adine_annoyed_goggles.png"
-    image adine annoyed  goggles flip = im.Flip("cr/adine_annoyed_goggles.png", horizontal=True)
+    image adine annoyed goggles flip = im.Flip("cr/adine_annoyed_goggles.png", horizontal=True)
     image adine annoyed goggles b = "cr/adine_annoyed_goggles_b.png"
     image adine annoyed goggles b flip = im.Flip("cr/adine_annoyed_goggles_b.png", horizontal=True)
     image adine annoyed goggles c = "cr/adine_annoyed_goggles_c.png"

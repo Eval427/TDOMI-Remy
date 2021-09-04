@@ -451,7 +451,7 @@ label eval_everyone_1:
     Ad normal "So, you said Katsuharu relocated here. Any idea where he is?"
     c "He didn't give me an exact location..."
     menu:
-        "[[Make a banana phone joke]":
+        "[[Make a banana phone joke.]":
             m "Suddenly, inspiration struck me as Adine idly moved her tail in my direction."
             c "Not sure, Adine. Why don't we call and find out?"
             m "I stepped and grabbed the end of Adine's tail."
