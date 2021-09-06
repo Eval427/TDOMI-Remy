@@ -1086,7 +1086,7 @@ label eval_solo_remy_2:
                     c "Your breath smells like vanilla."
                     Ry normal "And yours of fish. I think I got the shorter end of the stick."
                     c "Yeah, I guess fish ice cream isn't the best for kissing."
-                elif evalChosenFlavor = "vanilla":
+                elif evalChosenFlavor == "vanilla":
                     c "Your breath smells like vanilla."
                     Ry normal "Well, so does yours."
                 else:

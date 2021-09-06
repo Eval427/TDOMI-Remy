@@ -80,7 +80,7 @@ def connect(node, next):
 @loadable_mod
 class AWSWMod(Mod):
     def mod_info(self):
-        return ("This Dragon Owes me Ice Cream!", "v0.9.0", "Eval")
+        return ("This Dragon Owes me Ice Cream!", "v1.0.0", "Eval")
 
     def mod_load(self):
         #Variable init hook. I'm lazy, so I just decided to define all my variables early instead of having a dedicated label to call whenever I needed to confirm vars
