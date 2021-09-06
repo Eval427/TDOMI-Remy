@@ -1862,11 +1862,11 @@ label eval_everyone_3:
         "[[Reject.]":
             c "Sorry, Remy, but I don't think I'm ready to take our relationship any further."
             c "You mean a lot to me, but I just can't say I'm ready."
-            Ry "I understand. Maybe I was pushing you too hard. Would you be open to something in the future."
+            Ry "I understand. Maybe I was pushing you too hard. Would you be open to something in the future?"
             c "The most I can say is maybe. Please, don't take this as me not wanting to spend time with you, because that is not the case."
             Ry "Alright, I understand."
             Ry normal "I should probably run and get to work. Emera gets furious if I show up late."
-            c "Is Vara coming with you."
+            c "Is Vara coming with you?"
             Ry "I wasn't able to get a sitter on such short notice, so yes."
             c "Well, I'll see you later, Remy!"
             m "A single tear escaped Remy's eye."
