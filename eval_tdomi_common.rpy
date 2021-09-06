@@ -20,9 +20,6 @@ label eval_tdomi_common:
 
     #Characters
 
-    # :)
-    image remy smile nude = "cr/remy_smile_nude.png"
-
     #Amely brought to you by ECK
     image amely smnormal = "cr/amely_smnormal.png"
     image amely smnormal flip = "cr/amely_smnormal_flip.png"
@@ -429,6 +426,7 @@ label eval_tdomi_early:
     $ evalMetLucius = False
     $ evalMetKalinth = False
     $ evalMetDram = False
+    $ evalRemyRomance = False
 
     return
 

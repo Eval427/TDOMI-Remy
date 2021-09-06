@@ -49,8 +49,6 @@ def load_side_ims():
         renpy.exports.image("side amely %s goggles"%expression, clip_amely_side_image("cr/amely_%s_goggles.png"%expression))
         renpy.exports.image("side amely %s goggles flip"%expression, clip_amely_side_image("cr/amely_%s_goggles_flip.png"%expression))
     
-    renpy.exports.image("side remy smile nude", clip_remy_side_image("cr/remy_smile_nude.png"))
-    
     #For most of Adine's goggle expressions
     for expression in adineGoggleExpressions:
         if expression in ["giggle", "think"]:

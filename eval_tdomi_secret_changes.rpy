@@ -138,16 +138,6 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         else:
             m "I recalled that I had attempted this earlier, and it wasn't a pretty result."
             c "(I probably shouldn't do that again.)"
-        m "Remy let out a long sigh."
-        Ry look "You know, maybe I should have just brought Vara to the park and had her watch the fireworks with us instead of coming back here."
-        Ry "I feel bad for forcing you to miss out on the show tonight."
-        c "Don't say that. We're still going to see the fireworks together."
-        c "We can bring Vara as well, I think it would be fun!"
-        Ry normal "That's true."
-        Ry "You know, I'm very curious to see what your reaction to the show will be. It's quite a sight to behold."
-        c "People just keep saying that."
-        Ry "Maybe you will, too."
-        c "We'll see."
         show vara smshocked b flip with dissolvemed
         m "Vara, with a distraught look, opened her mouth and pointed at it."
         Ry "Oh, I think Vara is a bit hungry. Would you mind if she had a quick snack?"
@@ -366,7 +356,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             c "Well, I guess you'll just have to sleep here for the night then."
             Ry normal "I guess I will."
             c "What about Vara?"
-            Ry "Vara, would you like to stay here or go back to the orphanage."
+            Ry "Vara, would you like to stay here or go back to the orphanage?"
             Vr smnone "Here..."
             show vara smnormal with dissolvemed
             Ry "Alright, Vara. Let's get ready for bed, then."
@@ -379,16 +369,12 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             else:
                 menu:
                     "Let them have the couch.":
-                        m "I watched as Vara hopped up onto the couch while Remy removed his tie."
-                        hide vara with dissolvemed
                         play sound "fx/undress.ogg"
-                        show remy smile nude with dissolvemed
-                        Ry "Can't let this get wrinkled while I sleep, can I?"
-                        hide remy with dissolvemed
-                        m "He rested his tie on the desk next to the couch."
+                        m "I watched as Vara hopped up onto the couch while Remy removed his tie and glasses."
+                        hide vara with dissolvemed
                         m "While they were a bit cramped, the two dragons seemed rather comfortable snuggled close together."
                         c "Goodnight you two."
-                        Ry smile nude "Goodnight, [player_name]."
+                        Ry smile "Goodnight, [player_name]."
                         m "My mind still spinning, I made my way into the bedroom."
                         play sound "fx/undress.ogg"
                         m "I quickly undressed and, too tired to prepare any further, fell asleep."
@@ -406,19 +392,17 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                         with dissolvemed
                         m "The three of us made our way into the bedroom."
                         m "Too tired to even take off my clothes, I laid down on the bed."
+                        play sound "fx/undress.ogg"
                         m "I watched as Remy removed his tie and placed it on the nightstand next to the bed."
-                        show remy smile nude with dissolvemed
-                        Ry "Can't let this get wrinkled while I sleep. It's expensive to get clothing pressed."
-                        hide remy with dissolvemed
                         m "Remy climbed up onto the bed next to me."
                         m "Vara followed closely behind and wedged her way between Remy and I."
                         Vr smnormal "..."
                         m "Vara snuggled a bit closer to me, seemingly attracted to my body heat."
-                        Ry smile nude "It seems that she's taken a liking to you, [player_name]."
+                        Ry smile "It seems that she's taken a liking to you, [player_name]."
                         m "I looked down at Vara, who was snuggled against my side."
                         c "It seems that way."
                         m "Remy let out a big yawn. As if contagious, I did as well."
-                        Ry smile nude "Goodnight, [player_name]."
+                        Ry smile "Goodnight, [player_name]."
                         c "Goodnight, Remy."
                         c "And goodnight to you as well, Vara."
                         Vr smnormal "..."
@@ -465,9 +449,15 @@ label eval_remy_ch4_date_change_2:
     Ry "Hi there, sleepy head!"
     c "Good morning. Where's Vara?"
     Ry normal "I think you mean good afternoon. I brought her back to the orphanage."
+    m "Remy let out a long sigh."
+    Ry look "You know, maybe I shouldn't have mentioned Vara at all yesterday. I feel partially responsible for everything that happened."
+    Ry "I feel bad for forcing you to miss out on the show."
+    c "Don't say that. How were you supposed to know that I was going to pass out? Plus, we're still going to see the fireworks together."
+    c "We can bring Vara as well, I think it would be fun!"
+    Ry look "That's true, but you know how I feel. I guess I just wanted to make the most of our outing yesterday"
     if remystatus != "neutral": #Obligatory inclusion of the kiss scene. Can't be the fourth date without it, really
-        c "You know, Remy. You looked good without your tie last night."
-        Ry "Well, actually..."
+        c "Speaking of which, I've never actually seen you without your tie."
+        Ry normal "Well, actually..."
         hide remy with dissolvemed
         play sound "fx/undress.ogg"
         $ renpy.pause (2.0)
@@ -541,7 +531,7 @@ label eval_remy_ch4_date_change_2:
     c "I don't think she'll believe me either."
     Ry "Really?"
     c "I don't think so."
-    Ry "But what made you so certain that I would believe you."
+    Ry "But what made you so certain that I would believe you?"
     c "I don't know, but I had a feeling that you would."
     Ry "Well, I do. I've been having strange dreams about Vara as well."
     c "Really?"
@@ -1085,7 +1075,7 @@ label eval_post_secret_remy_meeting:
     with dissolveslow
     Ry "So, any luck?"
     c "No, I don't think there's any way to fix the portal and travel back to the day I came here without the help of the dead Administrator."
-    Ry "Wait, go back to the day you got here? Doesn't that imply time travel."
+    Ry "Wait, go back to the day you got here? Doesn't that imply time travel?"
     c "Yes. The portal can be used to manipulate time."
     Ry "I guess that makes sense. In most circumstances, the probability for an alien life form to be able to live in the conditions of another planet would be astronomically low."
     Ry "However, if you instead came from another time period on Earth, then it would make sense why you are accustomed to our environment."

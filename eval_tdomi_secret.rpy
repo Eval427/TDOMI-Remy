@@ -448,7 +448,7 @@ label eval_everyone_1:
     Ad "Took you three long enough to get here."
     Ad giggle b flip "I don't suppose you had to make any other stops or pick up any more passengers on your way over here, Remy."
     Ry "Nope. We just had to lock up the orphanage on our way out."
-    Ad normal "So, you said Katsuharu relocated here. Any idea where he is?"
+    Ad normal b flip "So, you said Katsuharu relocated here. Any idea where he is?"
     c "He didn't give me an exact location..."
     menu:
         "[[Make a banana phone joke.]":
@@ -991,7 +991,7 @@ label eval_everyone_3:
     Ka "Here you go little ones."
     m "The two dragons grabbed their cones. Amely looked at her own in wonder, while Vara meticulously inspected hers from all angles."
     m "Cautiously, Amely tasted her chocolate ice cream."
-    show amely smnormal with dissolvemed
+    show amely smnormal at Position (xpos = 0.6) with dissolvemed
     m "The instant her tongue made contact with the chocolate, her eyes lit up in excitement and she took another bite."
     Ad giggle b "Well, I think someone likes ice cream."
     m "Amely was already attacking her cone from all angles."
@@ -1123,7 +1123,7 @@ label eval_everyone_3:
         m "I paused for a moment and considered what to do."
 
         menu:
-            "Give Amely my ice cream.":
+            "[[Give Amely my ice cream.]":
                 c "Would you like some more ice cream, Amely?"
                 Am "Yes!"
                 Ry "That's a little too much ice cre-{w=0.5}{nw}"
@@ -1218,9 +1218,9 @@ label eval_everyone_3:
                 show amely smnormal at left with move
                 show amely smnormal flip with dissolvemed
 
-            "[[Keep your ice cream.]":
+            "[[Keep my ice cream.]":
                 c "Sorry, Amely. But I think you've had enough ice cream for today."
-                Am smsad "Awwww..."
+                Am smsad flip "Awwww..."
                 Ry "Amely, you've already had two scoops."
                 Am "Want more..."
                 Ry "We'll make sure to come back here more often for you, alright?"
@@ -1239,7 +1239,7 @@ label eval_everyone_3:
                 Ad "Good going, detective!"
                 c "I guess I should have seen this coming."
                 Ry look "Adine, that's funny and all, but now [player_name] can't enjoy their ice cream."
-                Ad giggle b "Don't be silly, why do you think I got the mango ice cream? Here, let's trade, [player_name]."
+                Ad giggle b flip "Don't be silly, why do you think I got the mango ice cream? Here, let's trade, [player_name]."
                 m "I quickly swapped cones with Adine."
                 Ry normal "That's quite clever, Adine."
                 Ad normal b flip "Better than anything [player_name] could make up."
@@ -1384,11 +1384,11 @@ label eval_everyone_3:
             Ad annoyed b flip "Let's just hope my stomach doesn't say something to contradict that statement later."
             Ry look "Well, what are we going to do now? It's ironic that [player_name] brought us all out here to treat us to ice cream but isn't able to have any themself."
             Ka "Did I hear something about an unhappy customer?"
-            show amely smnormal flip at Position (xpos = 0.6) behind remy
-            show adine normal b flip at Position (xpos = 0.6) behind amely
-            with move
-            show adine normal b at Position (xpos = 0.6) behind amely
+            hide adine
+            hide amely
+            with dissolvemed
             show amely smnormal at Position (xpos = 0.6) behind remy
+            show adine normal b at Position (xpos = 0.6) behind amely
             show remy normal behind vara
             with dissolvemed
             show katsu normal flip at Position (xpos = 0.1) with easeinleft

@@ -12,7 +12,7 @@ label eval_tdomi_remy:
     $ save_name = (_("Ice Cream"))
 
     #Because multipersistents are buggy, I am creating a custom variable for mp.remyromance
-    if mp.remyromance:
+    if mp.remyromance or evalRemyRomance:
         $ evalRemyRomance = True
     else:
         $ evalRemyRomance = False
@@ -491,6 +491,8 @@ label eval_trip_to_orphanage:
                                 s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
                                 stop music fadeout 2.0
                                 scene black with dissolveslow
+                                $ evalReplaceBulbs = True
+                                $ evalResetBreaker = True
                                 scene evalorphlight with dissolveslow
 
                             "No.":
@@ -1020,7 +1022,7 @@ label eval_solo_remy_2:
             c "Wow, this is disgusting."
         Ry look "Are you not a big fan of the special?"
         c "Not to offend anyone, but it's pretty gross."
-        Ry normal "It isn't for everyone, but luckily for you, I happen to quite enjoy it. Would you like to switch?"
+        Ry normal "You know, I wouldn't mind trying it. It sounded weird at first, but it might be interesting."
 
         menu:
             "Sure.":
@@ -1028,6 +1030,7 @@ label eval_solo_remy_2:
                 Ry smile "If you're happy, I'm happy."
                 show remy normal with dissolvemed
                 m "We quickly switched cones, and after a taste of the vanilla, I could see why Katsuharu was so well loved for his craft."
+                Ry smile "This is really good! I can't belive you didn't like it!"
                 m "Our cones did not last long. Soon, the only remnants of our ice cream lay in our stomachs or dried on our hands."
                 $ evalSwitchedCones = True
             
@@ -1083,6 +1086,9 @@ label eval_solo_remy_2:
                     c "Your breath smells like vanilla."
                     Ry normal "And yours of fish. I think I got the shorter end of the stick."
                     c "Yeah, I guess fish ice cream isn't the best for kissing."
+                elif evalChosenFlavor = "vanilla":
+                    c "Your breath smells like vanilla."
+                    Ry normal "Well, so does yours."
                 else:
                     c "Your breath smells like vanilla."
                     Ry normal "And yours of [evalChosenFlavor]. Really adds to the experience if you ask me."
@@ -1753,9 +1759,6 @@ label eval_remy_amely_2:
             $ renpy.pause (0.5)
             scene o3 with dissolveslow #Add pan
             show remy normal with dissolvemed
-            Ry look "This place really hasn't changed much since I was last in here, [player_name]. You've really got to spice it up every once and a while."
-            c "I haven't had the time to get around to that. With the whole coma and world saving stuff going on."
-            Ry normal "Right, that probably did take up a lot of your free time."
             Ry normal "Hey, now that I'm here, would you mind if I slept here for the night? Night flying isn't really my specialty."
             c "Of course you can Remy, you're always welcome here."
             Ry smile "Thanks, [player_name]!"
@@ -2730,7 +2733,7 @@ label eval_remy_amely_adine_3:
         show remy normal at right behind amely with move
         show katsu normal flip at Position (xpos = 0.1) with easeinleft
         c "How did you know?"
-        Ka smile "I have a sixth sense for customer satisfaction."
+        Ka smile flip "I have a sixth sense for customer satisfaction."
         m "Katsuharu reached out and handed me a fresh scoop of vanilla."
         c "Wow, thank you Katsuharu!"
         c "What should I do with this scoop of the special, though?"
@@ -2916,9 +2919,7 @@ label eval_remy_amely_adine_sleep_select:
             scene o3 with dissolveslow
             show remy normal with dissolvemed
             c "Well, here we are. Home sweet home."
-            Ry look "This place really hasn't changed much since I was last in here, [player_name]. You've really got to spice it up every once and a while."
-            c "I haven't had the time to get around to that. With the whole coma and world saving stuff going on."
-            Ry normal "Right, that probably did take up a lot of your free time."
+            c "Wait a minute..."
             $ renpy.pause (2.0)
             if evalOrphanageScore == 2 and evalCustomerScore == 10 and persistent.evalEndingA and persistent.evalEndingB:
                 scene black with dissolvemed
@@ -2951,16 +2952,12 @@ label eval_remy_amely_adine_sleep_select:
                     hide remy with dissolvemed
                     m "The two of us made our way to the bedroom."
                     play sound "fx/undress.ogg"
-                    m "I got undressed while Remy removed his tie."
-                    show remy smile nude with dissolvemed
-                    Ry "Can't let this get wrinkled while I sleep, can I?."
-                    c "Not one bit."
-                    hide remy with dissolvemed
+                    m "I got undressed while Remy removed his tie and glasses."
                     play sound "fx/bed.ogg"
                     m "The two of us climbed into bed."
                     c "I don't think this bed was made to fit a human and a big dragon."
                     m "Remy grabbed me and pulled me into his soft embrace."
-                    Ry smile nude "Is this better?"
+                    Ry smile "Is this better?"
                     c "You are a very comfortable dragon pillow, Remy."
                     if evalRemyRomance:
                         m "Looking up, I found Remy's muzzle was mere millimeters from my face."
@@ -2978,16 +2975,11 @@ label eval_remy_amely_adine_sleep_select:
                     scene black with dissolveslow
                     m "I slowly closed my eyes, Remy's warmth and gentle breathing lulling me to sleep."
                 else:
-                    hide remy with dissolvemed
-                    m "Remy removed his tie and placed it on the desk next to the couch."
-                    show remy smile nude with dissolvemed
-                    Ry "Can't let this get wrinkled while I sleep, can I?"
-                    c "Not one bit."
-                    hide remy with dissolvemed
+                    m "Remy walked over to the couch and made himself comfortable."
                     play sound "fx/undress.ogg"
-                    m "I undressed and crawled into bed."
+                    m "After making my way to the bedroom, I undressed and crawled into bed."
                     m "I heard Remy call out from the main room."
-                    Ry smile nude "Goodnight, [player_name]."
+                    Ry smile "Goodnight, [player_name]."
                     c "Goodnight, Remy."
                 stop music fadeout 2.0
                 $ persistent.evalSecretEndingUnlocked = True
@@ -3002,19 +2994,15 @@ label eval_remy_amely_adine_sleep_select:
                     hide remy with dissolvemed
                     m "The two of us made our way to the bedroom."
                     play sound "fx/undress.ogg"
-                    m "I got undressed while Remy removed his tie."
-                    show remy smile nude with dissolvemed
-                    Ry "Can't let this get wrinkled while I sleep, can I?"
-                    c "Not one bit."
-                    hide remy with dissolvemed
+                    m "I got undressed while Remy removed his tie and glasses."
                     play sound "fx/bed.ogg"
                     m "The two of us climbed into bed."
                     c "I don't think this bed was made to fit a human and a big dragon."
                     m "Remy grabbed me and pulled me into his soft embrace."
-                    Ry smile nude "Is this better?"
+                    Ry smile "Is this better?"
                     c "Much."
                     c "Goodnight, Remy."
-                    Ry smile nude "Goodnight, [player_name]."
+                    Ry smile "Goodnight, [player_name]."
                     scene black with dissolveslow
                     stop music fadeout 2.0
                     m "I slowly closed my eyes, Remy's warmth and gentle breathing lulling me to sleep."
@@ -3022,15 +3010,11 @@ label eval_remy_amely_adine_sleep_select:
                     jump eval_custom_credits
                 else:
                     hide remy with dissolvemed
-                    m "I made my way to the bedroom while Remy removed his tie."
-                    show remy smile nude with dissolvemed
-                    Ry "Can't let this get wrinkled while I sleep, can I?"
-                    c "Not one bit."
-                    hide remy with dissolvemed
+                    m "I made my way to the bedroom while Remy removed his tie and glasses."
                     play sound "fx/undress.ogg"
                     m "I undressed and crawled into bed."
                     m "I heard Remy call out from the main room."
-                    Ry smile nude "Goodnight, [player_name]."
+                    Ry smile "Goodnight, [player_name]."
                     c "Goodnight, Remy."
                     stop music fadeout 2.0
                     scene black with dissolveslow
@@ -3238,7 +3222,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
                 c "Can't say I have."
                 Ka smile flip "Well, they serve this wonderful fish special that I loved so much, I decided to blend up and turn into an ice cream flavor!"
                 c "No offense, but that sounds a bit gross."
-                Ry look "I would have to agree."
+                Ry look "Sounds quite... interesting."
                 if evalCurrentEnding == 3:
                     Ad think b "As someone who has served this dish countless times, [player_name], all I can say is that it's not for everyone."
                     c "That's concerning."
@@ -3443,7 +3427,7 @@ label eval_custom_credits:
 
     scene black with dissolvemed
 
-    if evalCurrentEnding == 4 or not varadead:
+    if evalCurrentEnding == 4 or evalVaraAlive:
         show extra1 at Pan ((-600, 0), (-490,0), 20.0)
     else:
         show varadead at Pan((520, 0), (0, 326), 20.0)
