@@ -454,7 +454,7 @@ label eval_remy_ch4_date_change_2:
     Ry "I feel bad for forcing you to miss out on the show."
     c "Don't say that. How were you supposed to know that I was going to pass out? Plus, we're still going to see the fireworks together."
     c "We can bring Vara as well, I think it would be fun!"
-    Ry look "That's true, but you know how I feel. I guess I just wanted to make the most of our outing yesterday"
+    Ry look "That's true, but you know how I feel. I guess I just wanted to make the most of our outing yesterday."
     if remystatus != "neutral": #Obligatory inclusion of the kiss scene. Can't be the fourth date without it, really
         c "Speaking of which, I've never actually seen you without your tie."
         Ry normal "Well, actually..."
