@@ -12,14 +12,6 @@ Why did I even do this in the first place/what gave me inspiration?
 - I thought this would be a nice, small, and easy intro mod. 30k+ word script and here we are now I guess
 
  _______________________________________________________________________________________________
-
- Thoughts on current version:
-
- - The most recent version completely changes Remy's 4th date and his good ending if you unlock the secret ending
-
- - I really like a lot of what I have done, but there are a few problems with it/things I'm not 100% happy with.
-
- _______________________________________________________________________________________________
  
  Requirements: (Note that this mod starts at the end of Remy's default good ending.)
  
