@@ -1313,11 +1313,11 @@ label eval_remy_amely_1:
             Ka smile flip "Yep, you were just as enthusiastic. Your eyes were practically bulging out of your head looking at all of the different flavors."
             Ry "I... guess I do remember being quite excited that day."
             c "Speaking of Remy, is it alright that I brought him along as well?"
-            Ka normal flip "Perfectly fine! Although he is going to have to pay."
+            Ka normal flip "Perfectly fine! Although Remy is going to have to pay for the both of them."
             Ry look "Umm... [player_name] I didn't bring any money."
             Ka smile flip "I'm just messing with you. I'd be happy to accomodate Remy as well."
             Ry normal "You really got me for a second, Katsuharu. Thank you, that's very generous of you."
-            Ka normal "Well, enough about embarrassing childhood memories, like you said, [player_name], we have to get to the more important matters."
+            Ka normal flip "Well, enough about embarrassing childhood memories, like you said, [player_name], we have to get to the more important matters."
             $ persistent.evalB1Skip = True
     
     jump eval_ice_cream_choice
@@ -1587,6 +1587,7 @@ label eval_remy_amely_2:
                                     $ renpy.pause (1.0)
                                     Ry smile "That was the best bite yet!"
                                     c "I could say the same myself."
+                                    show remy normal with dissolvemed
                                 
                                 "Pretend it didn't happen.":
                                     pass
@@ -1594,12 +1595,16 @@ label eval_remy_amely_2:
                             m "With our combined ice cream eating power, we were able to make quick work of the cone."
                             
                         "Don't worry about it.":
+                            $ evalChosenFlavor = "chocolate"
                             c "Don't worry about it Remy, enjoy your ice cream."
                             Ry smile "Whatever you say. I won't give up an opportunity for more ice cream."
                             $ renpy.pause (1.0)
                             m "After a while, I saw Katsuharu start walking over to us."
-                            show katsu normal flip at left with easeinleft
-                            Ka "Hey [player_name]. Just closing up and had and extra scoop of chocolate. Are any of you interested?"
+                            show remy normal at right
+                            show amely normal at right
+                            with move
+                            show katsu normal flip at Position (xpos = 0.6) with easeinleft
+                            Ka "Hey, [player_name]. Just closing up and had and extra scoop of chocolate. Are any of you interested?"
                             Am "Me! Me!"
 
                             menu:
@@ -1625,11 +1630,14 @@ label eval_remy_amely_2:
                                     c "I'll take it."
                                     Am "No ice cream?"
                                     Ry "Amely, you've already had enough."
+                                    Am smsad "Awww..."
                                     hide amely with easeoutleft
                                     c "I'll say."
                                     m "Looking around, Amely was racing around the area like a pinball."
                                     Ka "Anyways, enjoy the chocolate ice cream [player_name]!"
                                     c "Thank you Katsuharu!"
+                                    show katsu normal with dissolvemed
+                                    hide katsu with easeoutleft
                             
                             m "The second my tongue lay contact with the smooth [evalChosenFlavor], I lit up in excitement."
                             c "Wow! This really is amazing ice cream!"
@@ -2000,7 +2008,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         Ry "Not as fast as a runner, but I'm still quite quick."
         c "Alright then, let's see how quick those legs really are."
     else:
-        Ry "Well, are you ready, [player_name]."
+        Ry "Well, are you ready, [player_name]?"
         c "Sure am."
     hide remy with dissolvemed
     play sound "fx/bed.ogg"
@@ -2216,7 +2224,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             Ka "Of course. You really, really wanted three cones that day."
             Ka "It was quite entertaining watching you hop away on one foot while holding ice cream in your hands and other foot."
             Ad "I remember getting a lot of strange looks from other dragons that day."
-            Ry smile "I think I remember that too. Didn't you almost fall."
+            Ry smile "I think I remember that too. Didn't you almost fall?"
             Ad annoyed b "Of course I didn't. My feet are very dextrous. Walking on one foot isn't a big deal."
             Ry normal "How sanitary is holding ice cream with your feet though, Adine?"
             Ad normal b "I was a kid, you really think I was worrying about something like that?"
@@ -2441,7 +2449,7 @@ label eval_remy_amely_adine_2:
     show amely smnormal at right with easeinright
     show remy normal behind amely at right with easeinright
     show adine normal c behind remy at Position (xpos=0.6) with easeinright
-    Ad "Hey guys! How'd it go!"
+    Ad "Hey guys! How'd it go?"
     c "It was a lot of work, but in a way, it was also nice talking to all the locals."
     Ry smile "And I think I'm now a certified ice cream scooper!"
     Ka "That you are, Remy."
@@ -2728,9 +2736,8 @@ label eval_remy_amely_adine_3:
         Ad normal b flip "I had a lot of fun today."
         Ry smile "I guess the ice cream was more of a bonus rather than an end goal."
         Ka "Did I hear an unhappy customer?"
-        show adine normal b flip at Position (xpos=0.6) behind remy with move
-        show adine normal b at Position (xpos=0.6) behind remy
-        show remy normal at right behind amely with move
+        hide adine with dissolvemed
+        show adine normal b at Position (xpos = 0.6) with dissolvemed
         show katsu normal flip at Position (xpos = 0.1) with easeinleft
         c "How did you know?"
         Ka smile flip "I have a sixth sense for customer satisfaction."
@@ -3560,7 +3567,7 @@ label eval_custom_credits:
 
     elif evalCurrentEnding == 4:
         m "You got the final ending! Good job!"
-        if len(persistent.evalUniqueFails) < 6:
+        if len(persistent.evalUniqueFails) < 5:
             m "However, there is still more content!"
             m "Try to get every fail. You might just get a reward..."
     else:

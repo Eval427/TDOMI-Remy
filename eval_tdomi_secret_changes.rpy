@@ -327,7 +327,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             scene black with dissolvemed
             play sound "fx/impact.wav"
             $ renpy.pause (2.0)
-            m "The world around me went black as I fell to the floor, unconscious"
+            m "The world around me went black as I fell to the floor, unconscious."
             m "I awoke when I felt a strange pressing sensation on my cheek."
             m "It was Vara, who looked down at me with a concerned expression."
             scene o3 with dissolveslow
@@ -1015,7 +1015,7 @@ label eval_post_secret_remy_meeting:
     scene park2 with dissolveslow
     show remy normal with dissolvemed
     play music "mx/library.ogg" fadein 2.0
-    c "So, the comet has been diverted, and you've replaced the power source for the portal. I guess I must've been gone for a long time."
+    c "So, the comet has been diverted. I guess I must've been gone for a long time."
     Ry look "Yes you were. A lot has happened since then."
     Ry normal "By the way, I talked with Maverick a few days ago."
     c "Oh, what did he have to say?"

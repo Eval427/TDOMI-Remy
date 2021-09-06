@@ -592,7 +592,7 @@ label eval_everyone_1:
             Ka "Of course. You really, really wanted three cones that day."
             Ka "It was quite entertaining watching you hop away on one foot while holding ice cream in your hands and other foot."
             Ad "I remember getting a lot of strange looks from other dragons that day."
-            Ry smile "I think I remember that too. Didn't you almost fall."
+            Ry smile "I think I remember that too. Didn't you almost fall?"
             Ad annoyed b "Of course I didn't. My feet are very dextrous. Walking on one foot isn't a big deal."
             Ry normal "How sanitary is holding ice cream with your feet though, Adine?"
             Ad normal b "I was a kid, you really think I was worrying about something like that?"
@@ -1296,7 +1296,7 @@ label eval_everyone_3:
                 Ad "And I don't think these two would mind either. Right?"
                 Am "More?"
                 Ad giggle b flip "Not right now, silly!"
-                Ry "Would you mind helping Vara on my back, [player_name]."
+                Ry "Would you mind helping Vara onto my back, [player_name]?"
                 c "Sure."
                 hide vara with dissolvemed
                 m "I grabbed Vara and lifted her onto Remy's back."
@@ -1436,7 +1436,7 @@ label eval_everyone_3:
         Ad "And I don't think these two would mind either. Right?"
         Am "More?"
         Ad giggle b flip "Not right now, silly!"
-        Ry "Would you mind helping Vara on my back, [player_name]."
+        Ry "Would you mind helping Vara onto my back, [player_name]?"
         c "Sure."
         hide vara with dissolvemed
         m "I grabbed Vara and lifted her onto Remy's back."
