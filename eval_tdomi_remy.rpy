@@ -2872,19 +2872,7 @@ label eval_remy_amely_adine_3:
                 Ry "I've just kept it brewing inside me for so long I had to get it out."
                 c "Don't worry about it."
                 Ry look "It's getting really late, I should best get going."
-                c "I understand. Bye Remy!"
-                Ry smile "Bye, [player_name]."
-                hide remy with dissolvemed
-                play sound "fx/takeoff.ogg"
-                m "With that, Remy took off into the starry night sky."
-                m "I headed back inside and prepared for bed."
-                stop music fadeout 2.0
-                scene black with dissolveslow
-                $ renpy.pause (1.0)
-                play sound "fx/system3.ogg"
-                s "You didn't hug Remy? Shame on you."
-                $ evalFail = "A Mediocre Friend"
-                jump eval_fails
+                jump eval_remy_amely_adine_sleep_select
     else:
         Ry normal "But I should really get going. Night flying really isn't my specialty."
         jump eval_remy_amely_adine_sleep_select
@@ -3280,12 +3268,12 @@ label eval_fails:
             s "It might even unlock something, just saying."
         s "You have experienced a new fail: [evalFail]!"
         $ evalTotalFails = len(persistent.evalUniqueFails)
-        s "Total fails: [evalTotalFails] of 6."
+        s "Total fails: [evalTotalFails] of 5."
     else:
         play sound "fx/system3.wav"
         s "It seems that you have already experienced this fail before."
         s "Either you got it in another ending, or you just like to watch characters suffer."
-    if len(persistent.evalUniqueFails) == 6:
+    if len(persistent.evalUniqueFails) == 5:
         $ renpy.pause (2.0)
         s "Would you look at that, you got every fail this mod had to offer."
         s "You probably thought that this would unlock something special, but at the moment, I've got nothing."
