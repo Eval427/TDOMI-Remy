@@ -1398,18 +1398,11 @@ label eval_everyone_3:
             Ka normal flip "You should like this much better."
             c "Wow! Thank you Katsuharu!"
             Am "More?"
-            Ry "We did promise to give her a second scoop, didn't we?"
-            Ad giggle b "I guess we did."
-            Ry "Will that be alright, Katsuharu?"
-            Ka "No worries, I'll get her another."
-            show katsu normal with dissolvemed
-            m "Katsuharu reached into his cart and pulled out a scoop of chocolate."
-            show katsu normal flip with dissolvemed
-            Ka "Here you go, Amely."
-            Am "Thanks!"
-            m "Amely hungrily grabbed the chocolate from Katsuharu and started attacking it."
-            Ad normal b "It still impresses me just how quickly that little dragon can eat ice cream."
-            Ka "I'm going to get going for real this time. You four take care."
+            Ry "Sorry, Amely. We only promised two scoops of ice cream today."
+            Am smsad "Awwwwwww."
+            Ad "Don't worry, Amely. We'll come back another time."
+            Am smsmile "Okay..."
+            Ka "I'm going to get going for real this time. You five take care."
             Ry "Thank you, Katsuharu!"
             show katsu normal with dissolvemed
             hide katsu with easeoutleft
@@ -1418,7 +1411,7 @@ label eval_everyone_3:
         else:
             m "I took a small bite of the [evalChosenFlavor] ice cream."
         m "As the cool ice cream dissolved on my tongue, my face lit up in excitement."
-        Ad giggle b flip "Now that's the reaction I would expect from Katsuharu's ice cream."
+        Ad giggle b "Now that's the reaction I would expect from Katsuharu's ice cream."
         c "This is really good!"
         scene black with dissolveslow
         m "I quickly devoured the cone, rivaling Amely in speed."
@@ -1461,7 +1454,7 @@ label eval_everyone_3:
         play sound "fx/takeoff.ogg"
         m "With Amely tightly grasped within her claws, Adine soared into the night sky."
     
-    m "With everyone off at the orphanage, I made my way back to my apartment."
+    m "With everyone else gone, I made my way back to my apartment."
     stop music fadeout 2.0
     scene black with dissolveslow
     $ renpy.pause (2.0)

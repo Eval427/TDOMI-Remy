@@ -273,7 +273,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                     Ry smile "You should be honored, [player_name]. Vara doesn't just speak to everyone."
                     c "After everything she's been through, I can't blame her."
                 else:
-                    Vr smnormal "..."
+                    Vr smnormal flip "..."
                 m "I grabbed another piece and started eating."
                 c "Would anyone else like more?"
                 Vr "..."
