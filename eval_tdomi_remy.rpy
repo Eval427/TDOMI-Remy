@@ -89,13 +89,27 @@ label eval_tdomi_remy:
     $ renpy.pause (1.0)
     call eval_special_mentions from _eval_mentions
     $ persistent.evalFirstTimePlaying = False
+    $ evalVaraAlive = False
+    if evalDoingSecretEnding:
+        $ evalVaraAlive = True
+    elif not renpy.python.store_dicts["store"].get("vara_survives_varadead", True): #joeyjumper94's vara survives mod
+        $ evalVaraAlive = True
+    elif renpy.python.store_dicts["store"].get("hatchling","") == "Vara": #if player selected Vara in the remy hatchlings mod, she survives
+        $ evalVaraAlive = True
+    $ evalVaraHere=False
+    if renpy.python.store_dicts["store"].get("vara_survives_varahere",False): #joeyjumper94's vara survives mod
+        $ evalVaraHere=True
     if evalDoingSecretEnding:
         scene np1x
         show remy look
         with dissolveslow
     else:
         scene park2
-        show remy look
+        if evalVaraHere:
+            show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+            show remy look behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+        else:
+            show remy look
         with dissolveslow
     $ renpy.pause (0.5)
 
@@ -155,6 +169,9 @@ label eval_tdomi_remy:
         Ry look "I find it strange that he didn't think to move here earlier."
         c "Considering his old spot worked well for forty years, it was probably pretty difficult to decide on a move."
         Ry normal "I guess you're right."
+    Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
+    c "I'm sure it will be fine."
+    Ry normal "In that case, is there anyone else you would like to invite?"
     if not persistent.evalEndingBUnlocked and not persistent.evalEndingCUnlocked:
         c "Why don't we go with just the two of us? It'll be a nice outing, and maybe we won't eat Katsuharu entirely out of his stock."
         Ry smile "Sounds fun! Lets go."
@@ -162,16 +179,9 @@ label eval_tdomi_remy:
         scene black with dissolveslow
         $ evalCurrentEnding = 1
         jump eval_solo_remy_1
-    Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
-    c "I'm sure it will be fine."
-    Ry normal "In that case, is there anyone else you would like to invite?"
-    $ evalVaraAlive = False
-    if evalDoingSecretEnding:
-        $ evalVaraAlive = True
-    elif not renpy.python.store_dicts["store"].get("vara_survives_varadead", True): #joeyjumper94's vara survives mod
-        $ evalVaraAlive = True
-    elif renpy.python.store_dicts["store"].get("hatchling","") == "Vara": #if player selected Vara in the remy hatchlings mod, she survives
-        $ evalVaraAlive = True
+    elif evalVaraHere and adinestatus != "bad" and not adinedead:
+        jump eval_vara_forced_path
+
 
 
     menu:
@@ -252,13 +262,13 @@ label eval_tdomi_remy:
                     Ry angry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
                     hide remy with dissolvemed
                     stop music fadeout 2.0
-                    play sound "fx/evalgrasswalk1"
+                    play sound "fx/evalgrasswalk1.ogg"
                     m "The dragon stormed off and prepared to fly over to the orphanage."
                     
                     menu:
                         "[[Stop Remy]":
                             c "Wait! Remy!"
-                            play sound "fx/evalgrasswalk2"
+                            play sound "fx/evalgrasswalk2.ogg"
                             m "Remy looked at me and walked back over."
                             $ renpy.pause (1.0) #This should fix it? No? Fixed. I'm an idiot
                             show remy look with dissolvemed #Wtf is happening here?
@@ -295,6 +305,7 @@ label eval_tdomi_remy:
                             jump eval_fails
 
         "Everyone." if evalVaraAlive and adinestatus != "bad" and not adinedead:
+            label eval_vara_forced_path:
             c "Why don't we bring everyone?"
             Ry look "Everyone?"
             c "Yes. You, Amely, Vara, Adine and I."
@@ -310,7 +321,10 @@ label eval_tdomi_remy:
             menu: #It's possible that I want to change this more so it's more uniquie, but I'm not sure
                 "Sure.":
                     c "Sure. I'd love to help out if I could."
-                    Ry smile "Great! Let's go now. Vara and Amely are already there, so they can keep us company as well."
+                    if evalVaraHere:
+                        Ry smile "Great! Let's go now. Amely is already there, so they can keep us company as well."
+                    else:
+                        Ry smile "Great! Let's go now. Vara and Amely are already there, so they can keep us company as well."
                     jump eval_trip_to_orphanage
                 
                 "Sounds boring, lets do something else.":
@@ -324,19 +338,29 @@ label eval_tdomi_remy:
                     $ evalRemyStatus=remystatus#store remy's original status
                     $ remystatus="bad"#having Remy's status change to bad can add a punch to the gut
                     c "It beats the yelling and screaming."
-                    Ry angry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
-                    hide remy with dissolvemed
+                    if evalVaraHere:
+                        show vara sad flip
+                    show remy angry
+                    with dissolvemed
+                    Ry "You know what? Taking a simple walk sounds like a pretty boring day out together. I think I'd rather go to the orphanage by myself."
+                    if evalVaraHere:
+                       hide vara
+                    hide remy
+                    with dissolvemed
                     stop music fadeout 2.0
-                    play sound "fx/evalgrasswalk1"
-                    m "The dragon stormed off and prepared to fly over to the orphanage."
+                    play sound "fx/evalgrasswalk1.ogg"
+                    if evalVaraHere:
+                        m "The dragons stormed off and prepared to fly over to the orphanage."
+                    else:
+                        m "The dragon stormed off and prepared to fly over to the orphanage."
                     
                     menu:
-                        "[[Stop Remy]":
+                        "[[Stop Remy]" if not evalVaraHere:
                             c "Wait! Remy!"
-                            play sound "fx/evalgrasswalk2"
+                            play sound "fx/evalgrasswalk2.ogg"
                             m "Remy looked at me and walked back over."
                             $ renpy.pause (1.0) #This should fix it? No? Fixed. I'm an idiot
-                            show remy look with dissolvemed #Wtf is happening here?
+                            show remy look with dissolvemed
                             Ry "What?"
                             play music "mx/jazzy.ogg"
                             $ remystatus=evalRemyStatus#you were quick to apolgize for your rash decision and his mood is restored
@@ -350,9 +374,34 @@ label eval_tdomi_remy:
                             Ry normal "Great, we can start making our way over there now!"
                             jump eval_trip_to_orphanage
                         
+                        "[[Stop them]" if evalVaraHere:
+                            c "Wait! Remy!"
+                            play sound "fx/evalgrasswalk2.ogg"
+                            m "Remy and Vara looked at me and walked back over."
+                            $ renpy.pause (1.0) #This should fix it? No? Fixed. I'm an idiot
+                            show vara sad flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+                            show remy look behind vara at Position(xpos=0.70,xanchor='center',ypos=1.0,yanchor="bottom")
+                            with dissolvemed
+                            Ry "What?"
+                            play music "mx/jazzy.ogg"
+                            $ remystatus=evalRemyStatus#you were quick to apolgize for your rash decision and his mood is restored
+                            c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
+                            Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
+                            c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
+                            show vara normal flip with dissolvemed
+                            Ry "Well, so can dragon children, but you just learn to accept that they haven't had as much time on the planet as us, and sometimes have difficulty expressing their emotions in other ways."
+                            c "I guess..."
+                            Ry smile "Plus, I think this experience will be a lot more fun than you think."
+                            c "You're probably right."
+                            Ry normal "Great, we can start making our way over there now!"
+                            jump eval_trip_to_orphanage
+                        
                         "[[Let him leave]":
                             play sound "fx/takeoff.ogg"
-                            m "I silently watched as Remy extended his wings and flew off to the orphanage."
+                            if evalVaraHere:
+                                m "I silently watched as Vara got onto Remy's back before Remy flew away"
+                            else:
+                                m "I silently watched as Remy extended his wings and flew off to the orphanage."
                             "???" "You are an idiot."
                             c "What? Who are you?"
                             "???" "That doesn't matter. What does is how unbelievably selfish you are."
@@ -366,7 +415,8 @@ label eval_tdomi_remy:
                             m "At a loss for words, I made my way back home, crawled into bed, and spent the rest of the day wondering what possessed me to be so selfish."
                             play sound "fx/system3.wav"
                             s "Why did you go through all the trouble of saving Vara just to do that?"
-                            return
+                            $ evalFail = "Child Hater"
+                            jump eval_fails
 
 label eval_trip_to_orphanage:
     c "It's a bit far, is it not? The doctor said I shouldn't be walking too much."
@@ -426,7 +476,11 @@ label eval_trip_to_orphanage:
                         $ persistent.skipnumber += 1
                         call skipcheck from evalSkipCheckOT
                         scene evalorphdark
-                        show remy normal
+                        if evalVaraHere:
+                            show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+                            show remy normal behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+                        else:
+                            show remy normal
                         with dissolveslow
                         jump eval_skip_orphanage_trip
 
@@ -450,7 +504,12 @@ label eval_trip_to_orphanage:
             play sound "fx/bed.ogg"
             m "I gracefully slid off Remy's back and looked around."
             scene hatchery with dissolveslow
-            show remy look with dissolvemed
+            if evalVaraHere:
+                show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+                show remy look behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+            else:
+                show remy look
+            with dissolvemed
             Ry "Now, where did Adine leave the key this time?"
             show remy look flip with dissolvemed
             hide remy with easeoutright
@@ -458,7 +517,11 @@ label eval_trip_to_orphanage:
             play sound "fx/cling.ogg"
             m "A small, silver key fell out of the dirt and onto the concrete stairs."
             Ry normal "Yep. That's her usual hiding place."
-            show remy normal with easeinright
+            if evalVaraHere:
+                show remy normal behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+            else:
+                show remy normal
+            with easeinright
             Ry "Alright, [player_name], follow me."
             hide remy with dissolvemed
             play sound "fx/door/doorchain.ogg"
@@ -472,7 +535,12 @@ label eval_trip_to_orphanage:
                 play music "mx/comfy.mp3"
             else:
                 play music "mx/donuts.mp3"
-            show remy normal with dissolve
+            if evalVaraHere:
+                show vara smnormal
+                show remy normal behind vara
+            else:
+                show remy normal
+            with dissolve
             Ry "Well, here we are!"
             $ persistent.evalOrphanageTripSkip = True
             if evalCurrentEnding == 4:
@@ -660,7 +728,12 @@ label eval_trip_to_orphanage:
             m "With renewed energy, Remy and I continued to the orphanage."
             stop music fadeout 2.0
             scene hatchery with dissolveslow
-            show remy look with dissolvemed
+            if evalVaraHere:
+                show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+                show remy look behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+            else:
+                show remy look
+            with dissolvemed
             Ry "Now, where did Adine leave the key this time?"
             show remy look flip with dissolvemed
             hide remy with easeoutright
@@ -668,7 +741,11 @@ label eval_trip_to_orphanage:
             play sound "fx/cling.ogg"
             m "A small, silver key fell out of the dirt and onto the concrete stairs."
             Ry "Yep. That's her usual hiding place."
-            show remy normal with easeinright
+            if evalVaraHere:
+                show remy normal behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+            else:
+                show remy normal
+            with easeinright
             Ry "Alright, [player_name], follow me."
             hide remy with dissolvemed
             play sound "fx/door/doorchain.ogg"
@@ -680,7 +757,11 @@ label eval_trip_to_orphanage:
             $ persistent.evalOrphanageSleepSkip = True
             scene black with dissolveslow
             scene evalorphdark
-            show remy normal
+            if evalVaraHere:
+                show vara smnormal
+                show remy normal behind vara
+            else:
+                show remy normal
             with dissolveslow
             play music "mx/donuts.mp3"
             if evalCurrentEnding == 4:
@@ -1120,21 +1201,9 @@ label eval_solo_remy_2:
                 "Sure.":
                     c "Well, Remy, sounds like a good time to me."
                     Ry normal "We'll see where things go, [player_name]." #Do I add more to this? Maybe I will in the final ending...
-                    scene black with dissolveslow
-                    stop music fadeout 2.0
-                    $ renpy.pause (4.0)
-                    $ persistent.evalEndingA = True
-                    jump eval_custom_credits
-                
                 "Sorry, but no.":
                     c "Sorry, but the bed is cramped enough for me as it is."
                     Ry sad "Oh, I understand, I guess the couch will be big enough for me."
-                    scene black with dissolveslow
-                    stop music fadeout 2.0
-                    $ renpy.pause (4.0)
-                    $ persistent.evalEndingA = True
-                    jump eval_custom_credits
-
         "Good memories.":
             c "Those were the times, before everything devolved into madness and chaos."
             Ry "As weird as this may sound, in a way, I'm glad that everything happened. I think that the experiences I shared with you really helped me accept and move on with my past."
@@ -1147,10 +1216,10 @@ label eval_solo_remy_2:
             $ renpy.pause (0.5)
             m "With that, Remy took off into the starry night sky."
             m "I made my way inside and prepared for bed."
-            scene black with dissolveslow
-            stop music fadeout 2.0
-            $ persistent.evalEndingA = True
-            jump eval_custom_credits
+    stop music fadeout 2.0
+    scene black with dissolveslow
+    $ persistent.evalEndingA = True
+    jump eval_custom_credits
     
     #And... scene!
 
@@ -1549,7 +1618,8 @@ label eval_remy_amely_2:
                 Am "Ice cream bad."
                 Ry look "Amely, you should give ice cream another chance. [player_name] just gave you a flavor you didn't like. That's all."
                 c "Yeah... Sorry about that."
-                m "You aren't sorry. I can tell."
+                play sound "fx/system3.wav"
+                s "You aren't sorry. I can tell."
                 Am "Ice cream bad."
                 Ry normal "Here, Amely, how about we share mine? It's good, I promise."
                 Am smnormal "Promise?"
@@ -1790,12 +1860,7 @@ label eval_remy_amely_2:
                     c "A bit cramped, don't you think?"
                     m "Remy grabbed me and pulled me in closer to him, engulfing me in his soft, white scales."
                     Ry "Better?"
-                    c "Much."
-                    stop music fadeout 2.0
-                    scene black with dissolveslow
-                    $ persistent.evalEndingB = True
-                    jump eval_custom_credits
-                
+                    c "Much."                
                 "Let him have the couch.":
                     c "The couch is pretty big. You should be quite comfortable sleeping there for the night."
                     Ry "I guess so."
@@ -1804,11 +1869,6 @@ label eval_remy_amely_2:
                     m "I turned off the lights, then made my way to the bedroom."
                     Ry "Good night, [player_name]."
                     m "Good night, Remy."
-                    scene black with dissolveslow
-                    stop music fadeout 2.0
-                    $ persistent.evalEndingB = True
-                    jump eval_custom_credits
-        
         "It's quite late, you best be getting home.":
             c "You should probably make your way home, Remy. It's getting quite dark."
             Ry look "Hmmm, I guess you're right. Night flying isn't really my specialty."
@@ -1821,10 +1881,10 @@ label eval_remy_amely_2:
             hide remy with dissolvemed
             play sound "fx/takeoff.ogg"
             m "Just like that, the dragon gracefully took off into the air, soaring away over the trees."
-            scene black with dissolveslow
-            stop music fadeout 2.0
-            $ persistent.evalEndingB = True
-            jump eval_custom_credits
+    stop music fadeout 2.0
+    scene black with dissolveslow
+    $ persistent.evalEndingB = True
+    jump eval_custom_credits
 
 label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyone, idk what you're talking about.
     #Going to use this twice, one where you DO ride remy beforehand and when you DO help at the orphanage. That's gonna be a lot of refactoring...
@@ -2947,9 +3007,6 @@ label eval_remy_amely_adine_sleep_select:
                     c "Goodnight, Remy."
                 stop music fadeout 2.0
                 $ persistent.evalSecretEndingUnlocked = True
-                $ persistent.evalEndingC = True
-                jump eval_custom_credits
-
             else:
                 c "Why don't we get ready for bed now?"
                 m "Remy let out a yawn."
@@ -2971,11 +3028,9 @@ label eval_remy_amely_adine_sleep_select:
                     c "Much."
                     c "Goodnight, Remy."
                     Ry "Goodnight, [player_name]."
-                    scene black with dissolveslow
                     stop music fadeout 2.0
+                    scene black with dissolveslow
                     m "I slowly closed my eyes, Remy's warmth and gentle breathing lulling me to sleep."
-                    $ persistent.evalEndingC = True
-                    jump eval_custom_credits
                 else:
                     hide remy with dissolvemed
                     m "I made my way to the bedroom while Remy removed his tie."
@@ -2990,9 +3045,6 @@ label eval_remy_amely_adine_sleep_select:
                     c "Goodnight, Remy."
                     stop music fadeout 2.0
                     scene black with dissolveslow
-                    $ persistent.evalEndingC = True
-                    jump eval_custom_credits
-
         "Let him leave.":
             c "I understand. Bye Remy!"
             Ry smile "Bye, [player_name]."
@@ -3002,8 +3054,8 @@ label eval_remy_amely_adine_sleep_select:
             m "I headed back inside and prepared for bed."
             stop music fadeout 2.0
             scene black with dissolveslow
-            $ persistent.evalEndingC = True
-            jump eval_custom_credits
+    $ persistent.evalEndingC = True
+    jump eval_custom_credits
 
 label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had the special
     Ka "What flavor ice cream would you like?"
@@ -3227,22 +3279,8 @@ label eval_change_sweat_reference: #This is literally just to make a joke make s
     m "He looked at me, panting."
     return
 
-label eval_met_lucius: #This assigns a variable for continuity
-    $ evalMetLucius = True
-    play sound "fx/impact.ogg"
-    c "Ouch!" with vpunch
-    show lucius normal with dissolve
-    return
-
-label eval_met_kalinth:
-    $ evalMetKalinth = True
-    return
-
-label eval_met_dram:
-    $ evalMetDram = True
-    return
-
 label eval_fails:
+    $ evalTotalFails = len(persistent.evalUniqueFails)
     if evalFail in persistent.evalUniqueFails:
         play sound "fx/system3.wav"
         s "It seems that you have already experienced this fail before."
@@ -3250,7 +3288,8 @@ label eval_fails:
         s "Either you got it in another ending, or you just like to watch characters suffer."
     else:
         $ persistent.evalUniqueFails.append(evalFail)
-        if len(persistent.evalUniqueFails) == 1:
+        $ evalTotalFails += 1
+        if evalTotalFails == 1:
             play sound "fx/system3.wav"
             s "It seems that this is your first time experiencing a fail in this mod!"
             play sound "fx/system3.wav"
@@ -3259,15 +3298,9 @@ label eval_fails:
             s "It might even unlock something, just saying."
         play sound "fx/system3.wav"
         s "You have experienced a new fail: [evalFail]!"
-        $ evalTotalFails = len(persistent.evalUniqueFails)
-        play sound "fx/system3.wav"
-        s "Total fails: [evalTotalFails] of 6."
-        play sound "fx/system3.wav"
-        s "It seems that you have already experienced this fail before."
-        play sound "fx/system3.wav"
-        s "Either you got it in another ending, or you just like to watch characters suffer."
-    if len(persistent.evalUniqueFails) == 6:
+    if evalTotalFails == 6:
         $ renpy.pause (2.0)
+        play sound "fx/system3.wav"
         s "Would you look at that, you got every fail this mod had to offer."
         play sound "fx/system3.wav"
         s "You probably thought that this would unlock something special, but at the moment, I've got nothing."
@@ -3282,6 +3315,17 @@ label eval_fails:
         s "Enjoy."
         $ renpy.pause (0.5)
         jump eval_goggles
+    else:
+        play sound "fx/system3.wav"
+        s "experienced fails:"
+        $ i=0
+        while i<evalTotalFails:
+            $ evalFail=persistent.evalUniqueFails[i]
+            play sound "fx/system3.wav"
+            s "[evalFail]"
+            $ i += 1
+        play sound "fx/system3.wav"
+        s "Total fails: [evalTotalFails] of 6."
     return
 
 label eval_goggles: #Meme scene. It's like bacon Naomi!
@@ -3427,7 +3471,7 @@ label eval_special_mentions: #Special mentions to those who helped me
     return
 
 label eval_custom_credits:
-    $ renpy.pop_call()
+    #$ renpy.pop_call()
     m "Thank you for playing the (almost) finished version of This Dragon Owes Me Ice Cream!"
     m "Currently, I have no credits made, so live with this while I work on that."
     m "This was a lot of fun to make, and I hope you enjoyed!"

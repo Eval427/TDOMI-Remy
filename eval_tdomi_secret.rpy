@@ -6,18 +6,25 @@
 #Changes dialogue for when you arrive at the orphanage
 #Incorporate a Vara mood counter for how she reacts? Oh god that sounds not fun
 label eval_secret_orphanage_arrival:
-    Ry "Amely? Vara? Are you two here?"
-    show amely smnormal with easeinright
-    Am "Hello!"
-    Ry smile "Hello, Amely."
-    Ry normal "Do you know where Vara is?"
-    Am "She is coming."
-    show vara smnormal behind amely with easeinright
-    Vr "..."
-    c "Hi, Vara."
-    Vr smsmile "Hello."
-    Ry "She's been talking much more since you last saw her, [player_name]."
-    c "That's great to hear."
+    if evalVaraHere:
+        Ry "Amely? Are you here?"
+        show amely smnormal with easeinright
+        show vara behind amely with None
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+    else:
+        Ry "Amely? Vara? Are you two here?"
+        show amely smnormal with easeinright
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+        Ry normal "Do you know where Vara is?"
+        Am "She is coming."
+        show vara smnormal behind amely with easeinright
+        Vr "..."
+        c "Hi, Vara."
+        Vr "Hello."
+        Ry "She's been talking much more since you last saw her, [player_name]."
+        c "That's great to hear."
     Vr "It's dark."
     Ry "I see that, Vara. I wonder who turned the lights off. Usually we leave them on for you."
     c "Wait, is the orphanage just a classroom?"
@@ -84,18 +91,25 @@ label eval_secret_orphanage_arrival:
 label eval_everyone_sleep:
     Ry "Well, here we are!"
     $ renpy.pause (1.0)
-    Ry "Amely? Vara? Are you two here?"
-    show amely smnormal with easeinright
-    Am "Hello!"
-    Ry smile "Hello, Amely."
-    Ry normal "Do you know where Vara is?"
-    Am "She is coming."
-    show vara smnormal behind amely with easeinright
-    Vr "..."
-    c "Hi, Vara."
-    Vr "Hello."
-    Ry "She's been talking much more since you last saw her, [player_name]."
-    c "That's great to hear."
+    if evalVaraHere:
+        Ry "Amely? Are you here?"
+        show amely smnormal with easeinright
+        show vara behind amely with None
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+    else:
+        Ry "Amely? Vara? Are you two here?"
+        show amely smnormal with easeinright
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+        Ry normal "Do you know where Vara is?"
+        Am "She is coming."
+        show vara smnormal behind amely with easeinright
+        Vr "..."
+        c "Hi, Vara."
+        Vr "Hello."
+        Ry "She's been talking much more since you last saw her, [player_name]."
+        c "That's great to hear."
     Vr "It's dark."
     Ry normal "I see that, Vara. I wonder who turned the lights off. Usually we leave them on for you."
     c "Wait, is the orphanage just a classroom?"
@@ -1131,11 +1145,11 @@ label eval_everyone_3:
                 $ evalAdineTrickPassed=True
             "[[Keep your ice cream]":
                 c "Sorry, Amely. But I think you've had enough ice cream for today."
-                Am smsad "Awwww..."
+                Am smsad flip "Awwww..."
                 Ry "Amely, you've already had two scoops."
                 Am "Want more..."
                 Ry "We'll make sure to come back here more often for you, alright?"
-                Am smnormal "Alright."
+                Am smnormal flip "Alright."
                 m "I took a bite of my ice cream as Adine and Remy watched."
                 m "As soon as my tongue made contact with the mango ice cream, my face involuntarily contorted into disgust."
                 c "This is the most disgusting mango flavor I have ever tasted."
@@ -1150,7 +1164,7 @@ label eval_everyone_3:
                 Ad "Good going, detective!"
                 c "I guess I should have seen this coming."
                 Ry look "Adine, that's funny and all, but now [player_name] can't enjoy their ice cream."
-                Ad giggle b "Don't be silly, why do you think I got the mango ice cream? Here, let's trade, [player_name]."
+                Ad giggle b flip "Don't be silly, why do you think I got the mango ice cream? Here, let's trade, [player_name]."
                 m "I quickly swapped cones with Adine."
                 Ry normal "That's quite clever, Adine."
                 Ad normal b flip "Better than anything [player_name] could make up."
@@ -1165,7 +1179,7 @@ label eval_everyone_3:
         Ry smile "I'm glad you like it!"
         stop music fadeout 2.0
         scene black with dissolveslow
-        m "For the next while the five of us sat quietly as we enjoyed our ice cream. Adine had some difficulties with hers, but after a while she had completely cleaned off her muzzle."
+#        m "For the next while the five of us sat quietly as we enjoyed our ice cream. Adine had some difficulties with hers, but after a while she had completely cleaned off her muzzle."
         scene evalpark2
         show adine normal b flip at left #No more ice cream on her face. How sad.
         show amely smnormal flip at left
@@ -1495,6 +1509,23 @@ label eval_everyone_3:
     show remy normal at right
     show vara smsmile flip at left
     with dissolveslow
+    if not evalDoingSecretEnding:
+        Ry "Can we meet tomorrow, [player_name]."
+        c "Of course we can. Goodnight you two."
+        Ry "Goodnight, [player_name]."
+        Vr "Goodnight!"
+        hide remy
+        hide vara
+        with easeoutleft
+        play sound "fx/door/doorchain.ogg"
+        m "With that, the two dragons left through the door, leaving me alone in my apartment."
+        m "I made my way over to the bedroom to get ready to sleep."
+        c "(It's wonderful that Remy and Vara are a real family now.)"
+        
+        stop music fadeout 2.0
+        scene black with dissolveslow
+        $ persistent.evalEndingD = True
+        jump eval_custom_credits#i think we need a different scene for if vara suvived due to another mod
     Ry "Well, Vara. Are you ready to go home?"
     Vr smnormal flip "The orphanage?"
     Ry shy "Well..."
@@ -1612,10 +1643,6 @@ label eval_everyone_3:
     m "I made my way over to the bedroom to get ready to sleep."
     c "(It's wonderful that Remy and Vara are a real family now.)"
     
-    if not evalDoingSecretEnding:
-        return#i think we need a different scene for if vara suvived due to another mod
-    else:
-        pass
     stop music fadeout 2.0
     scene black with dissolveslow
     #scene o2
@@ -1823,7 +1850,7 @@ label eval_everyone_3:
             scene black with dissolveslow
     $ renpy.pause (1.0)
     $ persistent.evalEndingD = True
-    return
+    jump eval_custom_credits
     #With one fragment could come many more, leading to disatrous timelines.
     #There is a delicate balance between your interaction with the dragon world and saving humanity.
     #Add something about Remy wanting a real relationship now that you will be staying and he didn't want to bring it up before b/c he thought he would lose you like he lost amelia (didn't want to establish the same connection)

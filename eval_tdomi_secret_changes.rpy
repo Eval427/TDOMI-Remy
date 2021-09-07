@@ -37,7 +37,8 @@ label eval_hatchery_visited:
     if not renpy.python.store_dicts["store"].get("evalFixDoubleOrphanageLine", False):
         m "It wasn't until now that I noticed Vara looking at me with a curious expression."
         $ evalFixDoubleOrphanageLine=True
-    return
+    label eval_hatchery_visited_next:
+        pass
 #Extra stuff to explain why Adine doesn't die because why not
 label eval_hatchery_extension:
     scene evalorphlight with dissolveslow
@@ -1114,42 +1115,33 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     $ renpy.pause (0.5)
     scene black with dissolveslow
     $ renpy.pause (2.0)
-
     nvl clear
     window show
-
     n "Soon, more help arrived. Remy and I got all the medical attention we needed while Vara was sent to Adine to be taken care of."
     n "Maverick had only sustained minor burn injuries and abrasions. However, Reza and Izumi were both dead."
     n "I warned the dragons about the comet, telling them to check the PDAs I had given them for verification of my claims."
-    n "A few minutes later, EMTs arrived and I was put into an artificial coma due to my injuries."
-    n "In the weeks I was out, a variety of things happened."
+    n "A few minutes later, EMTs arrived and I was put into a medically induced coma due to my injuries."
+    n "In the weeks I was out, a number of things happened."
     n "Out of respect, Reza's body was given a proper funeral in a remote location. His weapon and remaining ammunition were to be left in my care."
     n "After attempts were made to make contact with the human world, it was discovered that the portal was no longer operational."
-
     window hide
     nvl clear
     window show
-
     n "Upon this discovery, the dragons sent their brightest engineers in attempts to restablish a connection with the human world."
     n "However, after weeks of unsuccessful attempts, the operation was deemed to be a failure."
     n "Ultimately, the dragons decided to leave the portal standing in its current state."
-    n "Luckily, my claims were taken seriously, and there was already a plan in place to divert the comet."
+    n "Fortunately, my claims were taken seriously, and there was already a plan in place to divert the comet."
     n "Using the lab's generators, the dragons were successfully able to redirect the comet's path away from Earth."
-
     window hide
     nvl clear
     window show
-
     n "After I awoke from my coma, I had to consider what my future held."
     n "With my limited knowledge of the portal, there was very little possibility of fixing it without the expertise of the dead Administrator.."
     n "Any possibilities of my return to the human world had vanished with the destruction of the portal."
-    n "I met with Remy as soon as I could, who told me about everything I had missed."
-
+    n "I met with Remy as soon as I could, who told me about what I had missed."
     window hide
     nvl clear
-
     $ renpy.pause (2.0)
-
     $ evalDoingSecretEnding=True
 
     jump eval_post_secret_remy_meeting
@@ -1159,7 +1151,7 @@ label eval_post_secret_remy_meeting:
     scene park2 with dissolveslow
     show remy normal with dissolvemed
     play music "mx/library.ogg" fadein 2.0
-    c "So, the comet has been diverted, and you've replaced the power source for the portal. I guess I must've been gone for a long time."
+    c "So, the comet has been diverted. I guess I must've been out for a long time."
     Ry look "Yes you were. A lot has happened since then."
     Ry normal "By the way, I talked with Maverick a few days ago."
     c "Oh, what did he have to say?"
@@ -1251,7 +1243,6 @@ label eval_post_secret_remy_meeting:
     #Ry "Yes. After all, I have Vara to keep me company."
     #Ry "Also, while you were busy these last few weeks, I spent a lot of time with Adine, and we rekindled our lost friendship."
     #Ry smile "Besides, if you really go back in time, I'll see you again."
-    $ renpy.pop_call()
     jump eval_tdomi_remy
 #Thus marks the end of the changes required to actually get Vara's extended ending
 

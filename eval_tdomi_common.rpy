@@ -220,11 +220,21 @@ label eval_tdomi_common:
     $ evalHatcheryVisited = False
     #Vara's mood during the chapter 4 Remy date change\
     $ evalVaraMood = 2
-    $ evalMetLucius = False
-    $ evalMetKalinth = False
-    $ evalMetDram = False
     return
 label eval_extended_ending:
+    #if the player went south in tatsu park, they bump into Lucius in chapter 2
+    $ evalMetLucius = False
+    if not chap2park3unvisited:
+        $ evalMetLucius = True
+    #if the player went noth to Tatsu avenue and sat at the bench in chapter 2
+    $ evalMetDram = False
+    if chap2rested!=0:
+        $ evalMetDram = True
+    #If the player visited the police station in chapter 3
+    $ evalMetKalinth = False
+    if c3arcquesx!=0:
+        $ evalMetKalinth = False
+
     #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
     #Check if player has ridden Bryce in ECK's Savior Mod.
