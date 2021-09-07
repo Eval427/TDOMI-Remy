@@ -13,6 +13,8 @@ init:
     image evalplayerkitchen = "bg/evalplayerkitchen.jpg" #Tysm again again ECK
     image evalportalb = "bg/evalportalb.png"
     image evalgoggleoverlay = "bg/evalgoggleoverlay.png"
+    #Credits
+    image evalcustomcredits1 = "cg/evalcustomcredits1.png"
     #Characters
     #Amely brought to you by ECK
     image amely smnormal = "cr/amely_smnormal.png"
@@ -89,7 +91,7 @@ init:
     image vara smsmile goggles flip = im.Flip("cr/vara_smsmile_goggles.png", horizontal=True)
     #Probably won't even use all these images. But if someone wants them here you go
     image adine annoyed goggles = "cr/adine_annoyed_goggles.png"
-    image adine annoyed  goggles flip = im.Flip("cr/adine_annoyed_goggles.png", horizontal=True)
+    image adine annoyed goggles flip = im.Flip("cr/adine_annoyed_goggles.png", horizontal=True)
     image adine annoyed goggles b = "cr/adine_annoyed_goggles_b.png"
     image adine annoyed goggles b flip = im.Flip("cr/adine_annoyed_goggles_b.png", horizontal=True)
     image adine annoyed goggles c = "cr/adine_annoyed_goggles_c.png"
@@ -235,7 +237,6 @@ label eval_extended_ending:
     if c3arcquesx!=0:
         $ evalMetKalinth = False
 
-    #Fixes a ton of issues
     $ _game_menu_screen = "navigation"
     #Check if player has ridden Bryce in ECK's Savior Mod.
     $ evalRodeBryce = False #This is NOT weird I promise
@@ -249,7 +250,7 @@ label eval_extended_ending:
     $ evalShowSpaghettieis = True
     #Whether you have had spaghettieis explained
     $ evalExplainSpaghettieis = False
-    #Tracks current ending (1 = solo remy, 2 = remy + amely, 3 = remy + amely + adine)
+    #Tracks current ending (1 = solo remy, 2 = remy + amely, 3 = remy + amely + adine, 4 = everyone)
     $ evalCurrentEnding = 0
     #Whether you decide to switch cones with Remy
     $ evalSwitchedCones = False
@@ -281,6 +282,8 @@ label eval_extended_ending:
     $ evalScenicWalk = False
     #Whether you listen to Katsu's music
     $ evalKatsuMusic = False
+    #Whether you heard a specific bad joke from Remy
+    $ evalBadRemyJoke = False
     #A bunch of variables for the orphanage minigame
     #Variable that toggles certain dialogue for increased continuity
     $ evalJumpFromMain = False
@@ -376,4 +379,4 @@ label eval_extended_ending:
         s "You saved Vara, but there is still more to her story..."
         stop music fadeout 2.0
         scene black with dissolveslow
-        return
+        jump eval_custom_credits

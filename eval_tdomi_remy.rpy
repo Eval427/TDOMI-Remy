@@ -1,6 +1,7 @@
 label eval_tdomi_remy:
 
     #So you're taking a peek at the code, eh? Well, enjoy all my comments, cause I'm not gonna delete anything
+    #Note to self: File is too long. Therefore, make it even longer
 
     #Some cool statistics because why not
     #Around 10,500 lines of code
@@ -78,7 +79,13 @@ label eval_tdomi_remy:
         #Break the portal with a gunshot
         #Reza's hand being locked up = his finger is stuck within the trigger guard. the impact with the ground after his leg is hit causes him to misfire and he shoots the portal, destroying it
         #Change post ending to include something about the portal being broken (Remy breaks the news to MC after their coma)
+    $ save_name = (_("Ice Cream"))
 
+    #Because multipersistents are buggy, I am creating a custom variable for mp.remyromance
+    if mp.remyromance or evalRemyRomance:
+        $ evalRemyRomance = True
+    else:
+        $ evalRemyRomance = False
     stop music fadeout 2.0
     scene black with dissolveslow
 
@@ -113,7 +120,6 @@ label eval_tdomi_remy:
         with dissolveslow
     $ renpy.pause (0.5)
 
-    #Options for music: clouds, fountain, fun, funness. Also I need to somehow fix the sound when scrolling back. Don't know if that's a game bug or I'm doing something wrong
     Ry "What is it, [player_name]?"
     if evalDoingSecretEnding:
         c "Before we go, there is one very important matter that we must attend to."
@@ -137,7 +143,7 @@ label eval_tdomi_remy:
         "Are you calling me fat?":
             $ evalAskIfFat = True
             c "Are you calling me fat?"
-            Ry shy "N... No of course not. I didn't mean it that way... {w}I just meant..."
+            Ry shy "N... No. Of course not. I didn't mean it that way... {w}I just meant..."
             c "I'm kidding, don't sweat it."
             Ry normal "Dragons don't sweat."
             c "Noted."
@@ -152,7 +158,7 @@ label eval_tdomi_remy:
 
         "Hey, in my defense, that was some really good cooking.":
             c "Hey, in my defense, that was some really good cooking."
-            Ry smile "Why thank you. I have been cooking for myself for a while, it's nice to know that my food still holds up strong with other people."
+            Ry smile "Why thank you. I have been cooking for myself for a while, it's nice to know that my food still holds up well with other people."
             show remy normal with dissolvemed
     
     c "Anyways, to make matters short, I gave him some advice about location, and it seemed to put him back on the radar."
@@ -169,31 +175,31 @@ label eval_tdomi_remy:
         Ry look "I find it strange that he didn't think to move here earlier."
         c "Considering his old spot worked well for forty years, it was probably pretty difficult to decide on a move."
         Ry normal "I guess you're right."
-    Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
-    c "I'm sure it will be fine."
-    Ry normal "In that case, is there anyone else you would like to invite?"
-    if not persistent.evalEndingBUnlocked and not persistent.evalEndingCUnlocked:
+    if not persistent.evalEndingBUnlocked and not persistent.evalEndingCUnlocked: #This makes it so that there is no single option menu at the start of the mod
+        $ save_name = (_("TDOMI - Remy"))
         c "Why don't we go with just the two of us? It'll be a nice outing, and maybe we won't eat Katsuharu entirely out of his stock."
-        Ry smile "Sounds fun! Lets go."
+        Ry smile "Sounds fun! Let's go."
         stop music fadeout 2.0
         scene black with dissolveslow
         $ evalCurrentEnding = 1
         jump eval_solo_remy_1
     elif evalVaraHere and adinestatus != "bad" and not adinedead:
         jump eval_vara_forced_path
-
-
-
+    Ry look 'Wait, are you sure your "all you can eat buffet pass" applies to your friends as well?'
+    c "I'm sure it will be fine."
+    Ry normal "In that case, is there anyone else you would like to invite?"
     menu:
         "No.":
+            $ save_name = (_("TDOMI - Remy"))
             c "Why don't we go with just the two of us? It'll be a nice outing, and maybe we won't eat Katsuharu entirely out of his stock."
-            Ry smile "Sounds fun! Lets go."
+            Ry smile "Sounds fun! Let's go."
             stop music fadeout 2.0
             scene black with dissolveslow
             $ evalCurrentEnding = 1
             jump eval_solo_remy_1
         
         "Amely." if not evalDoingSecretEnding and persistent.evalEndingBUnlocked:
+            $ save_name = (_("TDOMI - Amely"))
             c "Why don't we go together with Amely?"
             c "She's a hatchling, so I'm sure she would love to go and get some ice cream with us. Especially from the renowned Katsuharu."
             Ry smile "Good idea. You know, I'm not even sure if she has ever had ice cream before."
@@ -208,7 +214,7 @@ label eval_tdomi_remy:
                     c "I could probably do it too."
                     Ry look "Hm... I don't really think you understand just how much that dragon struggles to balance her own life and those of the hatchlings she takes care of."
                 "It is quite impressive.":
-                    c "It it quite impressive."
+                    c "It is quite impressive."
                     Ry "Yes. I couldn't agree more."
                 "There's no way I could do anything close to what she does.":
                     c "There is no way that I have the patience or heart to do anything close to what she does."
@@ -230,13 +236,14 @@ label eval_tdomi_remy:
             $ evalCurrentEnding = 2
             jump eval_remy_amely_1
 
-        "Amely and Adine." if adinestatus != "bad" and not adinedead and not evalDoingSecretEnding and persistent.evalEndingCUnlocked: #adine won't accept the invitation if she dislikes our MC or if she's dead
+        "Amely and Adine." if adinestatus != "bad" and not adinedead and not evalDoingSecretEnding and persistent.evalEndingCUnlocked: #Adine won't accept the invitation if she dislikes our MC or if she's dead
+            $ save_name = (_("TDOMI - Adine"))
             c "Why don't we take Amely and Adine as well?"
             c "As a little hatchling, I'm sure that Amely would love to go and get some ice cream, and Adine has done so much for the both of us."
             Ry smile "It's been ages since I've had the opportunity to sit down and have a little get-together with everyone."
             Ry normal "Work, especially since Reza, has been particularly chaotic. It would be nice for the four of us to have a nice day out."
             c "Couldn't agree more. Being in a coma for the last few months, I feel like I've missed out on so much."
-            c "It would be nice to talk over some nice ice cream."
+            c "It would be nice to talk over some ice cream."
             Ry look "Hmmm... We may have to wait a little bit. Adine is probably busy on her shift delivering food."
             c "Good point..."
             Ry normal "You know, we could make ourselves useful at the orphanage until she's done."
@@ -248,7 +255,7 @@ label eval_tdomi_remy:
                     Ry "It's not much, but I think you'll like it."
                     jump eval_trip_to_orphanage
 
-                "Sounds boring, lets do something else.":
+                "Sounds boring, let's do something else.":
                     c "That sounds like a pretty boring day out together. Let's do something else instead while we wait for Adine."
                     Ry look "I guess that does sound a bit boring. I still feel bad for the kids though. I'm sure they would have been excited to see us today."
                     c "I wouldn't worry. They're used to being alone, right?"
@@ -271,10 +278,10 @@ label eval_tdomi_remy:
                             play sound "fx/evalgrasswalk2.ogg"
                             m "Remy looked at me and walked back over."
                             $ renpy.pause (1.0) #This should fix it? No? Fixed. I'm an idiot
-                            show remy look with dissolvemed #Wtf is happening here?
+                            show remy look with dissolvemed
                             Ry "What?"
                             play music "mx/jazzy.ogg"
-                            $ remystatus=evalRemyStatus#you were quick to apolgize for your rash decision and his mood is restored
+                            $ remystatus=evalRemyStatus
                             c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
                             Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
                             c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
@@ -306,6 +313,7 @@ label eval_tdomi_remy:
 
         "Everyone." if evalVaraAlive and adinestatus != "bad" and not adinedead:
             label eval_vara_forced_path:
+            $ save_name = (_("TDOMI - Vara"))
             c "Why don't we bring everyone?"
             Ry look "Everyone?"
             c "Yes. You, Amely, Vara, Adine and I."
@@ -318,7 +326,7 @@ label eval_tdomi_remy:
             Ry "She usually comes to check on the orphanage as soon as she's finished, and it would be a nice surprise for her to find the place spotless."
             $ evalCurrentEnding = 4
 
-            menu: #It's possible that I want to change this more so it's more uniquie, but I'm not sure
+            menu:
                 "Sure.":
                     c "Sure. I'd love to help out if I could."
                     if evalVaraHere:
@@ -327,7 +335,7 @@ label eval_tdomi_remy:
                         Ry smile "Great! Let's go now. Vara and Amely are already there, so they can keep us company as well."
                     jump eval_trip_to_orphanage
                 
-                "Sounds boring, lets do something else.":
+                "Sounds boring, let's do something else.":
                     c "That sounds like a pretty boring day out together. Let's do something else instead while we wait for Adine."
                     Ry look "I guess that does sound a bit boring. I still feel bad for the kids though. I'm sure they would have been excited to see us today."
                     c "I wouldn't worry. They're used to being alone, right?"
@@ -359,7 +367,7 @@ label eval_tdomi_remy:
                             c "Wait! Remy!"
                             play sound "fx/evalgrasswalk2.ogg"
                             m "Remy looked at me and walked back over."
-                            $ renpy.pause (1.0) #This should fix it? No? Fixed. I'm an idiot
+                            $ renpy.pause (1.0)
                             show remy look with dissolvemed
                             Ry "What?"
                             play music "mx/jazzy.ogg"
@@ -384,7 +392,7 @@ label eval_tdomi_remy:
                             with dissolvemed
                             Ry "What?"
                             play music "mx/jazzy.ogg"
-                            $ remystatus=evalRemyStatus#you were quick to apolgize for your rash decision and his mood is restored
+                            $ remystatus=evalRemyStatus
                             c "I'm sorry, you're right. It was extremely selfish of me to prioritize my own enjoyment over that of yours and the childrens'."
                             Ry normal "I'm glad to hear that. I was worried for a second that you really were just that unkind."
                             c "No, I think I just overreacted. Human children can be a complete nightmare sometimes."
@@ -421,12 +429,12 @@ label eval_tdomi_remy:
 label eval_trip_to_orphanage:
     c "It's a bit far, is it not? The doctor said I shouldn't be walking too much."
     Ry normal "Well, you could always ride me instead."
-    if evalCurrentEnding == 4 and mp.remyromance:
+    if evalCurrentEnding == 4 and evalRemyRomance:
         c "Maybe not in public, Remy."
     else:
         c "Ummmm..."
     Ry shy "No... Not like that. I mean ride on my back."
-    if evalCurrentEnding == 4 and mp.remyromance:
+    if evalCurrentEnding == 4 and evalRemyRomance:
         c "Damn."
     Ry normal "You're pretty small, and I'm used to carrying around a bunch of books."
     c "I'll take being associated with a bunch of books as a compliment."
@@ -437,7 +445,7 @@ label eval_trip_to_orphanage:
             $ evalRodeRemy = True
             c "Sure, I'll make like a pile of books and hop on."
             hide remy with dissolvemed
-            play sound "fx/bed.ogg" #Change Later
+            play sound "fx/bed.ogg"
             m "Remy lowered his body."
             m "Making sure not to mess up his tie, I carefully hopped onto his back. He folded his wings to give me as much room as possible."
             Ry "Oof, maybe you're a bit heavier than the books I'm used to."
@@ -499,6 +507,7 @@ label eval_trip_to_orphanage:
             m "We made our way through the city with a few dragons giving us strange looks."
             m "It seemed as if it took no time at all to arrive at the orphanage."
             Ry "Ladies and gentlemen, this will be our stop. Please make sure to grab all of your belongings and safely exit the vehicle."
+            $ evalBadRemyJoke = True
             c "Very funny, Remy."
             Ry "Thanks, I can tell that you sincerely mean that."
             play sound "fx/bed.ogg"
@@ -569,7 +578,7 @@ label eval_trip_to_orphanage:
             Am "I come!"
             hide amely with easeoutleft
             m "Remy walked over to the corner of the room and flicked the lights on."
-            play sound "fx/lightswitch.mp3" #Increase the loudness of the audio
+            play sound "fx/lightswitch.mp3"
             $ renpy.pause (1.0)
             play sound "fx/lightbreak.mp3"
             $ renpy.pause (2.0)
@@ -604,10 +613,45 @@ label eval_trip_to_orphanage:
             Ry smile "Sorry. Amely and I will grab you the supplies you need since we are very familiar with this place."
             Am "Yay!!!"
             c "Sounds like a plan. Let's do this!"
+            if persistent.evalEndingD:
+                play sound "fx/system3.wav"
+                s "It turns out you've already played this minigame. Would you like to skip it?"
+                menu:
+                    "Yes.":
+                        s "Would you like to beat it?"
+                        menu:
+                            "Yes.":
+                                $ evalOrphanageScore = 2
+                                play sound "fx/system3.wav"
+                                s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                                stop music fadeout 2.0
+                                scene black with dissolveslow
+                                $ evalReplaceBulbs = True
+                                $ evalResetBreaker = True
+                                scene evalorphlight with dissolveslow
+
+                            "No.":
+                                $ evalCustomerScore = 1
+                                play sound "fx/system3.wav"
+                                s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                                stop music fadeout 2.0
+                                scene black with dissolveslow
+                                scene evalorphdark with dissolveslow
+
+                        show remy normal
+                        show amely smnormal
+                        with dissolvemed
+                        jump eval_remy_amely_adine_1
+                    
+                    "No.":
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        pass
+
             show remy normal with dissolvemed
             jump eval_orphanage_game_init
             
-        "Take a scenic walk to the orphanage.": #Add a skip here
+        "Take a scenic walk to the orphanage.":
             $ evalScenicWalk = True
             c "I think we should just walk and enjoy the scenery on our way there."
             Ry look "Are you sure, [player_name]? I thought you just said you shouldn't be walking."
@@ -653,7 +697,7 @@ label eval_trip_to_orphanage:
             m "We continued on at a good pace for about ten minutes. However, I quickly fell victim to exhaustion and found myself struggling to keep up with Remy."
             scene forest1 with dissolveslow
             show remy look with dissolvemed
-            play music "mx/serene.ogg" #Look into changing this
+            play music "mx/serene.ogg"
             Ry "Hey, are you alright? You look winded."
             c "I think I'm alright. Just tired."
             c "I thought I could walk from one end of town to the other, but that coma really did a number on me."
@@ -666,7 +710,7 @@ label eval_trip_to_orphanage:
             m "He beckoned me to follow."
             play sound "fx/evalgrasswalk2.ogg"
             scene evalwildlands with dissolveslow
-            if mp.remyromance: #This part may be stupid, contemplating deleting this
+            if evalRemyRomance:
                 $ evalRemyPillow = True
                 m "I collapsed on the ground next to the dragon, my face and his muzzle just inches apart."
                 m "Unprompted, I was given a quick kiss by Remy. He smiled, and then raised his head."
@@ -674,7 +718,7 @@ label eval_trip_to_orphanage:
                 $ renpy.pause (0.5)
                 c "What a nice surprise."
                 Ry normal "Here, you can use me as a pillow. I don't mind."
-                c "Oh boy, my very own full sized dragon pillow equipped with a built in heater!"
+                c "Oh boy, my very own full sized dragon pillow equipped with a built-in heater!"
                 Ry smile "I'm the latest model."
                 m "I carefully propped myself up against Remy's side. I could feel his body rising and falling with each breath."
                 Ry normal "Why don't you take a quick nap? I'll keep a lookout for any unwanted visitors."
@@ -720,13 +764,12 @@ label eval_trip_to_orphanage:
                 c "What about Amely?"
                 Ry look "Despite their best attempts, they couldn't find a place for Amely to stay. So Adine and I offered to take care of her instead."
                 Ry "We both can't take her home because of our schedules, but young hatchlings are pretty self-sufficient."
-            #Its possible I want to add more here, lets see
             Ry normal "Anyways, we should get going. We don't want to miss Adine."
             scene black with dissolveslow
             hide remy with dissolvemed
+            stop music fadeout 2.0
             play sound "fx/steps/rough_gravel.wav"
             m "With renewed energy, Remy and I continued to the orphanage."
-            stop music fadeout 2.0
             scene hatchery with dissolveslow
             if evalVaraHere:
                 show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
@@ -790,11 +833,11 @@ label eval_trip_to_orphanage:
             Am "I come!"
             hide amely with easeoutleft
             m "Remy walked over to the corner of the room and flicked the lights on."
-            play sound "fx/lightswitch.mp3" #Increase the loudness of the audio
+            play sound "fx/lightswitch.mp3"
             $ renpy.pause (1.0)
             play sound "fx/lightbreak.mp3"
             $ renpy.pause (1.0)
-            Am "Uh oh!"
+            Am smnormal "Uh oh!"
             Ry look "Well, that's not good."
             play sound "fx/lightswitch.mp3"
             $ renpy.pause (2.0)
@@ -808,7 +851,7 @@ label eval_trip_to_orphanage:
             c "It's a shame we couldn't help with that earlier."
             Ry normal "Hey, I'm just glad you're alright. You didn't look so hot back there."
             Ry "Don't be too hard on yourself, Adine and I can fix up the place in the future."
-            Ry "Why don't we just rest until Ad..."
+            Ry "Why don't we just rest until Ad-"
             stop music fadeout 2.0
             jump eval_remy_amely_adine_1
 
@@ -888,7 +931,7 @@ label eval_solo_remy_1: #Ending with only Remy
             Ka exhausted flip "Quite a lot it seems. You have caused quite the chaos since you arrived."
             c "I guess I just have a knack for it."
             c "But I think at this point everything has come to a peaceful resolution."
-            c "Everything has more or less resolved itself and the conflict is over." #Ew ugly
+            c "Everything has more or less resolved itself and the conflict is over."
             Ka smile flip "Glad to hear that."
             c "Is it alright that I brought Remy along as well?"
             Ka normal flip "Perfectly fine! Although he is going to have to pay for his ice cream."
@@ -948,7 +991,7 @@ label eval_solo_remy_2:
             
     show remy normal with dissolvemed
     Ka normal flip "Alright, just give me a second to get you your scoops!"
-    show katsu normal with dissolvemed #Make him turn around before leaving
+    show katsu normal with dissolvemed
     hide katsu with easeoutleft
     m "The dragon walked behind his stand and started preparing the ice cream."
     m "Expecting the dragon to produce some sort of utensil, I was surprised when he suddenly thrust his hand into the vat and pulled out an almost perfectly spherical scoop of ice cream."
@@ -963,7 +1006,7 @@ label eval_solo_remy_2:
         m "With his other hand, Katsuharu grabbed a cup and ducked below his cart, tinkering with some sort of machine."
         c "(That must be the spaetzle, or whatever it was called.)"
         m "After a few moments, the dragon reappeared behind his cart, the cup full of what appeared to be ice cream in the shape of noodles."
-        m "He reached under his cart once more, revealing a large bottle of a opaque, red syrup, and added a healthy portion to the cup."
+        m "He reached under his cart once more, revealing a large bottle of an opaque, red syrup, and added a healthy portion to the cup."
         m "As a final touch, Katsuharu garnished the dessert with coconut shavings."
         m "He added a spoon and handed the cup over to me."
         show katsu smile flip at Position (xpos = 0.1) with easeinleft
@@ -994,7 +1037,7 @@ label eval_solo_remy_2:
         if mp.fish:
             c "(Why does fish translate to yellowish orange in ice cream form?)"
         else:
-            c "(What kind of special menu item has this yellowish orange hue.)"
+            c "(What kind of special menu item has this yellowish orange hue?)"
     
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
@@ -1096,7 +1139,7 @@ label eval_solo_remy_2:
             c "Of course. You have helped me more than you could possibly understand."
             Ry normal "Well, thank you [player_name]."
             c "No, Remy. Thank you."
-        "To our love." if mp.remyromance:
+        "To our love." if evalRemyRomance:
             c "To our love. You are the most gorgeous and kindhearted dragon I have ever met."
             Ry shy "That definitely isn't what I expected to hear, but thank you. I can also confirm that you are the most beautiful human that I have ever met."
             c "Not like I'm working with any real competition here..."
@@ -1127,7 +1170,7 @@ label eval_solo_remy_2:
             c "Wow, this is disgusting."
         Ry look "Are you not a big fan of the special?"
         c "Not to offend anyone, but it's pretty gross."
-        Ry normal "It isn't for everyone, but luckily for you, I happen to quite enjoy it. Would you like to switch?"
+        Ry normal "You know, I wouldn't mind trying it. It sounded weird at first, but it might be interesting."
 
         menu:
             "Sure.":
@@ -1135,6 +1178,7 @@ label eval_solo_remy_2:
                 Ry smile "If you're happy, I'm happy."
                 show remy normal with dissolvemed
                 m "We quickly switched cones, and after a taste of the vanilla, I could see why Katsuharu was so well loved for his craft."
+                Ry smile "This is really good! I can't belive you didn't like it!"
                 m "Our cones did not last long. Soon, the only remnants of our ice cream lay in our stomachs or dried on our hands."
                 $ evalSwitchedCones = True
             
@@ -1174,50 +1218,73 @@ label eval_solo_remy_2:
         pass
     $ persistent.evalA2Skip = True
     Ry "Here we are, just like the night you first came here."
+    if evalRemyRomance:
+        menu:
+            "Kiss him.":
+                c "Sure. But on the first night would I do this?"
+                m "I pulled Remy's muzzle to my lips and gave him a big kiss."
+                Ry shy "I don't think you would then, but I'm glad you would now."
 
-    menu:
-        "Kiss him." if mp.remyromance:
-            c "Sure. But on the first night would I do this?"
-            play sound "fx/kiss.wav"
-            m "I pulled Remy's muzzle to my lips and gave him a big kiss."
-            Ry shy "I don't think you would then, but I'm glad you would now."
-            if evalSwitchedCones:
-                Ry normal "Your breath smells like vanilla."
-                c "And yours of fish. I think I got the shorter end of the stick."
-                Ry "I guess fish ice cream and kissing don't mix well together."
-            elif evalChosenFlavor == "special":
-                c "Your breath smells like vanilla."
-                Ry normal "And yours of fish. I think I got the shorter end of the stick."
-                c "Yeah, I guess fish ice cream isn't the best for kissing."
-            else:
-                c "Your breath smells like vanilla."
-                Ry normal "And yours of [evalChosenFlavor]. Really adds to the experience if you ask me."
+                if evalSwitchedCones:
+                    Ry normal "Your breath smells like vanilla."
+                    c "And yours of fish. I think I got the shorter end of the stick."
+                    Ry "I guess fish ice cream and kissing don't mix well together."
+                elif evalChosenFlavor == "special":
+                    c "Your breath smells like vanilla."
+                    Ry normal "And yours of fish. I think I got the shorter end of the stick."
+                    c "Yeah, I guess fish ice cream isn't the best for kissing."
+                elif evalChosenFlavor == "vanilla":
+                    c "Your breath smells like vanilla."
+                    Ry normal "Well, so does yours."
+                else:
+                    c "Your breath smells like vanilla."
+                    Ry normal "And yours of [evalChosenFlavor]. Really adds to the experience if you ask me."
 
-            Ry shy "Hey... Uh, it's quite late, and my house is a bit far away, would you mind if I stayed at your place for the night?"
-            c "Of course, the couch is always available."
-            Ry "Well... I was thinking more along the lines of sharing the bed together."
+                Ry shy "Hey... Uh, it's quite late, and my house is a bit far away, would you mind if I stayed at your place for the night?"
+                c "Of course, the couch is always available."
+                Ry "Well... I was thinking more along the lines of sharing the bed together."
 
-            menu:
-                "Sure.":
-                    c "Well, Remy, sounds like a good time to me."
-                    Ry normal "We'll see where things go, [player_name]." #Do I add more to this? Maybe I will in the final ending...
-                "Sorry, but no.":
-                    c "Sorry, but the bed is cramped enough for me as it is."
-                    Ry sad "Oh, I understand, I guess the couch will be big enough for me."
-        "Good memories.":
-            c "Those were the times, before everything devolved into madness and chaos."
-            Ry "As weird as this may sound, in a way, I'm glad that everything happened. I think that the experiences I shared with you really helped me accept and move on with my past."
-            c "I could say the same. A lot of what went on in the past few weeks has really shown me a glimpse of humanity that I didn't really care to think about before."
-            Ry "I best get going. I have to get up early for work tomorrow, and night flying isn't really my specialty."
-            c "Of course! I'll see you around."
-            Ry smile "Bye, [player_name]!"
-            hide remy with dissolvemed
-            play sound "fx/takeoff.ogg"
-            $ renpy.pause (0.5)
-            m "With that, Remy took off into the starry night sky."
-            m "I made my way inside and prepared for bed."
-    stop music fadeout 2.0
-    scene black with dissolveslow
+                menu:
+                    "Sure.":
+                        c "Well, Remy, sounds like a good time to me."
+                        Ry normal "We'll see where things go, [player_name]." #Do I add more to this? Maybe I will in the final ending...
+                    
+                    "Sorry, but no.":
+                        c "Sorry, but the bed is cramped enough for me as it is."
+                Ry sad "Oh, I understand, I guess the couch will be big enough for me."
+                scene black with dissolveslow
+                stop music fadeout 2.0
+                $ renpy.pause (4.0)
+
+            "Good memories.":
+                c "Those were the times, before everything devolved into madness and chaos."
+                Ry "As weird as this may sound, in a way, I'm glad that everything happened. I think that the experiences I shared with you really helped me accept and move on with my past."
+                c "I could say the same. A lot of what went on in the past few weeks has really shown me a glimpse of humanity that I didn't really care to think about before."
+                Ry "I best get going. I have to get up early for work tomorrow, and night flying isn't really my specialty."
+                c "Of course! I'll see you around."
+                Ry smile "Bye, [player_name]!"
+                hide remy with dissolvemed
+                play sound "fx/takeoff.ogg"
+                $ renpy.pause (0.5)
+                m "With that, Remy took off into the starry night sky."
+                m "I made my way inside and prepared for bed."
+                scene black with dissolveslow
+                stop music fadeout 2.0
+    
+    else:
+        c "Those were the times, before everything devolved into madness and chaos."
+        Ry "As weird as this may sound, in a way, I'm glad that everything happened. I think that the experiences I shared with you really helped me accept and move on with my past."
+        c "I could say the same. A lot of what went on in the past few weeks has really shown me a glimpse of humanity that I didn't really care to think about before."
+        Ry "I best get going. I have to get up early for work tomorrow, and night flying isn't really my specialty."
+        c "Of course! I'll see you around."
+        Ry smile "Bye, [player_name]!"
+        hide remy with dissolvemed
+        play sound "fx/takeoff.ogg"
+        $ renpy.pause (0.5)
+        m "With that, Remy took off into the starry night sky."
+        m "I made my way inside and prepared for bed."
+        scene black with dissolveslow
+        stop music fadeout 2.0
     $ persistent.evalEndingA = True
     jump eval_custom_credits
     
@@ -1274,7 +1341,7 @@ label eval_remy_amely_1:
         c "Do you always sit here?"
         Dr "..."
         m "This was the first time that I noticed that all this dragon audibly said was the word \"dot\" three times."
-        c "Why do you only say \"dot dot dot\""
+        c "Why do you only say \"dot dot dot\"?"
         Dr "..."
         Dr "dot dot dot"
         c "Um..."
@@ -1296,8 +1363,9 @@ label eval_remy_amely_1:
     m "All of a sudden, a shadow passed overhead, and Remy landed next to me, clutching onto Amely with his forelegs." #Forelegs? Forearms? Who knows...
     #Add sound here?
     play music "mx/fun.ogg"
-    show amely smnormal with dissolvemed
-    show remy normal behind amely with dissolvemed
+    show amely smnormal
+    show remy normal behind amely
+    with dissolvemed
     Ry "Alright, Amely. This is our stop."
     Am "Yay!"
     c "So, Amely, are you excited to have your first ever scoop of ice cream?"
@@ -1383,11 +1451,11 @@ label eval_remy_amely_1:
             Ka smile flip "Yep, you were just as enthusiastic. Your eyes were practically bulging out of your head looking at all of the different flavors."
             Ry "I... guess I do remember being quite excited that day."
             c "Speaking of Remy, is it alright that I brought him along as well?"
-            Ka normal flip "Perfectly fine! Although he is going to have to pay."
+            Ka normal flip "Perfectly fine! Although Remy is going to have to pay for the both of them."
             Ry look "Umm... [player_name] I didn't bring any money."
             Ka smile flip "I'm just messing with you. I'd be happy to accomodate Remy as well."
             Ry normal "You really got me for a second, Katsuharu. Thank you, that's very generous of you."
-            Ka normal "Well, enough about embarrassing childhood memories, like you said, [player_name], we have to get to the more important matters."
+            Ka normal flip "Well, enough about embarrassing childhood memories, like you said, [player_name], we have to get to the more important matters."
             $ persistent.evalB1Skip = True
     
     jump eval_ice_cream_choice
@@ -1443,7 +1511,7 @@ label eval_remy_amely_2:
         m "With his other hand, Katsuharu grabbed a cup and ducked below his cart, tinkering with some sort of machine."
         c "(That must be the spaetzle, or whatever it was called.)"
         m "After a few moments, the dragon reappeared behind his cart, the cup full of what appeared to be ice cream in the shape of noodles."
-        m "He reached under his cart once more, revealing a large bottle of a opaque, red syrup, and added a healthy portion to the cup."
+        m "He reached under his cart once more, revealing a large bottle of an opaque, red syrup, and added a healthy portion to the cup."
         m "As a final touch, Katsuharu garnished the dessert with coconut shavings."
         m "He added a spoon and handed the cup over to me."
         show katsu smile flip at Position (xpos = 0.1) with easeinleft
@@ -1474,7 +1542,7 @@ label eval_remy_amely_2:
         if mp.fish:
             c "(Why does fish translate to yellowish orange in ice cream form?)"
         else:
-            c "(What kind of special menu item has this yellowish orange hue.)"
+            c "(What kind of special menu item has this yellowish orange hue?)"
 
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
@@ -1568,7 +1636,7 @@ label eval_remy_amely_2:
             c "Of course, you have helped me more than you could possibly understand."
             Ry normal "I didn't think that I could possibly be much help in any situation, but I can promise that I will always be there for you."
             c "Thank you, Remy."
-        "To our love." if mp.remyromance:
+        "To our love." if evalRemyRomance:
             c "To our love. You are the most gorgeous and kindhearted dragon I have ever met."
             Ry shy "That definitely isn't what I expected to hear, but thank you. I can also confirm that you are the most beautiful human that I have ever met."
             c "Not like I'm working with any real competition here..."
@@ -1605,7 +1673,7 @@ label eval_remy_amely_2:
             m "Amely eagerly grabbed the cone from my hands and took a giant bite of the [evalChosenFlavor] ice cream."
             if evalChosenFlavor == "special": #Add a bit extra where MC takes the ice cream back from Amely and tastes it themself
                 m "Her face instantly contorted into disgust."
-                Am smsad "{size+=10}BAD!!!{/size}"
+                Am smsad "{size=+10}BAD!!!{/size}"
                 m "Angrily, the little dragon threw the ice cream onto the ground."
                 Am "Ice cream bad... {w}Ice cream bad... {w}Ice cream bad..."
                 c "I don't think she's a fan of the special."
@@ -1624,7 +1692,7 @@ label eval_remy_amely_2:
                 Ry normal "Here, Amely, how about we share mine? It's good, I promise."
                 Am smnormal "Promise?"
                 Ry "I promise."
-                m "Remy reached the cone down to Amely, who carefully placed her toungue on his ice cream. Instantly, her face lit up in excitement and she took a giant bite."
+                m "Remy reached the cone down to Amely, who carefully placed her tongue on his ice cream. Instantly, her face lit up in excitement and she took a giant bite."
                 Ry smile "Whoah! Save some for me!"
                 m "I watched as the two dragons happily enjoyed their ice cream together while I sat alone on the bench without getting the chance to have any."
                 stop music fadeout 2.0
@@ -1637,7 +1705,7 @@ label eval_remy_amely_2:
             else:
                 Ry "Wow, I've never seen Amely like something quite that much."
                 m "It seemed that the little dragon ate this cone even faster than the first. Ice cream-less, I decided to simply sit and watch the two dragons enjoy their spoils."
-                if mp.remyromance:
+                if evalRemyRomance:
                     Ry "Hey, [player_name], you look like you could use some ice cream. Want to share mine?"
 
                     menu:
@@ -1658,6 +1726,7 @@ label eval_remy_amely_2:
                                     $ renpy.pause (1.0)
                                     Ry smile "That was the best bite yet!"
                                     c "I could say the same myself."
+                                    show remy normal with dissolvemed
                                 
                                 "Pretend it didn't happen.":
                                     pass
@@ -1665,12 +1734,16 @@ label eval_remy_amely_2:
                             m "With our combined ice cream eating power, we were able to make quick work of the cone."
                             
                         "Don't worry about it.":
+                            $ evalChosenFlavor = "chocolate"
                             c "Don't worry about it Remy, enjoy your ice cream."
                             Ry smile "Whatever you say. I won't give up an opportunity for more ice cream."
                             $ renpy.pause (1.0)
                             m "After a while, I saw Katsuharu start walking over to us."
-                            show katsu normal flip at left with easeinleft
-                            Ka "Hey [player_name]. Just closing up and had and extra scoop of chocolate. Are any of you interested?"
+                            show remy normal at right
+                            show amely normal at right
+                            with move
+                            show katsu normal flip at Position (xpos = 0.6) with easeinleft
+                            Ka "Hey, [player_name]. Just closing up and had and extra scoop of chocolate. Are any of you interested?"
                             Am "Me! Me!"
 
                             menu:
@@ -1696,11 +1769,14 @@ label eval_remy_amely_2:
                                     c "I'll take it."
                                     Am "No ice cream?"
                                     Ry "Amely, you've already had enough."
+                                    Am smsad "Awww..."
                                     hide amely with easeoutleft
                                     c "I'll say."
                                     m "Looking around, Amely was racing around the area like a pinball."
                                     Ka "Anyways, enjoy the chocolate ice cream [player_name]!"
                                     c "Thank you Katsuharu!"
+                                    show katsu normal with dissolvemed
+                                    hide katsu with easeoutleft
                             
                             m "The second my tongue lay contact with the smooth [evalChosenFlavor], I lit up in excitement."
                             c "Wow! This really is amazing ice cream!"
@@ -1830,12 +1906,6 @@ label eval_remy_amely_2:
             $ renpy.pause (0.5)
             scene o3 with dissolveslow #Add pan
             show remy normal with dissolvemed
-            Ry look "This place really hasn't changed much since I was last in here, [player_name]. You've really got to spice it up every once and a while."
-            c "I haven't had the time to get around to that. With the whole coma and world saving stuff going on."
-            Ry normal "Right, that probably did take up a lot of your free time."
-            c "I wonder if they deactivated my ambassador card yet."
-            Ry smile "I haven't heard anything about it. You might want to do some last minute furniture shopping before they do though."
-            c "Good idea."
             Ry normal "Hey, now that I'm here, would you mind if I slept here for the night? Night flying isn't really my specialty."
             c "Of course you can Remy, you're always welcome here."
             Ry smile "Thanks, [player_name]!"
@@ -1849,11 +1919,6 @@ label eval_remy_amely_2:
                     Ry shy "That... Well, I would love to [player_name]!"
                     c "Glad to hear it. Maybe we could have some fun as well."
                     Ry smile "We'll see where things go, [player_name]."
-                    hide remy with dissolvemed
-                    m "The dragon and I made our way to the bedroom. Without hesitation, Remy removed his tie and rested it on the nightstand."
-                    show remy normal b with dissolvemed
-                    Ry "Can't have this thing on while I sleep."
-                    c "Doesn't look like the most comfortable sleeping attire."
                     hide remy with dissolvemed
                     play sound "fx/undress.ogg"
                     m "I got undressed, and the two of us got into the bed together."
@@ -1919,7 +1984,9 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
                 show black with dissolvemed
                 $ renpy.pause (1.0)
                 $ persistent.skipnumber += 1
+                $ evalAdineSlaps += 1
                 call skipcheck from evalSkipCheckC1
+                play music "mx/funness.ogg"
                 jump eval_skip_C1
 
             "No. Don't skip ahead.":
@@ -1974,7 +2041,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         Ad "Well. Why are you here then?" 
     elif evalOrphanageScore == 1:
         Ad "Wait... Did you guys do something here?"
-        Ry smile "Well, [player_name] and I did a bit of work while we were wating for you."
+        Ry smile "Well, [player_name] and I did a bit of work while we were waiting for you."
         if adinestatus!="good":#if Adine's mood is not impressed, change it to good
             $ adinestatus="neutral"#for doing some good around the orphanage
         Ad "Really? That's so kind of you! What were you waiting on me for?"
@@ -2004,7 +2071,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     Ad normal b flip "Coming from someone who has had three scoops in one sitting before, it is definitely possible."
     Ry smile "So, Amely, are you excited to have your first ever scoop of ice cream?"
     Am smsad "Ice... cream?"
-    c "Ice cream is kind of like... Well... Um..."
+    c "Ice cream is kind of like... {w}Well... {w}Um..."
     m "I didn't think it would be so difficult to describe something as simple as ice cream."
     Am smnormal "Sugar?"
     c "Yes, lots of sugar."
@@ -2022,18 +2089,18 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     c "What's so funny?"
     Ad"Oh, nothing."
     Ry shy "Why does everyone keep taking this the wrong way? I didn't mean it like {i}that{/i} Adine!"
-    m "I chuckled softly."
     Ad "Sure you didn't, Remy."
     Ry "Adine..."
     Ad normal b flip "Okay, I'll stop. {w}For now."
     Ry look "Great... Let's just get going."
     Ad "Alright, Amely, let's go."
     Am "Sugar!!!"
-    hide amely with easeoutleft
+    show amely smnormal flip with dissolvemed
+    hide amely with easeoutright
     play sound "fx/door/door_open.wav"
     $ renpy.pause (0.5)
-    Ad normal b "Whoah! Wait for me Amely! I'm the one with wings here!"
-    hide adine with easeoutleft
+    Ad "Whoah! Wait for me Amely! I'm the one with wings here!"
+    hide adine with easeoutright
     $ renpy.pause (1.0)
     play sound "fx/door/door_open.wav"
     $ renpy.pause (1.5)
@@ -2047,24 +2114,30 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
         Ry "I don't want to arrive at the park carrying a passed out human on my back. I think I would get a lot of strange looks from other people."
         c "Fine, are we going to fly off after them?"
         Ry normal "Not to be rude, but I doubt I could fly around with you on my back."
-        c "Are you calling me fat?"
 
-        if evalAskIfFat:
-            Ry look "Not this again, [player_name]."
-            c "Fine, you got me there."
-        else:
-            Ry shy "N... No of course not. I didn't mean it that way... I just meant..."
-            c "I'm kidding, don't sweat it."
-            Ry normal "Dragons don't sweat."
-            c "Noted."
-            $ evalSweatJoke = True
+        menu:
+            "Are you calling me fat?":
+                c "Are you calling me fat?"
+                if evalAskIfFat:
+                    Ry look "Not this again, [player_name]."
+                    c "Fine, you got me there."
+                else:
+                    Ry shy "N... No of course not. I didn't mean it that way... I just meant..."
+                    c "I'm kidding, don't sweat it."
+                    Ry normal "Dragons don't sweat."
+                    c "Noted."
+                    $ evalSweatJoke = True
+            
+            "That makes sense":
+                c "That makes sense. I'm sure it's difficult flying with extra weight."
+                Ry "I'll say."
 
         Ry normal "I was thinking that instead of flying, I could just run."
         c "Are you fast on the ground?"
         Ry "Not as fast as a runner, but I'm still quite quick."
         c "Alright then, let's see how quick those legs really are."
     else:
-        Ry "Well, are you ready, [player_name]."
+        Ry "Well, are you ready, [player_name]?"
         c "Sure am."
     hide remy with dissolvemed
     play sound "fx/bed.ogg"
@@ -2108,13 +2181,11 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             m "In a way, it also felt strangely familiar, like I had done this before."
             m "The experience was almost relaxing, with the light breeze and rhythmic thumping of Remy's feet on the grass and pavement."
     else:
-        m "Remy walked forward and quickly picked up speed."
-        m "As a seasoned dragon rider. I sat back and gazed up at the sky." #Is this too... weird?
-    
+        m "I sat back and gazed up at the sky." #Is this too... weird?
     $ renpy.pause (0.5)
     m "It seemed as if it took mere minutes to arrive back at Tatsu Park."
     Ry "Ladies and gentlemen, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
-    if not evalRodeRemy:
+    if not evalBadRemyJoke:
         c "Very funny, Remy."
         Ry "Thanks, I can tell that you sincerely mean that."
     else:
@@ -2154,7 +2225,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
     Ad "So, you said Katsuharu relocated here. Any idea where he is?"
     c "He didn't give me an exact location..."
     menu:
-        "[[Make a banana phone joke]":
+        "[[Make a banana phone joke.]":
             m "Suddenly, inspiration struck me as Adine idly moved her tail in my direction."
             c "Not sure, Adine. Why don't we call and find out?"
             m "I stepped and grabbed the end of Adine's tail."
@@ -2203,11 +2274,12 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             Ry normal "I would have to agree with you. All of these people have been waiting for a long time to get their ice cream, and I'm sure it would make them unhappy if we just skipped ahead."
             Ad think b flip "I'm not too sure."
             Ad "If Katsuharu was willing to give you free ice cream, I'm sure he would be more than willing to let you skip the line as well."
-            Ry normal "It's not that. I just don't want to attact too much attention to ourselves."
+            Ry normal "It's not that. I just don't want to attract too much attention to ourselves."
             Ad normal b flip "I guess."
             c "Looks like the line is about an hour long." #Do I add a mini game??? Tune in next time for //Is Eval Lazy?\\
             m "For the next hour, Remy, Adine and I engaged in lighthearted chatter, discussing our interests and the events that had gone on while I was in my coma."
             m "Amazingly enough, not a single innuendo or banana phone joke was made."
+            m "At many points during the conversation, Amely attempted to leave our side. However, Adine held onto her with a firm grasp."
             m "After what seemed like forever, it was finally our turn to get ice cream."
         
         "I think we can skip the line.":
@@ -2272,7 +2344,7 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             Ka "Of course. You really, really wanted three cones that day."
             Ka "It was quite entertaining watching you hop away on one foot while holding ice cream in your hands and other foot."
             Ad "I remember getting a lot of strange looks from other dragons that day."
-            Ry smile "I think I remember that too. Didn't you almost fall."
+            Ry smile "I think I remember that too. Didn't you almost fall?"
             Ad annoyed b "Of course I didn't. My feet are very dextrous. Walking on one foot isn't a big deal."
             Ry normal "How sanitary is holding ice cream with your feet though, Adine?"
             Ad normal b "I was a kid, you really think I was worrying about something like that?"
@@ -2308,6 +2380,71 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
             hide amely with easeoutleft
             scene black with dissolveslow
             scene evalkatsucart with dissolveslow
+            if persistent.evalEndingD:
+                play sound "fx/system3.wav"
+                s "It turns out you've already played this minigame. Would you like to skip it?"
+                menu:
+                    "Yes.":
+                        s "Would you like a perfect score?"
+                        menu:
+                            "Yes.":
+                                $ evalCustomerScore = 10
+
+                            "No.":
+                                $ evalCustomerScore = 5
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        stop music fadeout 2.0
+                        scene black with dissolveslow
+                        scene evalkatsucart with dissolveslow
+                        jump eval_remy_amely_adine_2
+                    
+                    "No.":
+                        play sound "fx/system3.wav"
+                        s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
+                        pass
+
+            Ka normal "Before we start, would you mind if I put on some music for us to listen to? I have a small cassette player in my cart that I use to pass the time."
+
+            menu:
+                "Sure.":
+                    stop music
+                    $ renpy.music.set_pause(False, "music")
+                    c "Sure! I'd love to listen to some of your music!"
+                    Ka smile "Great! I've got some amazing stuff here!"
+                    $ evalKatsuMusic = True
+                    queue music ["mx/cassette.mp3", "mx/cozysnail.mp3", "mx/neonlights.mp3", "mx/nurture.mp3", "mx/tunnel.mp3"]
+                    m "With a soft click, Katsuharu slid a cassette into the player and hit play."
+                    Ka "How's that?"
+
+                    menu:
+                        "I like it!":
+                            c "You have good taste in music, Katsuharu."
+                            Ka "Thanks!"
+                        
+                        "Actually, why don't we turn it off.":
+                            c "Sorry, Katsuharu, but I think that might distract me while I work."
+                            Ka "It's okay! I understand."
+                            stop music fadeout 2.0
+                            m "Katsuharu reached down and paused his cassette player."
+                            play sound "fx/system3.wav"
+                            s "Back to your regularly scheduled programming."
+                            play music "mx/funness.ogg"
+                            $ renpy.pause (2.0)
+                            s "Actually, why not go even further? Would you like to play this minigame out in complete silence?"
+
+                            menu:
+                                "Yes.":
+                                    s "Well, this is going to be awkward, but suit yourself."
+                                    stop music fadeout 2.0
+                                
+                                "No.":
+                                    s "Good choice."
+                
+                "No thanks.":
+                    c "Sorry, I don't feel like listening to anything at the moment."
+                    Ka normal "No problem."
+                    $ renpy.music.set_pause(False, "music")
             Ka normal "Alright, here's the plan everyone."
             Ka "Remy, grab a scoop from that drawer there."
             Ka "[player_name], you take orders."
@@ -2431,7 +2568,7 @@ label eval_remy_amely_adine_2:
     show amely smnormal at right with easeinright
     show remy normal behind amely at right with easeinright
     show adine normal c behind remy at Position (xpos=0.6) with easeinright
-    Ad "Hey guys! How'd it go!"
+    Ad "Hey guys! How'd it go?"
     c "It was a lot of work, but in a way, it was also nice talking to all the locals."
     Ry smile "And I think I'm now a certified ice cream scooper!"
     Ka "That you are, Remy."
@@ -2493,17 +2630,6 @@ label eval_remy_amely_adine_3:
                 Ad normal b "When we used to get ice cream as kids, everyone would always call Remy the 'Vanilla Dragon'."
                 Ry "Yes, a name I would like to leave in the past."
                 Ad giggle b "Too late, Remy. [player_name] brought it back to light."
-                if evalAdineSlaps == 2:
-                    Ry smile "Well Adine, now that both of us have a flavor associated with us, what should [player_name]'s flavor be?"
-                    Ad think b "That's a good question."
-                    Ad "That skin tone isn't exactly the most appealing in the form of food, so I can't say there's many options."
-                    Ry look "Pumpkin?"
-                    Ad "Too orange. Plus that's not an ice cream flavor."
-                    Ka normal flip "You know, that doesn't sound half bad."
-                    Ka smile flip "Check back this fall. You might just see that on the menu."
-                    Ad normal b "Really? That sounds quite good!"
-                    Ry normal "Well. I'm stumped on [player_name]'s flavor."
-                    Ad "Same here."
             else:
                 m "Remy sighed."
                 Ry "I guess you could think about it like that."
@@ -2515,7 +2641,7 @@ label eval_remy_amely_adine_3:
 
     Ka normal flip "Okay, Adine. What can I get you?"
     if evalChosenFlavor == "special":
-        Ad normal "I'm curious to try the 'special' with [player_name]."
+        Ad normal b "I'm curious to try the 'special' with [player_name]."
     else:
         Ad normal b "I think I'll try the 'special'."
     Ka "Good choice! I think you'll like it."
@@ -2531,7 +2657,6 @@ label eval_remy_amely_adine_3:
     Ka "Just give me a moment to get all of you your scoops!"
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
-    show amely smnormal at right with dissolvemed
     m "The dragon walked behind his stand and started preparing the ice cream."
     m "Expecting the dragon to produce some sort of utensil, I was surprised when he suddenly thrust his hand into the vat and pulled out an almost perfectly spherical scoop of ice cream."
     c "(Damn, these dragons can fly, shoot fire, run extremely fast, and even make an amazing scoop of ice cream with their bare hands. This truly is the peak of evolution.)"
@@ -2575,16 +2700,16 @@ label eval_remy_amely_adine_3:
         if mp.fish:
             c "(Why does fish translate to yellowish orange in ice cream form?)"
         else:
-            c "(What kind of special menu item has this yellowish orange hue.)"
+            c "(What kind of special menu item has this yellowish orange hue?)"
 
     m "I watched as Katsuharu went back to his stand and repeated the process for Remy, Adine, and Amely."
-    show katsu normal at Position (xpos=0.1) with dissolvemed
+    show katsu normal at Position (xpos = 0.1) with dissolvemed
     hide katsu with easeoutleft
     $ renpy.pause (2.0)
-    show katsu normal flip at Position (xpos=0.1) with easeinleft
+    show katsu normal flip at Position (xpos = 0.1) with easeinleft
     Ka "Here you go everyone!"
     m "The three dragons took their cones from Katsuharu. Amely looked at her own in wonder."
-    show amely smnormal at right with dissolvemed
+    show amely smnormal behind remy at Position (xpos = 0.6) with dissolvemed
     m "The instant her tongue made contact with the chocolate, her eyes lit up in excitement and she took another bite."
     Ad giggle b "Well, I think someone likes ice cream."
     m "Amely was already attacking her cone from all angles."
@@ -2635,9 +2760,8 @@ label eval_remy_amely_adine_3:
     hide remy with easeoutright
     show adine normal b flip
     hide adine with easeoutright
-    hide katsu with dissolvemed
     show katsu at center with ease
-    show katsu normal
+    show katsu normal with dissolvemed
     Ka "I wanted to speak privately with you for a moment, [player_name]."
     c "What about?"
     Ka exhausted "Well, it's about my business. If today has taught me anything, it's that I can't do this alone anymore."
@@ -2650,7 +2774,7 @@ label eval_remy_amely_adine_3:
     c "How would I do that?"
     Ka "I'm not quite sure myself. You can say that I pay well."
     c "Hmmm..."
-    if not kevinunplayed: #This is kinda dumb tbh
+    if not kevinunplayed:
         m "Suddenly, it hit me."
         c "You know what? I think I know the perfect way to help you!"
         Ka "How so?"
@@ -2681,7 +2805,7 @@ label eval_remy_amely_adine_3:
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
     $ renpy.pause (2.0)
-    show katsu normal flip at Position (xpos = 0.1) with easeinleft
+    show katsu normal flip with easeinleft
     show katsu normal with dissolvemed
     Ka "Here you go."
     c "This one somehow looks even better than the last."
@@ -2731,12 +2855,11 @@ label eval_remy_amely_adine_3:
         Ad normal b flip "I had a lot of fun today."
         Ry smile "I guess the ice cream was more of a bonus rather than an end goal."
         Ka "Did I hear an unhappy customer?"
-        show adine normal b flip at Position (xpos=0.6) behind remy with move
-        show adine normal b at Position (xpos=0.6) behind remy
-        show remy normal at right behind amely with move
+        hide adine with dissolvemed
+        show adine normal b at Position (xpos = 0.6) with dissolvemed
         show katsu normal flip at Position (xpos = 0.1) with easeinleft
         c "How did you know?"
-        Ka smile "I have a sixth sense for customer satisfaction."
+        Ka smile flip "I have a sixth sense for customer satisfaction."
         m "Katsuharu reached out and handed me a fresh scoop of vanilla."
         c "Wow, thank you Katsuharu!"
         c "What should I do with this scoop of the special, though?"
@@ -2782,7 +2905,7 @@ label eval_remy_amely_adine_3:
     play sound "fx/takeoff.ogg"
     m "Adine took a few steps and took flight into the air."
     m "After gaining altitude, she tucked in her wings and zeroed in on Amely."
-    m "In the next instant, Adine had Amely firmly in her claws and took off towards the orphanage."
+    m "In the next instant, Adine had Amely firmly in her claws and lifted her into the air."
     Ry normal "That was entertaining."
     c "Very."
     Ry "Well, I'll take you home."
@@ -2854,7 +2977,7 @@ label eval_remy_amely_adine_3:
                 Ry "With you, it was different. I know I said this before, but it was, and is, truly special being able to talk with you."
                 c "Well, I guess your idea worked out quite well in the end."
                 Ry "I guess it did. Didn't it?"
-                if mp.remyromance:
+                if evalRemyRomance:
                     m "Suddenly, Remy gave me a big kiss on the lips."
                     Ry shy "Thank you for everything, [player_name]."
                     c "Of course, Remy."
@@ -2875,19 +2998,7 @@ label eval_remy_amely_adine_3:
                 Ry "I've just kept it brewing inside me for so long I had to get it out."
                 c "Don't worry about it."
                 Ry look "It's getting really late, I should best get going."
-                c "I understand. Bye Remy!"
-                Ry smile "Bye, [player_name]."
-                hide remy with dissolvemed
-                play sound "fx/takeoff.ogg"
-                m "With that, Remy took off into the starry night sky."
-                m "I headed back inside and prepared for bed."
-                stop music fadeout 2.0
-                scene black with dissolveslow
-                $ renpy.pause (1.0)
-                play sound "fx/system3.ogg"
-                s "You didn't hug Remy? Shame on you."
-                $ evalFail = "A Mediocre Friend"
-                jump eval_fails
+                jump eval_remy_amely_adine_sleep_select
     else:
         Ry normal "But I should really get going. Night flying really isn't my specialty."
         jump eval_remy_amely_adine_sleep_select
@@ -2905,15 +3016,15 @@ label eval_remy_amely_adine_sleep_select:
                 "Share the bed.":
                     c "I was thinking that we could share the bed."
                     Ry shy "Oh, well..."
-                    c "If you're uncomfortable with that the couch is still available."
+                    c "If you're uncomfortable with that, the couch is still available."
                     Ry normal "No, I would love to share the bed with you, [player_name]."
-                    if mp.remyromance:
+                    if evalRemyRomance:
                         Ry shy "Maybe we could even have some fun while we're at it."
                         c "Getting ahead of ourselves I see. Let's see how things go, Remy."
                     $ evalRemyShareBed3 = True
 
                 "Offer the couch.":
-                    c "The couch is quite large. You should be quite comfortable on it."
+                    c "The couch is quite large. You should be quite comfortable with it."
                     Ry "Thanks, [player_name]."
 
             scene black with dissolveslow
@@ -2922,12 +3033,7 @@ label eval_remy_amely_adine_sleep_select:
             scene o3 with dissolveslow
             show remy normal with dissolvemed
             c "Well, here we are. Home sweet home."
-            Ry look "This place really hasn't changed much since I was last in here, [player_name]. You've really got to spice it up every once and a while."
-            c "I haven't had the time to get around to that. With the whole coma and world saving stuff going on."
-            Ry normal "Right, that probably did take up a lot of your free time."
-            c "I wonder if they deactivated my ambassador card yet."
-            Ry smile "I haven't heard anything about it. You might want to do some last minute furniture shopping before they do though."
-            c "Good idea."
+            c "Wait a minute..."
             $ renpy.pause (2.0)
             if evalOrphanageScore == 2 and evalCustomerScore == 10 and persistent.evalEndingA and persistent.evalEndingB:
                 scene black with dissolvemed
@@ -2953,25 +3059,21 @@ label eval_remy_amely_adine_sleep_select:
                 c "Not that I mind the company."
                 m "Remy sighed and regained some of his composure."
                 Ry normal "You say that, but sometimes I snore."
-                ac "Oh no."
+                c "Oh no."
                 Ry "I'm just trying to lighten up the mood. Let's go to bed, [player_name]."
                 c "Agreed."
                 if evalRemyShareBed3:
                     hide remy with dissolvemed
                     m "The two of us made our way to the bedroom."
                     play sound "fx/undress.ogg"
-                    m "I got undressed while Remy removed his tie."
-                    show remy smile b with dissolvemed
-                    Ry "This may surprise you, but a tie isn't the most comfortable sleeping attire."
-                    c "Not one bit."
-                    hide remy with dissolvemed
+                    m "I got undressed while Remy removed his tie and glasses."
                     play sound "fx/bed.ogg"
                     m "The two of us climbed into bed."
                     c "I don't think this bed was made to fit a human and a big dragon."
                     m "Remy grabbed me and pulled me into his soft embrace."
-                    Ry "Is this better."
+                    Ry smile "Is this better?"
                     c "You are a very comfortable dragon pillow, Remy."
-                    if mp.remyromance:
+                    if evalRemyRomance:
                         m "Looking up, I found Remy's muzzle was mere millimeters from my face."
                         m "Taking the initiative, I pulled Remy's muzzle to my lips and gave the dragon a big kiss."
                         m "He responded by further pressing his lips onto my own."
@@ -2987,23 +3089,11 @@ label eval_remy_amely_adine_sleep_select:
                     scene black with dissolveslow
                     m "I slowly closed my eyes, Remy's warmth and gentle breathing lulling me to sleep."
                 else:
-                    hide remy with dissolvemed
-                    m "Remy removed his tie and placed it on the desk next to the couch."
-                    show remy smile b with dissolvemed
-                    Ry "This may surprise you, but a tie isn't the most comfortable sleeping attire."
-                    c "Not one bit."
-                    hide remy with dissolvemed
-                    m "I started making my way to the bedroom, but I called out to Remy before entering."
-                    c "Remy, please don't blame yourself for Vara's death."
-                    c "There is no way you could have thought she would follow you."
-                    Ry sad "I can't make any promises. I really feel like I could have done something."
-                    c "There was nothing we could do, Remy."
-                    c "I'll be here for you. I'm not going anywhere in the foreseeable future."
-                    Ry "I hope so. For your sake and mine."
+                    m "Remy walked over to the couch and made himself comfortable."
                     play sound "fx/undress.ogg"
-                    m "I undressed and crawled into bed."
+                    m "After making my way to the bedroom, I undressed and crawled into bed."
                     m "I heard Remy call out from the main room."
-                    Ry "Goodnight, [player_name]."
+                    Ry smile "Goodnight, [player_name]."
                     c "Goodnight, Remy."
                 stop music fadeout 2.0
                 $ persistent.evalSecretEndingUnlocked = True
@@ -3015,33 +3105,26 @@ label eval_remy_amely_adine_sleep_select:
                     hide remy with dissolvemed
                     m "The two of us made our way to the bedroom."
                     play sound "fx/undress.ogg"
-                    m "I got undressed while Remy removed his tie."
-                    show remy smile b with dissolvemed
-                    Ry "This may surprise you, but a tie isn't the most comfortable sleeping attire."
-                    c "Not one bit."
-                    hide remy with dissolvemed
+                    m "I got undressed while Remy removed his tie and glasses."
                     play sound "fx/bed.ogg"
                     m "The two of us climbed into bed."
                     c "I don't think this bed was made to fit a human and a big dragon."
                     m "Remy grabbed me and pulled me into his soft embrace."
-                    Ry "Is this better."
+                    Ry smile "Is this better?"
                     c "Much."
                     c "Goodnight, Remy."
-                    Ry "Goodnight, [player_name]."
+                    Ry smile "Goodnight, [player_name]."
+                    scene black with dissolveslow
                     stop music fadeout 2.0
                     scene black with dissolveslow
                     m "I slowly closed my eyes, Remy's warmth and gentle breathing lulling me to sleep."
                 else:
                     hide remy with dissolvemed
-                    m "I made my way to the bedroom while Remy removed his tie."
-                    show remy smile b with dissolvemed
-                    Ry "This may surprise you, but a tie isn't the most comfortable sleeping attire."
-                    c "Not one bit."
-                    hide remy with dissolvemed
+                    m "I made my way to the bedroom while Remy removed his tie and glasses."
                     play sound "fx/undress.ogg"
                     m "I undressed and crawled into bed."
                     m "I heard Remy call out from the main room."
-                    Ry "Goodnight, [player_name]."
+                    Ry smile "Goodnight, [player_name]."
                     c "Goodnight, Remy."
                     stop music fadeout 2.0
                     scene black with dissolveslow
@@ -3058,7 +3141,7 @@ label eval_remy_amely_adine_sleep_select:
     jump eval_custom_credits
 
 label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had the special
-    Ka "What flavor ice cream would you like?"
+    Ka "What flavor of ice cream would you like?"
     #Possibly add something here to accomidate for Katsuharu's apparent lack of diversity he promised earlier.
     #Ideas for out of stock:
         #He makes fresh batches of ice cream and waffle cones more consistently because it is the most popular and easy to make
@@ -3189,7 +3272,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
             $ evalChosenFlavor = "spaghettieis"
             if not evalExplainSpaghettieis:
                 c "Spaghetti? Isn't that more of a meal than an ice cream?"
-                Ka smile "It's not spaghetti! It's {i}spaghettieis{/i}."
+                Ka smile flip "It's not spaghetti! It's {i}spaghettieis{/i}."
                 c "Oh, what's that?"
                 Ka normal flip "Well, it's more of a novelty than anything else. Spaghettieis is made by pressing some of my vanilla ice cream through a spaetzle press and then topping it off with strawberry sauce and coconut to make it look like spaghetti."
                 c "A... what?"
@@ -3246,7 +3329,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
                 c "Can't say I have."
                 Ka smile flip "Well, they serve this wonderful fish special that I loved so much, I decided to blend up and turn into an ice cream flavor!"
                 c "No offense, but that sounds a bit gross."
-                Ry look "I would have to agree."
+                Ry look "Sounds quite... interesting."
                 if evalCurrentEnding == 3:
                     Ad think b "As someone who has served this dish countless times, [player_name], all I can say is that it's not for everyone."
                     c "That's concerning."
@@ -3298,7 +3381,7 @@ label eval_fails:
             s "It might even unlock something, just saying."
         play sound "fx/system3.wav"
         s "You have experienced a new fail: [evalFail]!"
-    if evalTotalFails == 6:
+    if evalTotalFails == 5:
         $ renpy.pause (2.0)
         play sound "fx/system3.wav"
         s "Would you look at that, you got every fail this mod had to offer."
@@ -3326,7 +3409,7 @@ label eval_fails:
             $ i += 1
         play sound "fx/system3.wav"
         s "Total fails: [evalTotalFails] of 6."
-    return
+    jump eval_custom_credits
 
 label eval_goggles: #Meme scene. It's like bacon Naomi!
     scene remyapt
@@ -3356,7 +3439,7 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     Ad giggle goggles d flip "What does it look like? I got a bunch of goggles!"
     c "But... Why are you wearing them all?"
     Ad think goggles d flip "Good question. {w}I have no idea."
-    Ad normal goggles d flip "I actually brought a pair for all of us to try."
+    Ad normal goggles e flip "I actually brought a pair for all of us to try."
     Ry smile "That's actually quite cute."
     Ad "I know, right?"
     hide adine
@@ -3417,15 +3500,15 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     show vara smsmile goggles at right
     show evalgoggleoverlay
     with dissolvemed
-    c "Well, how does it look?"
+    c "Well, do I look stylish?"
     Ad giggle goggles flip "You look ready to take flight."
     c "Great. Now all I'm missing is a pair of wings and I'm good to go."
     Ry "What about your extra pair of goggles, Adine?"
     Ad normal goggles flip "I'm keeping them on, of course. I think it looks good."
     c "That raises a good question. Do we get to keep these goggles?"
-    Ad annoyed goggles flip "Heck no! I paid good money for these goggles!"
+    Ad annoyed goggles flip "Heck no! I paid good money for these things!"
     c "Then why do you have so many in the first place?"
-    Ad normal goggles flip "Just in case. On occasion they come off while I'm flying or break."
+    Ad normal goggles flip "Just in case. On occasion they come off while I'm flying or I'll drop them."
     Ad "Plus, what else am I supposed to put in my closet? It's not like I have any clothes."
     Ry "I must say, this has been quite the experience."
     c "(That it has.)"
@@ -3437,44 +3520,70 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     s "At this point you have most likely completed most if not all mod content."
     s "Thank you for playing!"
     $ persistent.evalGogglesScene = True
-    return
-
-label eval_special_mentions: #Special mentions to those who helped me
-    if persistent.evalFirstTimePlaying:
-        if player_name.lower() == "4onen":
-            play sound "fx/system.wav"
-            s "[[Incoming Message]"
-            s "Hello, 4onen. It's Eval."
-            s "Don't make fun of my writing too much, okay?"
-            s "Anyways, thanks for all the help and enjoy the mod."
-        if player_name.lower() == "joey":
-            play sound "fx/system.wav"
-            s "[[Incoming Message]"
-            s "Hello, Joey. It's Eval."
-            s "In hindsight, I might have made a mistake adding this."
-            s "If this makes little to no sense, you aren't the right Joey."
-            s "Thanks for all the help, Joey. Vara appreciates it."
-            s "Anyways, thanks for all the help and enjoy the mod."
-        if player_name.lower() == "jakzie":
-            play sound "fx/system.wav"
-            s "[[Incoming Message]"
-            s "Hello you! It's BKevin."
-            s "I'm kidding though, it's Eval."
-            s "Or is it?"
-            s "Anyways, enjoy the mod :)."
-        if player_name.lower() == "charu":
-            play sound "fx/system.wav"
-            s "[[Incoming Message]"
-            s "Hello, Charu. It's Eval."
-            s "Don't judge my writing too hard, alright?"
-            s "Anyways, thanks for all the help and enjoy the mod."
-    return
+    jump eval_custom_credits
 
 label eval_custom_credits:
-    #$ renpy.pop_call()
-    m "Thank you for playing the (almost) finished version of This Dragon Owes Me Ice Cream!"
-    m "Currently, I have no credits made, so live with this while I work on that."
-    m "This was a lot of fun to make, and I hope you enjoyed!"
+    # $ _game_menu_screen = None
+    $ renpy.pause (2.0)
+    $ renpy.block_rollback()
+    play sound "mx/eveningmelody.ogg"
+    $ renpy.pause (1.5)
+    show extra9 at Pan ((-300, 0), (-490,0), 20.0)
+    show evalcustomcredits1 at left
+    with dissolvemed
+    $ renpy.pause (12.0)
+    scene black with dissolvemed
+    if evalCurrentEnding == 4 or evalVaraAlive:
+        show extra1 at Pan ((-600, 0), (-490,0), 20.0)
+    else:
+        show varadead at Pan((520, 0), (0, 326), 20.0)
+    show credits1 at left
+    with dissolvemed
+    $ renpy.pause (8.0)
+    show black2 at left with dissolvemed
+    show credits2 at left with dissolvemed
+    $ renpy.pause (8.0)
+    scene black with dissolvemed
+    show remysad at Pan ((750, 326), (1430, 0), 25.0)
+    show credits3 at right
+    with dissolvemed
+    $ renpy.pause (8.0)
+    show black2 at right with dissolvemed
+    show credits4 at right with dissolvemed
+    $ renpy.pause (8.0)
+    scene black with dissolvemed
+    show oranged at Pan ((-350, 326), (-850, 100), 20.0)
+    show credits5 at left
+    with dissolvemed
+    $ renpy.pause (8.0)
+    show black2 at left with dissolvemed
+    show credits6 at left with dissolvemed
+    $ renpy.pause (8.0)
+    scene black with dissolvemed
+    show cgspill at Pan((0, 90), (250, 184), 20.0)
+    show credits7 at right
+    with dissolvemed
+    $ renpy.pause (8.0)
+    show black2 at right with dissolvemed
+    show credits8 at right with dissolvemed
+    $ renpy.pause (8.0)
+    scene black with dissolvemed
+    show cg1 at Position(xpos=0.8, xanchor='center')
+    show credits9 at left
+    with dissolvemed
+    $ renpy.pause (8.0)
+    show black2 at left with dissolvemed
+    show credits10 at left with dissolvemed
+    $ renpy.pause (8.0)
+    scene black with dissolvemed
+    scene logo with dissolvemed
+    $ renpy.pause (8.5)
+    scene black with dissolvemed
+    stop sound fadeout 1.0
+    $ renpy.pause (4.0)
+    $ persistent.anygoodending = True
+    play sound "fx/system3.wav"
+    m "Thank you for playing This Dragon Owes Me Ice Cream!"
     if evalCurrentEnding == 1:
         m "You got Remy's ending!"
         if not persistent.evalEndingBUnlocked:
@@ -3491,7 +3600,45 @@ label eval_custom_credits:
             $ persistent.evalEndingCUnlocked = True
     elif evalCurrentEnding == 3:
         m "You got Remy, Amely, and Adine's ending!"
+        if persistent.evalSecretEndingUnlocked and persistent.evalFirstSecretUnlock: #Give hints for Vara's content
+            $ renpy.pause (2.0)
+            $ persistent.evalFirstSecretUnlock = False
+            play sound "fx/system3.wav"
+            s "New file detected."
+            s "[[Analyzing.]"
+            s "[[Analyzing..]"
+            s "[[Analyzing...]"
+            $ renpy.pause (1.5)
+            play sound "fx/system.wav"
+            s "Recovered [[1] file from memory. Name: <CORRUPTED>"
+            s "Attempting to gather file name..."
+            $ renpy.pause (2.0)
+            play sound "fx/system2.wav"
+            s "Unable to gather full file name."
+            s "Partially decoded name: e-a-_V--a"
+            s "Linking to game..."
+            $ renpy.pause (2.0)
+            play sound "fx/system.wav"
+            s "Successfully linked new file to instance of <Remy Good Ending>"
+            s "Enjoy!"
+        elif not persistent.evalSecretEndingUnlocked: #Give hints on how to get Vara's content
+            play sound "fx/system3.wav"
+            s "New file detected."
+            s "[[Analyzing.]"
+            s "[[Analyzing..]"
+            s "[[Analyzing...]"
+            $ renpy.pause (1.5)
+            play sound "fx/system2.wav"
+            s "Failed to gather [[1] file from memory."
+            s "Developer note: \"Perfect scores\""
+            s "Terminating process..."
     elif evalCurrentEnding == 4:
         m "You got the final ending! Good job!"
+        if len(persistent.evalUniqueFails) < 5:
+            m "However, there is still more content!"
+            m "Try to get every fail. You might just get a reward..."
+    else:
+        m "You somehow got to the end of this mod without getting an ending. Good job, I guess..."
+    $ persistent.remygoodending = True
     return
 #This file is way too long.

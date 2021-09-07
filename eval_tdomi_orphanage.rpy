@@ -205,7 +205,7 @@ label eval_orphanage_remy_item_gather:
             "Supply Closet." if "lightbulbs" not in evalGatheredItems or "lightswitch" not in evalGatheredItems or "DWD-40" not in evalGatheredItems:
 
                 menu:
-                    "Lightbulbs." if "lightbulbs" not in evalGatheredItems:
+                    "Lightbulbs." if "lightbulbs" not in evalGatheredItems and not (evalReplaceBulbs and evalResetBreaker):
                         $ evalRemyItem = "lightbulbs"
                         $ evalMinutesRemyIsGone = 15
                         $ evalRemyOnMission = True
@@ -860,7 +860,7 @@ label eval_orphanage_end: #Change the music
     $ renpy.pause (3.0)
     play music "mx/serene.ogg"
     if evalOrphanageScore == 2:
-        Ry smile "Wow, [player_name]! This place hasn't look this good in years!"
+        Ry smile "Wow, [player_name]! This place hasn't looked this good in years!"
         c "Couldn't have done it without you, Remy."
         Am smsad "Hey!"
         c "Sorry! Couldn't have done it without you either, Amely."
@@ -876,7 +876,7 @@ label eval_orphanage_end: #Change the music
             Am smnormal "Maybe..."
             c "Where should we sleep? On the floor?"
             Ry "You guys can sleep on me if you like."
-            c "Oh boy, my very own full sized dragon pillow equipped with a built in heater!"
+            c "Oh boy, my very own full sized dragon pillow equipped with a built-in heater!"
             Ry smile "I'm the latest model."
             m "I carefully propped myself up against Remy's side. I could feel his body rising and falling with each breath."
             m "Amely then crawled up next to me and laid her head on my shoulder."
@@ -911,7 +911,7 @@ label eval_orphanage_end: #Change the music
             m "I made my way to take a seat at a desk."
             Ry "Wait, [player_name]. You can rest on me if you like."
             Ry smile "I'm probably much more comfortable than any old desk."
-            c "Oh boy, my very own full sized dragon pillow equipped with a built in heater!"
+            c "Oh boy, my very own full sized dragon pillow equipped with a built-in heater!"
             Ry "I'm the latest model."
             m "I carefully propped myself up against Remy's side. I could feel his body rising and falling with each breath."
             m "Amely then crawled up next to me and laid her head on my shoulder."

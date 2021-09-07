@@ -26,6 +26,9 @@ def load_side_ims():
     
     def clip_remy_side_image(imagefile):
         return im.Flip(im.Scale(im.Crop(imagefile, (5, 30, 500, 600)), 250, 300), horizontal=True)
+
+    def clip_amely_side_image(imagefile):
+        return im.Scale(im.Crop(imagefile, (180, 114, 500, 500)), 250, 250)
     
     for expression in varaSmallExpressions:
         renpy.exports.image("side vara %s"%expression.replace("_", " "), clip_vara_side_image("cr/vara_%s.png"%expression))
@@ -43,8 +46,8 @@ def load_side_ims():
         renpy.exports.image("side vara %s goggles"%expression, clip_vara_side_image("cr/vara_%s_goggles.png"%expression))
     
     for expression in amelyGoggleExpressions:
-        renpy.exports.image("side amely %s goggles"%expression, clip_vara_side_image("cr/amely_%s_goggles.png"%expression))
-        renpy.exports.image("side amely %s goggles flip"%expression, clip_vara_side_image("cr/amely_%s_goggles_flip.png"%expression))
+        renpy.exports.image("side amely %s goggles"%expression, clip_amely_side_image("cr/amely_%s_goggles.png"%expression))
+        renpy.exports.image("side amely %s goggles flip"%expression, clip_amely_side_image("cr/amely_%s_goggles_flip.png"%expression))
     
     #For most of Adine's goggle expressions
     for expression in adineGoggleExpressions:
@@ -77,7 +80,7 @@ def connect(node, next):
 @loadable_mod
 class AWSWMod(Mod):
     def mod_info(self):
-        return ("This Dragon Owes me Ice Cream!", "v0.9.1", "Eval")
+        return ("This Dragon Owes me Ice Cream!", "v1.0.0", "Eval")
     def mod_load(self):
         #Variable init hook. I'm lazy, so I just decided to define all my variables early instead of having a dedicated label to call whenever I needed to confirm vars
         varInitHook = modast.find_say("I'll leave the stuff for you here, and I'll take care of the rest once I get back, alright?")# modast.find_say("Getting ready, I noticed something lying on the table. It was the note Remy had left for me in case I needed anything. Along with his own home phone and work number, there were also some numbers for delivery of food and other necessities, as well as emergency and even janitorial services. He had certainly thought of everything, even though I now had to wonder what a dragon plumber might look like.")

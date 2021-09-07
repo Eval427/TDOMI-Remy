@@ -112,7 +112,7 @@ label eval_katsu_help:
     
     #Some fun scenes to throw in
     if evalServedCustomers == 3:
-        m "Suddenly, I saw two dragons dart pass my vision."
+        m "Suddenly, I saw two dragons dart past my vision."
         Ad normal b "Amely! Where are you going?"
         show amely smnormal flip with easeinleft
         Am "Wheeeeeeeeeee!!!!"
@@ -176,7 +176,7 @@ label eval_katsu_help_2:
     m "I turned back to Katsuharu."
     if evalCharacterPreferredFlavor == "spaghettieis":
         c "Katsuharu, someone asked for some spaghetti? I didn't know you even served that."
-        Ka smile "It's not spaghetti! It's {i}spaghettieis{/i}."
+        Ka smile flip "It's not spaghetti! It's {i}spaghettieis{/i}."
         c "Oh, what's that?"
         Ka normal flip "Well, it's more of a novelty than anything else. Spaghettieis is made by pressing some of my vanilla ice cream through a spaetzle press and then topping it off with strawberry sauce and coconut to make it look like spaghetti."
         c "A... what?"
@@ -399,7 +399,7 @@ label eval_help_em:
 
     if evalCharacterMood == 0:
         if evalCharacterMood == evalQualityServed:
-            Em laugh "Thank's for making it fast. Now I should have plenty of time to make it to the meeting."
+            Em laugh "Thanks for making it fast. Now I should have plenty of time to make it to the meeting."
             c "Happy to help."
             $ evalCustomerScore += 1
         else:
@@ -418,9 +418,9 @@ label eval_help_em:
             Em "Don't bother. This will suffice."
         else:
             Em frown "This is a lot of ice cream. Are you implying I look fat?"
-            c "N... No. Of course not! I just thought that a bit of extra ice cream never hurt."
-            if askiffat:
-                m "So this is how Remy felt earlier."
+            c "N... No. Of course not! I just thought that a bit of extra ice cream wouldn't hurt."
+            if askIfFat:
+                c "(So this is how Remy felt earlier.)"
             Em normal "I will choose to believe your statement this time, [player_name]."
     else:
         if evalCharacterMood == evalQualityServed:
@@ -536,7 +536,7 @@ label eval_help_kali:
         c "Then I assume you've been quite busy these past few weeks."
         Kl "Very. I've had to sort more papers in these past few weeks than I have in my entire career as an archivist."
         c "Sounds like a lot of fun."
-        Ka "So much fun..."
+        Kl "So much fun..."
     if evalCharacterMood == 0:
         Kl "Well, this line was much longer than I was anticipating, and Bryce wants me at the police station to finish up on the investigation papers, so I shouldn't stay too long."
         c "You still aren't done?"
@@ -643,13 +643,13 @@ label eval_help_kev:
             c "Flyers?"
             Kv ramble "Yeah! I took up a summer job as a recruiter for Midwest Institution."
             c "Is that some kind of religious thing?"
-            Kv "Not at all! It's a college"
+            Kv "Not at all! It's a college."
             c "College. Wonderful times."
             Kv brow "Is that sarcasm?"
             c "Maybe. Anyways, what flavor would you like?"
     elif evalCharacterMood == 2:
         Kv "I've been running around like crazy giving dragons flyers, so I've really worked up an appetite."
-        if not kevinunplayed: #HAHA I GOT TO COPY PASTE THIS LETS GO LAZINESS
+        if not kevinunplayed:
             c "I'm sure they were all very excited."
             Kv face "Some were... Less excited than others, to say the least."
             c "I can relate. Anyways, which flavor would you like?"
@@ -657,7 +657,7 @@ label eval_help_kev:
             c "Flyers?"
             Kv ramble "Yeah! I took up a summer job as a recruiter for Midwest Institution."
             c "Is that some kind of religious thing?"
-            Kv "Not at all! It's a college"
+            Kv "Not at all! It's a college."
             c "College. Wonderful times."
             Kv brow "Is that sarcasm?"
             c "Maybe. Anyways, what flavor would you like?"
@@ -694,7 +694,7 @@ label eval_help_kev:
             Kv normal "Normally, Katsuharu spends a lot of time making his ice cream look perfect."
             Kv "But with the line, I can excuse the sloppiness."
             c "I could get you another if you wish."
-            Kv "Please, don't worry about it. I don't want to hold up the line any longer. And it's not like presentation makes the actual ice cream any worse!"
+            Kv "Please, don't worry about it. I don't want to hold up the line any longer, and it's not like the presentation makes the actual ice cream any worse!"
         else:
             Kv normal "Wow, that's a lot of ice cream! I'm not even sure I can eat all of this!"
     else:
@@ -932,7 +932,7 @@ label eval_help_luc:
     c "It's [player_name]."
     Lu "Lucius."
 
-    if not evalMetLucius: #Fix because its possible to not see him while still visiting the park
+    if evalMetLucius:
         Lu "Hey, I apologize again for what happened at the park before."
         c "No worries. I almost forgot it even happened."
         Lu "Am I just that forgettable?"
@@ -944,7 +944,7 @@ label eval_help_luc:
         Lu "I've had my eye on Katsuharu's newest flavor for a while. Could I get that?"
     elif evalCharacterMood == 1:
         Lu "Did you see those dragons over there?"
-        m "He pointed to a few younger dragons on skateboards."
+        m "He pointed to a few younger dragons on what seemed to be modified skateboards."
         Lu "They're pretty good, aren't they."
         c "Can't say I've really been watching. But they seem alright."
         Lu "Not as good as me, but they're pretty close. I had a great time watching them while I was in line."
@@ -1046,7 +1046,7 @@ label eval_help_xith:
             c "Of course. Can't let you be late."
             $ evalCustomerScore += 1
         else:
-            Xi "Looks spectacular, but I've go to go to make it to my appointment on time."
+            Xi "Looks spectacular, but I've got to go to make it to my appointment on time."
     elif evalCharacterMood == 1:
         if evalCharacterMood == evalQualityServed:
             Xi "This is quite a stunning specimen of ice cream!"
