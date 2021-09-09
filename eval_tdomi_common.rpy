@@ -2,7 +2,7 @@ label eval_tdomi_common:
 
     #Backgrounds
     image evalwildlands = "bg/evalwildlands.jpg" #Tysm EvilChaosKnight
-    image evalwildlands2 = "bg/evalwildlands2.jpg" #Tysm again ECK
+    image evalwildlands2 = "bg/evalwildlands2.png"
     image evalpark1 = "bg/evalpark1.jpg"
     image evalpark2 = "bg/evalpark2.jpg"
     image evalplayerapt1 = "bg/evalplayerapt1.jpg"

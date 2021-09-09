@@ -195,7 +195,7 @@ label eval_tdomi_remy:
                     m "The dragon stormed off and prepared to fly over to the orphanage."
                     
                     menu:
-                        "[[Stop Remy]":
+                        "[[Stop Remy.]":
                             c "Wait! Remy!"
                             play sound "fx/evalgrasswalk2"
                             m "Remy looked at me and walked back over."
@@ -214,7 +214,7 @@ label eval_tdomi_remy:
                             Ry normal "Great, we can start making our way over there now!"
                             jump eval_trip_to_orphanage
                         
-                        "[[Let him leave]":
+                        "[[Let him leave.]":
                             play sound "fx/takeoff.ogg"
                             m "I silently watched as Remy extended his wings and flew off to the orphanage."
                             "???" "You are an idiot."
@@ -271,7 +271,7 @@ label eval_tdomi_remy:
                     m "The dragon stormed off and prepared to fly over to the orphanage."
                     
                     menu:
-                        "[[Stop Remy]":
+                        "[[Stop Remy.]":
                             c "Wait! Remy!"
                             play sound "fx/evalgrasswalk2"
                             m "Remy looked at me and walked back over."
@@ -290,7 +290,7 @@ label eval_tdomi_remy:
                             Ry normal "Great, we can start making our way over there now!"
                             jump eval_trip_to_orphanage
                         
-                        "[[Let him leave]":
+                        "[[Let him leave.]":
                             play sound "fx/takeoff.ogg"
                             m "I silently watched as Remy extended his wings and flew off to the orphanage."
                             "???" "You are an idiot."

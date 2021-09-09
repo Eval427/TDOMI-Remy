@@ -19,9 +19,6 @@ label eval_hatchery_visited:
     if not renpy.python.store_dicts["store"].get("evalFixDoubleOrphanageLine", False) and varasaved:
         m "It wasn't until now that I noticed Vara looking at me with a curious expression."
         c "(I wonder what that's about.)"
-        if adinescenesfinished != 3:
-            stop music fadeout 2.0
-            scene black with dissolveslow
         $ evalFixDoubleOrphanageLine = True
     return
         #stop music fadeout 2.0
