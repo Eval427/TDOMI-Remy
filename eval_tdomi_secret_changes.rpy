@@ -416,7 +416,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                 $ renpy.pause (2.0)
                 Ry look "I guess not..."
             else:
-                Vr smnone "..."
+                Vr smnone flip "..."
                 Ry look "I guess not..."
 
             show vara smnormal with dissolvemed

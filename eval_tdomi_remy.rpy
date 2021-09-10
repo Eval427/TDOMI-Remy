@@ -1086,7 +1086,7 @@ label eval_solo_remy_2:
                     c "Your breath smells like vanilla."
                     Ry normal "And yours of fish. I think I got the shorter end of the stick."
                     c "Yeah, I guess fish ice cream isn't the best for kissing."
-                elif evalChosenFlavor == "vanilla":
+                elif evalChosenFlavor == "vanilla" or evalChosenFlavor == "spaghettieis":
                     c "Your breath smells like vanilla."
                     Ry normal "Well, so does yours."
                 else:
@@ -1601,10 +1601,10 @@ label eval_remy_amely_2:
                             $ renpy.pause (1.0)
                             m "After a while, I saw Katsuharu start walking over to us."
                             show remy normal at right
-                            show amely normal at right
+                            show amely smnormal at right
                             with move
-                            show katsu normal flip at Position (xpos = 0.6) with easeinleft
-                            Ka "Hey, [player_name]. Just closing up and had and extra scoop of chocolate. Are any of you interested?"
+                            show katsu normal flip at Position (xpos = 0.1) with easeinleft
+                            Ka "Hey, [player_name]. Just closing up and had an extra scoop of chocolate. Are any of you interested?"
                             Am "Me! Me!"
 
                             menu:
@@ -1704,7 +1704,7 @@ label eval_remy_amely_2:
                     c "Wow, this is disgusting."
                 Ry look "Are you not a big fan of the special?"
                 c "Not to offend anyone, but it's pretty gross."
-                Ry normal "It isn't for everyone, but luckily, it is for me. Would you like to switch?"
+                Ry normal "You know, I wouldn't mind trying it. It sounded weird at first, but it might be interesting."
 
                 menu:
                     "Sure.":
@@ -1720,7 +1720,7 @@ label eval_remy_amely_2:
                         Ry look "Alright then."
                         show remy normal with dissolvemed
                         m "Remy's cone did not last long. Soon, the only remnants of his ice cream lay in his stomach or dried on his hand."
-                        m "I on the other hand did not finish quite as quickly. The flavor did glow on me over time, but it was something I definitely did not want to try again."
+                        m "I on the other hand did not finish quite as quickly. The flavor did grow on me over time, but it was something I definitely did not want to try again."
             else:
                 show remy smile with dissolvemed
                 m "At the same time, Remy and I took a bite of our ice cream. Instantly, both of us lit up in excitement."
@@ -1799,7 +1799,7 @@ label eval_remy_amely_2:
                     m "The dragon clambered up onto the couch, resting his head down on the armrest."
                     m "I turned off the lights, then made my way to the bedroom."
                     Ry "Good night, [player_name]."
-                    m "Good night, Remy."
+                    c "Good night, Remy."
                     scene black with dissolveslow
                     stop music fadeout 2.0
                     $ persistent.evalEndingB = True
