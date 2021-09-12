@@ -2959,7 +2959,6 @@ label eval_remy_amely_adine_sleep_select:
                         m "Looking up, I found Remy's muzzle was mere millimeters from my face."
                         m "Taking the initiative, I pulled Remy's muzzle to my lips and gave the dragon a big kiss."
                         m "He responded by further pressing his lips onto my own."
-                    c "Remy, please don't blame yourself for Vara's death."
                     c "There is no way you could have thought she would follow you."
                     Ry sad "I can't make any promises. I really feel like I could have done something."
                     c "There was nothing we could do, Remy."
