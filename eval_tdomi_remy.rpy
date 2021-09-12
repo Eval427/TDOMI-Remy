@@ -1248,7 +1248,7 @@ label eval_solo_remy_1: #Ending with only Remy
                     
                     "Sorry, but no.":
                         c "Sorry, but the bed is cramped enough for me as it is."
-                Ry sad "Oh, I understand, I guess the couch will be big enough for me."
+                        Ry sad "Oh, I understand, I guess the couch will be big enough for me."
                 scene black with dissolveslow
                 stop music fadeout 2.0
                 $ renpy.pause (4.0)

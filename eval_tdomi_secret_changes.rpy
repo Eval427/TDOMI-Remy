@@ -1005,7 +1005,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "Vara rushed over to the bushes Maverick had emerged from. She returned with Remy, who was limping and bloody."
     show remy sad eval shot flip at Position(xpos=0.1) with easeinleft
     show vara smshocked flip behind remy at left with easeinleft
-    Mv scared c "Oh, Remy!"
+    Mv scared d "Oh, Remy!"
     c "You're injured."
     Ry look eval shot flip "So are you."
     c "We need to stop the bleeding."
@@ -1021,7 +1021,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Mv "Are you two alright?"
     Ry look eval shot flip "I've been better."
     Ry "How about you? I heard you scream in pain."
-    Mv normal c "I think a bit of Vara's acid got onto my face. It hurts like hell, but I'll live. Let me get the EMTs."
+    Mv normal d "I think a bit of Vara's acid got onto my face. It hurts like hell, but I'll live. Let me get the EMTs."
     Ry "Thank you, Maverick."
     show maverick normal d flip with dissolvemed
     hide maverick with easeoutright
