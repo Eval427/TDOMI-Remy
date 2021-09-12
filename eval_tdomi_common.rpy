@@ -1,7 +1,7 @@
 init:
     #Backgrounds
     image evalwildlands = "bg/evalwildlands.jpg" #Tysm EvilChaosKnight
-    image evalwildlands2 = "bg/evalwildlands2.jpg" #Tysm again ECK
+    image evalwildlands2 = "bg/evalwildlands2.png"
     image evalpark1 = "bg/evalpark1.jpg"
     image evalpark2 = "bg/evalpark2.jpg"
     image evalplayerapt1 = "bg/evalplayerapt1.jpg"
@@ -43,15 +43,15 @@ init:
     #Remy wounded - Why a bullet on both sides? Well, I need him facing the right with the wound, and it felt weird to leave a non-flipped image in here as well
     image remy normal eval shot = "cr/remy_normal_eval_shot.png"
     image remy normal eval shot flip = im.Flip("cr/remy_normal_eval_shot.png", horizontal=True)
-    image remy sad eval shot = "cr/remy_sad_e.png"
+    image remy sad eval shot = "cr/remy_sad_eval_shot.png"
     image remy sad eval shot flip = im.Flip("cr/remy_sad_eval_shot.png", horizontal=True)
-    image remy look eval shot = "cr/remy_look_e.png"
+    image remy look eval shot = "cr/remy_look_eval_shot.png"
     image remy look eval shot flip = im.Flip("cr/remy_look_eval_shot.png", horizontal=True)
-    image remy smile eval shot = "cr/remy_smile_e.png"
+    image remy smile eval shot = "cr/remy_smile_eval_shot.png"
     image remy smile eval shot flip = im.Flip("cr/remy_smile_eval_shot.png", horizontal=True)
-    image remy shy eval shot = "cr/remy_shy_e.png"
+    image remy shy eval shot = "cr/remy_shy_eval_shot.png"
     image remy shy eval shot flip = im.Flip("cr/remy_shy_eval_shot.png", horizontal=True)
-    image remy angry eval shot = "cr/remy_angry_e.png"
+    image remy angry eval shot = "cr/remy_angry_eval-shot.png"
     image remy angry eval shot flip = im.Flip("cr/remy_angry_eval_shot.png", horizontal=True)
     #Adine ice cream face - Why doesn't this one make sense flipped either? I need the image flipped and can't be bothered to make a flipped sprite I won't use
     image adine normal eval icecream = "cr/adine_normal_eval_icecream.png"

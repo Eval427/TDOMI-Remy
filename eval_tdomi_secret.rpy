@@ -854,7 +854,7 @@ label eval_everyone_2:
     Ka normal flip "Amely seems like quite the troublemaker."
     Ry look "She isn't normally this energetic and usually doesn't cause this much trouble."
     Ry normal "I think the idea of ice cream and being out with all of us has gotten her very excited."
-    m "Adine returned with Amely's claw firmly grasped within her own."
+    m "Adine returned with Amely's hand firmly grasped within her claw."
     show adine annoyed b flip behind remy at Position (xpos = 0.6) 
     show amely smnormal flip behind remy at Position (xpos = 0.6)
     with easeinleft
@@ -1410,18 +1410,11 @@ label eval_everyone_3:
             Ka normal flip "You should like this much better."
             c "Wow! Thank you Katsuharu!"
             Am "More?"
-            Ry "We did promise to give her a second scoop, didn't we?"
-            Ad giggle b "I guess we did."
-            Ry "Will that be alright, Katsuharu?"
-            Ka "No worries, I'll get her another."
-            show katsu normal with dissolvemed
-            m "Katsuharu reached into his cart and pulled out a scoop of chocolate."
-            show katsu normal flip with dissolvemed
-            Ka "Here you go, Amely."
-            Am "Thanks!"
-            m "Amely hungrily grabbed the chocolate from Katsuharu and started attacking it."
-            Ad normal b "It still impresses me just how quickly that little dragon can eat ice cream."
-            Ka "I'm going to get going for real this time. You four take care."
+            Ry "Sorry, Amely. We only promised two scoops of ice cream today."
+            Am smsad "Awwwwwww."
+            Ad "Don't worry, Amely. We'll come back another time."
+            Am smnormal "Okay..."
+            Ka "I'm going to get going for real this time. You five take care."
             Ry "Thank you, Katsuharu!"
             show katsu normal with dissolvemed
             hide katsu with easeoutleft
@@ -1473,7 +1466,7 @@ label eval_everyone_3:
         play sound "fx/takeoff.ogg"
         m "With Amely tightly grasped within her claws, Adine soared into the night sky."
     
-    m "With everyone off at the orphanage, I made my way back to my apartment."
+    m "With everyone else gone, I made my way back to my apartment."
     stop music fadeout 2.0
     scene black with dissolveslow
     $ renpy.pause (2.0)
@@ -1857,7 +1850,7 @@ label eval_everyone_3:
     Ry "Don't get me wrong, what we have is strong and special, but I was afraid to go any further because I didn't want to feel the pain like I did losing Amelia."
     Ry "It hurt me so badly, and I knew that if I developed a deeper relationship with you and you one day went through that portal, I would be crushed."
     Ry shy "But now that you're staying, I feel comfortable asking for more."
-    Ry normal "What do you say, [player_name]. I'll be happy either way, I promise."
+    Ry normal "What do you say, [player_name]? I'll be happy either way, I promise."
 
     menu:
         "[[Accept.]":

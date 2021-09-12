@@ -176,6 +176,7 @@ label eval_tdomi_remy:
         c "Considering his old spot worked well for forty years, it was probably pretty difficult to decide on a move."
         Ry normal "I guess you're right."
     if not persistent.evalEndingBUnlocked and not persistent.evalEndingCUnlocked: #This makes it so that there is no single option menu at the start of the mod
+        $ evalVaraAlive = False
         $ save_name = (_("TDOMI - Remy"))
         c "Why don't we go with just the two of us? It'll be a nice outing, and maybe we won't eat Katsuharu entirely out of his stock."
         Ry smile "Sounds fun! Let's go."
@@ -273,7 +274,7 @@ label eval_tdomi_remy:
                     m "The dragon stormed off and prepared to fly over to the orphanage."
                     
                     menu:
-                        "[[Stop Remy]":
+                        "[[Stop Remy.]":
                             c "Wait! Remy!"
                             play sound "fx/evalgrasswalk2.ogg"
                             m "Remy looked at me and walked back over."
@@ -292,7 +293,7 @@ label eval_tdomi_remy:
                             Ry normal "Great, we can start making our way over there now!"
                             jump eval_trip_to_orphanage
                         
-                        "[[Let him leave]":
+                        "[[Let him leave.]":
                             play sound "fx/takeoff.ogg"
                             m "I silently watched as Remy extended his wings and flew off to the orphanage."
                             "???" "You are an idiot."
@@ -404,7 +405,7 @@ label eval_tdomi_remy:
                             Ry normal "Great, we can start making our way over there now!"
                             jump eval_trip_to_orphanage
                         
-                        "[[Let him leave]":
+                        "[[Let him leave.]":
                             play sound "fx/takeoff.ogg"
                             if evalVaraHere:
                                 m "I silently watched as Vara got onto Remy's back before Remy flew away"
@@ -1233,7 +1234,7 @@ label eval_solo_remy_2:
                     c "Your breath smells like vanilla."
                     Ry normal "And yours of fish. I think I got the shorter end of the stick."
                     c "Yeah, I guess fish ice cream isn't the best for kissing."
-                elif evalChosenFlavor == "vanilla":
+                elif evalChosenFlavor == "vanilla" or evalChosenFlavor == "spaghettieis":
                     c "Your breath smells like vanilla."
                     Ry normal "Well, so does yours."
                 else:
@@ -1740,10 +1741,10 @@ label eval_remy_amely_2:
                             $ renpy.pause (1.0)
                             m "After a while, I saw Katsuharu start walking over to us."
                             show remy normal at right
-                            show amely normal at right
+                            show amely smnormal at right
                             with move
-                            show katsu normal flip at Position (xpos = 0.6) with easeinleft
-                            Ka "Hey, [player_name]. Just closing up and had and extra scoop of chocolate. Are any of you interested?"
+                            show katsu normal flip at Position (xpos = 0.1) with easeinleft
+                            Ka "Hey, [player_name]. Just closing up and had an extra scoop of chocolate. Are any of you interested?"
                             Am "Me! Me!"
 
                             menu:
@@ -1843,7 +1844,7 @@ label eval_remy_amely_2:
                     c "Wow, this is disgusting."
                 Ry look "Are you not a big fan of the special?"
                 c "Not to offend anyone, but it's pretty gross."
-                Ry normal "It isn't for everyone, but luckily, it is for me. Would you like to switch?"
+                Ry normal "You know, I wouldn't mind trying it. It sounded weird at first, but it might be interesting."
 
                 menu:
                     "Sure.":
@@ -1859,7 +1860,7 @@ label eval_remy_amely_2:
                         Ry look "Alright then."
                         show remy normal with dissolvemed
                         m "Remy's cone did not last long. Soon, the only remnants of his ice cream lay in his stomach or dried on his hand."
-                        m "I on the other hand did not finish quite as quickly. The flavor did glow on me over time, but it was something I definitely did not want to try again."
+                        m "I on the other hand did not finish quite as quickly. The flavor did grow on me over time, but it was something I definitely did not want to try again."
             else:
                 show remy smile with dissolvemed
                 m "At the same time, Remy and I took a bite of our ice cream. Instantly, both of us lit up in excitement."
@@ -1933,7 +1934,7 @@ label eval_remy_amely_2:
                     m "The dragon clambered up onto the couch, resting his head down on the armrest."
                     m "I turned off the lights, then made my way to the bedroom."
                     Ry "Good night, [player_name]."
-                    m "Good night, Remy."
+                    c "Good night, Remy."
         "It's quite late, you best be getting home.":
             c "You should probably make your way home, Remy. It's getting quite dark."
             Ry look "Hmmm, I guess you're right. Night flying isn't really my specialty."
@@ -3077,7 +3078,6 @@ label eval_remy_amely_adine_sleep_select:
                         m "Looking up, I found Remy's muzzle was mere millimeters from my face."
                         m "Taking the initiative, I pulled Remy's muzzle to my lips and gave the dragon a big kiss."
                         m "He responded by further pressing his lips onto my own."
-                    c "Remy, please don't blame yourself for Vara's death."
                     c "There is no way you could have thought she would follow you."
                     Ry sad "I can't make any promises. I really feel like I could have done something."
                     c "There was nothing we could do, Remy."
