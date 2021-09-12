@@ -648,7 +648,6 @@ label eval_trip_to_orphanage:
                     "No.":
                         play sound "fx/system3.wav"
                         s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
-                        pass
 
             show remy normal with dissolvemed
             jump eval_orphanage_game_init
@@ -757,7 +756,7 @@ label eval_trip_to_orphanage:
             Ry "Actually, all of the hatchlings aren't even there at the moment."
             c "Really? How come?"
             Ry "After the whole incident with Reza, they were put into emergency foster homes until everything cleared up."
-            Ry"The council still hasn't given it the OK to let them back in the orphanage."
+            Ry "The council still hasn't given it the OK to let them back in the orphanage."
             if evalCurrentEnding == 4:
                 c "What about Amely and Vara?"
                 Ry look "Despite their best attempts, they couldn't find a place for those two to stay. So Adine and I offered to take care of them instead."
