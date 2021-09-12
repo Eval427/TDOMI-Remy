@@ -837,7 +837,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show maverick normal b flip at Position (xpos = 0.1) with easeinleft
     Mv nice b flip "What are you doing here, Remy? Why aren't you two seeing the fireworks?"
     Ry "Reza is at the portal as we speak."
-    Mv normal flip "What?"
+    Mv normal b flip "What?"
     Mv "How do you know this?"
     Ry "[player_name] told me."
     Mv angry b flip "What?"
@@ -864,7 +864,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Ry "They helped me reunite with old friends, move on from the past, and find this lovely little dragon next to me."
     Mv "I... I didn't know it was that bad, Remy. I'm so sorry."
     Ry "Feel bad for me later, Maverick. We have to help [player_name]."
-    Mv normal flip "I can't say I fully trust [player_name], Remy, but I'll still help you."
+    Mv normal b flip "I can't say I fully trust [player_name], Remy, but I'll still help you."
     Vr "I help?"
     Ry sad "Vara, you should stay here where you'll be safe."
     Vr "..."
