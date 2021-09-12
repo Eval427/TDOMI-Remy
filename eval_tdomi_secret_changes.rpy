@@ -872,6 +872,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Vr "..."
     Ry "Come on, Maverick. Let's go."
     Mv normal b flip "Okay, Remy. I'm with you."
+    show remy sad flip with dissolvemed
     hide remy
     hide maverick
     with easeoutright
@@ -960,7 +961,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "Suddenly, a flurry of gray rushed at Reza."
     show maverick angry b flip at Position(xpos=0.65, xanchor='center') with easeinleft
     play sound "fx/impact3.ogg"
-    show maverick rage b at Position(xpos=0.8, xanchor='center', ypos=1.0, yanchor="top")
+    show maverick rage b flip at Position(xpos=0.8, xanchor='center', ypos=1.0, yanchor="top")
     show reza at Position(xpos=1.0, xanchor='center', ypos=1.0, yanchor="top")
     with move9
     queue sound "fx/bite.ogg"
