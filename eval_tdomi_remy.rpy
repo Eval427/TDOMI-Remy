@@ -94,8 +94,9 @@ label eval_tdomi_remy:
     nvl clear
     m "Wait a minute!" with Shake ((0, 0, 0, 0), 2, dist=10)
     $ renpy.pause (1.0)
-    call eval_special_mentions from _eval_mentions
-    $ persistent.evalFirstTimePlaying = False
+    if not persistent.evalNotFirstTimePlaying:
+        call eval_special_mentions from _eval_mentions
+    $ persistent.evalNotFirstTimePlaying = True
     $ evalVaraAlive = False
     if evalDoingSecretEnding:
         $ evalVaraAlive = True
@@ -632,7 +633,7 @@ label eval_trip_to_orphanage:
                                 scene evalorphlight with dissolveslow
 
                             "No.":
-                                $ evalCustomerScore = 1
+                                $ evalOrphanageScore = 1
                                 play sound "fx/system3.wav"
                                 s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
                                 stop music fadeout 2.0
@@ -943,8 +944,6 @@ label eval_solo_remy_1: #Ending with only Remy
                 pass
             Ka normal flip "But enough chat-chat, we have to get to the more important matters."
             c "Like?"
-            $ persistent.evalA1Skip = True
-            jump eval_ice_cream_choice
         "No time for chatting.":
             c "No time for chatting, we are here for important ice cream related matters."
             show remy look at right
@@ -961,10 +960,8 @@ label eval_solo_remy_1: #Ending with only Remy
             Ka smile flip "I'm just messing with you. I'm happy to accomodate Remy as well."
             Ry normal "You really got me for a second, Katsuharu. Thank you, that's very generous of you."
             Ka normal flip "Well, enough about embarrassing childhood memories. Like you said, [player_name], we have to get to the more important matters."
-            $ persistent.evalA1Skip = True
-            jump eval_ice_cream_choice
-
-label eval_solo_remy_2:
+    $ persistent.evalA1Skip = True
+    call eval_ice_cream_choice from eval_solo_remy_2
     Ka normal flip "And how about you, Remy?"
     if evalChosenFlavor == "vanilla":
         Ry smile "I'll take a scoop of vanilla as well!"
@@ -1442,7 +1439,6 @@ label eval_remy_amely_1:
                 pass
             Ka "But enough chit-chat, we have to get to the more important matters."
             c "Like?"
-            $ persistent.evalB1Skip = True
         "No time for chatting.":
             c "No time for chatting, we are here for important ice cream related matters."
             show remy look at right with dissolvemed
@@ -1457,11 +1453,8 @@ label eval_remy_amely_1:
             Ka smile flip "I'm just messing with you. I'd be happy to accomodate Remy as well."
             Ry normal "You really got me for a second, Katsuharu. Thank you, that's very generous of you."
             Ka normal flip "Well, enough about embarrassing childhood memories, like you said, [player_name], we have to get to the more important matters."
-            $ persistent.evalB1Skip = True
-    
-    jump eval_ice_cream_choice
-
-label eval_remy_amely_2:
+    $ persistent.evalB1Skip = True
+    call eval_ice_cream_choice from eval_remy_amely_2
     Ka normal flip "How about you, Remy?"
     if evalChosenFlavor == "vanilla":
         Ry smile "I'll take a scoop of vanilla as well!"
@@ -2603,9 +2596,7 @@ label eval_remy_amely_adine_2:
     Ry normal "I second that."
     Am "Ice cream!"
     Ka "Let's start with [player_name]."
-    jump eval_ice_cream_choice
-
-label eval_remy_amely_adine_3:
+    call eval_ice_cream_choice from eval_remy_amely_adine_3
     Ka normal flip "You're up next, Remy. What will you have?"
     if evalChosenFlavor == "vanilla":
         Ry smile "I'll have a scoop of vanilla as well!"
@@ -3348,15 +3339,7 @@ label eval_ice_cream_choice: #mp.fish <-- variable for whether player has had th
                     $ evalShowSpecialFlavor = False
                     show remy normal with dissolvemed
                     jump eval_ice_cream_choice
-
-    if evalCurrentEnding == 1:
-        jump eval_solo_remy_2
-    elif evalCurrentEnding == 2:
-        jump eval_remy_amely_2
-    elif evalCurrentEnding == 3:
-        jump eval_remy_amely_adine_3
-    elif evalCurrentEnding == 4:
-        jump eval_everyone_3
+    return
 
 label eval_change_sweat_reference: #This is literally just to make a joke make sense. Basically useless.
     m "He looked at me, panting."
@@ -3408,7 +3391,7 @@ label eval_fails:
             s "[evalFail]"
             $ i += 1
         play sound "fx/system3.wav"
-        s "Total fails: [evalTotalFails] of 6."
+        s "Total fails: [evalTotalFails] of 5."
     jump eval_custom_credits
 
 label eval_goggles: #Meme scene. It's like bacon Naomi!
@@ -3521,6 +3504,31 @@ label eval_goggles: #Meme scene. It's like bacon Naomi!
     s "Thank you for playing!"
     $ persistent.evalGogglesScene = True
     jump eval_custom_credits
+
+label eval_special_mentions: #Special mentions to those who helped me
+    play sound "fx/system.wav"
+    s "[[Incoming Message]"
+    if player_name.lower() == "4onen":
+        s "Hello, 4onen. It's Eval."
+        s "Don't make fun of my writing too much, okay?"
+        s "Anyways, thanks for all the help and enjoy the mod."
+    if player_name.lower() == "joey":
+        s "Hello, Joey. It's Eval."
+        s "In hindsight, I might have made a mistake adding this."
+        s "If this makes little to no sense, you aren't the right Joey."
+        s "Thanks for all the help, Joey. Vara appreciates it."
+        s "Anyways, thanks for all the help and enjoy the mod."
+    if player_name.lower() == "jakzie":
+        s "Hello you! It's BKevin."
+        s "I'm kidding though, it's Eval."
+        s "Or is it?"
+        s "Anyways, enjoy the mod :)."
+    if player_name.lower() == "charu":
+        s "Hello, Charu. It's Eval."
+        s "Don't judge my writing too hard, alright?"
+        s "Anyways, thanks for all the help and enjoy the mod."
+    return
+
 
 label eval_custom_credits:
     # $ _game_menu_screen = None

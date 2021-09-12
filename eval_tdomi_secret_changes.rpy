@@ -981,16 +981,16 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "Within an instant, Reza made a break for the portal."
     play sound "fx/acid.mp3" fadein 0.5
     m "Another ball of acid flew at Reza, hitting his foreleg."
-    play sound "fx/impact3.ogg"
+    play sound2 "fx/impact3.ogg"
     m "This time, Reza screamed in pain and dropped to the ground."
-    play sound "fx/gunshot2.wav"
-    m "On impact, a single shot was fired off in front of him."
-    play sound "fx/portalhit.mp3"
-    m "Sparks flew from the portal's terminal as the bullet pierced the metal frame and lodged itself within its inner mechanisms."
+    play sound2 "fx/gunshot2.wav"
+    play sound "fx/silence.ogg"
+    queue sound "fx/portalhit.mp3"
+    m "On impact, a single shot was fired off in front of him.\nSparks flew from the portal's terminal as the bullet pierced the metal frame and lodged itself within its inner mechanisms."
     c "(That can't be good.)"
     m "He clutched his burning leg in agony, the acid melting away at his skin and muscle."
     m "Weakly, he crawled towards the portal, but his movements soon grew sluggish as he slumped to the ground, motionless."
-    show maverick rage d at Position(xpos = 0.9, xanchor = "center") with easeinright
+    show maverick angry d at Position(xpos = 0.9, xanchor = "center", ypos=1.0, yanchor="bottom") with ease
     stop music fadeout 2.0
     $ renpy.pause (3.0)
     play music "mx/infinite.mp3" fadein 1.0

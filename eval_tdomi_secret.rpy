@@ -872,9 +872,7 @@ label eval_everyone_2:
     Ad normal b "So do I."
     Ka normal flip "Let's start with [player_name]."
     $ evalAdineTrick = False
-    jump eval_ice_cream_choice
-
-label eval_everyone_3:
+    call eval_ice_cream_choice from eval_everyone_3
     Ka "One scoop of [evalChosenFlavor] coming right up!"
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
