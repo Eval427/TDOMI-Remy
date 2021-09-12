@@ -91,6 +91,7 @@ label eval_tdomi_remy:
         c "Considering his old spot worked well for forty years, it was probably pretty difficult to decide on a move."
         Ry normal "I guess you're right."
     if not persistent.evalEndingBUnlocked and not persistent.evalEndingCUnlocked: #This makes it so that there is no single option menu at the start of the mod
+        $ evalVaraAlive = False
         $ save_name = (_("TDOMI - Remy"))
         c "Why don't we go with just the two of us? It'll be a nice outing, and maybe we won't eat Katsuharu entirely out of his stock."
         Ry smile "Sounds fun! Let's go."
