@@ -38,6 +38,7 @@ label eval_hatchery_visited:
         m "It wasn't until now that I noticed Vara looking at me with a curious expression."
         m "I wonder what that's about."
         $ evalFixDoubleOrphanageLine=True
+        $ c4hatcheryplayed=True
     label eval_hatchery_visited_next:
         pass
 #Extra stuff to explain why Adine doesn't die because why not

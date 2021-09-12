@@ -97,17 +97,21 @@ class AWSWMod(Mod):
                 connect(modast.find_label("eval_hatchery_visited_next"),next)
                 connect(node,modast.find_label("eval_hatchery_visited"))
         #hatchery post scene
+        """
         c4sections=modast.find_label("c4sections")
         c4sections_next=c4sections.next
         connect(c4sections,modast.find_label("eval_c4_hatchery_init"))
         connect(modast.find_label("eval_c4_hatchery_init_return"),c4sections_next)
+        """
         #changes some dialog from adine's 4th date
+        """
         eval_c4_adine4_change=modast.find_say("We walked away from the festival and sat down under a tree in the outskirts of town. As the competition was already nearly over, the darkness had already set in.")
         eval_c4_adine4_change_fail=eval_c4_adine4_change.next
         eval_c4_adine4_change_success=modast.find_say("Hey, [player_name]. Look at the sky. Can you see that light? The one that looks a bit brighter than all the others?")
         connect(eval_c4_adine4_change,modast.find_label("eval_c4_adine4_change"))
         connect(modast.find_label("eval_c4_adine4_change_fail"),eval_c4_adine4_change_fail)
         connect(modast.find_label("eval_c4_adine4_change_success"),eval_c4_adine4_change_success)
+        """
         #Hook for changed chapter 4 Remy date
         changeCh4Date = modast.find_say("You know about her, then? It's such a sad story.")
         changeCh4Date_next=changeCh4Date.next
