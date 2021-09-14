@@ -227,6 +227,10 @@ label eval_everyone_1:
                 call skipcheck from evalSkipCheckD1
                 play music "mx/funness.ogg"
                 $ evalAdineSlaps += 1
+                if evalOrphanageScore==2:
+                    $ adinestatus="good"
+                elif adinestatus!="good":
+                    $ adinestatus="neutral"
                 jump eval_skip_D1
 
             "No. Don't skip ahead.":

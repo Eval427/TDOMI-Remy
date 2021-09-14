@@ -189,7 +189,7 @@ label eval_secret_orphanage_game:
     $ evalDisplayVar3unit = ""
 
     #Show Remy when he returns and give the player their item
-    if evalRemyOnMission and evalMinutesRemyIsGone == 0:
+    if evalRemyOnMission and evalMinutesRemyIsGone <= 0:
         show amely smnormal with easeinright
         if evalVaraGone:
             show remy normal behind amely with easeinright
@@ -233,7 +233,7 @@ label eval_secret_orphanage_game:
         $ evalGatheredItems.append(evalRemyItem)
         $ evalRemyOnMission = False
     #Remy warning if he is idling
-    elif evalMinutesRemyIsGone == 0: #This probably deserves a bit of variation
+    elif evalMinutesRemyIsGone <= 0: #This probably deserves a bit of variation
         if not evalJustAteCracker:
             Ry normal "Amely and I are here if you need anything, [player_name]."
 

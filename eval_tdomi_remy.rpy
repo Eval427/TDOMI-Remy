@@ -697,7 +697,12 @@ label eval_trip_to_orphanage:
             m "However, it seemed as if I had greatly overestimated my physical strength."
             m "We continued on at a good pace for about ten minutes. However, I quickly fell victim to exhaustion and found myself struggling to keep up with Remy."
             scene forest1 with dissolveslow
-            show remy look with dissolvemed
+            if evalVaraHere:
+                show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+                show remy look behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+            else:
+                show remy look
+            with dissolvemed
             play music "mx/serene.ogg"
             Ry "Hey, are you alright? You look winded."
             c "I think I'm alright. Just tired."
@@ -705,7 +710,6 @@ label eval_trip_to_orphanage:
             Ry "I can see that."
             Ry normal "Here, why don't we rest underneath that tree over there so you can regain your strength."
             scene black with dissolveslow
-            hide remy with dissolvemed
             play sound "fx/evalgrasswalk1.ogg"
             m "The dragon made his way over to a peaceful little outcrop and laid down."
             m "He beckoned me to follow."
@@ -715,7 +719,12 @@ label eval_trip_to_orphanage:
                 $ evalRemyPillow = True
                 m "I collapsed on the ground next to the dragon, my face and his muzzle just inches apart."
                 m "Unprompted, I was given a quick kiss by Remy. He smiled, and then raised his head."
-                show remy shy with dissolvemed
+                if evalVaraHere:
+                    show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+                    show remy shy behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+                else:
+                    show remy shy
+                with dissolvemed
                 $ renpy.pause (0.5)
                 c "What a nice surprise."
                 Ry normal "Here, you can use me as a pillow. I don't mind."
@@ -730,7 +739,12 @@ label eval_trip_to_orphanage:
                 stop music fadeout 2.0
             else:
                 m "I collapsed on the ground next to the dragon. We looked at each other and smiled."
-                show remy normal with dissolve
+                if evalVaraHere:
+                    show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+                    show remy normal behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+                else:
+                    show remy normal
+                with dissolve
                 c "Wow, this grass is quite comfortable."
                 Ry "What? Is the grass back in the human world not like this?"
                 c "Well, a lot of people used to have grass that felt like this, but after the collapse of our society, it was near impossible to find."
@@ -738,14 +752,18 @@ label eval_trip_to_orphanage:
                 c "In our world, grass is the complete opposite. It provides very little nutrients and needs a lot of water to survive."
                 Ry normal "Interesting... I would think that since our worlds were so similar, a lot of our plant life would share similar characteristics. I have a few different ideas as to why this strange diversification would have occured. Firstly..."
                 scene black with dissolveslow
-                hide remy with dissolvemed
                 c "A combination of Remy's very interesting speech on grass and the warm sun quickly lulled me to sleep."
                 stop music fadeout 2.0
             
             $ renpy.pause (4.0)
             m "I felt a light tap on my shoulder. Slowly opening my eyes, I was met with Remy's face."
             scene evalwildlands2 with dissolveslow
-            show remy smile with dissolvemed
+            if evalVaraHere:
+                show vara normal flip at Position(xpos=0.30, xanchor='center', ypos=0.8, yanchor="center")
+                show remy smile behind vara at Position(xpos=0.70, xanchor='center', ypos=1.0, yanchor="bottom")
+            else:
+                show remy smile
+            with dissolvemed
             play music "mx/jazzy2.ogg"
             Ry "Hey there sleepy head. You slept for quite awhile."
             c "How long, exactly?"
@@ -838,7 +856,7 @@ label eval_trip_to_orphanage:
             $ renpy.pause (1.0)
             play sound "fx/lightbreak.mp3"
             $ renpy.pause (1.0)
-            Am smnormal "Uh oh!"
+            Am 4 "Uh oh!"
             Ry look "Well, that's not good."
             play sound "fx/lightswitch.mp3"
             $ renpy.pause (2.0)
@@ -1980,6 +1998,10 @@ label eval_remy_amely_adine_1: #Ending where "everyone" is here! Totally everyon
                 $ evalAdineSlaps += 1
                 call skipcheck from evalSkipCheckC1
                 play music "mx/funness.ogg"
+                if evalOrphanageScore==2:
+                    $ adinestatus="good"
+                elif adinestatus!="good":
+                    $ adinestatus="neutral"
                 jump eval_skip_C1
 
             "No. Don't skip ahead.":
