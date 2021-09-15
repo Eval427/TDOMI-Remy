@@ -97,13 +97,13 @@ label eval_secret_orphanage_game:
             m "Vara tentatively stretched her claw in my direction. I lightly hit it with my palm."
             show vara smsmile with dissolvemed
             m "She recoiled on impact, but after a moment of consideration, smiled."
-            Vr "My turn."
+            Vr smnormal "My turn."
             play sound "fx/goodhighfive.mp3"
             m "I stretched my palm and Vara hit my palm. Her claws made it a bit painful, but nothing intolerable."
             c "As high fives go, that was quite impressive."
             show remy normal behind vara
             show amely smnormal
-            with dissolvemed
+            with easeinright
             Ry "We're back!"
             c "Oh hey, Remy. We just finished up."
             Vr "I learned a high five!"
@@ -189,7 +189,7 @@ label eval_secret_orphanage_game:
     $ evalDisplayVar3unit = ""
 
     #Show Remy when he returns and give the player their item
-    if evalRemyOnMission and evalMinutesRemyIsGone == 0:
+    if evalRemyOnMission and evalMinutesRemyIsGone <= 0:
         show amely smnormal with easeinright
         if evalVaraGone:
             show remy normal behind amely with easeinright
@@ -233,7 +233,7 @@ label eval_secret_orphanage_game:
         $ evalGatheredItems.append(evalRemyItem)
         $ evalRemyOnMission = False
     #Remy warning if he is idling
-    elif evalMinutesRemyIsGone == 0: #This probably deserves a bit of variation
+    elif evalMinutesRemyIsGone <= 0: #This probably deserves a bit of variation
         if not evalJustAteCracker:
             Ry normal "Amely and I are here if you need anything, [player_name]."
 

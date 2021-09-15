@@ -14,37 +14,174 @@
 #maybe remy thinks that vara might open up more if she meets a human? maybe requires that you give the eggs to
 #the hatchery? maybe she actually does open up more because she recognizes you when you found her
 #with her dead mother?
+label eval_c4_hatchery_init:
+    
+    if c4sectionsplayed==0:
+        #call eval_tdomi_common from eval_tdomi_common_init
+        $ eval_c4_hatchery_done=False
+        $ eval_c4_hatchery_adinestatus=adinestatus
+    else:
+        #a hack to fix c4hatcheryplayed not being updated if the hatchery is your second pick
+        if not c4hatcheryplayed and mcfirst and not c4hatcheryavailable:
+            $ c4hatcheryplayed=True
 
+        if c4hatcheryplayed and not renpy.python.store_dicts["store"].get("eval_c4_hatchery_done",True):#if you played the hatchery but haven't seen the extra scene
+            if remystatus!="bad"and remystatus!="abandoned"and remygoodending or persistent.remygoodending:#if you have been doing at least OK with Remy
+                $ eval_c4_hatchery_done=True
+                stop music fadeout 2.0
+                scene black with dissolveslow
+                jump eval_hatchery_extension
+    label eval_c4_hatchery_init_return:
+        pass
 label eval_hatchery_visited:
     if not renpy.python.store_dicts["store"].get("evalFixDoubleOrphanageLine", False) and varasaved:
         m "It wasn't until now that I noticed Vara looking at me with a curious expression."
-        c "(I wonder what that's about.)"
-        $ evalFixDoubleOrphanageLine = True
-    return
-        #stop music fadeout 2.0
-        #scene black with dissolveslow
-        #$ renpy.pause (0.5)
-        #scene office at Pan ((128, 250), (0, 250), 3.0) with dissolvemed
-        #jump c4sections
+        m "I wonder what that's about."
+        $ evalFixDoubleOrphanageLine=True
+        $ c4hatcheryplayed=True
+    label eval_hatchery_visited_next:
+        pass
+#Extra stuff to explain why Adine doesn't die because why not
+label eval_hatchery_extension:
+    scene evalorphlight with dissolveslow
+    show remy normal flip at left
+    show vara smnormal flip at left
+    if adinestatus=="bad":
+        show adine annoyed b at right
+    else:
+        show adine normal b at right
+    show amely smnormal at right
+    with dissolvemed
+    play music "mx/neptune.mp3" fadein 2.0
+
+    if adinestatus=="bad":
+        Ad "Ugh, I'm glad they're gone."
+        Ry look flip "What's wrong with [player_name]?"
+        if eval_c4_hatchery_adinestatus=="abandoned":#if adine's status is bad because you told here you do not want to see her again at the hatchery
+            Ad disappoint b "They said that they didn't want to see me again."
+            Ad sad b "I didn't know I was such bad company."
+            Ry "You're not, Adine. [player_name] is going through a lot at the moment, and probably needs time alone to think."
+        else:#if you were a jerk to her during a date
+            Ad disappoint b "They acted like I was bad company."
+            Ry "You're not, Adine. [player_name] is going through a lot at the moment."
+        Ad disappoint b "You may be right, but it still hurts."
+            
+    elif adinestatus=="none":#"none" in code means neutral, "neutral" in code shows as good, and "good" means impressed
+        Ad "They seem nice enough."
+        Ry "I'm glad to hear that." #Bleah, change this.
+        Ad disappoint b "Sorry, Remy, but I don't know how much I can help out today. Work has been getting to me lately."
+        Ry look flip "That's not good."
+    else:
+        Ad giggle b "I'm glad [player_name] stopped by to visit. It's nice having their company."
+        Ry smile flip "Agreed."
+        Ad disappoint b "Sorry, Remy, but I don't know how much I can help out today. Work has been getting to me lately."
+        Ry look flip "That's not good."
+    Ry normal flip "Here, I think I know what will help."
+    play sound "fx/hug.mp3"
+    hide remy with dissolvemed
+    $ renpy.pause (1.5)
+    show remy normal flip behind vara at left
+    show adine giggle b
+    with dissolvemed
+    Ad "I guess you were right, that did help."
+    Ry smile flip "Glad I could be of assistance."
+    Am "I want hug!"
+    Ad normal b "Okay, Amely."
+    play sound "fx/hug.mp3"
+    hide adine with dissolvemed
+    $ renpy.pause (1.5)
+    show adine normal b at right behind amely with dissolvemed
+    Am "Yay!"
+    Ry "How about you, Vara?"
+    Vr smnone flip "..."
+    play sound "fx/hug.mp3"
+    hide remy with dissolvemed
+    $ renpy.pause (1.5)
+    show remy normal flip behind vara at left
+    show vara smnormal flip
+    with dissolvemed
+    Ad giggle b "Hugs all around."
+    Ry smile flip "Indeed."
+    Ry normal flip "Adine, there's something I would like to discuss with you quickly."
+    Ad normal b "What is it, Remy?"
+    Ry "I've noticed that your wing has been sagging recently. Is everything alright?"
+    Ad "Yeah, I just strained it while practicing my routine for the upcoming flight competition."
+    Ry look flip "Please tell me you aren't thinking of participating in the competition with your wing in the state it is."
+    Ad giggle b "Don't worry about me, Remy. I'll be fine."
+    Ry "Adine, I'm serious. I don't think you should enter the competition this year."
+    Ad disappoint b "I... just have to try, you know?"
+    Ry "What if something goes wrong, though? You don't want to be in that position."
+    Ad "If I start making excuses now, maybe I'll never stop. I'll always be too nervous, or too injured, or didn't eat right the day before."
+    Ad "I need to take this opportunity, Remy. Because if I don't now, maybe I never will."
+    Ry sad flip "But Adine, think of the children here."
+    Ad frustrated b "Don't you dare bring them into this! They have nothing to do with it."
+    show amely smsad
+    show vara smsad flip
+    with dissolvemed
+    Ry "If something happens to you, I don't know what any of us would do."
+    Ry "I couldn't support the orphanage without you, and you would crush the hearts of Vara and Amely."
+    Ad sad b "Remy, don't say that. I would never leave you three."
+    Ad disappoint b "I just want to do more with my life. I want to be more than just a server and a delivery girl making minimum wage."
+    Ad "Is this one opportunity to do something more with my life really too much to ask for?"
+    Ry look flip "If you tell them you're injured, they might let you fly another year instead. You shouldn't taint your flying reputation by attempting tricks with an injured wing."
+    Ad frustrated b "I don't want to wonder if I'll ever amount to anything more than a waitress. I want to be able to follow my dream, and I don't want to wait another year to find out."
+    Ad "You mean a lot to me, Remy. But I won't let you get in the way of my-{w=0.5}{nw}"
+    Am "I'm scared."
+    Ad sad b "No, Amely, there's no reason to be scared. I'm just..."
+    $ renpy.pause (2.0)
+    Ad disappoint b "I need to give this some thought."
+    Ad "I need to go now. I'll see you around."
+    show adine disappoint b flip with dissolvemed
+    Ry sad flip "Wait, Adine."
+    Ad "What?"
+    Ry "Just know that we care about you. I can't just watch you crash and burn without attempting to intervene."
+    Ad "Thank you Remy. I just need time to think over all of this."
+    hide adine with easeoutright
+    play sound "fx/door/door_chain.ogg"
+    Vr "..."
+    Am "Adine leaving?"
+    Ry look flip "Don't worry you two. I know that Adine will make the right decision when the time comes."
+    stop music fadeout 2.0
+    scene black with dissolveslow
+    $ renpy.pause (0.5)
+    scene office at Pan ((128, 250), (0, 250), 3.0) with dissolvemed
+    jump c4sections
+label eval_c4_adine4_change:
+    if not renpy.python.store_dicts["store"].get("eval_c4_hatchery_done",False):
+        label eval_c4_adine4_change_fail:
+            pass
+    show adine think b with dissolve
+    Ad "This spot should be good."
+    c "what made you reconsider?"
+    Ad disappoint b "When I was inside and had a bit of time to think."
+    Ad "about what you said, what Remy said, and then I spoke with some of the other competitors."
+    Ad "they told me that stunt flying with an injured wing could easily lead to tragedy"
+    Ad "someone even suggested that I stay grounded untill my wing fully heals"
+    c "How do you feel now?"
+    Ad "I know it was the right thing to do, but I can't help thinking that I just came so close. That I could've done it if I hadn't been injured."
+    c "You'll get another chance, I promise."
+    Ad "Don't make a promise you can't keep."
+    c "..."
+    label eval_c4_adine4_change_success:
+        pass
 
 label eval_remy_ch4_date_change: #This changes up the end of Remy's date to account for the secret ending
     if persistent.evalSecretEndingUnlocked and c4hatcheryplayed and varasaved:
         if persistent.evalSecretEndingCompleted:
             play sound "fx/system3.wav"
             s "It seems that you have already seen the true ending for This Dragon Owes me Ice Cream. Would you like to experience it again or the normal turn of events?"
-
             menu:
                 "True ending path.":
+                    play sound "fx/system3.wav"
                     s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
                     $ renpy.pause (1.0)
-                    pass
-                
                 "Normal ending path.":
+                    play sound "fx/system3.wav"
                     s "As you wish.{cps=2}..{/cps}{w=1.0}{nw}"
                     $ renpy.pause (1.0)
-                    return
+                    label eval_remy_ch4_date_change_fail:
+                        pass
 
-        $ renpy.pop_call()
         Ry "You know, speaking of Vara, why don't we go grab her?"
         c "How come?"
         Ry "When you went and visited the hatchery earlier, she seemed very interested in you."
@@ -143,7 +280,6 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         c "I know, I'm kidding."
         Ry normal "I'm not."
         scene black with dissolveslow
-
         scene evalplayerkitchen with dissolveslow
         show remy normal at right
         show vara smnormal flip at left
@@ -195,21 +331,21 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
         show remy normal at right with easeinright
         show vara smnormal at left with easeinright
         show vara smnormal flip at left with dissolvemed
-        $ evalVaraMood = 1
+        $ evalVaraMood=1
         Ry smile "Impressive, isn't it?"
 
         menu:
             "Looks amazing.":
-                $ evalVaraMood += 2
+                $ evalVaraMood +=2
                 c "I'll say! That looks wonderful."
                 show vara smsmile flip with dissolvemed
             
             "It looks alright.":
-                $ evalVaraMood += 1
+                $ evalVaraMood +=1
                 c "It looks good."
             
             "I could have done better.":
-                $ evalVaraMood -= 1
+                $ evalVaraMood -=1
                 c "I think I could have done better myself."
                 Ry look "Is that so?"
                 Vr smsad flip "..."
@@ -231,14 +367,14 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
 
         menu:
             "Sure!":
-                $ evalVaraMood += 2
+                $ evalVaraMood +=2
                 c "I'd love to."
                 m "I grabbed a piece of sushi and looked at it for a moment."
                 show vara smnone flip with dissolvemed
                 m "Vara looked at me nervously as I put the piece of sushi in my mouth."
                 m "It was amazing. The buttery fish complemented the somewhat tangy taste of the algae and the crispness of the cucumber."
                 c "Wow, Vara! This is really good!"
-                if evalVaraMood >= 4:
+                if evalVaraMood >=4:
                     Vr "..."
                     Vr smnone flip "T... {w}T..."
                     Vr smsmile flip "Thanks."
@@ -263,7 +399,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                 m "It was amazing. The buttery fish complemented the somewhat tangy taste of the algae and the crispness of the cucumber."
                 c "Wow, Vara! This is really good!"
                 show vara smnormal flip with dissolvemed
-                if evalVaraMood >= 4:
+                if evalVaraMood >=4:
                     Vr smnone flip "T... Th..."
                     Vr smnormal flip "Thanks."
                     c "You're welcome, Vara. I really mean it too."
@@ -280,7 +416,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                 m "Remy then washed off the cutting board and put it back on the counter."
 
             "No thank you.":
-                $ evalVaraMood -= 1
+                $ evalVaraMood -=1
                 c "I'm not hungry right now."
                 Ry look "Oh, okay then."
                 Vr smsad flip "..."
@@ -327,7 +463,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             m "The world around me went black as I fell to the floor, unconscious."
             m "I awoke when I felt a strange pressing sensation on my cheek."
             m "It was Vara, who looked down at me with a concerned expression."
-            scene o3 with dissolveslow
+            scene o3
             show remy look
             show vara smshocked
             with dissolvemed
@@ -358,7 +494,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             show vara smnormal with dissolvemed
             Ry "Alright, Vara. Let's get ready for bed, then."
             m "The two dragons started making their way over to the couch."
-            if remystatus == "neutral":
+            if remystatus=="neutral":
                 m "My mind still spinning, I made my way into the bedroom."
                 play sound "fx/undress.ogg"
                 m "I quickly undressed and, too tired to prepare any further, fell asleep."
@@ -376,9 +512,8 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
                         play sound "fx/undress.ogg"
                         m "I quickly undressed and, too tired to prepare any further, fell asleep."
                         scene black with dissolvemed
-                    
                     "Share the bed.":
-                        $ evalRemyDateBed = True
+                        $ evalRemyDateBed=True
                         c "Hey, wait."
                         c "Why don't we share the bed? I don't want you both to have to share that tiny couch."
                         Ry smile "I could keep a closer eye on you as well. What do you say, Vara?"
@@ -412,7 +547,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             c "Likewise."
             Ry "Can you say goodbye, Vara?"
             if evalVaraMood < 0:
-                play sound "fx/varagrowl.ogg"
+                play sound "fx/growl.ogg"
                 $ renpy.pause (2.0)
                 Ry look "I guess not..."
             else:
@@ -429,7 +564,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             jump eval_post_date_change
 
     else:
-        return
+        jump eval_remy_ch4_date_change_fail
 
 label eval_remy_ch4_date_change_2:
     $ renpy.pause (3.0)
@@ -452,7 +587,7 @@ label eval_remy_ch4_date_change_2:
     c "Don't say that. How were you supposed to know that I was going to pass out? Plus, we're still going to see the fireworks together."
     c "We can bring Vara as well, I think it would be fun!"
     Ry look "That's true, but you know how I feel. I guess I just wanted to make the most of our outing yesterday."
-    if remystatus != "neutral": #Obligatory inclusion of the kiss scene. Can't be the fourth date without it, really
+    if remystatus == "good": #Obligatory inclusion of the kiss scene. Can't be the fourth date without it, really
         c "Speaking of which, I've never actually seen you without your tie."
         Ry normal "Well, actually..."
         hide remy with dissolvemed
@@ -469,6 +604,7 @@ label eval_remy_ch4_date_change_2:
 
         menu:
             "Look away.":
+                $ remystatus="neutral"
                 hide remyrom
                 hide remy
                 with fade
@@ -483,8 +619,8 @@ label eval_remy_ch4_date_change_2:
                 m "Remy put his tie back on."
                 show remy normal with dissolvemed
                 $ renpy.pause (1.0)
-            
             "Kiss him.":
+                $ mp.remyromance=True
                 $ evalRemyRomance = True
                 $ mp.save()
                 hide remyrom
@@ -504,7 +640,7 @@ label eval_remy_ch4_date_change_2:
                 hide remy with dissolvemed
                 play sound "fx/undress.ogg"
                 m "Remy put his tie back on."
-                $ remystatus = "good"
+                $ remystatus="good"
                 show remy normal with dissolvemed
                 $ renpy.pause (1.0)
 
@@ -520,7 +656,7 @@ label eval_remy_ch4_date_change_2:
     c "The big fireworks show, Remy. {w}Vara dies."
     Ry "What?"
     show remy angry with dissolvemed
-    Ry "How?" with hpunch
+    Ry "HOW?" with hpunch
     c "I... I can't recall. But we need to protect her."
     Ry sad "How would we do that?"
     c "I don't think I can tell the police. I doubt they would believe me."
@@ -565,7 +701,7 @@ label eval_remy_ch4_date_change_2:
     c "Glad to hear that, Remy. You're a lot braver than you make yourself out to be."
     Ry "Well, you're making me work double-time here. Before you, I didn't have to worry about all of this nonsense."
     Ry normal "But you know what? I wouldn't have it any other way."
-    if remystatus != "neutral":
+    if remystatus=="good":
         m "Remy gave me a playful lick on the cheek."
     Ry "I'm still stressed beyond belief, but let's not let this impact us too heavily."
     Ry "We have to be ready to protect Vara."
@@ -576,39 +712,30 @@ label eval_remy_ch4_date_change_2:
     Ry "You too, [player_name]. I'll be ready."
     stop music fadeout 2.0
     scene black with dissolveslow
-    $ evalPathToSecretComplete = True
+    $ evalPathToSecretComplete=True
     jump eval_post_date_change
 
 label eval_post_date_change: #Skips back to character select after the changed ch4 Remy date
     $ renpy.pause (2.0)
-
-    $ remyscenesfinished = 4
-
-    if chapter4unplayed == False:
-
+    $ remyscenesfinished=4
+    if chapter4unplayed==False:
         jump chapter4chars
-
-    elif chapter3unplayed == False:
-
+    elif chapter3unplayed==False:
         jump chapter3chars
-
-    elif chapter2unplayed == False:
-
+    elif chapter2unplayed==False:
         jump chapter2chars
-
     else:
         jump chapter1chars
 
 label eval_remy_good_ending_change: #And so the contruction of a completely new ending for Remy begins...
     if not evalPathToSecretComplete:
-        return
-    
-    $ renpy.pop_call()
+        label eval_remy_good_ending_change_fail:
+            pass
     show black with dissolvemed
     $ renpy.pause (0.5)
     scene o2 at Pan((0, 250), (0, 250), 0.0) with dissolveslow
 
-    $ save_name = (_("Chapter 5 - Remy"))
+    $ save_name=(_("Chapter 5 - Remy"))
 
     play sound "fx/door/doorbell.wav"
     $ renpy.pause(1.0)
@@ -654,7 +781,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     stop music fadeout 2.0
     hide fireworks with dissolveslow
     m "Suddenly, a terrible realization hit me."
-    stop soundloop fadeout 2.0
+    stop soundloop fadeout 1.0
     play music "mx/judgement.ogg" fadein 0.5
     m "Considering how public of an event this was and how I was told multiple times that everyone would be watching the fireworks, now would be the best time for Reza to do anything he planned to do."
     m "Not only was the village basically deserted, but the sounds of the fireworks would also overshadow any gunshots, giving him as much security as he would ever have."
@@ -689,9 +816,12 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Ry "Come on, Vara. Let's go help [player_name]."
     show vara smsad with dissolvemed
     m "Vara returned to Remy, and the two dragons rushed off in the other direction."
+    show vara smsad flip
+    show remy sad flip
+    with dissolvemed
     hide remy
     hide vara
-    with dissolvemed
+    with easeoutright
     scene black with dissolveslow
     stop music fadeout 2.0
     $ renpy.pause (3.0)
@@ -699,54 +829,58 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     #Add a POV that isn't from the MC's POV. Oooo, fancy! - Maverick shouldn't be wearing his badge. Have something where Remy goes looking for Maverick and catches him snooping at the PD
     play music "mx/prayer.ogg" fadein 2.0
     scene office at Pan ((128, 250), (0, 250), 3.0) with dissolveslow
+    $ renpy.pause(2.0)
     show remy look at right
     show vara smsad at right
-    with dissolvemed
+    with easeinright
     Ry "Hello?"
-    show maverick normal flip at Position (xpos = 0.1) with easeinleft
-    Mv nice flip "What are you doing here, Remy? Why aren't you two seeing the fireworks?"
+    show maverick normal b flip at Position (xpos = 0.1) with easeinleft
+    Mv nice b flip "What are you doing here, Remy? Why aren't you two seeing the fireworks?"
     Ry "Reza is at the portal as we speak."
-    Mv normal flip "What?"
+    Mv normal b flip "What?"
     Mv "How do you know this?"
     Ry "[player_name] told me."
-    Mv angry flip "What?"
+    Mv angry b flip "What?"
     Mv "How do they know, then?"
     Ry "When we were watching the fireworks, [player_name] noticed that the noise was a perfect opportunity for Reza to escape."
     Mv "And where is [player_name] now?"
     Ry "At the portal to distract Reza."
     Mv "And you really believe them?"
     Ry sad "What do you mean?"
-    Mv angry flip "Remy, can you not see that [player_name] is in on all of this as well?"
-    Mv rage flip "He played you! He used you to escape with Reza and the generators!"
-    Ry "Maverick, that's not tru-{nw}"
-    Mv angry flip "Isn't it so convenient that [player_name]'s little plan involves both himself and Reza alone near the portal?"
-    Ry angry "{size=+20}STOP!{/size}" with hpunch
-    show maverick angry flip with dissolvemed
+    Mv angry b flip "Remy, can you not see that [player_name] is in on all of this as well?"
+    Mv rage b flip "He played you! He used you to escape with Reza and the generators!"
+    Ry "Maverick, that's not tr-{w=0.5}{nw}"#a "-" implies they were cut off
+    Mv "Isn't it so convenient that [player_name]'s little plan involves both himself and Reza alone near the portal?"
+    show remy angry with dissolvemed
+    Ry "{size=+20}STOP!{/size}" with hpunch
+    show maverick angry b flip with dissolvemed
     Ry "You do not understand {size=+20}ANYTHING{/size} about [player_name], Maverick."
     Ry "Without them, I wouldn't be here."
     Ry "Without them, I would be hanging limp from my ceiling."
-    Mv scared flip "What do you mean, Remy?"
+    Mv scared b flip "What do you mean, Remy?"
     Ry "I've gone through hell and back, and you know very well why."
     Ry "I was close to the edge, Maverick. Close to ending it once and for all."
     Ry "But you know what? [player_name] saved my life."
     Ry "They helped me reunite with old friends, move on from the past, and find this lovely little dragon next to me."
     Mv "I... I didn't know it was that bad, Remy. I'm so sorry."
     Ry "Feel bad for me later, Maverick. We have to help [player_name]."
-    Mv normal flip "I can't say I fully trust [player_name], Remy, but I'll still help you."
+    Mv normal b flip "I can't say I fully trust [player_name], Remy, but I'll still help you."
     Vr "I help?"
     Ry sad "Vara, you should stay here where you'll be safe."
     Vr "..."
     Ry "I promise, Vara. We will come back when it's safe."
     Vr "..."
     Ry "Come on, Maverick. Let's go."
-    Mv normal flip "Okay, Remy. I'm with you."
+    Mv normal b flip "Okay, Remy. I'm with you."
+    show remy sad flip with dissolvemed
     hide remy
     hide maverick
-    with dissolvemed
+    with easeoutright
     stop music fadeout 2.0
     $ renpy.pause (2.0)
     Vr smgrowl "I help."
-    hide vara with dissolvemed
+    show vara smgrowl flip with dissolvemed
+    hide vara with easeoutright
     scene black with dissolveslow
 
     #Back to MC POV
@@ -784,7 +918,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     queue sound2 "fx/impact3.ogg"
     hide izumi with easeoutbottom
     m "He pulled the trigger, and the Administrator fell to the ground with a dull thud that knocked her mask off."
-    $ persistent.izumiseen = True
+    $ persistent.izumiseen=True
     show izumiinjured4 at Pan((300, 0), (600, 608), 7.0) with fade
     $ renpy.pause (5.0)
     hide izumiinjured4
@@ -825,9 +959,9 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     play sound "fx/impact3.ogg"
     m "He pulled the trigger a second time, and I heard a dull thud come from the bushes."
     m "Suddenly, a flurry of gray rushed at Reza."
-    show maverick angry flip at Position(xpos=0.65, xanchor='center') with easeinleft
+    show maverick angry b flip at Position(xpos=0.65, xanchor='center') with easeinleft
     play sound "fx/impact3.ogg"
-    show maverick at Position(xpos=0.8, xanchor='center', ypos=1.0, yanchor="top")
+    show maverick rage b flip at Position(xpos=0.8, xanchor='center', ypos=1.0, yanchor="top")
     show reza at Position(xpos=1.0, xanchor='center', ypos=1.0, yanchor="top")
     with move9
     queue sound "fx/bite.ogg"
@@ -847,17 +981,16 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "Within an instant, Reza made a break for the portal."
     play sound "fx/acid.mp3" fadein 0.5
     m "Another ball of acid flew at Reza, hitting his foreleg."
-    play sound "fx/impact3.ogg"
+    play sound2 "fx/impact3.ogg"
     m "This time, Reza screamed in pain and dropped to the ground."
-    play sound "fx/gunshot2.wav"
-    m "On impact, a single shot was fired off in front of him."
-    play sound "fx/portalhit.mp3"
-    m "Sparks flew from the portal's terminal as the bullet pierced the metal frame and lodged itself within its inner mechanisms."
+    play sound2 "fx/gunshot2.wav"
+    play sound "fx/silence.ogg"
+    queue sound "fx/portalhit.mp3"
+    m "On impact, a single shot was fired off in front of him.\nSparks flew from the portal's terminal as the bullet pierced the metal frame and lodged itself within its inner mechanisms."
     c "(That can't be good.)"
     m "He clutched his burning leg in agony, the acid melting away at his skin and muscle."
     m "Weakly, he crawled towards the portal, but his movements soon grew sluggish as he slumped to the ground, motionless."
-    hide maverick
-    show maverick rage c at Position(xpos = 0.9, xanchor = "center") with easeinright
+    show maverick angry d at Position(xpos = 0.9, xanchor = "center", ypos=1.0, yanchor="bottom") with ease
     stop music fadeout 2.0
     $ renpy.pause (3.0)
     play music "mx/infinite.mp3" fadein 1.0
@@ -872,7 +1005,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     m "Vara rushed over to the bushes Maverick had emerged from. She returned with Remy, who was limping and bloody."
     show remy sad eval shot flip at Position(xpos=0.1) with easeinleft
     show vara smshocked flip behind remy at left with easeinleft
-    Mv scared c "Oh, Remy!"
+    Mv scared d "Oh, Remy!"
     c "You're injured."
     Ry look eval shot flip "So are you."
     c "We need to stop the bleeding."
@@ -888,11 +1021,11 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Mv "Are you two alright?"
     Ry look eval shot flip "I've been better."
     Ry "How about you? I heard you scream in pain."
-    Mv normal c "I think a bit of Vara's acid got onto my face. It hurts like hell, but I'll live. Let me get the EMTs."
+    Mv normal d "I think a bit of Vara's acid got onto my face. It hurts like hell, but I'll live. Let me get the EMTs."
     Ry "Thank you, Maverick."
-    show maverick normal c flip at Position(xpos=0.9, xanchor="center") with dissolvemed
+    show maverick normal d flip with dissolvemed
     hide maverick with easeoutright
-    Vr flip "..."
+    Vr "..."
     Ry sad eval shot flip "Vara, you silly girl. Why did you follow us?"
     Vr smsad flip "I... help."
     Ry "You could have gotten hurt! Or worse..."
@@ -910,6 +1043,8 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show vara smsad flip behind remy at Position(xpos=-0.1) with move
     m "Vara snuggled closer to Remy and buried her face in his side."
     m "Suddenly, the Administrator appeared next to me."
+    if persistent.remybadending:#if you have seen remy's bad ending, you know the administrator's real name
+        define As=Character(_("Izumi"), color="#d2d9ff", image="izumi")
     if persistent.annabadending==True:
         show izumi normal 4 d at Position(xpos=0.9) with easeinright
     else:
@@ -917,7 +1052,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     As "This is not right."
     c "What do you mean?"
     show vara smgrowl flip at Position(xpos=-0.1) with dissolvemed
-    play sound "fx/varagrowl.ogg"
+    play sound "fx/growl.ogg"
     show vara smgrowl flip at left with move
     $ renpy.pause (1.5)
     c "Vara, It's okay. She's a friend."
@@ -959,60 +1094,51 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     if persistent.annabadending == True:
         As normal 4 d "You will know what to do, [player_name]."
     else:
-        As normal 4 d "You will know what to do, [player_name]."
-        c "But-"
+        As normal 4 c "You will know what to do, [player_name]."
+        c "But-{w=0.5}{nw}"
     m "With that, she closed her eyes and her body went limp."
 
     stop music fadeout 3.0
     $ renpy.pause (0.5)
     scene black with dissolveslow
     $ renpy.pause (2.0)
-
     nvl clear
     window show
-
     n "Soon, more help arrived. Remy and I got all the medical attention we needed while Vara was sent to Adine to be taken care of."
     n "Maverick had only sustained minor burn injuries and abrasions. However, Reza and Izumi were both dead."
     n "I warned the dragons about the comet, telling them to check the PDAs I had given them for verification of my claims."
-    n "A few minutes later, EMTs arrived and I was put into an artificial coma due to my injuries."
-    n "In the weeks I was out, a variety of things happened."
+    n "A few minutes later, EMTs arrived and I was put into a medically induced coma due to my injuries."
+    n "In the weeks I was out, a number of things happened."
     n "Out of respect, Reza's body was given a proper funeral in a remote location. His weapon and remaining ammunition were to be left in my care."
     n "After attempts were made to make contact with the human world, it was discovered that the portal was no longer operational."
-
     window hide
     nvl clear
     window show
-
     n "Upon this discovery, the dragons sent their brightest engineers in attempts to establish a connection with the human world."
     n "However, after weeks of unsuccessful attempts, the operation was deemed to be a failure."
     n "Ultimately, the dragons decided to leave the portal standing in its current state."
-    n "Luckily, my claims were taken seriously, and there was already a plan in place to divert the comet."
+    n "Fortunately, my claims were taken seriously, and there was already a plan in place to divert the comet."
     n "Using the lab's generators, the dragons were successfully able to redirect the comet's path away from Earth."
-
     window hide
     nvl clear
     window show
-
     n "After I awoke from my coma, I had to consider what my future held."
     n "With my limited knowledge of the portal, there was very little possibility of fixing it without the expertise of the dead Administrator.."
     n "Any possibilities of my return to the human world had vanished with the destruction of the portal."
-    n "I met with Remy as soon as I could, who told me about everything I had missed."
-
+    n "I met with Remy as soon as I could, who told me about what I had missed."
     window hide
     nvl clear
-
     $ renpy.pause (2.0)
-
-    $ evalDoingSecretEnding = True
+    $ evalDoingSecretEnding=True
 
     jump eval_post_secret_remy_meeting
 
 label eval_post_secret_remy_meeting:
-    $ persistent.evalSecretEndingCompleted = True
+    $ persistent.evalSecretEndingCompleted=True
     scene park2 with dissolveslow
     show remy normal with dissolvemed
     play music "mx/library.ogg" fadein 2.0
-    c "So, the comet has been diverted. I guess I must've been gone for a long time."
+    c "So, the comet has been diverted. I guess I must've been out for a long time."
     Ry look "Yes you were. A lot has happened since then."
     Ry normal "By the way, I talked with Maverick a few days ago."
     c "Oh, what did he have to say?"
@@ -1035,7 +1161,7 @@ label eval_post_secret_remy_meeting:
     Mv normal b flip "I'd love to stick around and chat, but Bryce needs me back at the station."
     Ry smile "I'm glad you two were able to settle your differences."
     c "Me too. See you around, Maverick."
-    show maverick normal b at Position(xpos=0.1) with dissolvemed
+    show maverick normal b with dissolvemed
     hide maverick with easeoutleft
     show remy smile at center with move
     Ry normal "What will you do now, [player_name]?"
@@ -1104,108 +1230,5 @@ label eval_post_secret_remy_meeting:
     #Ry "Yes. After all, I have Vara to keep me company."
     #Ry "Also, while you were busy these last few weeks, I spent a lot of time with Adine, and we rekindled our lost friendship."
     #Ry smile "Besides, if you really go back in time, I'll see you again."
-    $ renpy.pop_call()
-    jump eval_tdomi_remy
+    jump eval_extended_ending
 #Thus marks the end of the changes required to actually get Vara's extended ending
-
-#Extra stuff to explain why Adine doesn't die because why not
-#label eval_hatchery_extension:
-#    m "Meanwhile, inside the orphanage..."
-#    scene evalorphlight with dissolveslow
-#    show remy normal flip at left
-#    show vara smnormal flip at left
-#    if adinestatus == "bad":
-#        show adine annoyed b at right
-#    else:
-#        show adine normal b at right
-#    show amely smnormal at right
-#    with dissolvemed
-#    play music "mx/neptune.mp3" fadein 2.0
-#
-#    if adinestatus == "bad":
-#        Ad "Ugh, I'm glad they're gone."
-#        Ry look flip "What's wrong with [player_name]?"
-#        Ad disappoint b "They said that they didn't want to see me again."
-#        Ad sad b "I didn't know I was such bad company."
-#        Ry "You're not, Adine. [player_name] is going through a lot at the moment, and probably needs time alone to think."
-#        Ad disappoint b "You may be right, but it still hurts."
-#    elif adinestatus == "neutral":
-#        Ad "They seem nice enough."
-#        Ry "Agreed."
-#        Ad disappoint b "Sorry, Remy, but I don't know how much I can help out today. Work has been getting to me lately."
-#        Ry look flip "That's not good."
-#    else:
-#        Ad giggle b "I'm glad [player_name] stopped by to visit. It's nice having their company."
-#        Ry smile flip "Agreed."
-#        Ad disappoint b "Sorry, Remy, but I don't know how much I can help out today. Work has been getting to me lately."
-#        Ry look flip "That's not good."
-#    Ry normal flip "Here, I think I know what will help."
-#    play sound "fx/hug.mp3"
-#    hide remy with dissolvemed
-#    $ renpy.pause (1.5)
-#    show remy normal flip behind vara at left
-#    show adine giggle b
-#    with dissolvemed
-#    Ad "I guess you were right, that did help."
-#    Ry smile flip "Glad I could be of assistance."
-#    Am "I want hug!"
-#    Ad normal b "Okay, Amely."
-#    play sound "fx/hug.mp3"
-#    hide adine with dissolvemed
-#    $ renpy.pause (1.5)
-#    show adine normal b at right behind amely with dissolvemed
-#    Am "Yay!"
-#    Ry "How about you, Vara?"
-#    Vr smnone flip "..."
-#    play sound "fx/hug.mp3"
-#    hide remy with dissolvemed
-#    $ renpy.pause (1.5)
-#    show remy normal flip behind vara at left
-#    show vara smnormal flip
-#    with dissolvemed
-#    Ad giggle b "Hugs all around."
-#    Ry smile flip "Indeed."
-#    Ry normal flip "Adine, there's something I would like to discuss with you quickly."
-#    Ad normal b "What is it, Remy?"
-#    Ry "I've noticed that your wing has been sagging recently. Is everything alright?"
-#    Ad "Yeah, I just strained it while practicing my routine for the upcoming flight competition."
-#    Ry look flip "Please tell me you aren't thinking of participating in the competition with your wing in the state it is."
-#    Ad giggle b "Don't worry about me, Remy. I'll be fine."
-#    Ry "Adine, I'm serious. I don't think you should enter the competition this year."
-#    Ad disappoint b "I... just have to try, you know?"
-#    Ry "What if something goes wrong, though? You don't want to be in that position."
-#    Ad "If I start making excuses now, maybe I'll never stop. I'll always be too nervous, or too injured, or didn't eat right the day before."
-#    Ad "I need to take this opportunity, Remy. Because if I don't now, maybe I never will."
-#    Ry sad flip "But Adine, think of the children here."
-#    Ad frustrated b "Don't you dare bring them into this! They have nothing to do with it."
-#    show amely smsad
-#    show vara smsad flip
-#    with dissolvemed
-#    Ry "If something happens to you, I don't know what any of us would do."
-#    Ry "I couldn't support the orphanage without you, and you would crush the hearts of Vara and Amely."
-#    Ad sad b "Remy, don't say that. I would never leave you three."
-#    Ad disappoint b "I just want to do more with my life. I want to be more than just a server and a delivery girl making minimum wage."
-#    Ad "Is this one opportunity to do something more with my life really too much to ask for?"
-#    Ry look flip "If you tell them you're injured, they might let you fly another year instead. You shouldn't taint your flying reputation by attempting tricks with an injured wing."
-#    Ad frustrated b "I don't want to wonder if I'll ever amount to anything more than a waitress. I want to be able to follow my dream, and I don't want to wait another year to find out."
-#    Ad "You mean a lot to me, Remy. But I won't let you get in the way of my{nw}"
-#    Am "I'm scared."
-#    Ad sad b "No, Amely, there's no reason to be scared. I'm just..."
-#   $ renpy.pause (2.0)
-#    Ad disappoint b "I need to give this some thought."
-#    Ad "I need to go now. I'll see you around."
-#    show adine disappoint b flip with dissolvemed
-#    Ry sad flip "Wait, Adine."
-#    Ad "What?"
-#    Ry "Just know that we care about you. I can't just watch you crash and burn without attempting to intervene."
-#    Ad "Thank you Remy. I just need time to think over all of this."
-#    hide adine with easeoutright
-#    play sound "fx/door/door_chain.ogg"
-#    Vr "..."
-#    Am "Adine leaving?"
-#    Ry look flip "I hope that Adine will make the right decision when the time comes."
-#    stop music fadeout 2.0
-#    scene black with dissolveslow
-#    $ renpy.pause (0.5)
-#    scene office at Pan ((128, 250), (0, 250), 3.0) with dissolvemed
-#    jump c4sections

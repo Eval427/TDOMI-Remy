@@ -5,18 +5,25 @@
 #Changes dialogue for when you arrive at the orphanage
 #Incorporate a Vara mood counter for how she reacts? Oh god that sounds not fun
 label eval_secret_orphanage_arrival:
-    Ry "Amely? Vara? Are you two here?"
-    show amely smnormal with easeinright
-    Am "Hello!"
-    Ry smile "Hello, Amely."
-    Ry normal "Do you know where Vara is?"
-    Am "She is coming."
-    show vara smnormal behind amely with easeinright
-    Vr "..."
-    c "Hi, Vara."
-    Vr smsmile "Hello."
-    Ry "She's been talking much more since you last saw her, [player_name]."
-    c "That's great to hear."
+    if evalVaraHere:
+        Ry "Amely? Are you here?"
+        show amely smnormal with easeinright
+        show vara behind amely with None
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+    else:
+        Ry "Amely? Vara? Are you two here?"
+        show amely smnormal with easeinright
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+        Ry normal "Do you know where Vara is?"
+        Am "She is coming."
+        show vara smnormal behind amely with easeinright
+        Vr "..."
+        c "Hi, Vara."
+        Vr "Hello."
+        Ry "She's been talking much more since you last saw her, [player_name]."
+        c "That's great to hear."
     Vr "It's dark."
     Ry "I see that, Vara. I wonder who turned the lights off. Usually we leave them on for you."
     c "Wait, is the orphanage just a classroom?"
@@ -44,10 +51,10 @@ label eval_secret_orphanage_arrival:
     play sound "fx/lightswitch.mp3"
     $ renpy.pause (2.0)
     show remy normal flip behind vara with easeinleft
-    show remy normal behind vara with dissolvemed
+    show remy normal behind vara
     show amely smnormal flip with easeinleft
-    show amely smnormal with dissolvemed
-    show vara smnormal behind amely with dissolvemed
+    show amely smnormal
+    show vara smnormal behind amely
     Ry "I think I know something that we're going to have to do."
     c "Fix the lights?"
     Ry smile "How'd you guess?"
@@ -118,18 +125,25 @@ label eval_secret_orphanage_arrival:
 label eval_everyone_sleep:
     Ry "Well, here we are!"
     $ renpy.pause (1.0)
-    Ry "Amely? Vara? Are you two here?"
-    show amely smnormal with easeinright
-    Am "Hello!"
-    Ry smile "Hello, Amely."
-    Ry normal "Do you know where Vara is?"
-    Am "She is coming."
-    show vara smnormal behind amely with easeinright
-    Vr "..."
-    c "Hi, Vara."
-    Vr "Hello."
-    Ry "She's been talking much more since you last saw her, [player_name]."
-    c "That's great to hear."
+    if evalVaraHere:
+        Ry "Amely? Are you here?"
+        show amely smnormal with easeinright
+        show vara behind amely with None
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+    else:
+        Ry "Amely? Vara? Are you two here?"
+        show amely smnormal with easeinright
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+        Ry normal "Do you know where Vara is?"
+        Am "She is coming."
+        show vara smnormal behind amely with easeinright
+        Vr "..."
+        c "Hi, Vara."
+        Vr "Hello."
+        Ry "She's been talking much more since you last saw her, [player_name]."
+        c "That's great to hear."
     Vr "It's dark."
     Ry normal "I see that, Vara. I wonder who turned the lights off. Usually we leave them on for you."
     c "Wait, is the orphanage just a classroom?"
@@ -186,7 +200,7 @@ label eval_everyone_1:
     show vara smnormal at right
     show amely smnormal at right
     with move
-    show adine normal c flip behind amely at left with dissolvemed
+    show adine normal c flip behind amely at left with easeinleft
     
     if persistent.evalD1Skip:
         $ renpy.pause (0.5)
@@ -213,6 +227,10 @@ label eval_everyone_1:
                 call skipcheck from evalSkipCheckD1
                 play music "mx/funness.ogg"
                 $ evalAdineSlaps += 1
+                if evalOrphanageScore==2:
+                    $ adinestatus="good"
+                elif adinestatus!="good":
+                    $ adinestatus="neutral"
                 jump eval_skip_D1
 
             "No. Don't skip ahead.":
@@ -391,17 +409,14 @@ label eval_everyone_1:
     m "Remy walked over to the pot and tilted it up with his muzzle."
     m "I put the key back, and he carefully rested the pot back in it's upright position."
     Ry "Perfect! Let's go!"
-    scene black with dissolveslow
-    if not evalRodeRemy:
-        m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
-        $ evalRodeRemy = True
-    else:
+    if evalRodeRemy:
         m "Remy walked forward and quickly picked up speed."
-    
-    if not evalRodeRemy:
+        m "As a seasoned dragon rider. I sat back and gazed up at the sky, gently holding onto Vara to keep her safe." #Is this too... weird?
+    else:
+        m "Remy then slowly started walking forward, picking up speed surprisingly quickly."
+        m "It wasn't as uncomfortable as I had first imagined."
+        m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
         if evalRodeBryce:
-            m "It wasn't as uncomfortable as I had first imagined."
-            m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
             m "In a way, it also felt strangely familiar, like I had done this before."
             m "The experience was almost relaxing, with the light breeze and rhythmic thumping of Remy's feet on the grass and pavement."
             m "I gently held onto Vara to keep her safe as I watched the dragon world pass by me."
@@ -409,9 +424,7 @@ label eval_everyone_1:
             m "It wasn't as uncomfortable as I had first imagined."
             m "It was almost like riding a horse, if the horse had scales, giant wings, and a tie."
             m "I gently held onto Vara to keep her safe as I watched the dragon world pass by me."
-    else:
         m "I sat back and gazed up at the sky, gently holding onto Vara to keep her secure on Remy's back."
-
     $ renpy.pause (0.5)
     m "It seemed as if it took mere minutes to arrive back at Tatsu Park."
     Ry "Ladies and gentlemen, this will be our final stop. Please make sure to grab all of your belongings and safely exit the vehicle."
@@ -424,13 +437,14 @@ label eval_everyone_1:
     play sound "fx/bed.ogg"
     m "I gracefully slid off of Remy's back."
     m "I then grabbed Vara and gently rested her on the ground."
-    scene park2 with dissolveslow
-    show remy normal with dissolvemed
-    show vara smnormal with dissolvemed
+    show remy normal
+    show vara smnormal
+    with dissolvemed
     play music "mx/funness.ogg"
     if evalRodeRemy:
         c "That was fun! I should ride you around more often!"
     else:
+        $ evalRodeRemy = True
         c "Damn, why didn't I just ride you over to the orphanage as well. That was fun!"
     $ evalRodeRemy = True
     Ry smile "Wow, [player_name], I didn't know you wanted to ride me so badly."
@@ -777,9 +791,10 @@ label eval_everyone_2:
     scene black with dissolveslow
     scene town7 with dissolveslow
     $ renpy.pause (1.0)
-    show katsu normal flip at Position (xpos = 0.1) with dissolvemed
-    show vara smnormal at right with dissolvemed
-    show remy normal behind vara at right with dissolvemed
+    show katsu normal flip at Position (xpos = 0.1)
+    show vara smnormal at right
+    show remy normal behind vara at right
+    with dissolvemed
     play music "mx/jazzy2.ogg"
     Ka excited flip "Wonderful job, everyone!"
     Ka smile flip "Especially you, Vara. You really have a knack for scooping ice cream."
@@ -861,9 +876,7 @@ label eval_everyone_2:
     Ad normal b "So do I."
     Ka normal flip "Let's start with [player_name]."
     $ evalAdineTrick = False
-    jump eval_ice_cream_choice
-
-label eval_everyone_3:
+    call eval_ice_cream_choice from eval_everyone_3
     Ka "One scoop of [evalChosenFlavor] coming right up!"
     show katsu normal with dissolvemed
     hide katsu with easeoutleft
@@ -1063,7 +1076,7 @@ label eval_everyone_3:
     with easeoutright
     if evalAdineTrick:
         show adine normal b flip at right with easeinleft
-        show adine normal b with dissolvemed
+        show adine normal b
         Ad "By the way, [player_name]."
         c "Yes?"
         play sound "fx/slap1.wav"
@@ -1121,9 +1134,9 @@ label eval_everyone_3:
         Ry "You first, [player_name]. I want to see your reaction."
         m "Excited to finally try my ice cream, I saw Amely longingly look up at me."
         m "I paused for a moment and considered what to do."
-
+        $ evalAdineTrickPassed=False
         menu:
-            "[[Give Amely my ice cream.]":
+            "[[Give Amely your ice cream]":
                 c "Would you like some more ice cream, Amely?"
                 Am "Yes!"
                 Ry "That's a little too much ice cre-{w=0.5}{nw}"
@@ -1136,6 +1149,7 @@ label eval_everyone_3:
                 Am "Ice cream bad!"
                 Am "{size=+10}Ice cream bad!{/size}"
                 m "With as much force as she could muster, Amely threw the scoop of ice cream."
+                show adine sad eval icecream flip with dissolvemed
                 m "The scoop of mango landed directly on Adine, while the cone bounced and landed on the ground beside her."
                 Ad annoyed eval icecream flip "Ack! Right on the muzzle!"
                 Ad sad eval icecream flip "Oh, Amely! I am so sorry! I didn't mean for things to go this way."
@@ -1188,43 +1202,14 @@ label eval_everyone_3:
                 m "In unison, Remy and I both took a bite of our respective scoops of ice cream."
                 m "Still wary about which flavor I was really about to eat, I was pleasantly surprised when my tongue made contact with the cool, delicious flavor of mango ice cream."
                 m "Any ice cream I had previously had could not compare with the smooth, creamy texture of Katsuharu's."
-                c "Wow! This is amazing!"
-                Ry smile "I'm glad you like it!"
-                stop music fadeout 2.0
-                scene black with dissolveslow
-                m "For the next while, the five of us sat quietly as we enjoyed our ice cream. Adine had some difficulties with hers, but after a while she had completely cleaned off her muzzle."
-                scene evalpark2
-                show adine normal b flip at left #No more ice cream on her face. How sad.
-                show amely smnormal flip at left
-                show vara smnormal behind amely at right
-                show remy normal behind vara at right
-                with dissolveslow
-                play music "mx/campfire.ogg" fadein 2.0
-                $ renpy.pause (1.0)
-                play sound "fx/bite.ogg"
-                m "I took the final piece of my cone and bit down on it with a satisfying crunch."
-                c "Well, I'm full."
-                Ry smile "Same here."
-                Am "Vara!"
-                Vr "..."
-                Am "Thanks!"
-                show vara smnone with dissolvemed
-                show amely smnormal flip at Position(xpos = 0.5) with move
-                play sound "fx/hug.mp3"
-                m "Amely wrapped her arms tightly around Vara's body."
-                Vr smnormal "You're welcome."
-                Ad giggle b flip "That's adorable."
-                show amely smnormal with dissolvemed
-                show amely smnormal at left with move
-                show amely smnormal flip with dissolvemed
-
-            "[[Keep my ice cream.]":
+                $ evalAdineTrickPassed=True
+            "[[Keep your ice cream]":
                 c "Sorry, Amely. But I think you've had enough ice cream for today."
                 Am smsad flip "Awwww..."
                 Ry "Amely, you've already had two scoops."
                 Am "Want more..."
                 Ry "We'll make sure to come back here more often for you, alright?"
-                Am smnormal "Alright."
+                Am smnormal flip "Alright."
                 m "I took a bite of my ice cream as Adine and Remy watched."
                 m "As soon as my tongue made contact with the mango ice cream, my face involuntarily contorted into disgust."
                 c "This is the most disgusting mango flavor I have ever tasted."
@@ -1249,30 +1234,44 @@ label eval_everyone_3:
                 m "I carefully took a taste of the ice cream."
                 m "Preparing my taste buds for the worse, I was pleasantly surprised when my tongue made contact with the cool, delicious flavor of mango ice cream."
                 m "Any ice cream I had previously had could not compare with the smooth, creamy texture of Katsuharu's."
-                c "Wow! This is amazing!"
-                Ry smile "I'm glad you like it!"
-                stop music fadeout 2.0
-                scene black with dissolveslow
-                m "For the next while the five of us sat quietly as we enjoyed our ice cream."
-                scene evalpark2
-                show adine normal b flip at left
-                show amely smnormal flip at left
-                show vara smnormal behind amely at right
-                show remy normal behind vara at right
-                with dissolveslow
-                play music "mx/campfire.ogg" fadein 2.0
-                $ renpy.pause (1.0)
-                play sound "fx/bite.ogg"
-                m "I took the final piece of my cone and bit down on it with a satisfying crunch."
-                c "Well, I'm full."
-                Ry smile "Same here."
-
+                $ evalAdineTrickPassed=False
+        c "Wow! This is amazing!"
+        Ry smile "I'm glad you like it!"
+        stop music fadeout 2.0
+        scene black with dissolveslow
+#        m "For the next while the five of us sat quietly as we enjoyed our ice cream. Adine had some difficulties with hers, but after a while she had completely cleaned off her muzzle."
+        scene evalpark2
+        show adine normal b flip at left #No more ice cream on her face. How sad.
+        show amely smnormal flip at left
+        show vara smnormal behind amely at right
+        show remy normal behind vara at right
+        with dissolveslow
+        play music "mx/campfire.ogg" fadein 2.0
+        $ renpy.pause (1.0)
+        play sound "fx/bite.ogg"
+        m "I took the final piece of my cone and bit down on it with a satisfying crunch."
+        c "Well, I'm full."
+        Ry smile "Same here."
+        Am "Vara!"
+        Vr "..."
+        Am "Thanks!"
+        show vara smnone with dissolvemed
+        show amely smnormal flip at Position(xpos = 0.5) with move
+        play sound "fx/hug.mp3"
+        m "Amely wrapped her arms tightly around Vara's body."
+        Vr smnormal "You're welcome."
+        Ad giggle b flip "That's adorable."
+        show amely smnormal
+        show amely smnormal at left with move
+        show amely smnormal flip
         Ad disappoint b flip "Now that I'm thinking about it, I may have been a bit too harsh on you, [player_name]. I'm sorry."
         
         menu:
             "It's alright.":
                 c "Don't worry about it, Adine. In a way, I kind of deserved it."
                 Ad giggle b flip "Probably not to this extent, but yes."
+                label evalAdineTrickForgave:
+                    pass
                 Ad normal b flip "Just know that you're a wonderful friend, and even though it may not have seemed like it, I had fun."
                 hide adine with dissolvemed
                 play sound "fx/hug.mp3"
@@ -1320,12 +1319,23 @@ label eval_everyone_3:
                 $ renpy.pause (1.0)
                 play sound "fx/takeoff.ogg"
                 m "With Amely tightly grasped within her claws, Adine soared into the night sky."
-
-            "You went too far, Adine.":
+            "I forgive you, on one condition.":
+                Ad sad b flip "what is it?"
+                c "let's all agree to not pull pranks when the children are preset."
+                Ad normal b flip "sure."
+                if evalAdineTrickPassed:#if you gave Amely Adine's bad ice cream
+                    c "that prank may have been funny if I kept my ice cream."
+                    c "I probably would have deserved it."
+                else:
+                    c "I kind deserved it."
+                    c "but I nearly gave Amely that ice cream."
+                jump evalAdineTrickForgave
+            "You went too far, Adine.":#shame on you MC, she already felt bad about that.
+                $ adinestatus = "none"
                 c "You should be sorry. That little joke of yours almost ruined our entire day out."
-                $ adinestatus = "bad"
                 Ad sad b flip "I... I know it was a bit rash, but I didn't know it was that bad."
                 Ry look "It wasn't that bad, [player_name]. It's just ice cream."
+                $ adinestatus = "abandoned"#good job [player_name], you made Adine feel like trash
                 c "Yeah. That {i}I{/i} treated you to."
                 Ad "..."
                 Ad disappoint b flip "It's getting late. Let's go, Amely."
@@ -1351,6 +1361,10 @@ label eval_everyone_3:
                 show remy look flip with dissolvemed
                 hide remy with easeoutright
                 scene black with dissolveslow
+                play sound "fx/system3.wav"
+                s "Nice going [player_name]."
+                play sound "fx/system3.wav"
+                s "you made adine feel like trash."
                 $ evalFail = "Taking Things too Seriously"
                 jump eval_fails
 
@@ -1511,7 +1525,7 @@ label eval_everyone_3:
     m "After a little bit longer, Vara and Remy returned to the table with three plates."
     c "Wow! This looks amazing!"
     Vr smsmile flip "It's Mouflon made with my own recipe."
-    if annascenesfinished > 1 and not nofood:
+    if not mp.vegetarian:
         c "Oh! I've had that before, but not so finely prepared. I'm excited to try it!"
     else:
         c "Can't say I've had Mouflon before, but it looks delicious."
@@ -1548,6 +1562,23 @@ label eval_everyone_3:
     show remy normal at right
     show vara smsmile flip at left
     with dissolveslow
+    if not evalDoingSecretEnding:
+        Ry "Can we meet tomorrow, [player_name]."
+        c "Of course we can. Goodnight you two."
+        Ry "Goodnight, [player_name]."
+        Vr "Goodnight!"
+        hide remy
+        hide vara
+        with easeoutleft
+        play sound "fx/door/doorchain.ogg"
+        m "With that, the two dragons left through the door, leaving me alone in my apartment."
+        m "I made my way over to the bedroom to get ready to sleep."
+        c "(It's wonderful that Remy and Vara are a real family now.)"
+        
+        stop music fadeout 2.0
+        scene black with dissolveslow
+        $ persistent.evalEndingD = True
+        jump eval_custom_credits#i think we need a different scene for if vara suvived due to another mod
     Ry "Well, Vara. Are you ready to go home?"
     Vr smnormal flip "The orphanage?"
     Ry shy "Well..."
@@ -1664,6 +1695,7 @@ label eval_everyone_3:
     m "With that, the two dragons left through the door, leaving me alone in my apartment."
     m "I made my way over to the bedroom to get ready to sleep."
     c "(It's wonderful that Remy and Vara are a real family now.)"
+    
     stop music fadeout 2.0
     scene black with dissolveslow
     #scene o2
@@ -1848,11 +1880,8 @@ label eval_everyone_3:
             #m "At that moment, nothing else mattered. I buried my face deeper into his scales and closed my eyes."
             stop music fadeout 2.0
             scene black with dissolveslow
-            $ renpy.pause (3.0)
-            $ persistent.evalEndingD = True
-            jump eval_custom_credits
-        
-        "[[Reject.]":
+            $ renpy.pause (2.0)
+        "[[Reject]":
             c "Sorry, Remy, but I don't think I'm ready to take our relationship any further."
             c "You mean a lot to me, but I just can't say I'm ready."
             Ry "I understand. Maybe I was pushing you too hard. Would you be open to something in the future?"
@@ -1872,9 +1901,9 @@ label eval_everyone_3:
             $ renpy.pause (1.5)
             stop music fadeout 2.0
             scene black with dissolveslow
-            $ renpy.pause (1.0)
-            $ persistent.evalEndingD = True
-            jump eval_custom_credits
+    $ renpy.pause (1.0)
+    $ persistent.evalEndingD = True
+    jump eval_custom_credits
     #With one fragment could come many more, leading to disatrous timelines.
     #There is a delicate balance between your interaction with the dragon world and saving humanity.
     #Add something about Remy wanting a real relationship now that you will be staying and he didn't want to bring it up before b/c he thought he would lose you like he lost amelia (didn't want to establish the same connection)
