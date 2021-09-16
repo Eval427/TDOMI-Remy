@@ -81,7 +81,16 @@ label eval_orphanage_game:
     #Complete the game if the player runs out of time
     if evalRemainingMinutes <= 0:
         $ evalDisplayVar1 = 0
-        Ry "Adine should be here any minute, [player_name]."
+        if evalRemyOnMission:
+            show remy normal
+            show amely smnormal
+            with easeinright
+            if evalMinutesRemyIsGone > 0:
+                Ry "I came back early as soon as I noticed the time. Adine should be here any minute, [player_name]."
+            else:
+                Ry "Adine should be here any minute, [player_name]."
+        else:
+            Ry "Adine should be here any minute, [player_name]."
         c "But we aren't done!"
         if evalTasksComplete > 3:
             Ry smile "We still did quite a lot in one day. Don't worry, Adine and I can finish the rest in the next few days."
@@ -925,6 +934,5 @@ label eval_orphanage_end: #Change the music
             stop music fadeout 2.0
             jump eval_remy_amely_adine_1
     else:
-        "Well, Adine should be here any minute now..."
         jump eval_remy_amely_adine_1
     

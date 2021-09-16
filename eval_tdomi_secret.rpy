@@ -5,18 +5,25 @@
 #Changes dialogue for when you arrive at the orphanage
 #Incorporate a Vara mood counter for how she reacts? Oh god that sounds not fun
 label eval_secret_orphanage_arrival:
-    Ry "Amely? Vara? Are you two here?"
-    show amely smnormal with easeinright
-    Am "Hello!"
-    Ry smile "Hello, Amely."
-    Ry normal "Do you know where Vara is?"
-    Am "She is coming."
-    show vara smnormal behind amely with easeinright
-    Vr "..."
-    c "Hi, Vara."
-    Vr smsmile "Hello."
-    Ry "She's been talking much more since you last saw her, [player_name]."
-    c "That's great to hear."
+    if evalVaraHere:
+        Ry "Amely? Are you here?"
+        show amely smnormal with easeinright
+        show vara behind amely with None
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+    else:
+        Ry "Amely? Vara? Are you two here?"
+        show amely smnormal with easeinright
+        Am "Hello!"
+        Ry smile "Hello, Amely."
+        Ry normal "Do you know where Vara is?"
+        Am "She is coming."
+        show vara smnormal behind amely with easeinright
+        Vr "..."
+        c "Hi, Vara."
+        Vr "Hello."
+        Ry "She's been talking much more since you last saw her, [player_name]."
+        c "That's great to hear."
     Vr "It's dark."
     Ry "I see that, Vara. I wonder who turned the lights off. Usually we leave them on for you."
     c "Wait, is the orphanage just a classroom?"
@@ -1433,7 +1440,7 @@ label eval_everyone_3:
         c "Sure."
         hide vara with dissolvemed
         m "I grabbed Vara and lifted her onto Remy's back."
-        m "It was quite a sight seeing the small, pink dragon riding on Remy's back"
+        m "It was quite a sight seeing the small, pink dragon riding on Remy's back."
         Ry "You alright up there, Vara?"
         Vr "Yes."
         Ry "Alright then. See you soon, [player_name]."

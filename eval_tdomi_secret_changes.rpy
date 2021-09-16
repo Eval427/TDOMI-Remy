@@ -299,7 +299,7 @@ label eval_remy_ch4_date_change: #This changes up the end of Remy's date to acco
             $ renpy.pause (1.5)
             Vr smshocked flip "..."
             m "What must have been the finale for the day's firework show seemed to frighten Vara."
-            show vara at right with move
+            show vara smshocked flip at right with move
             show vara smshocked with dissolvemed
             Ry "It's alright, Vara. It's just some fireworks."
             Vr "..."
@@ -452,7 +452,7 @@ label eval_remy_ch4_date_change_2:
     c "Don't say that. How were you supposed to know that I was going to pass out? Plus, we're still going to see the fireworks together."
     c "We can bring Vara as well, I think it would be fun!"
     Ry look "That's true, but you know how I feel. I guess I just wanted to make the most of our outing yesterday."
-    if remystatus != "neutral": #Obligatory inclusion of the kiss scene. Can't be the fourth date without it, really
+    if remystatus == "good": #Obligatory inclusion of the kiss scene. Can't be the fourth date without it, really
         c "Speaking of which, I've never actually seen you without your tie."
         Ry normal "Well, actually..."
         hide remy with dissolvemed
@@ -469,6 +469,7 @@ label eval_remy_ch4_date_change_2:
 
         menu:
             "Look away.":
+                $ remystatus = "neutral"
                 hide remyrom
                 hide remy
                 with fade
@@ -485,6 +486,7 @@ label eval_remy_ch4_date_change_2:
                 $ renpy.pause (1.0)
             
             "Kiss him.":
+                $ mp.remyromance = True
                 $ evalRemyRomance = True
                 $ mp.save()
                 hide remyrom
@@ -565,7 +567,7 @@ label eval_remy_ch4_date_change_2:
     c "Glad to hear that, Remy. You're a lot braver than you make yourself out to be."
     Ry "Well, you're making me work double-time here. Before you, I didn't have to worry about all of this nonsense."
     Ry normal "But you know what? I wouldn't have it any other way."
-    if remystatus != "neutral":
+    if remystatus == "good":
         m "Remy gave me a playful lick on the cheek."
     Ry "I'm still stressed beyond belief, but let's not let this impact us too heavily."
     Ry "We have to be ready to protect Vara."
@@ -733,7 +735,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Mv "I... I didn't know it was that bad, Remy. I'm so sorry."
     Ry "Feel bad for me later, Maverick. We have to help [player_name]."
     Mv normal flip "I can't say I fully trust [player_name], Remy, but I'll still help you."
-    Vr "I help?"
+    Vr "I help too?"
     Ry sad "Vara, you should stay here where you'll be safe."
     Vr "..."
     Ry "I promise, Vara. We will come back when it's safe."
@@ -892,7 +894,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     Ry "Thank you, Maverick."
     show maverick normal c flip at Position(xpos=0.9, xanchor="center") with dissolvemed
     hide maverick with easeoutright
-    Vr flip "..."
+    Vr "..."
     Ry sad eval shot flip "Vara, you silly girl. Why did you follow us?"
     Vr smsad flip "I... help."
     Ry "You could have gotten hurt! Or worse..."
@@ -910,6 +912,8 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     show vara smsad flip behind remy at Position(xpos=-0.1) with move
     m "Vara snuggled closer to Remy and buried her face in his side."
     m "Suddenly, the Administrator appeared next to me."
+    if persistent.remybadending:
+        define As=Character(_("Izumi"), color="#d2d9ff", image="izumi")
     if persistent.annabadending==True:
         show izumi normal 4 d at Position(xpos=0.9) with easeinright
     else:
@@ -960,7 +964,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
         As normal 4 d "You will know what to do, [player_name]."
     else:
         As normal 4 d "You will know what to do, [player_name]."
-        c "But-"
+        c "But-{w=0.5}{nw}"
     m "With that, she closed her eyes and her body went limp."
 
     stop music fadeout 3.0
@@ -974,8 +978,8 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     n "Soon, more help arrived. Remy and I got all the medical attention we needed while Vara was sent to Adine to be taken care of."
     n "Maverick had only sustained minor burn injuries and abrasions. However, Reza and Izumi were both dead."
     n "I warned the dragons about the comet, telling them to check the PDAs I had given them for verification of my claims."
-    n "A few minutes later, EMTs arrived and I was put into an artificial coma due to my injuries."
-    n "In the weeks I was out, a variety of things happened."
+    n "A few minutes later, EMTs arrived and I was put into a medically induced coma due to my injuries."
+    n "In the weeks I was out, a number of things happened."
     n "Out of respect, Reza's body was given a proper funeral in a remote location. His weapon and remaining ammunition were to be left in my care."
     n "After attempts were made to make contact with the human world, it was discovered that the portal was no longer operational."
 
@@ -986,7 +990,7 @@ label eval_remy_good_ending_change: #And so the contruction of a completely new 
     n "Upon this discovery, the dragons sent their brightest engineers in attempts to establish a connection with the human world."
     n "However, after weeks of unsuccessful attempts, the operation was deemed to be a failure."
     n "Ultimately, the dragons decided to leave the portal standing in its current state."
-    n "Luckily, my claims were taken seriously, and there was already a plan in place to divert the comet."
+    n "Fortunately, my claims were taken seriously, and there was already a plan in place to divert the comet."
     n "Using the lab's generators, the dragons were successfully able to redirect the comet's path away from Earth."
 
     window hide
@@ -1012,7 +1016,7 @@ label eval_post_secret_remy_meeting:
     scene park2 with dissolveslow
     show remy normal with dissolvemed
     play music "mx/library.ogg" fadein 2.0
-    c "So, the comet has been diverted. I guess I must've been gone for a long time."
+    c "So, the comet has been diverted. I guess I must've been out for a long time."
     Ry look "Yes you were. A lot has happened since then."
     Ry normal "By the way, I talked with Maverick a few days ago."
     c "Oh, what did he have to say?"
