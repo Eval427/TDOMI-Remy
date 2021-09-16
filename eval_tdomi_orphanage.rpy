@@ -867,8 +867,8 @@ label eval_orphanage_end: #Change the music
     hide screen evalextrainfo
     stop music fadeout 2.0
     $ renpy.pause (3.0)
-    play music "mx/serene.ogg"
     if evalOrphanageScore == 2:
+        play music "mx/serene.ogg"
         Ry smile "Wow, [player_name]! This place hasn't looked this good in years!"
         c "Couldn't have done it without you, Remy."
         Am smsad "Hey!"

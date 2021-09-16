@@ -1170,8 +1170,8 @@ label eval_secret_orphanage_end: #Change the music
     hide screen evalextrainfo
     stop music fadeout 2.0
     $ renpy.pause (3.0)
-    play music "mx/comfy.mp3" #Custom music for the secret ending. Nice
     if evalOrphanageScore == 2:
+        play music "mx/comfy.mp3"
         Ry smile "Wow, [player_name]! This place hasn't looked this good in years!"
         Ry "It was definitely worthy of a couple high fives."
         Ry look "We really need to think about changing the name of that, though."
