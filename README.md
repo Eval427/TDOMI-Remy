@@ -2,7 +2,7 @@
 
 Massive shoutout to EvilChaosKnight for their amazing character images of Amely, backgrounds, and impressive extra text UI element. This mod wouldn't be possible without their work.
 
-Right now this mod is INCOMPLETE. I'm almost done, though
+Right now this mod is COMPLETE. I updated this README so late though. Whoops!
 
 Why did I even do this in the first place/what gave me inspiration?
 - This was my inspiration: https://steamcommunity.com/sharedfiles/filedetails/?id=857686289
@@ -43,8 +43,16 @@ Why did I even do this in the first place/what gave me inspiration?
 
  ________________________________________________________________________________________________
 
+Tips and Spoilers:
+
+If you're having trouble unlocking all of the content or are simply curious if you missed anything, check out this handy Steam discussion I made. This should properly discuss all of the secrets lurking in this mod:
+
+https://steamcommunity.com/workshop/filedetails/discussion/2595288769/3043858879877498927/
+
+ ________________________________________________________________________________________________
+
  Feedback:
 
- - If you have any feedback whatsoever, please hit me up on discord (Eval#4270). This is especially true for writing, since I know a lot of it is just "OK".
+ - If you have any feedback whatsoever, please hit me up on discord (Eval#4270).
 
 ________________________________________________________________________________________________
